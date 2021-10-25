@@ -5,4 +5,4 @@ import datetime
 
 # Create your views here.
 def games_index(request):
-    return render(request, "base.html")
+    return render(request, "games/game1.html")
