@@ -3,7 +3,7 @@
             {
                 "format": "expanded",
                 "extensionName": ".css",
-                "savePath": "/core/static/styles/css"
+                "savePath": "/server/public/css"
             }
         ],
 }
