@@ -1,0 +1,9 @@
+<% layout('template') -%>
+
+<h1>Request Headers:</h1>
+
+<ul>
+    <% who.forEach(function(entry){ %>
+     <li><%=entry%></li>
+    <% }); %>
+</ul>

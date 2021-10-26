@@ -38,3 +38,39 @@ oder
 
 Coming...
 
+
+
+## Beispiele
+
+### Express
+
+---
+
+#### Variablen etc. zu Views übergeben
+
+
+
+```js
+router.get('/whoami', (req, res) => {
+    let request = Object.entries(req.rawHeaders);
+
+    res.render('../views/whoami', {
+        //Hier die Variablen angeben
+        who: request
+    });
+});
+```
+
+
+
+```html
+<h1>Request Headers:</h1>
+
+<ul>
+    <!-- Da who in dem Fall ein Array ist, nutzen wir forEach -->
+    <% who.forEach(function(entry){ %>
+    	<li><%=entry%></li>
+    <% }); %>
+</ul>
+```
+

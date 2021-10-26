@@ -9,4 +9,12 @@ router.get('/ejs', function (req, res) {
     res.render('../views/main');
 })
 
+router.get('/whoami', (req, res) => {
+    let request = Object.entries(req.rawHeaders);
+
+    res.render('../views/whoami', { 
+        who: request
+    })
+});
+
 module.exports = router;
