@@ -9,6 +9,7 @@ const PORT       = process.env.PORT || 3000;
 const app        = express()
 
 //Set View Engine to EJS and change the view path to server/views/
+app.engine('ejs', require('ejs-locals'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'server/views'));
 
