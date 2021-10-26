@@ -1,5 +1,4 @@
 const path       = require('path');
-const http       = require('http');
 const express    = require('express');
 
 const logger     = require(path.join(__dirname, 'server/utils/helpers/logger'));
