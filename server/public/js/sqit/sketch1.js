@@ -1,14 +1,10 @@
-let on, anim;
-
-let interval = 10;
-let radius = 50;
-let push = 0;
-
 $("#presser").on("click", () => {
   console.log("Hi", anim);
   anim = true;
   console.log($("#editor").width())
 });
+
+let realWidth = ($(window).width() / 100) * 90
 
 let editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
@@ -20,6 +16,8 @@ editor.setOption({
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
   behavioursEnabled: true,
+  hScrollBarAlwaysVisible: false, 
+  vScrollBarAlwaysVisible: false
 });
 
 editor.commands.addCommand({
@@ -30,6 +28,7 @@ editor.commands.addCommand({
   bindKey: { mac: "cmd-enter", win: "ctrl-enter" },
 });
 
+$("#editor").width(realWidth);
 $("#editor").height("50vh");
 
 let editor2 = ace.edit("editor2");
@@ -40,27 +39,28 @@ editor2.setOption({
   wrap: true,
   highlightActiveLine: false,
   highlightGutterLine: false,
+  hScrollBarAlwaysVisible: false, 
+  vScrollBarAlwaysVisible: false
 });
 editor2.setShowPrintMargin(false);
 editor2.renderer.$cursorLayer.element.style.display = "none";
 editor2.setReadOnly(true);
+
+$("#editor2").width(realWidth);
 $("#editor2").height("5vh");
 
 
-$(window).on("load", ()=> console.log("hi", $(window).width()))
+const vh_2_px = (vh, height=true) => $(window)[height ? "height": "width"]() * (vh / 100)
 
-console.log($(window).width())
-console.log(window.innerWidth, window.outerWidth)
+
+let on, anim;
+
+let interval = 10;
+let radius = 50;
+let push = 0;
 
 function setup() {
-  // console.log($("#canvasHolder").width())
-  // console.log($("#editor").width()) 
-  // console.log((window.innerWidth-$(window).width()))
-  // console.log($(window).width())
-  // console.log(window.innerWidth)
-
-
-  let cnv = createCanvas($(window).width(), 400);
+  let cnv = createCanvas(realWidth, vh_2_px(50));
   cnv.parent("canvasHolder");
   frameRate(60);
 }
@@ -95,6 +95,9 @@ function draw() {
 }
 
 
+function windowResized(){
+  resizeCanvas($(window).width(), 400)
+}
 
 // for (let i = 0; i < radius; i++) {
 //   fill(255, 0, 0, i);
