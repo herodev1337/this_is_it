@@ -13,7 +13,7 @@ router.get('/sqit', function (req, res) {
     res.render('../views/sqit/games');
 })
 
-router.get('/sqit/game2', function (req, res) {
+router.get('/sqit2', function (req, res) {
     res.render('../views/sqit/game2');
 })
 

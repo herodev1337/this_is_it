@@ -16,44 +16,44 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/javascript");
 editor.setOption({wrap:true});
 
+$("#editor").height("50vh")
 
+function setup() {
+  let cnv = createCanvas($(window).width(), 800);
+  cnv.parent("canvasHolder");
+  frameRate(60);
+}
 
-// function setup() {
-//   let cnv = createCanvas($(window).width(), 400);
-//   cnv.parent("canvasHolder");
-//   frameRate(60);
-// }
+function draw() {
+  background($(":root").css("--color-navy-800"));
 
-// function draw() {
-//   background($(":root").css("--color-navy-800"));
+  translate(width / 2, height / 2);
+  noStroke();
 
-//   translate(width / 2, height / 2);
-//   noStroke();
+  // Strobing lights
+  if (on) {
+    fill(255, 0, 0);
+    circle(-(width / 2) / 3, 0, radius * 2);
+  } else {
+    fill(0, 255, 0);
+    circle(width / 2 / 3, 0, radius * 2);
+  }
 
-//   // Strobing lights
-//   if (on) {
-//     fill(255, 0, 0);
-//     circle(-(width / 2) / 3, 0, radius * 2);
-//   } else {
-//     fill(0, 255, 0);
-//     circle(width / 2 / 3, 0, radius * 2);
-//   }
+  // Sliding doors
+  stroke(0);
+  strokeWeight(1);
+  fill($(":root").css("--GuardRed"));
+  rect(0 + push, -height / 2, width, height);
 
-//   // Sliding doors
-//   stroke(0);
-//   strokeWeight(1);
-//   fill($(":root").css("--GuardRed"));
-//   rect(0 + push, -height / 2, width, height);
+  fill($(":root").css("--GuardRed"));
+  rect(0 - push, -height / 2, -width, height);
 
-//   fill($(":root").css("--GuardRed"));
-//   rect(0 - push, -height / 2, -width, height);
+  if (anim) push++;
 
-//   if (anim) push++;
+  if (frameCount % interval == 0) on = !on;
+}
 
-//   if (frameCount % interval == 0) on = !on;
-// }
-
-// for (let i = 0; i < radius; i++){
-//   fill(255, 0, 0, i);
-//   circle(-(width / 2) / 2, 0, radius-i);
-// }
+for (let i = 0; i < radius; i++){
+  fill(255, 0, 0, i);
+  circle(-(width / 2) / 2, 0, radius-i);
+}
