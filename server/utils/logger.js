@@ -1,6 +1,5 @@
 const chalk = require('chalk');
 const date  = require('./date.js');
-const _     = require('lodash');
 
 module.exports = function (message, job="Main Thread", status=1){
 
