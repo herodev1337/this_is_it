@@ -1,10 +1,11 @@
 body {
-  margin: 0;
-  padding: 0;
+  text-align: center;
+  margin-bottom: 10vh;
   background-image: url("/files/sqit/lowPolyBG.svg");
+  background-attachment: fixed;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+#editor,
+#editor2 {
+  margin: auto !important;
 }
