@@ -1,5 +1,3 @@
-// import * as $ from "../../../../node_modules/jquery/dist/jquery.slim.js"
-
 let on, anim;
 
 let interval = 10;
@@ -11,12 +9,43 @@ $("#presser").on("click", () => {
   anim = true;
 });
 
-var editor = ace.edit("editor");
+let editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/javascript");
-editor.setOption({wrap:true});
 
-$("#editor").height("50vh")
+editor.setShowPrintMargin(false);
+editor.setOption({
+  wrap: true,
+  enableBasicAutocompletion: true,
+  enableLiveAutocompletion: true,
+  behavioursEnabled: true,
+});
+
+editor.commands.addCommand({
+  name: "...",
+  exec: function () {
+    console.log(editor.getValue());
+  },
+  bindKey: { mac: "cmd-enter", win: "ctrl-enter" },
+});
+
+$("#editor").height("50vh");
+
+
+let editor2 = ace.edit("editor2");
+editor2.setTheme("ace/theme/monokai");
+editor2.session.setMode("ace/mode/javascript");
+
+editor2.setOption({
+  wrap: true,
+  readOnly: false,
+  highlightActiveLine: false,
+  highlightGutterLine: false,
+});
+editor2.setShowPrintMargin(false);
+editor2.renderer.$cursorLayer.element.style.display = "none";
+editor2.setReadOnly(true);
+$("#editor2").height("5vh");
 
 function setup() {
   let cnv = createCanvas($(window).width(), 800);
