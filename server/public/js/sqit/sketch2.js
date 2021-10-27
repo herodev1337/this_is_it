@@ -19,15 +19,17 @@ $("#editor").height("50vh")
 
 function setup() {
     let cnv = createCanvas($(window).width(), 400);
-    let cnvInner = createCanvas(300, 300);
+    //let cnvInner = createCanvas($(window).width(), 400);
     cnv.parent("canvasHolder");
-    $("#defaultCanvas0").append(cnvInner)
+   // $("#defaultCanvas0").append(cnvInner)
     frameRate(60);
 }
 
 function draw() {
     background($(":root").css("--color-navy-800"));
 
-
-
+    rect(426,0,5,800)
+    rect(852,0,5,800)
+    rect(0,133,1280,5)
+    rect(0,266,1280,5)
 }
