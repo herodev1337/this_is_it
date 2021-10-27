@@ -19,15 +19,15 @@ $("#editor").height("50vh")
 
 function setup() {
     let cnv = createCanvas($(window).width(), 400);
+    let cnvInner = createCanvas(300, 300);
     cnv.parent("canvasHolder");
+    $("#defaultCanvas0").append(cnvInner)
     frameRate(60);
 }
 
 function draw() {
     background($(":root").css("--color-navy-800"));
-}
 
-for (let i = 0; i < radius; i++){
-    fill(255, 0, 0, i);
-    circle(-(width / 2) / 2, 0, radius-i);
+
+
 }
