@@ -16,7 +16,7 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/javascript");
 
 function setup() {
-  let cnv = createCanvas($(window).width(), 400);
+  let cnv = createCanvas($(window).width(),400);
   cnv.parent("canvasHolder");
   frameRate(60);
 }
