@@ -1,0 +1,53 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 15vh;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.navbar-content {
+    width: 45%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 5% 3%;
+
+    span, a {
+        width: 100%;
+        margin: 0 5%;
+    }
+}
+
+.navbar-toggle-menu {
+    /*display: none;*/
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 13px 12px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto 5%;
+    cursor: pointer;
+    
+    div {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: black;
+        margin: 3px 0;
+    }
+}
+
+.navbar-toggle-menu:hover {
+    background-color: black;
+
+    div {
+        background-color: white;
+    }
+}
