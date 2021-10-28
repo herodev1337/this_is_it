@@ -50,8 +50,23 @@ function draw() {
     circle(width/2 -100 ,height/2 + 100,50)
     circle(width/2 +100 ,height/2 + 100,50)
 
-
+    circle(...myfunc())
 }
+
+editor.commands.addCommand({
+    name: "...",
+    exec: () =>  {
+        let test = newCircle(7)
+        console.log(test)
+    },
+    bindKey: { mac: "cmd-enter", win: "ctrl-enter" },
+});
+
+
+
+
+
+
 
 
 function newCross(position){
@@ -126,17 +141,16 @@ function newCircle(position){
 
     }
     if(position === 7){
-        circle(width/2,height/2 - 100,50)
+        let circle7 = circle(width/2,height/2 - 100,50)
         checkPosition[7] = true
+
+        return circle7
 
     }
     if(position === 8){
         circle(width/2 +100 ,height/2 + 100,50)
         checkPosition[8] = true
 
-    }
-    else{
-        console.log("Enter valid field-number")
     }
 
 }
