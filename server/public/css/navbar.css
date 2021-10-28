@@ -57,8 +57,7 @@ nav {
 }
 
 .navbar-toggle-menu {
-  /*display: none;*/
-  display: block;
+  display: none;
   width: 50px;
   height: 50px;
   padding: 13px 12px;
@@ -82,5 +81,14 @@ nav {
 
 .navbar-toggle-menu:hover div {
   background-color: white;
+}
+
+@media only screen and (orientation: portrait) {
+  .navbar-toggle-menu {
+    display: block;
+  }
+  .navbar-content a {
+    display: none;
+  }
 }
 /*# sourceMappingURL=navbar.css.map */
