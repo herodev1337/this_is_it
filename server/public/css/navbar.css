@@ -10,16 +10,11 @@ nav {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 15vh;
-  width: 100%;
-}
-
-nav a {
-  text-decoration: none;
+  border-bottom: 1px solid black;
 }
 
 .navbar-content {
-  width: 45%;
-  text-align: center;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,12 +25,35 @@ nav a {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  margin: 5% 3%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin: 3% 3%;
 }
 
 .navbar-content span, .navbar-content a {
-  width: 100%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   margin: 0 5%;
+}
+
+.navbar-content span {
+  vertical-align: bottom;
+  margin-left: 1%;
+  margin-right: 7%;
+  font-size: 2rem;
+}
+
+.navbar-content a {
+  margin: 0 2%;
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-content a:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 .navbar-toggle-menu {
