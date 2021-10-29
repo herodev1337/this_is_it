@@ -61,6 +61,7 @@ nav {
   display: block;
   width: 50px;
   height: 50px;
+  background-color: white;
   padding: 13px 12px;
   border: 1px solid black;
   border-radius: 5px;
@@ -86,6 +87,37 @@ nav {
 
 .navbar-toggle-content {
   display: none;
+  right: 0;
+  top: 12vh;
+  background-color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  position: absolute;
+  padding: 5px 0;
+  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 5px black;
+          box-shadow: 5px 5px 5px black;
+  margin: 0 5%;
+  z-index: 1;
+}
+
+.navbar-toggle-content a {
+  width: 40%;
+  padding: 5px 10px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.navbar-toggle-content a:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 @media only screen and (orientation: portrait) {
