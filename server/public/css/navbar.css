@@ -120,7 +120,32 @@ nav {
 }
 
 .navbar-toggle-content {
-    display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  right: 0;
+  top: 15vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  position: absolute;
+  border: 1px solid black;
+}
+
+.navbar-toggle-content a {
+  width: 40%;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-toggle-content a:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 @media only screen and (orientation: portrait) {

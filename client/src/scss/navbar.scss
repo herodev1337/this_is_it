@@ -68,7 +68,25 @@ nav {
 }
 
 .navbar-toggle-content {
-    display: none;
+    display: flex;
+    right: 0;
+    top: 15vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    border: 1px solid black;
+
+    a {
+        width: 40%;
+        font-size: 1rem;
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: black;
+    }
 }
 
 @media only screen and (orientation: portrait) {
