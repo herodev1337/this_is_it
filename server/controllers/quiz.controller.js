@@ -1,26 +1,13 @@
-const showQuizOverview = (req, res) => {
+//TODO: Cleanup/Validation
+const showQuizView = async (req, res, next) => {
     res.render('quiz/quizOverview');
 }
 
-const showQuiz = (req, res) => {
-    res.render('quiz');
-}
-
-//Admin
-
-const createQuiz = (req, res) => {
-    res.render('home');
-}
-
-const deleteQuiz = (req, res) => {
-    res.render('home');
-}
-
-const editQuiz = (req, res) => {
-    res.render('home');
-}
+// //TODO: Cleanup/Validation
+// const showQuiz = async (req, res, next) => {
+//     res.render('quiz/quizOverview');
+// }
 
 module.exports = {
-    showHome,
-    showWhoami
-  };
+    showQuizView
+}

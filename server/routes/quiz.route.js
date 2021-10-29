@@ -1,19 +1,9 @@
-var router = require("express").Router();
-const quizController = require("../controllers/quiz.controller");
-const authMiddleware = require("../middleware/auth.middleware");
+var router = require('express').Router()
+const quizController = require('../controllers/quiz.controller')
 
-router.get("/quiz", quizController.showQuizOverview);
 
-router.get("/quiz/:id", quizController.showQuiz);
+router.route('/')
+    .get(quizController.showQuizView) //TODO: Overview of quizzes
 
-//? Ajax POST
-//router.get("/quiz/:quizId/question/:questionId", quizController.showQuestion)
 
-//Admin
-router.get("/quiz/create", authController, quizController.createQuiz)
-
-router.get("/quiz/:id/edit", authController, quizController.editQuiz)
-
-router.post("/quiz/:id/delete", authController, quizController.deleteQuiz)
-
-module.exports = router;
+module.exports = router

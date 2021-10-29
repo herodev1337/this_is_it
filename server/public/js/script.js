@@ -11782,9 +11782,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!******************************!*\
-  !*** ./client/src/client.js ***!
-  \******************************/
+/*!****************************!*\
+  !*** ./client/src/quiz.js ***!
+  \****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
@@ -11792,10 +11792,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()( "p" ).text( "DOM geladen! JS von webpack :)" );
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#quizList').empty();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({url: "/api/quiz", success: function(result){
+        console.log(result)
+    }});
+    // lobbies.forEach((lobby) => {
+    //     var list = `
+    //     <a href="#" onClick="socket.emit('LOBBY_CONNECT', '${lobby.id}');" class="list-group-item list-group-item-action">
+    //         <div class="d-flex w-100 justify-content-between">
+    //             <h5 class="mb-1">${lobby.name}</h5>
+    //         </div>
+    //         <p class="mb-1">Hoster: <i>${lobby.host}</i></p>
+    //         <span class="badge bg-primary rounded-pill">${lobby.size}</span>
+    //     </a>`;
+    //     $("#lobbyList").append(list);
+    // })    
 });
- 
 })();
 
 /******/ })()

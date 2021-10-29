@@ -8,13 +8,15 @@ const registerValidator = (body) => {
   return validationSchema.validate(body);
 };
 
-const loginValidator = (body) => {
+const quizValidator = (body) => {
   const validationSchema = Joi.object({
-    username: Joi.string().min(3).max(30).required(),
-    password: Joi.string().min(10).max(100).required(),
+    name: Joi.string().min(3).max(30).required(),
+    instructions: Joi.string(),
+    isEnabled: Joi.boolean(),
+    questions: Joi.array()
   });
   return validationSchema.validate(body);
 };
 
 module.exports.registerValidator = registerValidator;
-module.exports.loginValidator = loginValidator;
+module.exports.quizValidator = quizValidator;

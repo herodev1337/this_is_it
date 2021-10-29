@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const logger = require('../utils/logger')
-const { registerValidator, loginValidator } = require('../utils/validator')
+const { registerValidator } = require('../utils/validator')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
     }
 
     //Check if User Exists
-    if (await getUser(req.body)) return res.status(400).json({ error: 'User already exists!' })
+    if (await getUser(req.body.username)) return res.status(400).json({ error: 'User already exists!' })
 
     //User Creation
     const user = new User({
@@ -44,13 +44,6 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
-    //Validation
-    const { error } = loginValidator(req.body)
-    if (error) {
-        logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Authentication Controller', 3)
-        return res.status(400).json({ error: error })
-    }
-
     const currentUser = await getUser(req.body.username)
 
     //If user dosent exist -> 400
