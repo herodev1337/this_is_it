@@ -82,16 +82,14 @@ nav {
     margin: 0 5%;
 
     z-index: 1;
-
-    div {
-        padding: 5px 10px;
-    }
-
+    
     a {
         width: 40%;
+        padding: 5px 10px;
         font-size: 1rem;
         text-decoration: none;
         color: black;
+        cursor: pointer;
     }
 
     a:hover {
