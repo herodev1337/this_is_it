@@ -32,8 +32,8 @@ app.use(express.static(publicPath));
 var main = require('./server/routes/main.route.js');
 app.use('/', main);
 
-var auth = require('./server/routes/auth.route.js');
-app.use('/', auth);
+// var auth = require('./server/routes/auth.route.js');
+// app.use('/', auth);
 
 app.listen(PORT, () => {
     logger(`Server is running!`, 'Webserver')
