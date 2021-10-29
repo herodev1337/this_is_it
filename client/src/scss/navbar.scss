@@ -44,6 +44,7 @@ nav {
     display: block;
     width: 50px;
     height: 50px;
+    background-color: white;
     padding: 13px 12px;
     border: 1px solid black;
     border-radius: 5px;
@@ -68,13 +69,23 @@ nav {
 }
 
 .navbar-toggle-content {
-    display: flex;
+    display: none;
     right: 0;
-    top: 15vh;
+    top: 12vh;
+    background-color: white;
     flex-direction: column;
     justify-content: flex-start;
     position: absolute;
+    padding: 5px 0;
     border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    margin: 0 5%;
+
+    z-index: 1;
+
+    div {
+        padding: 5px 10px;
+    }
 
     a {
         width: 40%;
