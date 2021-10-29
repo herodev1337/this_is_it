@@ -19,7 +19,7 @@ function createDropdown(){
     }
 }
 
-/*function displayDropdown(event){
+function displayDropdown(event){
     if(event.type === "click"){
         if(navDropdownElements[1] === undefined){createDropdown();}
         if(toggleContent.style.display === "none"){
@@ -32,10 +32,11 @@ function createDropdown(){
     if(toggleContent.style.display === "flex" && event.type === "mouseleave" && screen.width < screen.height){
         toggleContent.style.display = "none";
     }
-}*/
+}
 
-$(document).ready(function() {
-    $(".navbar-toggle-menu").click(function(){
+/*$(document).ready(function() {
+    if(navDropdownElements[1] === undefined){createDropdown();}
+    $(".navbar-toggle-content").click(function(){
         $(".navbar-link").fadeToggle(1000);
     });
-});
+});*/
