@@ -68,7 +68,13 @@ nav {
 }
 
 .navbar-toggle-content {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    div {
+
+    }
 }
 
 @media only screen and (orientation: portrait) {
