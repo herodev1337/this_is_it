@@ -34,7 +34,7 @@ const add_editor_text = () => {
 const mainEditor = new EditorSingleton();
 mainEditor.enterCallback(enterCallback);
 
-// // P5 Animations
+// P5 Animations
 let on, anim, finished;
 
 let fps = 60;
@@ -111,7 +111,6 @@ function draw() {
 function windowResized() {
   resizeCanvas(helpers.realWidth(90), helpers.view_2_px(50));
 }
-
 
 
 window.setup = setup;
