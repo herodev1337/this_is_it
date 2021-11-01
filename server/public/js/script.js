@@ -1,6 +1,51 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/src/quiz.js":
+/*!****************************!*\
+  !*** ./client/src/quiz.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+    
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({url: "/api/quiz", success: function(result){
+        if(!result.error){
+            //result.data[0].name
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('#quizList').empty();
+            result.data.forEach(quiz => {
+                var quizHTML = `
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">${quiz.name}</h5>
+                    </div>
+                    <p class="mb-1">Anleitung: <i>${quiz.instructions}</i></p>
+                    <span class="badge bg-primary rounded-pill">${quiz.questions.length}</span>
+                </a>`;
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("#quizList").append(quizHTML);
+            })
+        }
+    }});
+    // lobbies.forEach((lobby) => {
+    //     <a href="#" onClick="socket.emit('LOBBY_CONNECT', '${lobby.id}');" class="list-group-item list-group-item-action">
+    //         <div class="d-flex w-100 justify-content-between">
+    //             <h5 class="mb-1">${lobby.name}</h5>
+    //         </div>
+    //         <p class="mb-1">Hoster: <i>${lobby.host}</i></p>
+    //         <span class="badge bg-primary rounded-pill">${lobby.size}</span>
+    //     </a>`;
+    //     $("#lobbyList").append(list);
+    // })    
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./client/src/scss/app.scss":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js??ruleSet[1].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js!./client/src/scss/app.scss ***!
@@ -11782,33 +11827,17 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-/*!****************************!*\
-  !*** ./client/src/quiz.js ***!
-  \****************************/
+/*!******************************!*\
+  !*** ./client/src/client.js ***!
+  \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/app.scss */ "./client/src/scss/app.scss");
+/* harmony import */ var _quiz__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./quiz */ "./client/src/quiz.js");
 
 
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#quizList').empty();
-    jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({url: "/api/quiz", success: function(result){
-        console.log(result)
-    }});
-    // lobbies.forEach((lobby) => {
-    //     var list = `
-    //     <a href="#" onClick="socket.emit('LOBBY_CONNECT', '${lobby.id}');" class="list-group-item list-group-item-action">
-    //         <div class="d-flex w-100 justify-content-between">
-    //             <h5 class="mb-1">${lobby.name}</h5>
-    //         </div>
-    //         <p class="mb-1">Hoster: <i>${lobby.host}</i></p>
-    //         <span class="badge bg-primary rounded-pill">${lobby.size}</span>
-    //     </a>`;
-    //     $("#lobbyList").append(list);
-    // })    
-});
 })();
 
 /******/ })()

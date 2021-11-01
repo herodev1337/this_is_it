@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   const token = req.cookies.auth_token;
-  if (!token) return res.status(401).send("Error with token!");
+  if (!token) return res.status(401).json({error: "No token provided! Please login"});
 
   try {
     //TODO: token_secret from config file
@@ -10,6 +10,6 @@ module.exports = (req, res, next) => {
     req.user = verify;
     next();
   } catch (e) {
-    res.status(400).send("Invalid token!");
+    res.status(400).json({ error: e.message });
   }
 };
