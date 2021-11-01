@@ -1,31 +1,40 @@
 var originalLinks = document.getElementsByClassName("navbar-link");
-//in navLinks einfügen
 
-var navLinks = [];
+var toggleContent = document.getElementById("navbar-toggle-content");
+
 var navDropdownElements = [];
 
+//function for creating the mobile dropdown based on the content of the PC navbar
 function createDropdown(){
-    for (var i = 0; i < originalLinks.length; i++){
-        navLinks[i] = originalLinks[i];
-    }
     
-    for (var i = 0; i < navLinks.length; i++){
+    for (var i = 0; i < originalLinks.length; i++){
+
+        //creating the elements of the dropdown
         navDropdownElements[i] = document.createElement("a");
+
+        //assigning the original links and HTML to the dropdown elements
         navDropdownElements[i].href = originalLinks[i].href;
-        navDropdownElements[i].innerHTML = navLinks[i].innerHTML;
+        navDropdownElements[i].innerHTML = originalLinks[i].innerHTML;
+
+        //assigning them to the div for the dropdown elements
         document.getElementById("navbar-toggle-content").appendChild(navDropdownElements[i]);
-        navDropdownElements[i].style.display ="none";
+
+        //setting the default display style of the dropdown elements and the container
+        navDropdownElements[i].style.display ="block";
+        toggleContent.style.display = "none";
     }
 }
 
-function displayDropdown(event){
+//jQuery function for showing and hiding the dropdown
+$(document).ready(function() {
+
+    //initializing the creation of the dropdown
     if(navDropdownElements[1] === undefined){createDropdown();}
-    for (var i = 0; i < navDropdownElements.length; i++){
-        if(navDropdownElements[i].style.display === "none"){
-            navDropdownElements[i].style.display = "block";
-        }
-        else {
-            navDropdownElements[i].style.display = "none";
-        }
-    }
-}
+
+    //function for toggleing the display of the dropdown with a fade effect, including hiding the dropdown if the content of it isn't clicked
+    $(document).click((event) => {
+        if(!$(event.target).closest('.navbar-toggle-menu').length) {$(".navbar-toggle-content").fadeOut(100);}
+        else {$(".navbar-toggle-content").fadeToggle(100);}
+    });
+    
+});
