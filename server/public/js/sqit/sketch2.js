@@ -1,9 +1,8 @@
+import { createEditor, EditorSingleton } from "./editor.js";
+import * as helpers from "./helpers.js";
 
-let on, anim;
 
-let interval = 10;
-let radius = 50;
-let push = 0;
+
 
 $("#presser").on("click", () => {
     console.log("Hi", anim);
@@ -17,12 +16,23 @@ editor.setOption({wrap:true});
 
 $("#editor").height("50vh")
 
+let on, anim;
+
+let interval = 10;
+let radius = 50;
+let push = 0;
+
+let valid = false;
+let circles;
+
 function setup() {
-    ellipseMode(CENTER)
-    let cnv = createCanvas($(window).width(), 400);
-    //let cnvInner = createCanvas($(window).width(), 400);
+    let cnv = createCanvas(helpers.realWidth(90), helpers.view_2_px(50));
     cnv.parent("canvasHolder");
+    ellipseMode(CENTER)
+    //let cnvInner = createCanvas($(window).width(), 400);
+    // cnv.parent("canvasHolder");
    // $("#defaultCanvas0").append(cnvInner)
+
     frameRate(60);
 }
 
@@ -30,8 +40,8 @@ function draw() {
     background($(":root").css("--color-navy-800"));
     fill(255)
 
-    rect(width/2 -50,75,5,250)
-    rect(width/2 +50,75,5,250)
+    rect(width/2 -50,height/2 -125,5,250)
+    rect(width/2 +50,height/2 -125,5,250)
     stroke(255)
     //strokeWeight(5)
     line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
@@ -50,14 +60,17 @@ function draw() {
     circle(width/2 -100 ,height/2 + 100,50)
     circle(width/2 +100 ,height/2 + 100,50)
 
-    circle(...myfunc())
+    if(valid) {
+        circle(circles[0], circles[1], circles[2])
+        console.log("yes")
+    }
 }
 
 editor.commands.addCommand({
     name: "...",
     exec: () =>  {
-        let test = newCircle(7)
-        console.log(test)
+        valid = true
+        circles = newCircle(7)
     },
     bindKey: { mac: "cmd-enter", win: "ctrl-enter" },
 });
@@ -108,48 +121,56 @@ function newCross(position){
 function newCircle(position){
     let checkPosition = checkPostionCircle()
     if(position === 0){
-        circle(width/2 -100,height/2 - 100,50)
+        circle0 = [width/2 -100,height/2 - 100,50]
         checkPosition[0] = true
+        return circle0
     }
     if(position === 1){
-        circle(width/2,height/2 + 100,50)
+        circle1 = [width/2,height/2 + 100,50]
         checkPosition[1] = true
+        return circle1
 
     }
     if(position === 2){
-        circle(width/2 +100 ,height/2 -100,50)
+        circle2 = [width/2 +100 ,height/2 -100,50]
         checkPosition[2] = true
+        return circle2
+
     }
     if(position === 3){
-        circle(width/2 -100 ,height/2,50)
+        circle3 = [width/2 -100 ,height/2,50]
         checkPosition[3] = true
+        return circle3
 
     }
     if(position === 4){
-        circle(width/2 ,height/2 - 100,50)
+        circle = [width/2 ,height/2 - 100,50]
         checkPosition[4] = true
+        return circle4
 
     }
     if(position === 5){
-        circle(width/2 +100 ,height/2 - 100,50)
+        circle5 = [width/2 +100 ,height/2 - 100,50]
         checkPosition[5] = true
+        return circle5
 
     }
     if(position === 6){
-        circle(width/2 -100 ,height/2 + 100,50)
+        circle6 = [width/2 -100 ,height/2 + 100,50]
         checkPosition[6] = true
+        return circle6
 
     }
     if(position === 7){
-        let circle7 = circle(width/2,height/2 - 100,50)
+        let circle7 = [width/2,height/2 + 100,50]
         checkPosition[7] = true
-
         return circle7
 
     }
     if(position === 8){
-        circle(width/2 +100 ,height/2 + 100,50)
+        circle8 = [width/2 +100 ,height/2 + 100,50]
         checkPosition[8] = true
+        return circle8
 
     }
 
@@ -236,3 +257,11 @@ function simpleTicTacToe(){
 
     }
 }
+
+function windowResized() {
+    resizeCanvas(helpers.realWidth(90), helpers.view_2_px(50));
+}
+
+window.setup = setup;
+window.draw = draw;
+window.windowResized = windowResized;
