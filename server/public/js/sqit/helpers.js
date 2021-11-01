@@ -24,3 +24,4 @@ const get_validation = (codeStr, validator, variable) => {
 };
 
 export { realWidth, view_2_px, get_userCode, get_validation };
+
