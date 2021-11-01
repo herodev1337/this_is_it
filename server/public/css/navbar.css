@@ -3,14 +3,10 @@
 :root {
     font-size: 16px;
     font-family: 'Roboto Mono', monospace;
-    --text-primary: #b6b6b6;
-    --text-secondary: #ececec;
-    --bg-primary: #23232e;
-    --bg-secondary: #141418;
-    --transition-speed: 600ms;
+ 
 }
 
-nav {
+/* nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -24,11 +20,11 @@ nav {
     height: 15vh;
     border-bottom: 1px solid black;
     background-color: black;
-}
+} */
 
 .navbar-content {
     font-family: 'Roboto Mono', monospace;
-    width: 80%;
+    /* width: 80%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -47,7 +43,7 @@ nav {
     -ms-user-select: None;
     -moz-user-select: None;
     -webkit-user-select: None;
-    user-select: None;
+    user-select: None; */
 }
 
 
@@ -89,7 +85,7 @@ nav {
     text-shadow: 2px 2px #0c8683;
     transform: scale(1.1);
 }
-
+ 
 .navbar-toggle-menu {
     /*display: none;*/
     display: block;
@@ -155,5 +151,5 @@ nav {
     .navbar-content a {
         display: none;
     }
-}
+} */
 /*# sourceMappingURL=navbar.css.map */
