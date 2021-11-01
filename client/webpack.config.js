@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, '../server/public/js'),
   },
   mode: 'development',
+  devtool: "source-map", //<-- for "unsafe-eval"-browser error
   module: {
     rules: [
       {

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script defer src="js/script.js"></script>
+    
+    <title>EJS Template</title>
+  </head>
+  <body>
+      <%-include navbar.ejs -%>
+      <div class="container-fluid min-vh-100 bg-dark text-white">
+        <div class="container">
+          <%-body -%>
+        </div>
+      </div>
+  </body>
+</html>

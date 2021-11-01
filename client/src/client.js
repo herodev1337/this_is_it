@@ -1,7 +1,5 @@
 import $ from "jquery";
-import './scss/app.scss';
+import "./sqit/game1/sketch1"
 
-$(function() {
-    $( "p" ).text( "DOM geladen! JS von webpack :)" );
-});
- 
+
+console.log("Console.log aus der client.js= " ,$(window).height())
