@@ -57,8 +57,7 @@ nav {
 }
 
 .navbar-toggle-menu {
-  /*display: none;*/
-  display: block;
+  display: none;
   width: 50px;
   height: 50px;
   background-color: white;
