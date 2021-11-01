@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb4536f-0272-439f-ba7a-c11357a3a083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/sqit/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/public/js/sqit/sketch2.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/sqit/sketch2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/views/sqit/game2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game2.ejs" afterDir="false" />
     </list>
@@ -28,6 +30,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="202tEclR0fQFi3Vk29PPOYRmeAr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -58,7 +63,7 @@
       <workItem from="1635406362680" duration="20432000" />
       <workItem from="1635492847572" duration="2471000" />
       <workItem from="1635495346131" duration="20000" />
-      <workItem from="1635497096592" duration="9980000" />
+      <workItem from="1635497096592" duration="16962000" />
     </task>
     <servers />
   </component>

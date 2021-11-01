@@ -2,19 +2,37 @@ import { createEditor, EditorSingleton } from "./editor.js";
 import * as helpers from "./helpers.js";
 
 
-
-
 $("#presser").on("click", () => {
     console.log("Hi", anim);
     anim = true;
 });
 
-var editor = ace.edit("editor");
-editor.setTheme("ace/theme/monokai");
-editor.session.setMode("ace/mode/javascript");
-editor.setOption({wrap:true});
+// Ace Editor setup
 
-$("#editor").height("50vh")
+let extraText = false
+
+const enterCallback = () => {
+    if (!extraText) {
+        add_editor_text();
+        extraText = true;
+
+        // circles = newCircle(7)
+        valid = true
+    }
+};
+const add_editor_text = () => {
+    let str = mainEditor.editor.getValue();
+    mainEditor.editor.setValue(
+        str +
+        `\n\n// Yout got some talent.`
+    );
+    let strout = mainEditor.editor2.getValue()
+};
+
+const mainEditor = new EditorSingleton();
+mainEditor.enterCallback(enterCallback)
+
+// P5 Animations
 
 let on, anim;
 
@@ -37,6 +55,7 @@ function setup() {
 }
 
 function draw() {
+    // console.log(valid)
     background($(":root").css("--color-navy-800"));
     fill(255)
 
@@ -61,26 +80,14 @@ function draw() {
     circle(width/2 +100 ,height/2 + 100,50)
 
     if(valid) {
+        let circles = newCircle(7)
         circle(circles[0], circles[1], circles[2])
-        console.log("yes")
+        // console.log("yes")
     }
 }
 
-editor.commands.addCommand({
-    name: "...",
-    exec: () =>  {
-        valid = true
-        circles = newCircle(7)
-    },
-    bindKey: { mac: "cmd-enter", win: "ctrl-enter" },
-});
 
-
-
-
-
-
-
+// Board states
 
 function newCross(position){
     if(position === 0){
