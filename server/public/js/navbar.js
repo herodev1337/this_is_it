@@ -48,10 +48,10 @@ $(document).ready(function() {
     //jquery function for toggleing the navbar content
     $(document).click((event) => {
         if(!$(event.target).closest('.navbar-games').length) {$(".navbar-dropdown-games").fadeOut(100);}
-        else {$(".navbar-dropdown-games").fadeToggle(100);}
+        else {$(".navbar-dropdown-games").fadeToggle(100).css('display', 'flex');}
 
         if(!$(event.target).closest('.navbar-knowledge').length) {$(".navbar-dropdown-knowledge").fadeOut(100);}
-        else {$(".navbar-dropdown-knowledge").fadeToggle(100);}
+        else {$(".navbar-dropdown-knowledge").fadeToggle(100).css('display', 'flex');}
     });
 
     //initializing the creation of the dropdown
@@ -63,7 +63,7 @@ $(document).ready(function() {
     //function for toggleing the display of the dropdown with a fade effect, including hiding the dropdown if the content of it isn't clicked
     $(document).click((event) => {
         if(!$(event.target).closest('.navbar-toggle-menu').length) {$(".navbar-toggle-content").fadeOut(100);}
-        else {$(".navbar-toggle-content").fadeToggle(100);}
+        else {$(".navbar-toggle-content").fadeToggle(100).css('display', 'flex');}
     });
     
 });
