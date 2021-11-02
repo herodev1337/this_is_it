@@ -35,7 +35,7 @@ nav {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 15vh;
+  height: 5vh;
   border-bottom: 1px solid black;
   font-family: 'Roboto Mono', monospace;
   background-color: black;
@@ -94,38 +94,71 @@ nav {
   }
 }
 
-.navbar-link {
-  text-shadow: var(--shadowcolor);
-  padding: 0 3%;
+
+.navbar-games {
+  margin-left: 7rem !important;
 }
 
-.navbar-dropdown {
-  top: 14vh;
-  background-color: black;
+.navbar-knowledge {
+  margin-left: 5rem !important;
+}
+
+
+.k-img {
+  margin-top: 1rem;
+
+}
+
+
+.navbar-link {
+  text-shadow: var(--shadowcolor);
+
+
+}
+
+.navbar-dropdown { 
+  background-color: #380f72;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  justify-content: flex-start;
-  position: absolute;
-  padding: 5px 0;
+  position: reltive;
+  padding: 1rem;
   border: 1px solid black;
   -webkit-box-shadow: 5px 5px 5px black;
   box-shadow: 5px 5px 5px black;
   z-index: 1;
-
+  font-size: 1.5rem;
+  width: 8rem;
+ 
 }
 
-.navbar-dropdown-games,
 .navbar-dropdown-knowledge {
-  margin: 0 5%;  
+  margin-left: 5rem !important;
+  width: 16rem !important;
+  flex-direction: row;
+  flex-wrap: wrap;  
+  align-content: flex-start;  
+  top: 8rem;
 }
+
+.navbar-dropdown-games {
+  margin-left: 7rem !important;  
+  -ms-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  top: 8rem;
+}
+
+// .navbar-dropdown-knowledge-elements {
+  // }
+
+
+
 
 .navbar-dropdown-elements {
   text-align: center;
-  margin: 1rem;
+  margin: 0;
 }
 
 .navbar-toggle-menu {
