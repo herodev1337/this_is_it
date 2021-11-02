@@ -17,22 +17,11 @@ nav {
     text-align: center;
     margin: 3% 3%;
 
-    span, a {
-        align-self: flex-end;
-        margin: 0 5%;
-    }
-
-    span {
-        vertical-align: bottom;
-        margin-left: 1%;
-        margin-right: 7%;
-        font-size: 2rem;
-    }
-
     a {
+        align-self: flex-end;
         margin: 0 2%;
         text-decoration: none;
-        color: black;
+        color: rgb(63, 218, 197);
     }
 
     a:hover {
@@ -41,9 +30,29 @@ nav {
     }
 }
 
+.navbar-link {
+    span {
+        margin: 0 55%;
+    }
+}
+
+.navbar-dropdown {
+    display: none;
+    top: 12vh;
+    background-color: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    padding: 5px 0;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+    margin: 0 5%;
+
+    z-index: 1;
+}
+
 .navbar-toggle-menu {
-    /*display: none;*/
-    display: block;
+    display: none;
     width: 50px;
     height: 50px;
     background-color: black;
@@ -84,6 +93,10 @@ nav {
     margin: 0;
     z-index: 1;
     
+    span {
+        font-weight: bold;
+    }
+
     a {
         width: 40%;
         padding: 5px 100px 5px 5px;
@@ -106,7 +119,7 @@ nav {
     }
 
     .navbar-content {
-        a {
+        div {
             display: none;
         }
     }

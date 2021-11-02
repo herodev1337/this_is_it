@@ -12,10 +12,16 @@ nav {
           justify-content: space-between;
   height: 15vh;
   border-bottom: 1px solid black;
+  font-family: 'Roboto Mono', monospace;
+  background-color: black;
+  background-image: url('https://c.tenor.com/26KgBqLSQUgAAAAC/stars-star-gazing.gif');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 4rem 1rem 3rem 1rem;
 }
 
 .navbar-content {
-  width: 80%;
+    width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,37 +35,61 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  text-align: center;
-  margin: 3% 3%;
+  text-align: center; 
+  align-content: space-around;
+ 
 }
+
 
 .navbar-content span, .navbar-content a {
   -ms-flex-item-align: end;
       align-self: flex-end;
-  margin: 0 5%;
-}
-
-.navbar-content span {
-  vertical-align: bottom;
-  margin-left: 1%;
-  margin-right: 7%;
-  font-size: 2rem;
-}
-
-.navbar-content a {
   margin: 0 2%;
   text-decoration: none;
-  color: black;
+  color: var(--neonblue);
+  margin-left: 2.5rem;
 }
 
 .navbar-content a:hover {
-  text-decoration: underline;
-  color: black;
+  text-decoration: none;
+  transform: scale(1.15);
+}
+
+.navbar-content a:active {
+  color: #DDFFF7;
+  text-shadow: var(--shadowcolor) 
+   
+}
+
+.navbar-link {
+  text-shadow:  var(--shadowcolor);
+}
+.navbar-link span {
+  margin: 0 55%;
+}
+
+.navbar-dropdown {
+  display: none;
+  top: 12vh;
+  background-color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  position: absolute;
+  padding: 5px 0;
+  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 5px black;
+          box-shadow: 5px 5px 5px black;
+  margin: 0 5%;
+  z-index: 1;
 }
 
 .navbar-toggle-menu {
-  /*display: none;*/
-  display: block;
+  display: none !important;
   width: 50px;
   height: 50px;
   background-color: black;
@@ -107,6 +137,10 @@ nav {
   z-index: 1;
 }
 
+.navbar-toggle-content span {
+  font-weight: bold;
+}
+
 .navbar-toggle-content a {
   width: 40%;
   padding: 5px 100px 5px 5px;
@@ -126,7 +160,7 @@ nav {
   .navbar-toggle-menu {
     display: block;
   }
-  .navbar-content a {
+  .navbar-content div {
     display: none;
   }
 }

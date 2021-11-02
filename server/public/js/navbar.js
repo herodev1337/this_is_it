@@ -1,42 +1,69 @@
-var originalLinks = document.getElementsByClassName("navbar-link");
+var originalLinksGames = document.getElementsByClassName("navbar-dropdown-games-elements");
+var originalLinksKnowledge = document.getElementsByClassName("navbar-dropdown-knowledge-elements");
 
 var toggleContent = document.getElementById("navbar-toggle-content");
 
-var navDropdownElements = [];
+var navDropdownElementsGames = [];
+var navDropdownElementsKnowledge = [];
 
-function createDropdown(){
+//function for creating the mobile dropdown based on the content of the PC navbar
+function createDropdownGames(){
     
-    for (var i = 0; i < originalLinks.length; i++){
-        navDropdownElements[i] = document.createElement("a");
+    for (var i = 0; i < originalLinksGames.length; i++){
 
-        navDropdownElements[i].href = originalLinks[i].href;
-        navDropdownElements[i].innerHTML = originalLinks[i].innerHTML;
+        //creating the elements of the dropdown
+        navDropdownElementsGames[i] = document.createElement("a");
 
-        document.getElementById("navbar-toggle-content").appendChild(navDropdownElements[i]);
+        //assigning the original links and HTML to the dropdown elements
+        navDropdownElementsGames[i].href = originalLinksGames[i].href;
+        navDropdownElementsGames[i].innerHTML = originalLinksGames[i].innerHTML;
 
-        navDropdownElements[i].style.display ="block";
+        //assigning them to the div for the dropdown elements
+        document.getElementById("navbar-toggle-games").appendChild(navDropdownElementsGames[i]);
+
+        //setting the default display style of the dropdown elements and the container
+        navDropdownElementsGames[i].style.display ="block";
         toggleContent.style.display = "none";
     }
 }
 
-function displayDropdown(event){
-    if(event.type === "click"){
-        if(navDropdownElements[1] === undefined){createDropdown();}
-        if(toggleContent.style.display === "none"){
-            toggleContent.style.display = "flex";
-        }
-        else {
-            toggleContent.style.display = "none";
-        }
-    }
-    if(toggleContent.style.display === "flex" && event.type === "mouseleave" && screen.width < screen.height){
-        toggleContent.style.display = "none";
+function createDropdownKnowledge(){
+
+    for (var i = 0; i < originalLinksKnowledge.length; i++){
+    
+        navDropdownElementsKnowledge[i] = document.createElement("a");
+        navDropdownElementsKnowledge[i].href = originalLinksKnowledge[i].href;
+        navDropdownElementsKnowledge[i].innerHTML = originalLinksKnowledge[i].innerHTML;
+        
+        document.getElementById("navbar-toggle-knowledge").appendChild(navDropdownElementsKnowledge[i]);
+
+        navDropdownElementsKnowledge[i].style.display ="block";
+
     }
 }
 
-/*$(document).ready(function() {
-    if(navDropdownElements[1] === undefined){createDropdown();}
-    $(".navbar-toggle-content").click(function(){
-        $(".navbar-link").fadeToggle(1000);
+//jQuery function for showing and hiding the dropdown
+$(document).ready(function() {
+
+    //jquery function for toggleing the navbar content
+    $(document).click((event) => {
+        if(!$(event.target).closest('.navbar-games').length) {$(".navbar-dropdown-games").fadeOut(100);}
+        else {$(".navbar-dropdown-games").fadeToggle(100);}
+
+        if(!$(event.target).closest('.navbar-knowledge').length) {$(".navbar-dropdown-knowledge").fadeOut(100);}
+        else {$(".navbar-dropdown-knowledge").fadeToggle(100);}
     });
-});*/
+
+    //initializing the creation of the dropdown
+    if(navDropdownElementsGames[1] === undefined){
+        createDropdownGames();
+        createDropdownKnowledge();
+    }
+
+    //function for toggleing the display of the dropdown with a fade effect, including hiding the dropdown if the content of it isn't clicked
+    $(document).click((event) => {
+        if(!$(event.target).closest('.navbar-toggle-menu').length) {$(".navbar-toggle-content").fadeOut(100);}
+        else {$(".navbar-toggle-content").fadeToggle(100);}
+    });
+    
+});
