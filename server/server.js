@@ -5,10 +5,10 @@ const path = require('path'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     //Custom Utils
-    logger = require(path.join(__dirname, 'utils/logger')),
-    networkInterfaces = require('./utils/networkInterfaces'),
-    Post = require('./models/Post')
-    require('./utils/db')();
+    logger = require('../utils/logger'),
+    networkInterfaces = require('../utils/networkInterfaces'),
+    Post = require('../models/Post')
+    require('../utils/db')();
 
 const startServer = () => {
     //Variables
@@ -18,10 +18,10 @@ const startServer = () => {
 
     app.engine('ejs', require('ejs-mate')) //use ejs-mate
     app.set('view engine', 'ejs') //Set View Engine to EJS
-    app.set('views', path.join(__dirname, './views')) //Change view path to ./server/views
+    app.set('views', './views') //Change view path to ./server/views
 
-    app.use(require(path.join(__dirname, 'middleware/logger.middleware'))) //Use the Logger Middleware
-    app.use(express.static(path.join(__dirname, 'public'))) //Set the public directory
+    app.use(require('../middleware/logger.middleware')) //Use the Logger Middleware
+    app.use(express.static('./public')) //Set the public directory
     app.use(bodyParser.json()) // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
     app.use(cookieParser()) //Uses the cookieParser module

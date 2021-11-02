@@ -1,5 +1,5 @@
 var router = require('express').Router();
-const authMiddleware = require('./middleware/auth.middleware'),
+const authMiddleware = require('../middleware/auth.middleware'),
   appController = require('./controllers/app.controller'),
   quizController = require('./controllers/quiz.controller'),
   authController = require('./controllers/auth.controller')
