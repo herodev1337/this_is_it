@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/herodev1337/this_is_it#readme",
   "dependencies": {
+    "@editorjs/editorjs": "^2.22.2",
+    "@editorjs/header": "^2.6.1",
+    "@editorjs/list": "^1.6.2",
     "@popperjs/core": "^2.10.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -27,7 +30,7 @@
     "cookie-parser": "^1.4.5",
     "css-loader": "^6.5.0",
     "ejs": "^3.1.6",
-    "ejs-locals": "^1.0.2",
+    "ejs-mate": "^3.0.0",
     "eslint-prettier-config": "^1.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
@@ -46,6 +49,7 @@
     "webpack-cli": "^4.9.1"
   },
   "devDependencies": {
-    "eslint": "^8.1.0"
+    "eslint": "^8.1.0",
+    "expose-loader": "^3.1.0"
   }
 }

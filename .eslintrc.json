@@ -6,11 +6,11 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 13
+        "ecmaVersion": 12
     },
     "rules": {
         "indent": [
-            "error",
+            "warning",
             4
         ],
         "linebreak-style": [

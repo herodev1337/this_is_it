@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const optionSchema = new mongoose.Schema({
-  option: {
+  option: { 
     type: String,
     required: true
   }
@@ -40,7 +40,6 @@ const quizSchema = new mongoose.Schema({
 
     instructions: {
         type: String,
-        required: true
     },
 
     isEnabled: {
@@ -53,3 +52,22 @@ const quizSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Quiz', quizSchema);
+
+//JSON
+// {
+//   "name": "",
+//   "instructions": "",
+//   "isEnabled": true,
+//   "questions": {
+//     "question" : "",
+//     "answers" : {
+//       "option": "",
+//       "option": "",
+//       "option": "",
+//       "option": ""
+//     },
+//     "answer": 1,
+//     "isEnabled": true,
+//     "explanation": ""
+//   }
+// }
