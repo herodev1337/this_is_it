@@ -1,3 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+font-size: 16px;
+--neonpink: #FF6EC7;
+--neonblue: #3fdac5;
+--shadowcolor: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+--defaultfont: 'Roboto Mono', monospace;
+--backgroundgrey: #404040;
+--hovercolor: #DDFFF7; 
+}
+
+
+html {
+  background-color: #404040;
+}
+
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11,10 +29,16 @@ nav {
           justify-content: space-between;
   height: 15vh;
   border-bottom: 1px solid black;
+  font-family: 'Roboto Mono', monospace;
+  background-color: black;
+  background-image: url('https://c.tenor.com/26KgBqLSQUgAAAAC/stars-star-gazing.gif');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 4rem 1rem 3rem 1rem;
 }
 
 .navbar-content {
-  width: 80%;
+    width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,23 +52,35 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  text-align: center;
-  margin: 3% 3%;
+  text-align: center; 
+  align-content: space-around;
+ 
 }
 
-.navbar-content a {
+
+.navbar-content span, .navbar-content a {
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin: 0 2%;
   text-decoration: none;
-  color: black;
+  color: var(--neonblue);
+  margin-left: 2.5rem;
 }
 
 .navbar-content a:hover {
-  text-decoration: underline;
-  color: black;
+  text-decoration: none;
+  transform: scale(1.15);
 }
 
+.navbar-content a:active {
+  color: #DDFFF7;
+  text-shadow: var(--shadowcolor) 
+   
+}
+
+.navbar-link {
+  text-shadow:  var(--shadowcolor);
+}
 .navbar-link span {
   margin: 0 55%;
 }
@@ -70,7 +106,7 @@ nav {
 }
 
 .navbar-toggle-menu {
-  display: none;
+  display: none !important;
   width: 50px;
   height: 50px;
   background-color: white;
