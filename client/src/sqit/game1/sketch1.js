@@ -7,6 +7,7 @@ import { SlidingDoors, BlinkLight } from './classes.js';
 import { EditorSingleton } from '../editor.js';
 import * as helpers from '../helpers.js';
 
+// Ace Editor setup and callbacks
 
 let extraText = false;
 const enterCallback = () => {
