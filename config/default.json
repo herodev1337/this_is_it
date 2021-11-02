@@ -1,0 +1,9 @@
+{
+  "Database": {
+    "enabled": true,
+    "url": ""
+  },
+  "RestAPI": {
+    "enabled": false
+  }
+}

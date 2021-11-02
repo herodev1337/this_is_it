@@ -1,4 +1,4 @@
-const logger = require("../utils/logger");
+const logger = require("../../utils/logger");
 const chalk = require("chalk");
 
 module.exports = (req, res, next) => {
