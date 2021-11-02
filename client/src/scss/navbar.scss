@@ -129,7 +129,7 @@ nav {
   box-shadow: 5px 5px 5px black;
   z-index: 1;
   font-size: 1.5rem;
-  width: 8rem;
+  width: 6rem;
  
 }
 
@@ -227,7 +227,24 @@ nav {
 @media only screen and (orientation: portrait) {
   .navbar-toggle-menu {
     display: block;
+    
   }
+
+  .navbar-toggle-content {
+    width: 15rem;
+    display: inline-block;
+    padding: 2.5% 5%;
+  }
+
+  .toggleMenuGamesSpan {
+    color: yellow;
+  }
+
+  .toggleMenuKnowledgeSpan {
+    color: #aeff30;
+  }
+
+
 
   .navbar-content div {
     display: none;
