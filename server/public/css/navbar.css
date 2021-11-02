@@ -162,7 +162,6 @@ nav {
   height: 50px;
   background-color: rgba(0, 0, 0, 0);
   padding: 13px 12px;
-  border: 1px solid black;
   border-radius: 5px;
   margin: auto 5%;
   cursor: pointer;
@@ -181,7 +180,7 @@ nav {
 }
 
 .navbar-toggle-menu:hover div {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: white;
 }
 
 .navbar-toggle-content {
