@@ -93,7 +93,7 @@ nav {
   display: none;
   width: 50px;
   height: 50px;
-  background-color: white;
+  background-color: black;
   padding: 13px 12px;
   border: 1px solid black;
   border-radius: 5px;
@@ -104,7 +104,7 @@ nav {
      display: block;
      width: 25px;
      height: 3px;
-     background-color: black;
+     background-color: #00b4c5;
      margin: 3px 0;
     }
 }
@@ -121,7 +121,7 @@ nav {
   display: none;
   right: 0;
   top: 12vh;
-  background-color: white;
+  background-color: black;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -142,13 +142,13 @@ nav {
      padding: 5px 10px;
      font-size: 1rem;
      text-decoration: none;
-     color: black;
+     color: #00b4c5;
      cursor: pointer;
     }
 
     a:hover {
      text-decoration: underline;
-     color: black;
+     color: white;
     }
 }
 
