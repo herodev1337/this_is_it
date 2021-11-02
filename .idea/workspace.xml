@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="aeb4536f-0272-439f-ba7a-c11357a3a083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/sqit/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/sketch2.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/sqit/sketch2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/sqit/game1/sketch1.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game1/sketch1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/game2-hard/sketch3.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/game2/sketch2.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4/sketch2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/app.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/app.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/views/sqit/game2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game2.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,9 +37,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="202tEclR0fQFi3Vk29PPOYRmeAr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -43,11 +46,23 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marc.wegeleben\WebstormProjects\this_is_it\server\public\js\sqit\game2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marc.wegeleben\WebstormProjects\this_is_it\client\src\sqit\game4-hard" />
+      <recent name="C:\Users\marc.wegeleben\WebstormProjects\this_is_it\client\src\sqit\game4" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,7 +78,8 @@
       <workItem from="1635406362680" duration="20432000" />
       <workItem from="1635492847572" duration="2471000" />
       <workItem from="1635495346131" duration="20000" />
-      <workItem from="1635497096592" duration="16962000" />
+      <workItem from="1635497096592" duration="27029000" />
+      <workItem from="1635791734906" duration="15195000" />
     </task>
     <servers />
   </component>

@@ -7,9 +7,9 @@ const path = require('path'),
   //Custom Utils
   logger = require(path.join(__dirname, 'server/utils/logger')),
   networkInterfaces = require('./server/utils/networkInterfaces'),
-  db = require('./server/utils/db')(),
-  cors = require('cors');
-
+  db = require('./server/utils/db')()
+  // cors = require('cors');
+;
 //Variables
 const PORT = process.env.PORT || 3000; //Port for the app
 const app = express(); //Init express

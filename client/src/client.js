@@ -1,5 +1,4 @@
-import $ from "jquery";
-import "./sqit/game1/sketch1"
+
 
 
 
