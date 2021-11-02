@@ -16,19 +16,20 @@ const enterCallback = () => {
   } else anim = true;
 
   if (!extraText) {
-    add_editor_text();
+    add_editor_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'));
     extraText = true;
   }
 
   interval = helpers.get_userCode(mainEditor.editor.getValue(), 'interval');
 };
 
-const add_editor_text = () => {
+const add_editor_text = (value) => {
   let str = mainEditor.editor.getValue();
   mainEditor.editor.setValue(
     str +
       `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
   );
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
 };
 
 const mainEditor = new EditorSingleton();

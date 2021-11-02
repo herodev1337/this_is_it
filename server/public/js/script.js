@@ -170,7 +170,6 @@ class BlinkLight {
       fill(...this.col, i);
       circle(this.x - this.push * this.dir, this.y, this.r * 2 - i);
     }
-
     // fill(this.col);
     // circle(this.x - this.push * this.dir, this.y, this.r * 2);
   }
@@ -234,25 +233,26 @@ const enterCallback = () => {
   } else anim = true;
 
   if (!extraText) {
-    add_editor_text();
+    add_editor_text(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'gate'));
     extraText = true;
   }
 
   interval = _helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'interval');
 };
 
-const add_editor_text = () => {
+const add_editor_text = (value) => {
   let str = mainEditor.editor.getValue();
   mainEditor.editor.setValue(
     str +
       `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
   );
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
 };
 
 const mainEditor = new _editor_js__WEBPACK_IMPORTED_MODULE_3__.EditorSingleton();
 mainEditor.enterCallback(enterCallback);
 
-// // P5 Animations
+// P5 Animations
 let on, anim, finished;
 
 let fps = 60;
@@ -329,7 +329,6 @@ function draw() {
 function windowResized() {
   resizeCanvas(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.realWidth(90), _helpers_js__WEBPACK_IMPORTED_MODULE_4__.view_2_px(50));
 }
-
 
 
 window.setup = setup;
