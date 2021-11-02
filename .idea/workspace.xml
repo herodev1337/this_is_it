@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb4536f-0272-439f-ba7a-c11357a3a083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/views/sqit/game4hard.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/public/js/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/js/sqit/tictactoe.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4-hard/tictactoe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/app.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/app.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/views/sqit/game2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game4.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

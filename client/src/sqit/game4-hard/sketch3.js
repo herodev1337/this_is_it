@@ -81,14 +81,13 @@ function draw() {
     rect(width/2 +50,height/2 -125,5,250)
     stroke(255)
     //strokeWeight(5)
-    line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
-    line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
-    //
-    line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
-    line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
+    // line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
+    // line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
+    // line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+    // line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
 
-    line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
-    line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
+    // line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+    // line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
 
     //line(width/2 +50, height/2 -50, width/2 -100, height/2 +100)
 
@@ -186,7 +185,7 @@ function newCircle(position){
         return circle0
     }
     if(position === 1){
-        let circle1 = [width/2,height/2 + 100,50]
+        let circle1 = [width/2,height/2 - 100,50]
         checkPosition[1] = true
         return circle1
 
@@ -204,13 +203,13 @@ function newCircle(position){
 
     }
     if(position === 4){
-        let circle = [width/2 ,height/2 - 100,50]
+        let circle4 = [width/2 ,height/2,50]
         checkPosition[4] = true
         return circle4
 
     }
     if(position === 5){
-        let circle5 = [width/2 +100 ,height/2 - 100,50]
+        let circle5 = [width/2 +100 ,height/2,50]
         checkPosition[5] = true
         return circle5
 
