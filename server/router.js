@@ -19,7 +19,11 @@ router.route('/').get(appController.showHome);
  *
  */
 
-router.route('/').get(quizController.showQuizView); //TODO: Overview of quizzes
+router.route('/quiz/:quizId').get(quizController.showQuiz) //TODO: Show the quiz
+
+router.route('/quiz').get(quizController.showQuizView); //TODO: Overview of quizzes
+
+router.route('/api/quiz/verify').get(quizController.verifyAnswer);
 
 /**
  *

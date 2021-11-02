@@ -1,32 +1,30 @@
 import $ from "jquery";
 
-$(function () {
-    
-    $.ajax({url: "/api/quiz", success: function(result){
+function validateAnswer(quizId, questionId, answerId, selector) {
+    $.ajax({
+        url: "/api/quiz/verify?quizId=" + quizId + "&questionId=" + questionId + "&answerId=" + answerId, 
+        success: (result) => {
         if(!result.error){
-            //result.data[0].name
-            $('#quizList').empty();
-            result.data.forEach(quiz => {
-                var quizHTML = `
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">${quiz.name}</h5>
-                    </div>
-                    <p class="mb-1">Anleitung: <i>${quiz.instructions}</i></p>
-                    <span class="badge bg-primary rounded-pill">${quiz.questions.length}</span>
-                </a>`;
-                $("#quizList").append(quizHTML);
-            })
+            if (result.data){
+                selector.removeClass('btn-light')
+                selector.addClass('btn-success')
+                setTimeout(()=>{
+                    $('.carousel').carousel('next');
+                }, 500)
+            } else {
+                selector.removeClass('btn-light')
+                selector.addClass('btn-danger')
+            }
         }
     }});
-    // lobbies.forEach((lobby) => {
-    //     <a href="#" onClick="socket.emit('LOBBY_CONNECT', '${lobby.id}');" class="list-group-item list-group-item-action">
-    //         <div class="d-flex w-100 justify-content-between">
-    //             <h5 class="mb-1">${lobby.name}</h5>
-    //         </div>
-    //         <p class="mb-1">Hoster: <i>${lobby.host}</i></p>
-    //         <span class="badge bg-primary rounded-pill">${lobby.size}</span>
-    //     </a>`;
-    //     $("#lobbyList").append(list);
-    // })    
+}
+
+
+$(function () {
+    $('.answer-button').on('click', async function (e) {
+        const quizId = $(location).attr('pathname').split('/').slice(-1)[0]
+        const questionId = $(this).closest('.carousel-item').attr('id')
+        const answerId = $(this).attr('id')
+        validateAnswer(quizId, questionId, answerId, $(this))
+    })
 });

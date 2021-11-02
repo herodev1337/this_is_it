@@ -1,7 +1,8 @@
 import $ from "jquery";
+import 'bootstrap'
 window.$ = window.JQuery = $;
 import "./scss/app.scss";
-//import "./quiz"
+import "./quiz"
 
 import EditorJS from '@editorjs/editorjs'; 
 import Header from '@editorjs/header'; 
@@ -9,13 +10,13 @@ import List from '@editorjs/list';
 window.jQuery = $;
 window.$ = $;
 
-const editor = new EditorJS({ 
-  holder: 'editorjs', 
-  tools: { 
-    header: Header, 
-    list: List 
-  }, 
-})
+// const editor = new EditorJS({ 
+//   holder: 'editorjs', 
+//   tools: { 
+//     header: Header, 
+//     list: List 
+//   }, 
+// })
 
 
 $('#save').click(() => {
