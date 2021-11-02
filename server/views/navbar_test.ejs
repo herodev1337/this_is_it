@@ -1,20 +1,47 @@
-<!-- <% layout('template') -%> -->
+ <% layout('template') -%> 
 
 <nav>
-    <div class="navbar-content"> 
-       <img class="menulogo" src="https://fontmeme.com/permalink/211101/3eb0caac33138bf1b402d62508e132f8.png">
-        <a class="navbar-link" href="#">Berufsswiper</a>
-        <a class="navbar-link" href="#">SQIT</a>
-        <a class="navbar-link" href="#">Quiz</a>
-        <a class="navbar-link" href="#">Pong</a>
-        <a class="navbar-link" href="#">[Platzhalter]</a>
+    <div class="navbar-content">
+
+       <img class="menulogo" src="https://fontmeme.com/permalink/211029/400bc23d23ee46ea0937767bea5bb742.png">
+
+       <div class="navbar-link">
+            <span class="unselectable navbar-games">Games</span> <!--make it unselectable-->
+            <div class="navbar-dropdown navbar-dropdown-games">
+                <a class="navbar-dropdown-games-elements" href="#">SQIT</a>
+                <a class="navbar-dropdown-games-elements" href="#">Pong</a>
+            </div>
+       </div>
+
+       <div class="navbar-link">
+            <span class="unselectable navbar-knowledge">Knowledge</span> <!--make it unselectable-->
+            <div class="navbar-dropdown navbar-dropdown-knowledge">
+                <a class="navbar-dropdown-knowledge-elements" href="#">Berufsswiper</a>
+                <a class="navbar-dropdown-knowledge-elements" href="#">Quiz</a>
+            </div>
+       </div>
+        
     </div>
+
     <div class="navbar-toggle-menu">
+
         <div></div>
         <div></div>
         <div></div>
+
     </div>
-    <!-- <div class="navbar-toggle-content" id="navbar-toggle-content"></div> -->
+
+    <div class="navbar-toggle-content" id="navbar-toggle-content">
+
+        <div class="navbar-toggle-games" id="navbar-toggle-games">
+            <span>Games</span>
+        </div>
+
+        <div class="navbar-toggle-knowledge" id="navbar-toggle-knowledge">
+            <span>Knowledge</span>
+        </div>
+
+    </div>
 </nav>
 
 <link rel="stylesheet" href="./css/navbar.css"/>

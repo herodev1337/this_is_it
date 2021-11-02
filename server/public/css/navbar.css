@@ -1,19 +1,11 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-:root {
-font-size: 16px;
---neonpink: #FF6EC7;
---neonblue: #3fdac5;
---shadowcolor: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
---defaultfont: 'Roboto Mono', monospace;
---backgroundgrey: #404040;
---hovercolor: #DDFFF7; 
-}
-
-
-html {
-  background-color: #404040;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+/*making every target unselectable*/
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 nav {
@@ -22,83 +14,86 @@ nav {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   height: 15vh;
   border-bottom: 1px solid black;
-  font-family: 'Roboto Mono', monospace;
-  background-color: black;
-  background-image: url('https://c.tenor.com/26KgBqLSQUgAAAAC/stars-star-gazing.gif');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  padding: 4rem 1rem 3rem 1rem;
 }
 
 .navbar-content {
-    width: 80%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  text-align: center; 
-  align-content: space-around;
- 
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  margin: 3% 3%;
 }
-
 
 .navbar-content span, .navbar-content a {
   -ms-flex-item-align: end;
-      align-self: flex-end;
-  margin: 0 5%;
-}
-
-.navbar-content span {
-  vertical-align: bottom;
-  margin-left: 1%;
-  margin-right: 7%;
-  font-size: 2rem;
-}
-
-.navbar-content a {
+  align-self: flex-end;
   margin: 0 2%;
   text-decoration: none;
-  color: var(--neonblue);
-  margin-left: 2.5rem;
+  color: #3fdac5;
 }
 
 .navbar-content a:hover {
   text-decoration: none;
-  transform: scale(1.15);
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
 }
 
 .navbar-content a:active {
   color: #DDFFF7;
-  text-shadow: var(--shadowcolor) 
-   
+  text-shadow: var(--shadowcolor);
 }
 
 .navbar-link {
-  text-shadow:  var(--shadowcolor) 
+  text-shadow: var(--shadowcolor);
 }
 
+.navbar-link span {
+  margin: 0 60%;
+}
+
+.navbar-dropdown {
+  display: none;
+  top: 12vh;
+  background-color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  position: absolute;
+  padding: 5px 0;
+  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 5px black;
+  box-shadow: 5px 5px 5px black;
+  margin: 0 5%;
+  z-index: 1;
+}
 
 .navbar-toggle-menu {
-  display: none !important;
+  display: none;
   width: 50px;
   height: 50px;
-  background-color: white;
+  background-color: black;
   padding: 13px 12px;
   border: 1px solid black;
   border-radius: 5px;
@@ -110,7 +105,7 @@ nav {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: #00b4c5;
   margin: 3px 0;
 }
 
@@ -125,43 +120,48 @@ nav {
 .navbar-toggle-content {
   display: none;
   right: 0;
-  top: 12vh;
-  background-color: white;
+  top: 0;
+  background-color: black;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   position: absolute;
   padding: 5px 0;
   border: 1px solid black;
   -webkit-box-shadow: 5px 5px 5px black;
-          box-shadow: 5px 5px 5px black;
-  margin: 0 5%;
+  box-shadow: 5px 5px 5px black;
+  margin: 0;
   z-index: 1;
+}
+
+.navbar-toggle-content span {
+  font-weight: bold;
 }
 
 .navbar-toggle-content a {
   width: 40%;
-  padding: 5px 10px;
+  padding: 5px 100px 5px 5px;
   font-size: 1rem;
+  font-family: 'Roboto Mono', monospace;
   text-decoration: none;
-  color: black;
+  color: #00b4c5;
   cursor: pointer;
 }
 
 .navbar-toggle-content a:hover {
   text-decoration: underline;
-  color: black;
+  color: white;
 }
 
 @media only screen and (orientation: portrait) {
   .navbar-toggle-menu {
     display: block;
   }
-  .navbar-content a {
+  .navbar-content div {
     display: none;
   }
 }
