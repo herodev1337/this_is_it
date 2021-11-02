@@ -3,8 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="aeb4536f-0272-439f-ba7a-c11357a3a083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/sqit_games.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/sqit_games.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/sqit/game1/sketch1.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game1/sketch1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/sqit/game4/sketch2.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4/sketch2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/navbar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/navbar.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/sqit_games.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/sqit_games.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/js/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/navbar_test.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/navbar_test.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/views/sqit/game2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game2.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/template.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/template.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
