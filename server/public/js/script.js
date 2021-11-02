@@ -21,17 +21,24 @@ function validateAnswer(quizId, questionId, answerId, selector) {
             if (result.data){
                 selector.removeClass('btn-light')
                 selector.addClass('btn-success')
+                selector.parent().parent().find('button').prop('disabled', true)
+                let current = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#answer-counter').children('span').text()
+                current++;
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()('#answer-counter').children('span').text(current)
                 setTimeout(()=>{
                     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carousel').carousel('next');
-                }, 500)
+                }, 1000)
             } else {
                 selector.removeClass('btn-light')
                 selector.addClass('btn-danger')
+                selector.parent().parent().find('button').prop('disabled', true)
+                setTimeout(()=>{
+                    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.carousel').carousel('next');
+                }, 1000)
             }
         }
     }});
 }
-
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.answer-button').on('click', async function (e) {

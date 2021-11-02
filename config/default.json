@@ -4,6 +4,6 @@
     "url": ""
   },
   "RestAPI": {
-    "enabled": false
+    "enabled": true
   }
 }

@@ -8,17 +8,24 @@ function validateAnswer(quizId, questionId, answerId, selector) {
             if (result.data){
                 selector.removeClass('btn-light')
                 selector.addClass('btn-success')
+                selector.parent().parent().find('button').prop('disabled', true)
+                let current = $('#answer-counter').children('span').text()
+                current++;
+                $('#answer-counter').children('span').text(current)
                 setTimeout(()=>{
                     $('.carousel').carousel('next');
-                }, 500)
+                }, 1000)
             } else {
                 selector.removeClass('btn-light')
                 selector.addClass('btn-danger')
+                selector.parent().parent().find('button').prop('disabled', true)
+                setTimeout(()=>{
+                    $('.carousel').carousel('next');
+                }, 1000)
             }
         }
     }});
 }
-
 
 $(function () {
     $('.answer-button').on('click', async function (e) {

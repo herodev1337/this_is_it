@@ -1,57 +1,109 @@
 <% layout('templates/rootTemplate') -%>
 
 <style>
-    button {
-        width: 100%;
-        margin: 10px 10px;
-    }
+  button {
+    width: 100%;
+    margin: 10px 10px;
+  }
 </style>
 
-<div id="quizCarousel" class="carousel slide min-vh-100 text-white" data-bs-ride="carousel" data-bs-interval="0">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#quizCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Landing Slide"></button>
-      <% quiz.questions.forEach((question, i)=>{ %> 
-        <button type="button" data-bs-target="#quizCarousel" data-bs-slide-to="<%= i+1 %>" aria-label="Slide <%= i+1 %>"></button>
-      <% }) %> 
+<div
+  id="quizCarousel"
+  class="carousel slide min-vh-100 text-white"
+  data-bs-ride="carousel"
+  data-bs-interval="0"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#quizCarousel"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Landing Slide"
+    ></button>
+    <% quiz.questions.forEach((question, i)=>{ %>
+    <button
+      type="button"
+      data-bs-target="#quizCarousel"
+      data-bs-slide-to="<%= i+1 %>"
+      aria-label="Slide <%= i+1 %>"
+    ></button>
+    <% }) %>
+    <button
+      type="button"
+      data-bs-target="#quizCarousel"
+      data-bs-slide-to="<%= quiz.questions.length+1 %>"
+      aria-label="Ergebnisse"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="container w-50 text-center">
+          <div class="jumbotron">
+            <h2><%= quiz.name %></h2>
+            <p class="lead"><%= quiz.instructions %></p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="d-flex min-vh-100 justify-content-center align-items-center">
-          <div class="container w-50 text-center">
-            <div class="jumbotron">
-                <h2><%= quiz.name %></h2>
-                <p class="lead"><%= quiz.instructions %></p>
+    <% quiz.questions.forEach((question, i)=>{ %>
+    <div id="<%= question._id %>" class="carousel-item">
+      <div class="d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="container w-50 text-center">
+          <div class="jumbotron">
+            <h2><%= question.question %></h2>
+            <p class="lead"><%- question.explanation %></p>
+          </div>
+          <div class="container">
+            <div class="row row-cols-2">
+              <% question.answers.forEach(answer=>{ %>
+              <div class="col">
+                <button
+                  id="<%= answer._id %>"
+                  type="button"
+                  class="btn btn-light btn-ripple answer-button"
+                >
+                  <%= answer.option %>
+                </button>
+              </div>
+              <% }) %>
             </div>
           </div>
         </div>
       </div>
-      <% quiz.questions.forEach((question, i)=>{ %> 
-        <div id="<%= question._id %>" class="carousel-item">
-            <div class="d-flex min-vh-100 justify-content-center align-items-center">
-                <div class="container w-50 text-center">
-                    <div class="jumbotron">
-                        <p class="lead"><%= question.question %> </p>
-                    </div>
-                    <div class="container">
-                        <div class="row row-cols-2">
-                            <% question.answers.forEach(answer=>{ %> 
-                                <div class="col">
-                                    <button id="<%= answer._id %>" type="button" class="btn btn-light btn-ripple answer-button"><%= answer.option %> </button>
-                                </div>
-                            <% }) %> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      <% }) %>   
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#quizCarousel" data-bs-slide="prev">
+    <% }) %>
+    <div class="carousel-item">
+      <div class="d-flex min-vh-100 justify-content-center align-items-center">
+        <div class="container w-50 text-center">
+          <div class="jumbotron">
+            <h2>Ergebnis</h2>
+            <p class="lead" id="answer-counter">
+              <span>0</span>/<%= quiz.questions.length %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#quizCarousel"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#quizCarousel" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#quizCarousel"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div>
 </div>

@@ -18,11 +18,7 @@ const startServer = () => {
 
     app.engine('ejs', require('ejs-mate')) //use ejs-mate
     app.set('view engine', 'ejs') //Set View Engine to EJS
-<<<<<<< HEAD
-    app.set('views', 'server/views/') //Change view path to ./server/views
-=======
     app.set('views', 'server/views') //Change view path to ./server/views
->>>>>>> 11d3988ee646758df98d036e72538003642970f6
 
     app.use(require('../middleware/logger.middleware')) //Use the Logger Middleware
     app.use(express.static('server/public')) //Set the public directory
