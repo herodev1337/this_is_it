@@ -1,6 +1,5 @@
 const config = require('config')
 
-const webserver = require("./server/server.js");
-webserver.startServer()
+require("./server/server.js").startServer();
 
 if(config.RestAPI.enabled) { require("./api-server/server.js").startServer() }
