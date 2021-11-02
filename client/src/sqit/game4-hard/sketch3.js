@@ -1,6 +1,6 @@
-import { createEditor, EditorSingleton } from "../editor.js";
-import * as helpers from "../helpers.js";
-import { fields } from "../tictactoe.js"
+import { createEditor, EditorSingleton } from "../../../../server/public/js/sqit/editor.js";
+import * as helpers from "../../../../server/public/js/sqit/helpers.js";
+import { fields } from "../../../../server/public/js/sqit/tictactoe.js"
 
 
 
@@ -69,7 +69,6 @@ function setup() {
 }
 
 function draw() {
-
     // console.log(valid)
     background($(":root").css("--color-navy-800"));
     fill(255)

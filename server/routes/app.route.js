@@ -13,8 +13,8 @@ router.get('/sqit', function(req, res) {
   res.render('sqit/games');
 });
 
-router.get('/sqit/game2', function(req, res) {
-  res.render('../views/sqit/game2');
+router.get('/sqit/game4', function(req, res) {
+  res.render('./sqit/game2');
 });
 
 module.exports = router;
