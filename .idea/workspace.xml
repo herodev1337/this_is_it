@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb4536f-0272-439f-ba7a-c11357a3a083" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/sqit/game4-hard/sketch3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/app.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/app.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/css/navbar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/css/navbar.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/js/script.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/js/script.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/views/sqit/game2hard.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/views/navbar_test.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/server/views/navbar_test.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
