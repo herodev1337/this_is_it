@@ -100,7 +100,7 @@ nav {
 }
 
 .navbar-dropdown {
-  display: flex;
+  display: none !important;
   top: 14vh;
   background-color: black;
   -webkit-box-orient: vertical;
