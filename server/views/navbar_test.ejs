@@ -1,17 +1,45 @@
-<% layout('template') -%>
+ <% layout('template') -%> 
 
 <nav>
     <div class="navbar-content">
+
        <img class="menulogo" src="https://fontmeme.com/permalink/211029/400bc23d23ee46ea0937767bea5bb742.png">
-        <a class="navbar-link" href="#">Berufsswiper</a>
-        <a class="navbar-link" href="#">SQIT</a>
+
+       <div class="navbar-link navbar-games">
+            <span>Games</span> <!--make it unselectable-->
+            <div class="navbar-dropdown navbar-dropdown-games">
+                <a class="navbar-dropdown-games-elements" href="#">SQIT</a>
+            </div>
+       </div>
+
+       <div class="navbar-link navbar-knowledge">
+            <span>Knowledge</span> <!--make it unselectable-->
+            <div class="navbar-dropdown navbar-dropdown-knowledge">
+                <a class="navbar-dropdown-knowledge-elements" href="#">Berufsswiper</a>
+            </div>
+       </div>
+        
     </div>
+
     <div class="navbar-toggle-menu">
+
         <div></div>
         <div></div>
         <div></div>
+
     </div>
-    <div class="navbar-toggle-content" id="navbar-toggle-content"></div>
+
+    <div class="navbar-toggle-content" id="navbar-toggle-content">
+
+        <div class="navbar-toggle-games" id="navbar-toggle-games">
+            <span>Games</span>
+        </div>
+
+        <div class="navbar-toggle-knowledge" id="navbar-toggle-knowledge">
+            <span>Knowledge</span>
+        </div>
+
+    </div>
 </nav>
 
 <link rel="stylesheet" href="./css/navbar.css"/>
