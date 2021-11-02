@@ -68,8 +68,7 @@ function setup() {
     frameRate(60);
 }
 
-function draw() {
-    // console.log(valid)
+function draw() {// console.log(valid)
     background($(":root").css("--color-navy-800"));
     fill(255)
 
