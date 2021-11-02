@@ -1,5 +1,7 @@
-import { createEditor, EditorSingleton } from "./editor.js";
-import * as helpers from "./helpers.js";
+import { createEditor, EditorSingleton } from "../editor.js";
+import * as helpers from "../helpers.js";
+import { fields } from "../tictactoe.js"
+
 
 
 $("#presser").on("click", () => {
@@ -10,23 +12,35 @@ $("#presser").on("click", () => {
 // Ace Editor setup
 
 let extraText = false
+let gameFinished = false
+let fields__ = ""
+let yourTurn = true
+
 
 const enterCallback = () => {
     if (!extraText) {
-        add_editor_text();
-        extraText = true;
+        const fields_ = helpers.get_userCode(mainEditor.editor.getValue(), "fields")
+        fields__ = fields_
+        if(gameFinished) extraText = true;
+        add_editor_text(fields_);
 
         // circles = newCircle(7)
         valid = true
     }
 };
-const add_editor_text = () => {
+
+const regex = new RegExp("fields.+")
+
+const add_editor_text = (fields_) => {
     let str = mainEditor.editor.getValue();
+    str = str.replace(regex, "")
     mainEditor.editor.setValue(
-        str +
-        `\n\n// Yout got some talent.`
+        str + `fields = [${fields_}];`
     );
     let strout = mainEditor.editor2.getValue()
+    mainEditor.editor2.setValue(
+        strout + `Yeah`
+    )
 };
 
 const mainEditor = new EditorSingleton();
@@ -49,12 +63,13 @@ function setup() {
     ellipseMode(CENTER)
     //let cnvInner = createCanvas($(window).width(), 400);
     // cnv.parent("canvasHolder");
-   // $("#defaultCanvas0").append(cnvInner)
+    // $("#defaultCanvas0").append(cnvInner)
 
     frameRate(60);
 }
 
 function draw() {
+
     // console.log(valid)
     background($(":root").css("--color-navy-800"));
     fill(255)
@@ -65,6 +80,9 @@ function draw() {
     //strokeWeight(5)
     line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
     line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
+    //
+    line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+    line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
 
     line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
     line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
@@ -76,13 +94,45 @@ function draw() {
 
 
     noFill()
-    circle(width/2 -100 ,height/2 + 100,50)
-    circle(width/2 +100 ,height/2 + 100,50)
+    // circle(width/2 -100 ,height/2 + 100,50)
+    // circle(width/2 +100 ,height/2 + 100,50)
 
-    if(valid) {
+
+    if(fields__[7] && yourTurn) {
         let circles = newCircle(7)
         circle(circles[0], circles[1], circles[2])
-        // console.log("yes")
+    }
+    if(fields__[0] && yourTurn) {
+        let circles = newCircle(0)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[1] && yourTurn) {
+        let circles = newCircle(1)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[2] && yourTurn) {
+        let circles = newCircle(2)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[3] && yourTurn) {
+        let circles = newCircle(3)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[4] && yourTurn) {
+        let circles = newCircle(4)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[5] && yourTurn) {
+        let circles = newCircle(5)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[6] && yourTurn) {
+        let circles = newCircle(6)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[8] && yourTurn) {
+        let circles = newCircle(8)
+        circle(circles[0], circles[1], circles[2])
     }
 }
 
@@ -128,42 +178,42 @@ function newCross(position){
 function newCircle(position){
     let checkPosition = checkPostionCircle()
     if(position === 0){
-        circle0 = [width/2 -100,height/2 - 100,50]
+        let circle0 = [width/2 -100,height/2 - 100,50]
         checkPosition[0] = true
         return circle0
     }
     if(position === 1){
-        circle1 = [width/2,height/2 + 100,50]
+        let circle1 = [width/2,height/2 + 100,50]
         checkPosition[1] = true
         return circle1
 
     }
     if(position === 2){
-        circle2 = [width/2 +100 ,height/2 -100,50]
+        let circle2 = [width/2 +100 ,height/2 -100,50]
         checkPosition[2] = true
         return circle2
 
     }
     if(position === 3){
-        circle3 = [width/2 -100 ,height/2,50]
+        let circle3 = [width/2 -100 ,height/2,50]
         checkPosition[3] = true
         return circle3
 
     }
     if(position === 4){
-        circle = [width/2 ,height/2 - 100,50]
+        let circle = [width/2 ,height/2 - 100,50]
         checkPosition[4] = true
         return circle4
 
     }
     if(position === 5){
-        circle5 = [width/2 +100 ,height/2 - 100,50]
+        let circle5 = [width/2 +100 ,height/2 - 100,50]
         checkPosition[5] = true
         return circle5
 
     }
     if(position === 6){
-        circle6 = [width/2 -100 ,height/2 + 100,50]
+        let circle6 = [width/2 -100 ,height/2 + 100,50]
         checkPosition[6] = true
         return circle6
 
@@ -175,7 +225,7 @@ function newCircle(position){
 
     }
     if(position === 8){
-        circle8 = [width/2 +100 ,height/2 + 100,50]
+        let circle8 = [width/2 +100 ,height/2 + 100,50]
         checkPosition[8] = true
         return circle8
 
@@ -191,79 +241,7 @@ function checkPostionCircle(){
 
 
 
-function simpleTicTacToe(){
-    let checkPosition = checkPostionCircle()
-    //checking cycle Position
-    //horizontal
-    if(checkPosition[0] && checkPosition[1]){
 
-    }
-    if(checkPosition[3] && checkPosition[4]){
-
-    }
-    if(checkPosition[6] && checkPosition[7]){
-
-    }
-    if(checkPosition[1] && checkPosition[2]){
-
-    }
-    if(checkPosition[4] && checkPosition[5]){
-
-    }
-    if(checkPosition[7] && checkPosition[8]){
-
-    }
-    if(checkPosition[0] && checkPosition[2]){
-
-    }
-    if(checkPosition[3] && checkPosition[5]){
-
-    }
-    if(checkPosition[6] && checkPosition[8]){
-
-    }
-
-    //vertical
-    if(checkPosition[0] && checkPosition[3]){
-
-    }
-    if(checkPosition[1] && checkPosition[4]){
-
-    }
-    if(checkPosition[2] && checkPosition[5]){
-
-    }
-    if(checkPosition[6] && checkPosition[3]){
-
-    }
-    if(checkPosition[7] && checkPosition[4]){
-
-    }
-    if(checkPosition[8] && checkPosition[5]){
-
-    }
-    if(checkPosition[0] && checkPosition[6]){
-
-    }
-    if(checkPosition[1] && checkPosition[7]){
-
-    }
-    if(checkPosition[2] && checkPosition[8]){
-
-    }
-
-    // diagonal
-
-    if(checkPosition[0] && checkPosition[4]){
-
-    }
-    if(checkPosition[8] && checkPosition[4]){
-
-    }
-    if(checkPosition[0] && checkPosition[8]){
-
-    }
-}
 
 function windowResized() {
     resizeCanvas(helpers.realWidth(90), helpers.view_2_px(50));

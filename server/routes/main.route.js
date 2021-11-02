@@ -18,6 +18,10 @@ router.get('/sqit/game2', function (req, res) {
     res.render('../views/sqit/game2');
 })
 
+router.get('/sqit/game2/hard', function (req, res) {
+    res.render('../views/sqit/game2hard');
+})
+
 
 
 module.exports = router;

@@ -7,11 +7,11 @@ const view_2_px = (vh, height = true) =>
 
 const get_userCode = (codeStr, tarVar) => {
   let retString = `return ${tarVar}`;
-
   codeStr = codeStr[codeStr.length - 1] === ";" ? codeStr : codeStr + ";";
 
   try {
     let result = new Function(codeStr + retString);
+    console.log(result,"----", codeStr)
     return result();
   } catch (e) {
     return e;
