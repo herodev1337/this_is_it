@@ -119,6 +119,590 @@ const createEditor = () => {
 
 /***/ }),
 
+/***/ "./client/src/sqit/game1/classes.js":
+/*!******************************************!*\
+  !*** ./client/src/sqit/game1/classes.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SlidingDoors": () => (/* binding */ SlidingDoors),
+/* harmony export */   "BlinkLight": () => (/* binding */ BlinkLight)
+/* harmony export */ });
+class SlidingDoors {
+  constructor(color) {
+    this.col = color;
+    this.push = 0;
+  }
+
+  show() {
+    fill(this.col);
+    rect(-5 - this.push, 0, width / 2 + 5, height);
+
+    fill(this.col);
+    rect(width / 2 + this.push, 0, width / 2 + 5, height);
+  }
+
+  move(anim) {
+    if (anim) {
+      this.push = this.push < width / 2 ? this.push + 1 : width / 2;
+    } else {
+      if (this.push > 0) this.push--;
+    }
+  }
+}
+
+class BlinkLight {
+  constructor(x, y, r, color, dir = -1) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.col = color;
+    this.dir = dir;
+    this.push = 0;
+  }
+
+  show() {
+    noStroke();
+    for (let i = 0; i < this.r; i++) {
+      fill(...this.col, i);
+      circle(this.x - this.push * this.dir, this.y, this.r * 2 - i);
+    }
+    // fill(this.col);
+    // circle(this.x - this.push * this.dir, this.y, this.r * 2);
+  }
+
+  update(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  move() {
+    this.push++;
+  }
+
+  isClicked() {
+    if (dist(mouseX, mouseY, this.x, this.y) < this.r) return true;
+    return false;
+  }
+
+  isPressed() {
+    if (dist(mouseX, mouseY, this.x, this.y) < this.r && mouseIsPressed)
+      return true;
+    return false;
+  }
+}
+
+
+
+
+/***/ }),
+
+/***/ "./client/src/sqit/game1/sketch1.js":
+/*!******************************************!*\
+  !*** ./client/src/sqit/game1/sketch1.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! p5 */ "./node_modules/p5/lib/p5.min.js");
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(p5__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes.js */ "./client/src/sqit/game1/classes.js");
+/* harmony import */ var _editor_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../editor.js */ "./client/src/sqit/editor.js");
+/* harmony import */ var _helpers_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers.js */ "./client/src/sqit/helpers.js");
+// Lib imports
+
+
+
+// Worker imports
+
+
+
+
+// Ace Editor setup and callbacks
+
+let extraText = false;
+const enterCallback = () => {
+  if (!_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_validation(mainEditor.editor.getValue(), 'open', 'gate')) {
+    anim = false;
+    return;
+  } else anim = true;
+
+  if (!extraText) {
+    add_editor_text(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'gate'));
+    extraText = true;
+  }
+
+  interval = _helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'interval');
+};
+
+const add_editor_text = (value) => {
+  let str = mainEditor.editor.getValue();
+  mainEditor.editor.setValue(
+    str +
+      `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
+  );
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
+};
+
+const mainEditor = new _editor_js__WEBPACK_IMPORTED_MODULE_3__.EditorSingleton();
+mainEditor.enterCallback(enterCallback);
+
+// P5 Animations
+let on, anim, finished;
+
+let fps = 60;
+let interval = 4;
+let radius = 50;
+
+let redLight, greenLight, doors, backgroundDoors;
+let redCnt = 0;
+let greenCnt = 0;
+
+function setup() {
+  let cnv = createCanvas(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.realWidth(90), _helpers_js__WEBPACK_IMPORTED_MODULE_4__.view_2_px(50));
+  cnv.parent('canvasHolder');
+  frameRate(fps);
+  textAlign(CENTER, CENTER);
+
+  redLight = new _classes_js__WEBPACK_IMPORTED_MODULE_2__.BlinkLight(width / 3, height / 2, radius * 2, [255, 0, 0], 1);
+  greenLight = new _classes_js__WEBPACK_IMPORTED_MODULE_2__.BlinkLight((width / 3) * 2, height / 2, radius * 2, [
+    0,
+    255,
+    0,
+  ]);
+  backgroundDoors = new _classes_js__WEBPACK_IMPORTED_MODULE_2__.SlidingDoors(jquery__WEBPACK_IMPORTED_MODULE_0___default()(':root').css('--color-navy-800'));
+  doors = new _classes_js__WEBPACK_IMPORTED_MODULE_2__.SlidingDoors(jquery__WEBPACK_IMPORTED_MODULE_0___default()(':root').css('--GuardRed'));
+
+  textFont('Montserrat');
+  textSize(50);
+}
+
+function draw() {
+  background(jquery__WEBPACK_IMPORTED_MODULE_0___default()(':root').css('--CardBrown'));
+
+  fill(jquery__WEBPACK_IMPORTED_MODULE_0___default()(':root').css('--GuardRed'));
+  noStroke();
+  textStyle(BOLDITALIC);
+  text('YOU DID IT', width / 2, height / 2);
+  textStyle(BOLD);
+  text('🎉', width / 2, height / 2 + 75);
+
+  stroke(jquery__WEBPACK_IMPORTED_MODULE_0___default()(':root').css('--color-navy-800'));
+  backgroundDoors.show();
+  if (finished) backgroundDoors.move(finished);
+
+  // Strobing lights
+  if (on) {
+    greenCnt = 0;
+    redLight.update(width / 3, height / 2)
+    redLight.show();
+  } else {
+    redCnt = 0;
+    greenLight.update((width / 3) * 2, height / 2)
+    greenLight.show();
+  }
+
+  if (redLight.isPressed()) redCnt++;
+  if (greenLight.isPressed()) greenCnt++;
+
+  if (redCnt / fps > 2) console.log('Sry nicht der richtig mouse click :/');
+  if (greenCnt / fps > 2) finished = true;
+
+  // Sliding doors
+  stroke(0);
+  strokeWeight(1);
+  doors.show();
+  doors.move(anim);
+
+  if (finished) {
+    redLight.move();
+    greenLight.move();
+  }
+  if (frameCount % interval == 0) on = !on;
+}
+
+function windowResized() {
+  resizeCanvas(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.realWidth(90), _helpers_js__WEBPACK_IMPORTED_MODULE_4__.view_2_px(50));
+}
+
+
+window.setup = setup;
+window.draw = draw;
+window.windowResized = windowResized;
+
+
+/***/ }),
+
+/***/ "./client/src/sqit/game4-hard/sketch3.js":
+/*!***********************************************!*\
+  !*** ./client/src/sqit/game4-hard/sketch3.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! p5 */ "./node_modules/p5/lib/p5.min.js");
+/* harmony import */ var p5__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(p5__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _editor_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../editor.js */ "./client/src/sqit/editor.js");
+/* harmony import */ var _helpers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers.js */ "./client/src/sqit/helpers.js");
+/* harmony import */ var _tictactoe_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tictactoe.js */ "./client/src/sqit/game4-hard/tictactoe.js");
+// Lib imports
+
+
+
+
+
+
+
+
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()("#presser").on("click", () => {
+    console.log("Hi", anim);
+    anim = true;
+});
+
+// Ace Editor setup
+
+let extraText = false
+let gameFinished = false
+let fields__ = ""
+let yourTurn = true
+
+
+const enterCallback = () => {
+    if (!extraText) {
+        const fields_ = _helpers_js__WEBPACK_IMPORTED_MODULE_3__.get_userCode(mainEditor.editor.getValue(), "fields")
+        fields__ = fields_
+        if(gameFinished) extraText = true;
+        add_editor_text(fields_);
+
+        // circles = newCircle(7)
+        valid = true
+    }
+};
+
+const regex = new RegExp("fields.+")
+
+const add_editor_text = (fields_) => {
+    let str = mainEditor.editor.getValue();
+    str = str.replace(regex, "")
+    mainEditor.editor.setValue(
+        str + `fields = [${fields_}];`
+    );
+    let strout = mainEditor.editor2.getValue()
+    mainEditor.editor2.setValue(
+        strout + `Yeah`
+    )
+};
+
+const mainEditor = new _editor_js__WEBPACK_IMPORTED_MODULE_2__.EditorSingleton();
+mainEditor.enterCallback(enterCallback)
+
+// P5 Animations
+
+let on, anim;
+
+let interval = 10;
+let radius = 50;
+let push = 0;
+
+let valid = false;
+let circles;
+
+function setup() {
+    let cnv = createCanvas(_helpers_js__WEBPACK_IMPORTED_MODULE_3__.realWidth(90), _helpers_js__WEBPACK_IMPORTED_MODULE_3__.view_2_px(50));
+    cnv.parent("canvasHolder");
+    ellipseMode(CENTER)
+    //let cnvInner = createCanvas($(window).width(), 400);
+    // cnv.parent("canvasHolder");
+    // $("#defaultCanvas0").append(cnvInner)
+
+    frameRate(60);
+}
+
+function draw() {
+    // console.log(valid)
+    background(jquery__WEBPACK_IMPORTED_MODULE_0___default()(":root").css("--color-navy-800"));
+    fill(255)
+
+    rect(width/2 -50,height/2 -125,5,250)
+    rect(width/2 +50,height/2 -125,5,250)
+    stroke(255)
+    //strokeWeight(5)
+    line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
+    line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
+    //
+    line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+    line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
+
+    line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+    line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
+
+    //line(width/2 +50, height/2 -50, width/2 -100, height/2 +100)
+
+    rect(width/2 -125,height/2 +50,250,5)
+    rect(width/2 -125,height/2 -50,250,5)
+
+
+    noFill()
+    // circle(width/2 -100 ,height/2 + 100,50)
+    // circle(width/2 +100 ,height/2 + 100,50)
+
+
+    if(fields__[7] && yourTurn) {
+        let circles = newCircle(7)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[0] && yourTurn) {
+        let circles = newCircle(0)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[1] && yourTurn) {
+        let circles = newCircle(1)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[2] && yourTurn) {
+        let circles = newCircle(2)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[3] && yourTurn) {
+        let circles = newCircle(3)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[4] && yourTurn) {
+        let circles = newCircle(4)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[5] && yourTurn) {
+        let circles = newCircle(5)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[6] && yourTurn) {
+        let circles = newCircle(6)
+        circle(circles[0], circles[1], circles[2])
+    }
+    if(fields__[8] && yourTurn) {
+        let circles = newCircle(8)
+        circle(circles[0], circles[1], circles[2])
+    }
+}
+
+
+// Board states
+
+function newCross(position){
+    if(position === 0){
+
+    }
+    if(position === 1){
+
+    }
+    if(position === 2){
+
+    }
+    if(position === 3){
+        line(width/2 -70, height/2 -25, width/2 -120, height/2 +30)
+        line(width/2 -120, height/2 -25, width/2 -70, height/2 +30)
+    }
+    if(position === 4){
+        line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
+        line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
+    }
+    if(position === 5){
+
+    }
+    if(position === 6){
+
+    }
+    if(position === 7){
+
+    }
+    if(position === 8){
+
+    }
+    else{
+        console.log("Enter valid field-number")
+    }
+
+}
+
+function newCircle(position){
+    let checkPosition = checkPostionCircle()
+    if(position === 0){
+        let circle0 = [width/2 -100,height/2 - 100,50]
+        checkPosition[0] = true
+        return circle0
+    }
+    if(position === 1){
+        let circle1 = [width/2,height/2 + 100,50]
+        checkPosition[1] = true
+        return circle1
+
+    }
+    if(position === 2){
+        let circle2 = [width/2 +100 ,height/2 -100,50]
+        checkPosition[2] = true
+        return circle2
+
+    }
+    if(position === 3){
+        let circle3 = [width/2 -100 ,height/2,50]
+        checkPosition[3] = true
+        return circle3
+
+    }
+    if(position === 4){
+        let circle = [width/2 ,height/2 - 100,50]
+        checkPosition[4] = true
+        return circle4
+
+    }
+    if(position === 5){
+        let circle5 = [width/2 +100 ,height/2 - 100,50]
+        checkPosition[5] = true
+        return circle5
+
+    }
+    if(position === 6){
+        let circle6 = [width/2 -100 ,height/2 + 100,50]
+        checkPosition[6] = true
+        return circle6
+
+    }
+    if(position === 7){
+        let circle7 = [width/2,height/2 + 100,50]
+        checkPosition[7] = true
+        return circle7
+
+    }
+    if(position === 8){
+        let circle8 = [width/2 +100 ,height/2 + 100,50]
+        checkPosition[8] = true
+        return circle8
+
+    }
+
+}
+
+function checkPostionCircle(){
+    var checkPosition = [false, false, false ,false ,false ,false ,true, false ,true]
+
+    return checkPosition
+}
+
+
+
+
+
+function windowResized() {
+    resizeCanvas(_helpers_js__WEBPACK_IMPORTED_MODULE_3__.realWidth(90), _helpers_js__WEBPACK_IMPORTED_MODULE_3__.view_2_px(50));
+}
+
+window.setup = setup;
+window.draw = draw;
+window.windowResized = windowResized;
+
+/***/ }),
+
+/***/ "./client/src/sqit/game4-hard/tictactoe.js":
+/*!*************************************************!*\
+  !*** ./client/src/sqit/game4-hard/tictactoe.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fields": () => (/* binding */ fields)
+/* harmony export */ });
+const fields = [false,false,false,false,false,false,false,false,false];
+
+function simpleTicTacToe(){
+    let checkPosition = checkPostionCircle()
+    //checking cycle Position
+    //horizontal
+    if(checkPosition[0] && checkPosition[1]){
+
+    }
+    if(checkPosition[3] && checkPosition[4]){
+
+    }
+    if(checkPosition[6] && checkPosition[7]){
+
+    }
+    if(checkPosition[1] && checkPosition[2]){
+
+    }
+    if(checkPosition[4] && checkPosition[5]){
+
+    }
+    if(checkPosition[7] && checkPosition[8]){
+
+    }
+    if(checkPosition[0] && checkPosition[2]){
+
+    }
+    if(checkPosition[3] && checkPosition[5]){
+
+    }
+    if(checkPosition[6] && checkPosition[8]){
+
+    }
+
+    //vertical
+    if(checkPosition[0] && checkPosition[3]){
+
+    }
+    if(checkPosition[1] && checkPosition[4]){
+
+    }
+    if(checkPosition[2] && checkPosition[5]){
+
+    }
+    if(checkPosition[6] && checkPosition[3]){
+
+    }
+    if(checkPosition[7] && checkPosition[4]){
+
+    }
+    if(checkPosition[8] && checkPosition[5]){
+
+    }
+    if(checkPosition[0] && checkPosition[6]){
+
+    }
+    if(checkPosition[1] && checkPosition[7]){
+
+    }
+    if(checkPosition[2] && checkPosition[8]){
+
+    }
+
+    // diagonal
+
+    if(checkPosition[0] && checkPosition[4]){
+
+    }
+    if(checkPosition[8] && checkPosition[4]){
+
+    }
+    if(checkPosition[0] && checkPosition[8]){
+
+    }
+}
+
+
+
+/***/ }),
+
 /***/ "./client/src/sqit/game4/sketch2.js":
 /*!******************************************!*\
   !*** ./client/src/sqit/game4/sketch2.js ***!
@@ -33872,19 +34456,39 @@ module.exports = __webpack_require__.p + "03371bf1d5cbb1eab58e.js";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!******************************!*\
   !*** ./client/src/client.js ***!
   \******************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _sqit_game4_sketch2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sqit/game4/sketch2 */ "./client/src/sqit/game4/sketch2.js");
 // import "./sqit/game1/sketch1"
 
+const path = window.location.pathname;
 
+switch (path) {
+  case '/sqit/game1':
+    console.log('Imported game1/sketch1');
+    // import './sqit/game1/sketch1';
+    __webpack_require__(/*! ./sqit/game1/sketch1 */ "./client/src/sqit/game1/sketch1.js");
+    break;
 
-console.log("Aus der client.js")
+  case '/sqit/game2':
+    console.log('Imported game2/sketch2');
+    break;
+
+  case '/sqit/game4':
+    console.log('Imported game4/sketch2');
+    __webpack_require__(/*! ./sqit/game4/sketch2 */ "./client/src/sqit/game4/sketch2.js");
+    break;
+
+  case '/sqit/game4hard':
+    console.log('Imported game4hard/sketch3');
+    __webpack_require__(/*! ./sqit/game4-hard/sketch3 */ "./client/src/sqit/game4-hard/sketch3.js");
+    break;
+}
+
+console.log('Aus der client.js');
+
 })();
 
 /******/ })()

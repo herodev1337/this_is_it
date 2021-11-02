@@ -1,6 +1,10 @@
-import { createEditor, EditorSingleton } from "../../../../server/public/js/sqit/editor.js";
-import * as helpers from "../../../../server/public/js/sqit/helpers.js";
-import { fields } from "../../../../server/public/js/sqit/tictactoe.js"
+// Lib imports
+import $ from 'jquery';
+import p5 from 'p5';
+
+import { EditorSingleton } from '../editor.js';
+import * as helpers from '../helpers.js';
+import { fields } from "./tictactoe.js"
 
 
 
