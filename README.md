@@ -42,15 +42,15 @@ oder
 this_is_it/          <-- Hauptordner
 ├─ client/           
 │  ├─ src/           <-- Dateien für den Client die später mit webpack gebundelt werden
+├─ db/               <-- MongoDB Dateien
 ├─ server/           
 │  ├─ config/        <-- Konfigurationsdateien z.B. Database Credentials, Settings...
 │  ├─ controllers/   <-- Liegt zwischen Routing und View; Hier kommen benötigte Funktionen rein
+│  ├─ middleware/    <-- Liegt zwischen Route und Controller und kann z.B. authentifizieren
 │  ├─ models/        <-- Hier kommen die Models rein
 │  ├─ public/        <-- Statische Dateien die sich unter <URL>/<DATEI> befinden
 │  ├─ routes/        <-- Routing-Dateien; Damit der Server weiß, was wo ist
-│  ├─ util/           
-│  │  ├─ helpers/    <-- Hilfe-Dateien; Funktionen die mehrmals verwendet werden (z.B. Logger)
-│  │  ├─ middleware/ <-- Liegt zwischen 
+│  ├─ util/          <-- Hilfe-Dateien; Funktionen die mehrmals verwendet werden (z.B. Logger)
 │  ├─ views/         <-- View-Dateien; Werden vom Server in HTML gerendert
 ````
 
