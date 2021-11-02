@@ -1,5 +1,5 @@
+// import "./sqit/game1/sketch1"
+import "./sqit/game4/sketch2"
 
 
-
-
-console.log("Console.log aus der client.js= " ,$(window).height())
+console.log("Aus der client.js")
