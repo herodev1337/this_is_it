@@ -100,7 +100,7 @@ nav {
 }
 
 .navbar-dropdown {
-  display: flex;
+  display: none;
   top: 14vh;
   background-color: black;
   -webkit-box-orient: vertical;
@@ -118,7 +118,7 @@ nav {
   z-index: 1;
 }
 
-.navbar-games, .navbar-knowledge {
+.navbar-dropdown-games, .navbar-dropdown-knowledge {
   margin: 0 5%;
 }
 
