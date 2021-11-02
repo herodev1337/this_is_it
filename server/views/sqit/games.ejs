@@ -1,28 +1,24 @@
-<% layout('../template') -%> <% include ../navbar -%>
+<% layout('../template') -%> <% include ../navbar_test -%>
 
 <link type="text/css" rel="stylesheet" href="/css/colors.css" />
 <link rel="stylesheet" href="/css/sqit_games.css" />
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"></script>
-
-<script defer type="module" src="/js/sqit/sketch1.js"></script>
-
-<div class="spacer" style="width: 100%; margin: 5% 0%;"></div>
+<div class="spacer" style="width: 100%; margin: 5% 0%"></div>
 
 <div id="canvasHolder" style="width: 100%"></div>
 <!-- <button id="presser">Drück mal</button> -->
-<div class="spacer" style="width: 100%; margin: 5% 0%;"></div>
-
+<div class="spacer" style="width: 100%; margin: 5% 0%"></div>
 
 <div class="editorHolder">
-    <div id="editor" style="margin: 0; padding: 0;">
-// Open the gate to enter the next challenge
-
-let gate = "close";
-gate</div>
+  <div id="editor" style="margin: 0; padding: 0"></div>
 </div>
 
-<div id="editor2">Output:
-'close'</div>
+<div id="editor2"></div>
+
+<script>
+  $('#editor').html(
+    `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`
+  );
+
+  $('#editor2').html(`Output:\n'close'`);
+</script>

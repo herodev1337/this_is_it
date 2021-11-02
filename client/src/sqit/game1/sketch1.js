@@ -1,38 +1,39 @@
+// Lib imports
+import $ from 'jquery';
+import p5 from 'p5';
+
 // Worker imports
-import { createEditor, EditorSingleton } from "../editor.js";
-import { SlidingDoors, BlinkLight } from "./classes.js"
-import * as helpers from "../helpers.js";
+import { SlidingDoors, BlinkLight } from './classes.js';
+import { EditorSingleton } from '../editor.js';
+import * as helpers from '../helpers.js';
 
-
-console.log($(window).height())
 
 let extraText = false;
 const enterCallback = () => {
-  if (!helpers.get_validation(mainEditor.editor.getValue(), "open", "gate")) {
+  if (!helpers.get_validation(mainEditor.editor.getValue(), 'open', 'gate')) {
     anim = false;
     return;
   } else anim = true;
 
   if (!extraText) {
-    add_editor_text();
+    add_editor_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'));
     extraText = true;
   }
 
-  interval = helpers.get_userCode(mainEditor.editor.getValue(), "interval");
+  interval = helpers.get_userCode(mainEditor.editor.getValue(), 'interval');
 };
 
-const add_editor_text = () => {
+const add_editor_text = (value) => {
   let str = mainEditor.editor.getValue();
   mainEditor.editor.setValue(
     str +
       `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
   );
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
 };
 
 const mainEditor = new EditorSingleton();
-mainEditor.enterCallback(enterCallback)
-
-
+mainEditor.enterCallback(enterCallback);
 
 // P5 Animations
 let on, anim, finished;
@@ -47,51 +48,52 @@ let greenCnt = 0;
 
 function setup() {
   let cnv = createCanvas(helpers.realWidth(90), helpers.view_2_px(50));
-  cnv.parent("canvasHolder");
+  cnv.parent('canvasHolder');
   frameRate(fps);
   textAlign(CENTER, CENTER);
 
   redLight = new BlinkLight(width / 3, height / 2, radius * 2, [255, 0, 0], 1);
-  greenLight = new BlinkLight(
-    (width / 3) * 2,
-    height / 2,
-    radius * 2,
-    [0, 255, 0]
-  );
-  backgroundDoors = new SlidingDoors($(":root").css("--color-navy-800"));
-  doors = new SlidingDoors($(":root").css("--GuardRed"));
+  greenLight = new BlinkLight((width / 3) * 2, height / 2, radius * 2, [
+    0,
+    255,
+    0,
+  ]);
+  backgroundDoors = new SlidingDoors($(':root').css('--color-navy-800'));
+  doors = new SlidingDoors($(':root').css('--GuardRed'));
 
-  textFont("Montserrat");
+  textFont('Montserrat');
   textSize(50);
 }
 
 function draw() {
-  background($(":root").css("--CardBrown"));
+  background($(':root').css('--CardBrown'));
 
-  fill($(":root").css("--GuardRed"));
+  fill($(':root').css('--GuardRed'));
   noStroke();
   textStyle(BOLDITALIC);
-  text("YOU DID IT", width / 2, height / 2);
+  text('YOU DID IT', width / 2, height / 2);
   textStyle(BOLD);
-  text("🎉", width / 2, height / 2 + 75);
+  text('🎉', width / 2, height / 2 + 75);
 
-  stroke($(":root").css("--color-navy-800"));
+  stroke($(':root').css('--color-navy-800'));
   backgroundDoors.show();
   if (finished) backgroundDoors.move(finished);
 
   // Strobing lights
   if (on) {
     greenCnt = 0;
+    redLight.update(width / 3, height / 2)
     redLight.show();
   } else {
     redCnt = 0;
+    greenLight.update((width / 3) * 2, height / 2)
     greenLight.show();
   }
 
   if (redLight.isPressed()) redCnt++;
   if (greenLight.isPressed()) greenCnt++;
 
-  if (redCnt / fps > 2) console.log("Sry nicht der richtig mouse click :/");
+  if (redCnt / fps > 2) console.log('Sry nicht der richtig mouse click :/');
   if (greenCnt / fps > 2) finished = true;
 
   // Sliding doors
@@ -111,10 +113,6 @@ function windowResized() {
   resizeCanvas(helpers.realWidth(90), helpers.view_2_px(50));
 }
 
-// for (let i = 0; i < radius; i++) {
-//   fill(255, 0, 0, i);
-//   circle(-(width / 2) / 2, 0, radius - i);
-// }
 
 window.setup = setup;
 window.draw = draw;
