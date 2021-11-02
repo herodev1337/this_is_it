@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/client.js'), //TODO: <- change back to client.js
+  entry: path.resolve(__dirname, './src/client.js'),
   output: {
     filename: 'script.js',
     path: path.resolve(__dirname, '../server/public/js'),
@@ -37,7 +37,7 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-      }
+      },
     ]
   }
 };

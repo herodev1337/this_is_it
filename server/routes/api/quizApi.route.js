@@ -4,11 +4,11 @@ const authMiddleware = require('../../middleware/auth.middleware')
 
 
 router.route('/')
-    .get(quizController.getQuiz) //TODO: Overview of quizzes
+    .get(quizController.getQuizzes) //TODO: Overview of quizzes
     .post(authMiddleware, quizController.createQuiz) //TODO: Create a quiz
 
 router.route('/:quizId')
-    .get(quizController.showQuiz) //TODO: Show the quiz
+    .get(quizController.getQuiz) //TODO: Show the quiz
     .put(authMiddleware, quizController.updateQuiz) //TODO: Update quiz
     .delete(authMiddleware, quizController.deleteQuiz) //TODO: Delete quiz
 
