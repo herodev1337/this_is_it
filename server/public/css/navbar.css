@@ -160,7 +160,7 @@ nav {
   display: none;
   width: 50px;
   height: 50px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
   padding: 13px 12px;
   border: 1px solid black;
   border-radius: 5px;
@@ -177,11 +177,11 @@ nav {
 }
 
 .navbar-toggle-menu:hover {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .navbar-toggle-menu:hover div {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .navbar-toggle-content {
