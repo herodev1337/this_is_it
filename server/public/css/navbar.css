@@ -9,6 +9,15 @@
   --hovercolor: #DDFFF7;
 }
 
+/*making every target unselectable*/
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 html {
   background-color: #404040;
 }
@@ -71,7 +80,6 @@ nav {
   margin: 0 2%;
   text-decoration: none;
   color: var(--neonblue);
-  margin-left: 2.5rem;
 }
 
 .navbar-content a:hover {
@@ -87,6 +95,36 @@ nav {
 
 .navbar-link {
   text-shadow: var(--shadowcolor);
+  padding: 0 3%;
+}
+
+.navbar-dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 14vh;
+  background-color: black;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  position: absolute;
+  padding: 5px 0;
+  border: 1px solid black;
+  -webkit-box-shadow: 5px 5px 5px black;
+  box-shadow: 5px 5px 5px black;
+  z-index: 1;
+}
+
+.navbar-games, .navbar-knowledge {
+  margin: 0 5%;
+}
+
+.navbar-dropdown-elements {
+  text-align: center;
 }
 
 .navbar-toggle-menu {
@@ -156,7 +194,7 @@ nav {
   .navbar-toggle-menu {
     display: block;
   }
-  .navbar-content a {
+  .navbar-content div {
     display: none;
   }
 }
