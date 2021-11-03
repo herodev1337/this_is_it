@@ -24,4 +24,8 @@ router.get('/sqit/game4/hard', function(req, res) {
   res.render('./sqit/game2hard');
 });
 
+router.get("/karriere", function(req, res) {
+  res.render('../views/karriere');
+})
+
 module.exports = router;
