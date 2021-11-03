@@ -4,21 +4,25 @@ const { registerValidator } = require('../../utils/validator')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const config = require('config')
 
-const showLogin = (req, res) => {
-    res.render('auth/login')
-}
-
+/**
+ * Tries to create a new User
+ * @async
+ * @param {Object} req - Request
+ * @param {Object} res - Response
+ * @returns {Object} JSON
+ */
 const registerUser = async (req, res) => {
     //Validation
     const { error } = registerValidator(req.body)
-    if (error) {
+    if (error && config.Debug) {
         logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Authentication Controller', 3)
         res.status(400).json({ error: error.message })
     }
 
     //Check if User Exists
-    if (await getUser(req.body.username)) return res.status(400).json({ error: 'User already exists!' })
+    if (await getUser(req.body.username)) return res.status(400).json({ error: 'Username already exists!' })
 
     //User Creation
     const user = new User({
@@ -32,7 +36,7 @@ const registerUser = async (req, res) => {
             .json({
                 error: null,
                 data: {
-                    message: 'User created successfully'
+                    message: 'User created successfully!'
                 }
             })
     } catch (e) {
@@ -44,22 +48,16 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
+    //If user dosent exist -> Error
     const currentUser = await getUser(req.body.username)
+    if (!currentUser) return res.render('admin/login', { error: 'Unknown Combination!' })
 
-    //If user dosent exist -> 400
-    if (!currentUser) return res.status(400).json({ error: 'User dosent exist!' })
+    //If password dosent match -> Error
+    let compPassword = await comparePassword(req.body.password, currentUser.password);
+    if (!compPassword) return res.render('admin/login', { error: 'Unknown Combination!' })
 
-    //If password dosent match -> 400
-    if (!comparePassword(req.body.password, currentUser.password)) return res.status(400).json({ error: 'Password dosent match!' })
-
-    //TODO: Add token_secret to config
     res.cookie('auth_token', generateJWTtoken({ id: currentUser._id }))
-        .json({ 
-            error: null,
-            data: { 
-                message: 'Logged in successfully!'
-            }
-        })
+        .redirect('/admin/')
 }
 
 /**
@@ -91,21 +89,20 @@ const hashPassword = async (password) => {
  * @return {Boolean}
  */
 const comparePassword = async (password, hashedPassword) => {
-    return (await bcrypt.compare(password, hashedPassword)) ? true : false
+    let comparedPassword = await bcrypt.compare(password, hashedPassword);
+    return comparedPassword
 }
 
 /**
  * Generates the JWT token with the data provided and signs it
- * TODO: Add token_secret to config
  * @param  {Object} data - The data in the JWT token
  * @returns {String}
  */
 const generateJWTtoken = (data) => {
-    return jwt.sign(data, 'TOKEN_SECRET')
+    return jwt.sign(data, config.SECRET_TOKEN)
 }
 
 module.exports = {
     registerUser,
     loginUser,
-    showLogin,
 }

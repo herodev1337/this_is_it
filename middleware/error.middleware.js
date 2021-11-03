@@ -1,7 +1,7 @@
 const logger = require("../../utils/logger");
 const chalk = require("chalk");
 
-module.exports = (req, res, next) => {
+module.exports = (err, res) => {
   logger(
     `${chalk.cyan(req.ip)} - ${chalk.green(req.method)} - ${req.path}`,
     "Webserver Error Middleware",

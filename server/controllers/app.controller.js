@@ -1,5 +1,11 @@
+const Post = require('../../models/Post');
+
 const showHome = (req, res) => {
-    res.render('home');
+  Post.find({public: true}).then(responseData => { 
+      res.render('home', { posts: responseData })
+  }).catch(err => {
+      return err.message
+  })
 }
 
 const showWhoami = (req, res) => {
