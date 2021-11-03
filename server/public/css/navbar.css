@@ -219,7 +219,7 @@ nav {
   color: white;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (max-width: 970px) {
   .navbar-toggle-menu {
     display: block;
   }
