@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
           type: String,
           default: "admin"
         },
+        description: {
+          type: String,
+          default: "Description for the article"
+        },
         public: {
             type: Boolean,
             default: false

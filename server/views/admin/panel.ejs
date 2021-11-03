@@ -1,0 +1,11 @@
+<% layout('templates/rootTemplate') -%>
+
+<div class="container">
+    <button type="button" class="btn btn-primary">Primary</button>
+    <p>Posts -></p>
+    <ul>
+    <% posts.forEach((post) => { %> 
+        <li><a href="/admin/posts/<%= post._id %>"><%= post.title %></a> <a href="/admin/posts/<%= post._id %>/edit" type="button" class="btn btn-warning">Edit</a><a href="/admin/posts/<%= post._id %>/delete" type="button" class="btn btn-warning">Delete</a></li>
+    <% }) %> 
+    </ul>
+</div>

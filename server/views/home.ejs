@@ -1,8 +1,18 @@
 <% layout('templates/rootTemplate') -%>
 
-<h1>Alle Posts</h1>
-<ul>
-    <% posts.forEach(post => { %>
-        <li> <a href="/post/<%= post._id %>"> <%= post.title %> </a></li>
-    <% }) %>
-</ul>
+<% posts.forEach(post => { %>
+    <div class="container">
+        <div class="container">
+            <a href="/post/<%= post._id %>">
+                <h2 class="post-title"><%= post.title %></h2>
+                <h3 class="post-subtitle"><%= post.description %> </h3>
+            </a>
+            <p class="post-meta">
+                Posted by
+                <%= post.author %>
+                on <%= post.createdAt %>
+            </p>
+        </div>
+        </div>
+        <hr class="my-4">
+<% }) %>

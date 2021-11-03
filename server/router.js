@@ -2,7 +2,8 @@ var router = require('express').Router();
 const authMiddleware = require('../middleware/auth.middleware'),
   appController = require('./controllers/app.controller'),
   quizController = require('./controllers/quiz.controller'),
-  authController = require('./controllers/auth.controller')
+  authController = require('./controllers/auth.controller'),
+  postController = require('./controllers/post.controller')
 
 /**
  *
@@ -19,7 +20,7 @@ router.route('/').get(appController.showHome);
  *
  */
 
-router.route('/').get(quizController.showQuizView); //TODO: Overview of quizzes
+router.route('/quiz').get(quizController.showQuizView); //TODO: Overview of quizzes
 
 /**
  *
@@ -32,5 +33,11 @@ router
   .post(authController.loginUser);
 
 router.route('/register').post(authController.registerUser);
+
+router.get('/admin', authMiddleware, postController.showAdminPanel);
+router.get('/admin/create', (req, res) => { res.render('admin/editor')})
+router.put('/admin/:postId/edit', authMiddleware, postController.updatePost);
+router.delete('/admin/:postId/delete', authMiddleware, postController.showAdminPanel);
+router.post('/admin/create', authMiddleware, postController.createPost);
 
 module.exports = router;
