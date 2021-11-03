@@ -34,7 +34,7 @@ nav {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 15vh;
+  height: 5vh;
   border-bottom: 1px solid black;
   font-family: 'Roboto Mono', monospace;
   background-color: black;
@@ -95,46 +95,75 @@ nav {
   text-shadow: var(--shadowcolor);
 }
 
+.navbar-games {
+  margin-left: 7rem !important;
+}
+
+.navbar-knowledge {
+  margin-left: 5rem !important;
+}
+
+.k-img {
+  margin-top: 1rem;
+}
+
 .navbar-link {
   text-shadow: var(--shadowcolor);
-  padding: 0 3%;
 }
 
 .navbar-dropdown {
-  top: 14vh;
-  background-color: #fff7f7;
+  background-color: #380f72;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  justify-content: flex-start;
-  position: absolute;
-  padding: 5px 0;
+  position: reltive;
+  padding: 1rem;
   border: 1px solid black;
   -webkit-box-shadow: 5px 5px 5px black;
   box-shadow: 5px 5px 5px black;
   z-index: 1;
+  font-size: 1.5rem;
+  width: 6rem;
 }
 
-.navbar-dropdown-games,
 .navbar-dropdown-knowledge {
-  margin: 0 5%;
+  margin-left: 5rem !important;
+  width: 16rem !important;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  top: 8rem;
+}
+
+.navbar-dropdown-games {
+  margin-left: 7rem !important;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  top: 8rem;
 }
 
 .navbar-dropdown-elements {
   text-align: center;
-  margin: 1rem;
+  margin: 0;
 }
 
 .navbar-toggle-menu {
   display: none;
   width: 50px;
   height: 50px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
   padding: 13px 12px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 5px;
   margin: auto 5%;
   cursor: pointer;
@@ -149,7 +178,7 @@ nav {
 }
 
 .navbar-toggle-menu:hover {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .navbar-toggle-menu:hover div {
@@ -191,9 +220,20 @@ nav {
   color: white;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (max-width: 970px) {
   .navbar-toggle-menu {
     display: block;
+  }
+  .navbar-toggle-content {
+    width: 15rem;
+    display: inline-block;
+    padding: 2.5% 5%;
+  }
+  .toggleMenuGamesSpan {
+    color: yellow;
+  }
+  .toggleMenuKnowledgeSpan {
+    color: #aeff30;
   }
   .navbar-content div {
     display: none;
