@@ -1,7 +1,7 @@
 body {
   text-align: center;
   margin-bottom: 10vh;
-  background-image: url("/files/sqit/lowPolyBG.svg");
+  background-image: url('/files/sqit/lowPolyBG.svg');
   background-size: cover;
   background-attachment: fixed;
   margin: 0;
@@ -11,4 +11,28 @@ body {
 #editor,
 #editor2 {
   margin: auto !important;
+}
+
+.spacer{
+  width: 100%; 
+  margin: 2.5% 0%;
+}
+
+.nextSite {
+  margin-top: 5%;
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: var(--GuardRed);
+    }
+    transition: color .5s ease-in-out;
+    font-family: var(--montserrat);
+    color: var(--GuardRedLight);
+    text-decoration: none;
+    background-color: var(--color-navy-800);
+    border-radius: 5vh;
+    padding: 1%;
+  }
 }

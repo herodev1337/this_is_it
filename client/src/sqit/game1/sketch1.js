@@ -17,21 +17,25 @@ const enterCallback = () => {
   } else anim = true;
 
   if (!extraText) {
-    add_editor_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'));
+    add_editor_text();
     extraText = true;
-  }
+    add_output_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'))
+  } else add_output_text(helpers.get_userCode(mainEditor.editor.getValue(), 'interval'))
 
   interval = helpers.get_userCode(mainEditor.editor.getValue(), 'interval');
 };
 
-const add_editor_text = (value) => {
+const add_editor_text = () => {
   let str = mainEditor.editor.getValue();
   mainEditor.editor.setValue(
     str +
       `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
   );
-  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
 };
+
+const add_output_text = (value) => {
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
+}
 
 const mainEditor = new EditorSingleton();
 mainEditor.enterCallback(enterCallback);

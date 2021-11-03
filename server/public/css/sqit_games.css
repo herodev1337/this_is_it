@@ -12,3 +12,28 @@ body {
 #editor2 {
   margin: auto !important;
 }
+
+.spacer {
+  width: 100%;
+  margin: 2.5% 0%;
+}
+
+.nextSite {
+  margin-top: 5%;
+}
+
+.nextSite a {
+  -webkit-transition: color .5s ease-in-out;
+  transition: color .5s ease-in-out;
+  font-family: var(--montserrat);
+  color: var(--GuardRedLight);
+  text-decoration: none;
+  background-color: var(--color-navy-800);
+  border-radius: 5vh;
+  padding: 1%;
+}
+
+.nextSite a:hover, .nextSite a:focus, .nextSite a:active {
+  text-decoration: none;
+  color: var(--GuardRed);
+}

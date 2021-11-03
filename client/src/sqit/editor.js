@@ -35,6 +35,7 @@ class EditorSingleton {
       $('#editor2').width(realWidth(90));
       $('#editor2').height('5vh');
     });
+    window.dispatchEvent(new Event('resize')); // präsi fix
   }
 
   enterCallback(

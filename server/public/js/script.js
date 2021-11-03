@@ -59,6 +59,7 @@ class EditorSingleton {
       jquery__WEBPACK_IMPORTED_MODULE_3___default()('#editor2').width((0,_helpers_js__WEBPACK_IMPORTED_MODULE_4__.realWidth)(90));
       jquery__WEBPACK_IMPORTED_MODULE_3___default()('#editor2').height('5vh');
     });
+    window.dispatchEvent(new Event('resize')); // präsi fix
   }
 
   enterCallback(
@@ -234,21 +235,25 @@ const enterCallback = () => {
   } else anim = true;
 
   if (!extraText) {
-    add_editor_text(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'gate'));
+    add_editor_text();
     extraText = true;
-  }
+    add_output_text(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'gate'))
+  } else add_output_text(_helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'interval'))
 
   interval = _helpers_js__WEBPACK_IMPORTED_MODULE_4__.get_userCode(mainEditor.editor.getValue(), 'interval');
 };
 
-const add_editor_text = (value) => {
+const add_editor_text = () => {
   let str = mainEditor.editor.getValue();
   mainEditor.editor.setValue(
     str +
       `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
   );
-  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
 };
+
+const add_output_text = (value) => {
+  mainEditor.editor2.setValue(mainEditor.editor2.getValue().split("\n")[0] + `\n${value}`)
+}
 
 const mainEditor = new _editor_js__WEBPACK_IMPORTED_MODULE_3__.EditorSingleton();
 mainEditor.enterCallback(enterCallback);
