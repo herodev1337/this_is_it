@@ -1,15 +1,9 @@
-const jwt = require("jsonwebtoken");
+const auth = require('../../utils/auth')
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.auth_token;
-  if (!token) return res.status(401).send("Error with token!");
-
-  try {
-    //TODO: token_secret from config file
-    const verify = jwt.verify(token, "TOKEN_SECRET");
-    req.user = verify;
+  if(auth(req.cookies.auth_token)){
     next();
-  } catch (e) {
-    res.status(400).send("Invalid token!");
+  } else {
+    res.status(401).json({ error: "Error with token authentication! Please login again" });
   }
 };

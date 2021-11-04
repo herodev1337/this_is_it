@@ -1,7 +1,7 @@
-const Quiz = require("../../models/Quiz");
-const { quizValidator } = require("../../utils/validator");
-const { sendData, sendError } = require("../../utils/sendJSON");
-const logger = require("../../utils/logger")
+const Quiz = require("../../../models/Quiz");
+const { quizValidator } = require("../../../utils/validator");
+const { sendData, sendError } = require("../../../utils/sendJSON");
+const logger = require("../../../utils/logger")
 const chalk = require('chalk')
 
 //????????????????????????????????????????
