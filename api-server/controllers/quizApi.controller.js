@@ -9,6 +9,21 @@ const chalk = require('chalk')
 //*              Cleanup
 //????????????????????????????????????????
 
+/** 
+ * 
+ *                Render
+ * 
+ **/
+
+//: Cleanup/Validation
+const showQuizOverview = async (req, res, next) => {
+    res.render('quiz/quizOverview');
+}
+
+//TODO: Cleanup/Validation
+const showQuiz = async (req, res, next) => {
+    res.render('quiz/quizOverview');
+}
 
 /** 
  * 
@@ -99,15 +114,6 @@ const deleteQuestion = (req, res, next) => {
  *                Quiz
  * 
  **/
-
-const getQuiz = async(req, res, next) => {
-    Quiz.findById(req.params.quizId).then(responseData => { 
-        sendData(res, responseData) 
-    }).catch(err => {
-        sendError(res, req, err.message)
-    })
-}
-
 const createQuiz = async (req, res, next) => {
     //const {error} = quizValidator(req.body);
     // if(error) {
@@ -124,7 +130,7 @@ const createQuiz = async (req, res, next) => {
 
 const deleteQuiz = (req, res, next) => {
     Quiz.findByIdAndRemove(req.params.quizId).then(responseData => {
-        sendData(res, responseData.data)
+        sendData(res, responseData)
     }).catch(err => {
         sendError(res, req, err.message);
     })
@@ -147,8 +153,8 @@ const getQuizzes = (req, res, next) => {
 }
 
 module.exports = {
-    // showQuizOverview,
-    // showQuiz,
+    showQuizOverview,
+    showQuiz,
     //Admin
     createQuiz,
     deleteQuiz,
@@ -158,6 +164,5 @@ module.exports = {
     getQuestion,
     updateQuestion,
     deleteQuestion,
-    getQuizzes,
-    getQuiz
+    getQuizzes
   };

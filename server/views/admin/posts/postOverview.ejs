@@ -1,0 +1,14 @@
+<% layout('admin/adminTemplate') -%>
+
+<div class="list-group">
+    <% posts.forEach(post => { %>
+    <a class="list-group-item list-group-item-action">
+        <%= post.title %> - Von <%= post.author %>
+        <div class="btn-group float-end" role="group">
+            <button type="button" class="btn btn-success">Öffentlich machen</button>
+            <button href="/admin/posts/<%= post._id %>/edit" type="button" class="btn btn-warning">Bearbeiten</button>
+            <button type="button" class="btn btn-danger">Löschen</button> 
+          </div>
+    </a>
+    <% }) %>
+  </div>

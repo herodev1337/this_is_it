@@ -1,0 +1,35 @@
+<% layout('template') -%> <% if(typeof error !== 'undefined') {%>
+<div class="alert alert-danger" role="alert">
+  <%= error %>
+</div>
+<% } %>
+
+<div class="container" style="max-width: 400px;">
+  <form action="/admin/login" method="post">
+    <h1 class="h3 mb-3 fw-normal">Login</h1>
+
+    <div class="form-floating">
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Username"
+      />
+      <label for="floatingInput">Username</label>
+    </div>
+    <br />
+    <div class="form-floating">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+  </form>
+</div>
