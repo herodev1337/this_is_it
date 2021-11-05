@@ -101,7 +101,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('#add-question').on('click', function(e){
         const questionView = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#added-questions').children('.card')
-        const nr = questionView.children().length
         const question = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#new-question-content')
         const explanation = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#new-question-explanation')
         const table = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#added-answers').find('tbody').children('tr')
