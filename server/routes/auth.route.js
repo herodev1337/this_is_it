@@ -7,7 +7,7 @@ router.get('/login', function (req, res) {
 })
 
 router.get('/swiper', function (req, res) {
-    res.render('../views/auth/swiper.ejs');
+    res.render('../views/swiper.ejs');
 })
 
 router.post('/login', authController.loginUser);
