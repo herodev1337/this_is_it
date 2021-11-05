@@ -6,9 +6,7 @@ router.get('/login', function (req, res) {
     res.render('../views/auth/login.ejs');
 })
 
-router.get('/swiper', function (req, res) {
-    res.render('../views/swiper.ejs');
-})
+
 
 router.post('/login', authController.loginUser);
 

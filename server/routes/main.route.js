@@ -13,6 +13,10 @@ router.get('/navbar', function (req, res) {
     res.render('../views/navbar_test');
 })
 
+router.get('/swiper', function (req, res) {
+    res.render('../views/swiper');
+})
+
 router.get('/whoami', (req, res) => {
     let request = Object.entries(req.rawHeaders);
 
