@@ -18,6 +18,18 @@ const showQuiz = async (req, res, next) => {
     })
 }
 
+const createQuiz = async (req, res, next) => {
+
+}
+
+const quizEditor = async (req, res, next) => {
+    Quiz.find().then(responseData => { 
+        res.render('quiz/quizEditor', {quizzes: responseData});
+    }).catch(err => {
+        console.log(err.message);
+    });
+}
+
 // //TODO: Cleanup/Validation
 const verifyAnswer = async (req, res, next) => {
     Quiz.findById(req.query.quizId).then(responseData =>{
@@ -35,5 +47,7 @@ const verifyAnswer = async (req, res, next) => {
 module.exports = {
     showQuizView,
     showQuiz,
-    verifyAnswer
+    verifyAnswer,
+    quizEditor,
+    createQuiz
 }

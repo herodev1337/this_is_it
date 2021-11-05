@@ -23,12 +23,12 @@
       aria-label="Landing Slide"
     ></button>
     <% quiz.questions.forEach((question, i)=>{ %>
-    <button
-      type="button"
-      data-bs-target="#quizCarousel"
-      data-bs-slide-to="<%= i+1 %>"
-      aria-label="Slide <%= i+1 %>"
-    ></button>
+      <button
+        type="button"
+        data-bs-target="#quizCarousel"
+        data-bs-slide-to="<%= i+1 %>"
+        aria-label="Slide <%= i+1 %>"
+      ></button>
     <% }) %>
     <button
       type="button"
@@ -44,36 +44,42 @@
           <div class="jumbotron">
             <h2><%= quiz.name %></h2>
             <p class="lead"><%= quiz.instructions %></p>
+            <button
+              id="start-quiz"
+              type="button"
+              class="btn btn-light btn-ripple"
+              style="width: 50%;">
+                Beginne das Quiz
+            </button>
           </div>
         </div>
       </div>
     </div>
     <% quiz.questions.forEach((question, i)=>{ %>
-    <div id="<%= question._id %>" class="carousel-item">
-      <div class="d-flex min-vh-100 justify-content-center align-items-center">
-        <div class="container w-50 text-center">
-          <div class="jumbotron">
-            <h2><%= question.question %></h2>
-            <p class="lead"><%- question.explanation %></p>
-          </div>
-          <div class="container">
-            <div class="row row-cols-2">
-              <% question.answers.forEach(answer=>{ %>
-              <div class="col">
-                <button
-                  id="<%= answer._id %>"
-                  type="button"
-                  class="btn btn-light btn-ripple answer-button"
-                >
-                  <%= answer.option %>
-                </button>
+      <div id="<%= question._id %>" class="carousel-item">
+        <div class="d-flex min-vh-100 justify-content-center align-items-center">
+          <div class="container w-50 text-center">
+            <div class="jumbotron">
+              <h2><%= question.question %></h2>
+              <p class="lead"><%- question.explanation %></p>
+            </div>
+            <div class="container">
+              <div class="row row-cols-2">
+                <% question.answers.forEach(answer=>{ %>
+                <div class="col">
+                  <button
+                    id="<%= answer._id %>"
+                    type="button"
+                    class="btn btn-light btn-ripple answer-button">
+                      <%= answer.option %>
+                  </button>
+                </div>
+                <% }) %>
               </div>
-              <% }) %>
             </div>
           </div>
         </div>
       </div>
-    </div>
     <% }) %>
     <div class="carousel-item">
       <div class="d-flex min-vh-100 justify-content-center align-items-center">

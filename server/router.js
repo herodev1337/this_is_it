@@ -23,7 +23,11 @@ router.route('/quiz/:quizId').get(quizController.showQuiz) //TODO: Show the quiz
 
 router.route('/quiz').get(quizController.showQuizView); //TODO: Overview of quizzes
 
+router.route('/quiz-editor').get(quizController.quizEditor);
+
 router.route('/api/quiz/verify').get(quizController.verifyAnswer);
+
+router.route('/api/quiz/create').post(quizController.createQuiz);
 
 /**
  *
