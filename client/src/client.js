@@ -1,8 +1,7 @@
 import $ from "jquery";
 window.$ = window.JQuery = $;
 import "./scss/app.scss";
-<<<<<<< HEAD
-//import "./quiz"
+import 'bootstrap';
 
 import EditorJS from '@editorjs/editorjs'; 
 import Header from '@editorjs/header'; 
@@ -27,9 +26,4 @@ $('#save').click(() => {
         console.log('Saving failed: ', error)
       });
 })
-=======
 
-$(function () {
-  $("p").text("DOM geladen! JS von webpack :)");
-});
->>>>>>> parent of 7186bd8 (Added more features. Quiz REST Api is fully working + error handling :))

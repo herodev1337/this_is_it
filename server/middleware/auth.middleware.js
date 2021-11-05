@@ -1,4 +1,4 @@
-const auth = require('../../utils/auth')
+const auth = require('../utils/auth')
 
 module.exports = (req, res, next) => {
   if(auth(req.cookies.auth_token)){

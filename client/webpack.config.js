@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/client.js'),
+    client: path.resolve(__dirname, './src/client.js'),
     editor: path.resolve(__dirname, './src/editor.js')
   },
   output: {

@@ -1,8 +1,8 @@
-const logger = require("../../utils/logger")
+const logger = require("../utils/logger")
 
-const Post = require("../../models/Post");
-const auth = require("../../utils/auth")
-const { sendData, sendError } = require("../../utils/sendJSON");
+const Post = require("../models/Post");
+const auth = require("../utils/auth")
+const { sendData, sendError } = require("../utils/sendJSON");
 
 const getPosts = (req, res, next) => {
     let searchString = {public: true};

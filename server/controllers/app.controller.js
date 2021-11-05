@@ -1,5 +1,5 @@
-const Post = require('../../models/Post');
-const auth = require("../../utils/auth")
+const Post = require('../models/Post');
+const auth = require("../utils/auth")
 
 const showHome = (req, res) => {
     Post.find({public: true}).then(responseData => { 

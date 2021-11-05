@@ -1,7 +1,9 @@
-<% layout('template') -%> <% if(typeof error !== 'undefined') {%>
-<div class="alert alert-danger" role="alert">
-  <%= error %>
-</div>
+<% layout('template') -%>
+
+<% if(typeof error !== 'undefined') {%>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
 <% } %>
 
 <div class="container" style="max-width: 400px;">
