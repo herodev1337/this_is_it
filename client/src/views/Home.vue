@@ -1,3 +1,0 @@
-<template>
-    Home site
-</template>
