@@ -38,7 +38,6 @@ const Editor = () => {
           readOnly: true,
           useWorker:false,
           showLineNumbers: false,
-        //   maxLines:4
         }}
       />
     </>

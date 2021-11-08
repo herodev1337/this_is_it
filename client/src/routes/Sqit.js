@@ -5,6 +5,7 @@ import "styles/scss/sqit_games.scss"
 import sqit_bg from "static/images/sqit/lowPolyBG.svg"
 
 import Editor from "components/sqit/Editor"
+import Sketch1 from "components/sqit/game1/Sketch1"
 
 const Sqit = () => {
   // css overides body properties for every page so this is a workaround
@@ -13,15 +14,16 @@ const Sqit = () => {
   document.body.style.marginBottom = "10vh";
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundAttachment = "fixed";
-  document.body.style.margin = 0;
   document.body.style.padding = "0 0 5% 0";
+  document.body.style.margin = 0;
 
   return (
     <div className="contentHolder">
       <div className="spacer"></div>
 
       <div className="editorHolders">
-        <div id="canvasHolder"></div>
+        {/* <div id="canvasHolder"></div> */}
+        <Sketch1/>
 
         <Editor/>
       </div>
