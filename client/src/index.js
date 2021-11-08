@@ -1,14 +1,19 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Home from "./routes/Home";
+import Quiz from "./routes/Quiz";
+import Knowledge from "./routes/Knowledge";
+import Admin from "./routes/Admin";
 
 render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/quiz" element={<App />} />
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/quiz" element={<Quiz />} />
+      <Route exact path="/knowledge" element={<Knowledge />} />
+      <Route exact path="/admin" element={<Admin />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
