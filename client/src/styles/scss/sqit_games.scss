@@ -1,13 +1,12 @@
-body {
-  text-align: center;
-  margin-bottom: 10vh;
-  // background-image: url("../../static/images/sqit/lowPolyBG.svg");
-  background-image: url("/public/lowPolyBG.svg");
-  background-size: cover;
-  background-attachment: fixed;
-  margin: 0;
-  padding: 0 0 5% 0;
-}
+// body {
+//   text-align: center;
+//   margin-bottom: 10vh;
+//   background-image: url('/files/sqit/lowPolyBG.svg');
+//   background-size: cover;
+//   background-attachment: fixed;
+//   margin: 0;
+//   padding: 0 0 5% 0;
+// }
 
 * {
   font-family: var(--montserrat);
@@ -35,7 +34,7 @@ body {
 
 }
 
-.holders {
+.editorHolders {
   // border: 2px solid black;
   display: inline-grid;
   vertical-align: top;

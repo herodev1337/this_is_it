@@ -1,4 +1,4 @@
-body {
+/* body {
   text-align: center;
   margin-bottom: 10vh;
   background-image: url("@/lowPolyBG.svg");
@@ -6,7 +6,7 @@ body {
   background-attachment: fixed;
   margin: 0;
   padding: 0 0 5% 0;
-}
+} */
 
 * {
   font-family: var(--montserrat);
