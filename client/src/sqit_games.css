@@ -1,0 +1,111 @@
+body {
+  text-align: center;
+  margin-bottom: 10vh;
+  background-image: url("./lowPolyBG.svg");
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0 0 5% 0;
+}
+
+* {
+  font-family: var(--montserrat);
+}
+
+#editor,
+#editor2 {
+  margin: auto !important;
+}
+
+#canvasHolder {
+  height: 50vh;
+}
+
+.timer {
+  display: inline-block;
+  margin: 0 0 1% 0;
+  padding: 0.75%;
+  border-radius: 1.2vh;
+  color: white;
+  background: -webkit-gradient(linear, left top, right top, from(#0f2027), color-stop(150%, #203a43), color-stop(150%, #2c5364));
+  background: linear-gradient(to right, #0f2027, #203a43 150%, #2c5364 150%);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.holders {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  vertical-align: top;
+  border-radius: 2.5vh;
+  overflow: hidden;
+  -webkit-box-shadow: 0.5vh 1.1vh 5vh black;
+          box-shadow: 0.5vh 1.1vh 5vh black;
+}
+
+.editorHolder,
+#canvasHolder {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.spacer {
+  width: 100%;
+  margin: 2.5% 0%;
+}
+
+.gameTimer {
+  border-radius: 5vh;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 5;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+}
+
+.gameTimer.flowed {
+  margin: 0;
+  position: relative;
+  width: 90%;
+  background-color: gray;
+}
+
+.gameTimer.flowed .value {
+  height: 1.5vh;
+}
+
+.gameTimer .value {
+  height: 1vh;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#11998e), to(#38ef7d));
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 5vh;
+}
+
+.nextSite {
+  visibility: visible;
+  margin-top: 5%;
+}
+
+.nextSite a {
+  -webkit-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+  color: var(--GuardRedLight);
+  text-decoration: none;
+  background-color: var(--color-navy-800);
+  border-radius: 5vh;
+  padding: 1%;
+}
+
+.nextSite a:hover, .nextSite a:focus, .nextSite a:active {
+  text-decoration: none;
+  color: var(--GuardRed);
+}

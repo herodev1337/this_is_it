@@ -11,9 +11,11 @@ render(
   <BrowserRouter>
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/quiz" element={<Quiz />} />
-      <Route exact path="/knowledge" element={<Knowledge />} />
       <Route exact path="/admin" element={<Admin />} />
+    </Routes>
+    <Routes>
+    {/* <Route exact path="/quiz" element={<Quiz />} /> */}
+    <Route exact path="knowledge" element={<Knowledge />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
