@@ -1,43 +1,21 @@
 import React, { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { PlusLg, PencilSquare, Check2Square, Trash, ArrowUp, ArrowDown } from 'react-bootstrap-icons';
+import { PlusLg, PencilSquare, Check2Square } from 'react-bootstrap-icons';
+
+import EditButtons from './EditButtons';
 
 import "styles/scss/quiz_editor.scss"
-
-function EditButtons(props){
-  return(
-    <div>
-      <span
-        onClick={()=>props.moveAnswer(props.index, -1)}
-        style={{cursor:'pointer'}}
-      >
-        <ArrowUp/>
-      </span>
-      <span
-        onClick={()=>props.moveAnswer(props.index, 1)}
-        style={{cursor:'pointer'}}
-      >
-        <ArrowDown/>
-      </span>
-      <span
-        onClick={()=>props.trashAnswer(props.index)}
-        style={{cursor:'pointer'}}
-      >
-        <Trash/>
-      </span>
-    </div>
-  )
-}
 
 export default function AnswerEditor(props) {
   const [answers, setAnswers] = [props.answers, props.setAnswers]
   const [newAnswer, setNewAnswer] = useState("");
   const [newCorrect, setNewCorrect] = useState(false);
-  const [edits, setEdits] = useState([false]);
+  const [edits, setEdits] = [props.edits, props.setEdits];
 
   function clickEdit(i){
     setEdits( edits.map((edit, j) => { return i===j ? !edit : edit }) )
@@ -88,39 +66,37 @@ export default function AnswerEditor(props) {
 
   return (
     <div>
-      <Form>
-        <Table striped hover size="sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Answer</th>
-              <th>Correct</th>
-              <th>Edit</th>
+      <Table striped hover size="sm">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Answer</th>
+            <th>Correct</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {answers.map((answer, i) => (
+            <tr key={i} id={"entry_"+i}>
+              <td>{i+1}</td>
+              <td><FormControl value={answer.answer} disabled={!edits[i]} onChange={e => editAnswer(e, i)} /></td>
+              <td><Form.Check disabled={!edits[i]} checked={answer.correct} onChange={e => editCorrect(e, i)} /></td>
+              <td>
+                <span 
+                  onClick={()=>clickEdit(i)}
+                  style={{cursor:'pointer'}}
+                >{edits[i] ? <Check2Square /> : <PencilSquare />}</span>
+                {edits[i] && <EditButtons moveItem={moveAnswer} trashItem={trashAnswer} index={i} />}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {answers.map((answer, i) => (
-              <tr key={i} id={"entry_"+i}>
-                <td>{i+1}</td>
-                <td><FormControl value={answer.answer} disabled={!edits[i]} onChange={e => editAnswer(e, i)} /></td>
-                <td><Form.Check disabled={!edits[i]} checked={answer.correct} onChange={e => editCorrect(e, i)} /></td>
-                <td>
-                  <span 
-                    onClick={()=>clickEdit(i)}
-                    style={{cursor:'pointer'}}
-                  >{edits[i] ? <Check2Square/> : <PencilSquare/>}</span>
-                  {edits[i] && <EditButtons moveAnswer={moveAnswer} trashAnswer={trashAnswer} index={i} />}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <InputGroup>
-          <FormControl value={newAnswer} placeholder="Enter a new Answer" onChange={e => setNewAnswer(e.target.value)}/>
-          <InputGroup.Checkbox checked={newCorrect} onChange={()=>setNewCorrect(!newCorrect)}/>
-          <Button onClick={()=>pushAnswer()}><PlusLg/></Button>
-        </InputGroup>
-      </Form>
+          ))}
+        </tbody>
+      </Table>
+      <InputGroup>
+        <FormControl value={newAnswer} placeholder="Enter a new Answer" onChange={e => setNewAnswer(e.target.value)}/>
+        <InputGroup.Checkbox checked={newCorrect} onChange={()=>setNewCorrect(!newCorrect)}/>
+        <Button onClick={()=>pushAnswer()}><PlusLg/></Button>
+      </InputGroup>
     </div>
   );
 }
