@@ -18,7 +18,7 @@
       type="button"
       data-bs-target="#quizCarousel"
       data-bs-slide-to="0"
-      class="active"
+      class="active carousel-button"
       aria-current="true"
       aria-label="Landing Slide"
     ></button>
@@ -27,6 +27,7 @@
         type="button"
         data-bs-target="#quizCarousel"
         data-bs-slide-to="<%= i+1 %>"
+        class="carousel-button"
         aria-label="Slide <%= i+1 %>"
       ></button>
     <% }) %>
@@ -34,12 +35,13 @@
       type="button"
       data-bs-target="#quizCarousel"
       data-bs-slide-to="<%= quiz.questions.length+1 %>"
+      class="carousel-button"
       aria-label="Ergebnisse"
     ></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <div class="d-flex min-vh-100 justify-content-center align-items-center">
+      <div class="d-flex min-vh-100 justify-content-space-center align-items-center">
         <div class="container w-50 text-center">
           <div class="jumbotron">
             <h2><%= quiz.name %></h2>
@@ -69,6 +71,7 @@
                 <div class="col">
                   <button
                     id="<%= answer._id %>"
+                    data-mdb-ripple-color="#c953d6"
                     type="button"
                     class="btn btn-light btn-ripple answer-button">
                     

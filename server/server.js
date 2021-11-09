@@ -12,7 +12,7 @@ const path = require('path'),
 
 const startServer = () => {
     //Variables
-    const PORT = process.env.PORT || 3000 //Port for the app
+    const PORT = process.env.PORT || 4000 //Port for the app
     const app = express() //Init express
 
 

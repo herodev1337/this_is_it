@@ -11,33 +11,40 @@
 }
 
 
-/* .carousel-control-prev-icon {
-
+ .carousel-control-prev-icon {
+    background-image: url(/client/src/images/arrow-left.png);
 }
-.carousel-control-prev-icon {
+.carousel-control-next-icon {
+    background-image: url(/client/src/images/arrow-right.png);
+} 
+.carousel-button {
+        //  background-image: url(/client/src/images/arrow-right.png);      
+        background-color: #3fdac5; 
+}
 
-} */
 
-.carousel-indicators {
-    color: var(--neonpink);
+
+.col {
+    button {
+        background-color:  transparent;
+
+    }
 }
 
 .btn {
     border-radius:0px;
     background-color: rgba(0, 0, 0, 0.2);
     color: var(--neonblue);
-    
-}
 
-.btn:hover {
-    color: var(--neonblue);
-    background-color: var(--backgroundgrey);
+    &:hover {
+            color: var(--neonblue);
+            background-color: var(--backgroundgrey);
+    }
 }
 h2 {
     font-family: 'Roboto Mono', monospace;
     color: var(--neonpink);
 }
-
 .lead {
     color: var(--neonblue);
 }
