@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
-const optionSchema = new mongoose.Schema({
-  option: { 
+const answerSchema = new mongoose.Schema({ 
+  answer: {    
     type: String,
     required: true
+  },
+  correct: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -12,12 +16,8 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    answers: [optionSchema],
 
-    answer: {
-      type: Number,
-      required: true
-    },
+    answers: [answerSchema],
 
     isEnabled: {
         type: Boolean,
