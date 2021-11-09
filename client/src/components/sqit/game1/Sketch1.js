@@ -52,19 +52,19 @@ class Sketch1 extends React.Component {
 export default Sketch1;
 
 
-const Sketch1 = () => {
-  const ref = useRef()
+// const Sketch1 = () => {
+//   const ref = useRef()
 
-  useEffect(() => {
-    const p5 = get_sketch(ref.current)
-  }, [])
+//   useEffect(() => {
+//     const p5 = get_sketch(ref.current)
+//   }, [])
 
-  return (
-    <div>
+//   return (
+//     <div>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default Sketch1
+// export default Sketch1
 
