@@ -2,11 +2,11 @@
 * {
   margin: 0;
   padding: 0;
-  font-size: 1rem;
-  color: #00B4C5;
+  font-family: "Roboto Mono";
 }
 
-header {
+#karriere_header {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,6 +14,33 @@ header {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #00B4C5;
+}
+
+.button {
+  width: 50%;
+  text-align: center;
+  margin: 0px 32px;
+}
+
+.active_button {
+  background-color: #00B4C5;
+  color: #1D073B;
+}
+
+#karriere_main_content {
+  height: 80vh;
+  border: 0.1rem solid white;
+}
+
+/*
+//  TAGS
+header {
+  display: flex;
+  flex-direction: row;
 }
 
 h1 {
@@ -27,114 +54,101 @@ hr {
 }
 
 form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 
+// IDs
 #karriere_content {
   width: 100%;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
+
   background-color: #1D073B;
 }
 
+//  CLASSES
 .container {
   margin: 1.5rem;
 }
 
 .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
 }
 
 .heading {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .field {
   margin-left: 1.5rem;
   padding: 0 0.5rem;
   border: 0.1rem solid #00B4C5;
+
   background-color: #1D073B;
+
   font-family: 'Roboto Mono', monospace;
   font-size: 1.75rem;
-}
 
-.field:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .card {
   width: 16vw;
   height: 16vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
+
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+  
   margin-top: 1.5rem;
   border: solid #00b4c5;
   border-radius: 2%;
-  background-color: #005c99;
-}
 
-.card h2 {
-  margin-top: 1rem;
-  font-family: "Roboto Mono", monospace;
-  font-size: 1rem;
-  color: #1D073B;
-  text-align: center;
-}
+  background-color:  #005c99;
+  
+  h2 {
+    margin-top: 1rem;
 
-.card p {
-  margin: 2rem 1rem;
-  font-family: Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-  color: #1D073B;
-}
+    font-family: "Roboto Mono", monospace;
+    font-size: 1rem;
 
-.card:hover {
-  border: solid #b7e2ff;
-}
+    color: #1D073B;
 
-.card .karriereprofil {
-  width: 100%;
-  margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  p {
+    margin: 2rem 1rem;
+
+    font-family: Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+
+    color: #1D073B;
+  }
+
+  &:hover {
+    border: solid #b7e2ff;
+  }
+
+  .karriereprofil {
+    width: 100%;
+
+    margin-bottom: 2rem;
+  }
 }
+*/
 /*# sourceMappingURL=karriere.css.map */
