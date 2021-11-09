@@ -24,7 +24,6 @@ const Sqit = () => {
       <div className="editorHolders">
         {/* <div id="canvasHolder"></div> */}
         <Sketch1/>
-
         <Editor/>
       </div>
 
