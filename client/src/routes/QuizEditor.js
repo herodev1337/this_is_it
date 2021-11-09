@@ -1,11 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import QuizEditor from "../components/quiz_editor/QuizEditor";
 
 export default function App() {
   return (
     <div>
-      <p>Admin Seite</p>
-      <Outlet/>
+      <QuizEditor />
     </div>
   );
 }

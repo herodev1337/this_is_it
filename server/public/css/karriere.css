@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  color: #00B4C5;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+h1 {
+  margin-bottom: 0.2rem;
+  font-size: 1.75rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+hr {
+  border: 0.05rem solid #00B4C5;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#karriere_content {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #1D073B;
+}
+
+.container {
+  margin: 1.5rem;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.heading {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.field {
+  margin-left: 1.5rem;
+  padding: 0 0.5rem;
+  border: 0.1rem solid #00B4C5;
+  background-color: #1D073B;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.75rem;
+}
+
+.field:focus {
+  outline: none;
+}
+
+.card {
+  width: 16vw;
+  height: 16vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1.5rem;
+  border: solid #00b4c5;
+  border-radius: 2%;
+  background-color: #005c99;
+}
+
+.card h2 {
+  margin-top: 1rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  color: #1D073B;
+  text-align: center;
+}
+
+.card p {
+  margin: 2rem 1rem;
+  font-family: Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: #1D073B;
+}
+
+.card:hover {
+  border: solid #b7e2ff;
+}
+
+.card .karriereprofil {
+  width: 100%;
+  margin-bottom: 2rem;
+}
