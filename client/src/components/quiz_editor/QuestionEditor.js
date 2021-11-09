@@ -42,15 +42,10 @@ export default function QuestionEditor(props) {
     e.preventDefault();
     let newQuestion = {
       question: question,
-      answers: [],
-      answer: [],
+      answers: answers,
       isEnabled: enabled,
       explanation: explanation
     }
-    answers.forEach((answer, i)=>{
-      newQuestion.answers.push(answer.answer)
-      if (answer.correct){ newQuestion.answer.push(i) }
-    })
     setQuestions([...questions, newQuestion]);
     setQuestion("")
     setExplanation("")

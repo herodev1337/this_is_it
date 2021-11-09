@@ -3,16 +3,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+const axios = require('axios').default;
 
 import "styles/scss/quiz_editor.scss"
 
 import QuestionEditor from './QuestionEditor';
 import QuestionView from './QuestionView';
 
+const instance = axios.create({
+  baseURL: 'http://127.0.0.1:3000/api/quiz/',
+  timeout: 1000,
+  // headers: {'X-Custom-Header': 'foobar'}
+});
+
 export default function QuizEditor() {
   const [name, setName] = useState("")
   const [instructions, setInstructions] = useState("")
   const [enabled, setEnabled] = useState(true)
+  const [httpResponse, setHttpResponse] = useState("")
 
   const [questions, setQuestions] = useState([])
   const [question, setQuestion] = useState('')
@@ -25,9 +33,7 @@ export default function QuizEditor() {
     setQuestion(question.question)
     setExplanation(question.explanation)
     setQuestionEnabled(question.isEnabled)
-    setAnswers(question.answers.map((answer, i)=>(
-      {answer: answer, correct: question.answer.includes(i)}
-    )))
+    setAnswers(question.answers)
     setEdits(Array(question.answers.length).fill(false))
   }
 
@@ -38,7 +44,13 @@ export default function QuizEditor() {
       isEnabled: enabled,
       questions: questions
     }
-    alert(JSON.stringify(quiz))
+    instance.post('./', quiz)
+    .then(function (response) {
+      setHttpResponse(JSON.stringify(response));
+    })
+    .catch(function (error) {
+      setHttpResponse(error.message);
+    });
   }
 
   return (
@@ -59,6 +71,7 @@ export default function QuizEditor() {
             </Form.Group>
             <QuestionView questions={questions} setQuestions={setQuestions} passEdit={passEdit} />
             <Button id="submitQuiz" variant="primary" type="button" onClick={submitQuiz}>Submit Quiz</Button>
+            <p>{httpResponse}</p>
           </Col>
           <Col>
             <QuestionEditor 
