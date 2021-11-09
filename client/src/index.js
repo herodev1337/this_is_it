@@ -10,6 +10,7 @@ import Berufsquiz from './routes/Berufsquiz';
 import Berufsswiper from './routes/Berufsswiper';
 import Admin from './routes/Admin';
 import Sqit from './routes/Sqit';
+import QuizOverview from './routes/QuizOverview';
 import Quiz from './routes/Quiz';
 import QuizEditor from './routes/QuizEditor';
 
@@ -34,7 +35,9 @@ ReactDOM.render(
           <Route path="sqit">
             <Route path=":game" element={<Sqit />} />
           </Route>
-          <Route path="quiz"></Route>
+          <Route path="quiz" element={<QuizOverview/>}>
+            <Route path=":id" element={<Quiz />}/>
+          </Route>
         </Route>
       </Routes>
     }
