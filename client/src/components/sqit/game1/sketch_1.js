@@ -1,10 +1,10 @@
 import p5 from 'p5';
 import $ from 'jquery';
+
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
-
-let Sketch = (p) => {
+let Sketch = p => {
   p.anim = false;
   p.interval = 4;
 
@@ -79,22 +79,20 @@ let Sketch = (p) => {
     }
     if (p.frameCount % p.interval == 0) on = !on;
   };
-
-  //   p.windowResized = () => {
-  //     p.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55));
-  //   }
 };
 
-const get_sketch = (ref) => {
-  // return new p5(Sketch, ref);
+const get_sketch = ref => {
   const myp5 = new p5(Sketch, ref);
 
-  const editorCallback = (value) => {
-    console.log(value)
+  const editorCallback = value => {
+    console.log(value);
     myp5.anim = true;
-  }
+  };
 
-  return [myp5, editorCallback]
+  return [myp5, editorCallback];
 };
+
+let editor_text = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
+let editor2_text = `Output:\n'close'`;
 
 export default get_sketch;

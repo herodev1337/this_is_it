@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const realWidth = percent => ($(window).width() / 100) * percent;
+const realWidth = percent => window.innerWidth / 100 * percent;
 
 const view_2_px = (vh, height = true) =>
   $(window)[height ? 'height' : 'width']() * (vh / 100);
