@@ -51,6 +51,11 @@ const quizSchema = new mongoose.Schema({
 
 });
 
+//TODO: DEBUG
+quizSchema.query.byQuestionId = (id) => {
+  return this.where({ _id: id})
+}
+
 module.exports = mongoose.model('Quiz', quizSchema);
 
 //JSON

@@ -6,7 +6,7 @@ const logger = require('./logger')
  * @param  {Object} data - { data: <DATA> }
  */
  const sendData = (res, data) => {
-    res.status(200).json({ 
+    return res.status(200).json({ 
         error: null,
         data: data
     })
@@ -19,9 +19,9 @@ const logger = require('./logger')
  * @param  {} req - request
  * @param  {String} error - Error message
  */
-const sendError = (res, req, error, code) => {
+const sendError = (res, req, error) => {
     logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Quiz Controller', 3)
-    res.status(code)
+    return res.status(400)
     .json({
         error: error
     })

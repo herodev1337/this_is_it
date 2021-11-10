@@ -1,5 +1,6 @@
 let router = require('express').Router();
 const quizController = require('../../controllers/api/quizApi.controller');
+const Quiz= require('../../models/Quiz');
 const authMiddleware = require('../../middleware/auth.middleware');
 
  
@@ -31,4 +32,15 @@ router
   .put(authMiddleware, quizController.updateQuestion) //? [AUTH] Update a question
   .delete(authMiddleware, quizController.deleteQuestion) //? [AUTH] Delete a question
 
+
+//DEBUG
+
+router.put("/test/:quizId/:questionId", (req, res, next) => {
+    // console.log(req)
+    Quiz.findOne({'questions': {$elemMatch: { _id: req.params.questionId}}}).then(responseData => {
+        return res.json(responseData)
+    }).catch(err => {
+        return res.json(err.message);
+    })
+})
 module.exports = router;
