@@ -1,14 +1,15 @@
 import p5 from 'p5';
+
 class Enemy{
-  constructor(x,y,p){
+  constructor(x,y,p, r, angle){
     this.pos = p.createVector(x,y);
     this.acc = p.createVector(0,0);
     this.vel = p.createVector(0,0);
-    this.r = player.r
+    this.r = r
     this.color = 200
-    this.angle = player.angle;
+    this.angle = angle;
   }
-  draw(){
+  draw(p,player){
     p.push();
     p.noStroke();
     if(p.frameCount % 120  < 60){
@@ -27,11 +28,12 @@ class Enemy{
   applyForce(force){
 	this.acc.add(force);
   }
-  update(){
+  update(p){
     this.angle = this.vel.heading();
-    this.vel.limit(random(3,10));
+    this.vel.limit(p.random(3,10));
     this.vel.add(this.acc);
     this.pos.add(this.vel);
     this.acc.set(0,0);
   }
 }
+export {Enemy}

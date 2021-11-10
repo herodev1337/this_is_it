@@ -4,67 +4,48 @@ import p5 from 'p5';
 import get_sketch from './sketch';
 import * as helpers from '../helpers.js';
 
-class Sketch1 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
+import Editor from 'components/sqit/Editor';
 
-    this.state = { p5: undefined };
-  }
+const Sketch1 = () => {
+  const p5Ref = useRef();
+  let myp5, editorCallback;
 
-  // Sketch = (p) => {
-  //   let x = 100;
-  //   let y = 100;
-  //   p.setup = () => {
-  //     p.createCanvas(200, 200);
-  //   };
+  // const [width, height] = getEditorSizes();
+  // console.log(width, height);
 
-  //   p.draw = () => {
-  //     p.background(0);
-  //     p.fill(255);
-  //     p.rect(x, y, 50, 50);
-  //   };
-  // };
+  useEffect(() => {
+    // [myp5, editorCallback] = get_sketch(p5Ref.current);
+    // p5.width = width;
+    // p5.height = height;
+    // p5.resizeCanvas(width, height);
+    myp5 = get_sketch(p5Ref.current);
 
-  resizeSketch(p5) {
-    p5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
-  }
+    window.addEventListener(
+      'resize',
+      () =>
+        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+        // p5.resizeCanvas(width, height)
+        // (p5.width = 6)
+    );
 
-  componentDidMount() {
-    this.setState({ p5: get_sketch(this.myRef.current) });
-    window.addEventListener('resize', () => (this.resizeSketch(this.state.p5)));
-  }
+    // window.dispatchEvent(new Event('resize'));
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', () => (this.resizeSketch(this.state.p5)));
-  }
+    return () =>
+      window.removeEventListener('resize', () =>
+        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+      );
+  }, []);
 
-  render() {
-    const setAnim = () => {
-      this.state.p5.anim = true;
-      // this.state.p5.resizeCanvas(500, 500)
-    };
-
-    return <div ref={this.myRef} onClick={setAnim}></div>;
-  }
-}
+  return (
+    <>
+      <div
+        ref={p5Ref}
+      ></div>
+      <Editor/>
+    </>
+  );
+};
 
 export default Sketch1;
 
-
-const Sketch1 = () => {
-  const ref = useRef()
-
-  useEffect(() => {
-    const p5 = get_sketch(ref.current)
-  }, [])
-
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default Sketch1
 

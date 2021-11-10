@@ -1,38 +1,40 @@
 import p5 from 'p5';
 class Shot {
-    constructor(x, y,p) {
+    constructor(x, y,p,angle) {
       this.pos = p.createVector(x,y);
-      this.vel = p.createVector(player.angle,player.angle);
+      this.vel = p.createVector(angle,angle);
       this.length = 5;
       this.hit = false;
-      this.angle = player.angle;
+      this.angle = angle;
+      this.p = p
   }
 
-  draw() {
+  draw(shots) {
     if (!this.hit) {
-      p.stroke(255);
-      p.strokeWeight(2);
-      p.push();
-      p.translate(this.pos.x, this.pos.y);
-      p.rotate(this.angle);
-      p.line(0,0,10,0);
-      p.pop();
-      if (this.pos.y < 0 || this.pos.y > height || this.pos.x < 0 || this.pos.x > width) {
+      this.p.stroke(255);
+      this.p.strokeWeight(2);
+      this.p.push();
+      this.p.translate(this.pos.x, this.pos.y);
+      this.p.rotate(this.angle);
+      this.p.line(0,0,10,0);
+      this.p.pop();
+      if (this.pos.y < 0 || this.pos.y > this.p.height || this.pos.x < 0 || this.pos.x > this.p.width) {
         shots.splice(0, 1);
       }
     } 
   }
 
-  move() {
+  move(enemies, shield, enemy) {
     this.vel = p5.Vector.fromAngle(this.angle);
     this.vel.mult(10); 
     this.pos.add(this.vel);
-    for(let enemy of enemies){
-      let shotDistance = p.dist(enemy.pos.x,enemy.pos.y,this.pos.x,this.pos.y)
+    for (let i =0; i < enemies.length; i++){
+      let shotDistance = this.p.dist(enemies[i].pos.x,enemies[i].pos.y,this.pos.x,this.pos.y)
       if(shotDistance < enemy.r && shield){
-      enemies.splice(0,1);
+      enemies.splice(i,1);
       }
     }
     
   }
 }
+export {Shot}

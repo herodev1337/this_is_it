@@ -17,18 +17,27 @@ let Sketch = (p) => {
   let enemy;
   let shot;
   let starColor = 255;
-  shield = false;
+  let shield = false;
 
-  p.setup = ()=> {
+  p.setup = () => {
     p.createCanvas(helpers.realWidth(90), helpers.view_2_px(55));
-    player = new Player(p.width / 2, p.height / 2, (p.width + p.height) / 1000);
-    enemy = new Enemy(-10, -10);
+    player = new cls2.Player(
+      p.width / 2,
+      p.height / 2,
+      (p.width + p.height) / 1000,
+      p
+    );
+    enemy = new cls1.Enemy(-10, -10, p, player.r, player.angle);
+    shot = new cls3.Shot(-20, -20, p, player.angle);
     for (let i = 0; i < 200; i++) {
       stars.push([p.random(0, p.width), p.random(0, p.height), 1]);
     }
-  }
+  };
 
-  p.draw =()=> {
+  p.draw = () => {
+    // keyPressed()
+    // console.log(p.keyCode)
+
     p.background(0, 99);
     p.push();
     p.noStroke();
@@ -37,61 +46,63 @@ let Sketch = (p) => {
       createStars(...i);
     }
     p.pop();
-    if (p.keyIsDown(LEFT_ARROW)) {
+    if (p.keyIsDown(p.LEFT_ARROW)) {
       player.angle -= 0.06;
-    } else if (p.keyIsDown(RIGHT_ARROW)) {
+    } else if (p.keyIsDown(p.RIGHT_ARROW)) {
       player.angle += 0.06;
     }
-    player.update();
-    enemy.update();
-    player.edges();
-    player.show();
-    enemy.draw();
+    player.update(p, enemies, player, shield,enemy, reset);
+    enemy.update(p);
+    player.edges(p);
+    player.show(p, shield);
+    enemy.draw(p, player);
 
     if (p.frameCount % 15 === 0 && p.frameCount <= 1500) {
       createEnemy();
     }
     shotfunc();
     enemyfunc();
-  }
+  };
 
-  function keyPressed() {
-    if (p.key === ' ') {
-      player.fire();
+  p.keyPressed = () => {
+    if (p.keyCode === 32) {
+      player.fire(shots);
     }
-    if (p.key === 's') {
+    if (p.keyCode === 83) {
       shield = true;
     }
   }
   function shotfunc() {
     for (let shot of shots) {
-      shot.draw();
-      shot.move();
+      shot.draw(shots);
+      shot.move(enemies, shield, enemy);
     }
   }
 
   function enemyfunc() {
-    for (let enemy of enemies) {
-      enemy.draw();
-      enemy.update();
-      player.attract(enemy);
+    for (let enem of enemies) {
+      enem.draw(p, player);
+      enem.update(p);
+      player.attract(enem);
       let playerDistance = p.dist(
-        enemy.pos.x,
-        enemy.pos.y,
+        enem.pos.x,
+        enem.pos.y,
         player.pos.x,
         player.pos.y
       );
       if (playerDistance < enemy.r + player.shieldSize + player.r && shield) {
-        enemy.vel.x *= -10;
-        enemy.vel.y *= -10;
-        enemy.pos.x -= 10;
-        enemy.pos.y -= 10;
+        enem.vel.x *= -10;
+        enem.vel.y *= -10;
+        enem.pos.x -= player.shieldSize;
+        enem.pos.y -= player.shieldSize;
       }
     }
   }
 
   function createEnemy() {
-    enemies.push(new Enemy(random(0, width), random(0, height)));
+    enemies.push(
+      new cls1.Enemy(p.random(0, p.width), p.random(0, p.height), p)
+    );
   }
   function createStars(xPos, yPos, circleSize) {
     let x = xPos;
@@ -99,4 +110,27 @@ let Sketch = (p) => {
     let size = circleSize;
     p.ellipse(x, y, size, size);
   }
+
+  function reset() {
+
+    shots = [];
+    enemies = [];
+    p.frameCount = 0;
+    starColor = 255;
+    player.pos.x = p.width / 2;
+    player.pos.y = p.height / 2;
+    p.print('You Lose !');
+  }
+
+  window.addEventListener("keypress", (e) => {
+    
+    e.preventDefault()
+  })
 };
+
+const get_sketch = (ref) => {
+  // return new p5(Sketch, ref);
+  return new p5(Sketch, ref);
+};
+
+export default get_sketch;
