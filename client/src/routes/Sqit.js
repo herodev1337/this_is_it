@@ -24,8 +24,7 @@ const Sqit = () => {
     <div className="contentHolder">
       <div className="spacer"></div>
 
-      <div className="editorHolders">
-        {/* <div id="canvasHolder"></div> */}
+      <div className="contentHolders">
         <Sketch1/>
       </div>
 

@@ -26,14 +26,11 @@ const getEditorSizes = () => {
 }
 
 const Editor = ({changeCallback}) => {
-  const onChange = (newValue) => {
-    console.log('change', newValue);
-  }
 
   const [[ed1_width, ed1_height], [ed2_width, ed2_height]] = getEditorSizes();
 
   return (
-    <div>
+    <div className="editorHolder">
       <AceEditor
         className="editor1"
         mode="javascript"
