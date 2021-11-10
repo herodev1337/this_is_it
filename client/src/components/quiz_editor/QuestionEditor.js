@@ -52,6 +52,7 @@ export default function QuestionEditor(props) {
     setEnabled(true)
     setAnswers([])
     setEdits([])
+    setOpen(false)
   }
 
   return (

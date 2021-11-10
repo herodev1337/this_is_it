@@ -8,6 +8,10 @@
   --hovercolor: #DDFFF7;
 }
 
+svg:focus {
+  outline: none;
+}
+
 #quizEditor {
   background-color: var(--backgroundgrey);
   color: white;
