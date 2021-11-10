@@ -1,70 +1,64 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import p5 from 'p5';
 
 import get_sketch from './sketch_1';
 import * as helpers from '../helpers.js';
 
-class Sketch1 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
+import Editor from 'components/sqit/Editor';
 
-    this.state = { p5: undefined };
-  }
-
-  // Sketch = (p) => {
-  //   let x = 100;
-  //   let y = 100;
-  //   p.setup = () => {
-  //     p.createCanvas(200, 200);
-  //   };
-
-  //   p.draw = () => {
-  //     p.background(0);
-  //     p.fill(255);
-  //     p.rect(x, y, 50, 50);
-  //   };
-  // };
-
-  resizeSketch(p5) {
-    p5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
-  }
-
-  componentDidMount() {
-    this.setState({ p5: get_sketch(this.myRef.current) });
-    window.addEventListener('resize', () => (this.resizeSketch(this.state.p5)));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', () => (this.resizeSketch(this.state.p5)));
-  }
-
-  render() {
-    const setAnim = () => {
-      this.state.p5.anim = true;
-      // this.state.p5.resizeCanvas(500, 500)
-    };
-
-    return <div ref={this.myRef} onClick={setAnim}></div>;
-  }
-}
-
-export default Sketch1;
-
+const getEditorSizes = () => {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([helpers.realWidth(90), helpers.view_2_px(55)]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
 
 const Sketch1 = () => {
-  const ref = useRef()
+  const p5Ref = useRef();
+  let myp5, editorCallback;
+
+  const [width, height] = getEditorSizes();
+  console.log(width, height);
 
   useEffect(() => {
-    const p5 = get_sketch(ref.current)
-  }, [])
+    [myp5, editorCallback] = get_sketch(p5Ref.current);
+    // p5.width = width;
+    // p5.height = height;
+    // p5.resizeCanvas(width, height);
+
+    window.addEventListener(
+      'resize',
+      () =>
+        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+        // p5.resizeCanvas(width, height)
+        // (p5.width = 6)
+    );
+
+    // window.dispatchEvent(new Event('resize'));
+
+    return () =>
+      window.removeEventListener('resize', () =>
+        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+      );
+  }, []);
 
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <div
+        ref={p5Ref}
+        onClick={() =>
+          myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+        }
+      ></div>
+      <Editor changeCallback={value => editorCallback(value)} />
+    </>
+  );
+};
 
-export default Sketch1
-
+export default Sketch1;
