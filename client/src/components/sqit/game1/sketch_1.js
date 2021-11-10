@@ -1,7 +1,8 @@
 import p5 from 'p5';
 import $ from 'jquery';
 import * as cls from './classes';
-import * as helpers from '../helpers.js';
+import * as helpers from '../helpers';
+
 
 let Sketch = (p) => {
   p.anim = false;
@@ -70,7 +71,6 @@ let Sketch = (p) => {
     p.stroke(0);
     p.strokeWeight(1);
     doors.show(p);
-    anim = p.anim;
     doors.move(p.anim);
 
     if (finished) {
@@ -86,7 +86,15 @@ let Sketch = (p) => {
 };
 
 const get_sketch = (ref) => {
-  return new p5(Sketch, ref);
+  // return new p5(Sketch, ref);
+  const myp5 = new p5(Sketch, ref);
+
+  const editorCallback = (value) => {
+    console.log(value)
+    myp5.anim = true;
+  }
+
+  return [myp5, editorCallback]
 };
 
 export default get_sketch;

@@ -25,7 +25,7 @@ const getEditorSizes = () => {
   return size;
 }
 
-const Editor = () => {
+const Editor = ({changeCallback}) => {
   const onChange = (newValue) => {
     console.log('change', newValue);
   }
@@ -39,7 +39,7 @@ const Editor = () => {
         mode="javascript"
         theme="monokai"
         showPrintMargin={false}
-        onChange={onChange}
+        onChange={changeCallback}
         height={ed1_height + "px"}
         width={ed1_width + "px"}
       />

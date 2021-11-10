@@ -1,4 +1,5 @@
 import React from 'react';
+import {useParams} from "react-router-dom"
 
 import "styles/css/colors.css"
 import "styles/scss/sqit_games.scss"
@@ -17,6 +18,8 @@ const Sqit = () => {
   document.body.style.padding = "0 0 5% 0";
   document.body.style.margin = 0;
 
+  console.log("Params: ", useParams())
+
   return (
     <div className="contentHolder">
       <div className="spacer"></div>
@@ -24,7 +27,6 @@ const Sqit = () => {
       <div className="editorHolders">
         {/* <div id="canvasHolder"></div> */}
         <Sketch1/>
-        <Editor/>
       </div>
 
       <div className="spacer"></div>
