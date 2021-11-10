@@ -82,17 +82,60 @@ let Sketch = p => {
 };
 
 const get_sketch = ref => {
+  const editor_text = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
+  const editor2_text = `Output:\n'close'`;
+  let isTxtDone1 = false;
+  let isTxtDone2 = false;
   const myp5 = new p5(Sketch, ref);
 
-  const editorCallback = value => {
-    console.log(value);
-    myp5.anim = true;
+  const editorGetter = value => {
+    if (!helpers.get_validation(value, 'open', 'gate')) {
+      myp5.anim = false;
+      return;
+    } else myp5.anim = true;
   };
 
-  return [myp5, editorCallback];
+  const editor1Setter = () => {
+    if (!isTxtDone1) {
+      isTxtDone1 = true;
+      return editor_text
+    }
+  };
+
+  const editor2Setter = () => {
+    if (!isTxtDone2) {
+      isTxtDone2 = true;
+      return editor2_text
+    }
+  };
+
+  // return [myp5, editorGetter, editor1Setter, editor2Setter];
+  return {
+    "p5": myp5,
+    "getter": editorGetter,
+    "setter1": editor1Setter,
+    "setter2": editor2Setter
+  }
 };
 
-let editor_text = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
-let editor2_text = `Output:\n'close'`;
-
 export default get_sketch;
+
+
+// let extraText = false;
+// const enterCallback = () => {
+//   if (!helpers.get_validation(mainEditor.editor.getValue(), 'open', 'gate')) {
+//     anim = false;
+//     return;
+//   } else anim = true;
+
+//   if (!extraText) {
+//     add_editor_text();
+//     extraText = true;
+//     add_output_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'));
+//   } else
+//     add_output_text(
+//       helpers.get_userCode(mainEditor.editor.getValue(), 'interval')
+//     );
+
+//   interval = helpers.get_userCode(mainEditor.editor.getValue(), 'interval');
+// };
