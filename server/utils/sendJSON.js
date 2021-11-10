@@ -19,9 +19,9 @@ const logger = require('./logger')
  * @param  {} req - request
  * @param  {String} error - Error message
  */
-const sendError = (res, req, error) => {
+const sendError = (res, req, error, code) => {
     logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Quiz Controller', 3)
-    res.status(400)
+    res.status(code)
     .json({
         error: error
     })

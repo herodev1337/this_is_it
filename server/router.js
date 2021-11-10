@@ -1,9 +1,9 @@
 var router = require('express').Router();
 const authMiddleware = require('./middleware/auth.middleware'),
-  appController = require('./controllers/app.controller'),
-  quizController = require('./controllers/quiz.controller'),
+  // appController = require('./controllers/app.controller'),
+  //quizController = require('./controllers/quiz.controller'),
   authController = require('./controllers/auth.controller'),
-  postController = require('./controllers/post.controller')
+  // postController = require('./controllers/post.controller')
 
 //App Routes
 router.route('/whoami').get(authMiddleware, appController.showWhoami);
@@ -12,7 +12,7 @@ router.route('/').get(appController.showHome);
 
 //Quiz Routes
 
-router.route('/quiz').get(quizController.showQuizView); //TODO: Overview of quizzes
+// router.route('/quiz').get(quizController.showQuizView); //TODO: Overview of quizzes
 
 //Post Routes
 

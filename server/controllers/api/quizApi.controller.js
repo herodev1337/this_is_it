@@ -1,35 +1,23 @@
-const Quiz = require("../../../models/Quiz");
-const { quizValidator } = require("../../../utils/validator");
-const { sendData, sendError } = require("../../../utils/sendJSON");
-const logger = require("../../../utils/logger")
-const chalk = require('chalk')
+const Quiz = require("../../models/Quiz");
+const { sendData, sendError } = require("../../utils/sendJSON");
 
-//????????????????????????????????????????
-//                TODO
-//*              Cleanup
-//????????????????????????????????????????
 
-/** 
- * 
- *                Render
- * 
- **/
-
-//: Cleanup/Validation
-const showQuizOverview = async (req, res, next) => {
-    res.render('quiz/quizOverview');
+//* GET - /api/quizzes/
+const getQuizzes = (req, res, next) => {
+    Quiz.find({isEnabled: true}).then(responseData => { 
+        sendData(res, responseData) 
+    }).catch(err => {
+        sendError(res, req, err.message)
+    })
 }
 
-//TODO: Cleanup/Validation
-const showQuiz = async (req, res, next) => {
-    res.render('quiz/quizOverview');
+const getQuiz = (req, res, next) => {
+    Quiz.findById(req.params.quizId).then(responseData => { 
+        sendData(res, responseData) 
+    }).catch(err => {
+        sendError(res, req, err.message)
+    })
 }
-
-/** 
- * 
- *                Questions
- * 
- **/
 
 //TODO: Cleanup/Validation
 
@@ -116,6 +104,7 @@ const deleteQuestion = (req, res, next) => {
  **/
 
 const createQuiz = async (req, res, next) => {
+    //TODO: Validator
     //const {error} = quizValidator(req.body);
     // if(error) {
     //     sendError(res, req, error)
@@ -123,7 +112,7 @@ const createQuiz = async (req, res, next) => {
     const newQuiz = await new Quiz(req.body);
     try{
         newQuiz.save();
-        sendData(res, { data: newQuiz} );
+        sendData(res, newQuiz);
     }catch(e){
         sendError(res, req, e.message)
     }
@@ -145,18 +134,11 @@ const updateQuiz = (req, res, next) => {
     })
 }
 
-const getQuizzes = (req, res, next) => {
-    Quiz.find({isEnabled: true}).then(responseData => { 
-        sendData(res, responseData) 
-    }).catch(err => {
-        sendError(res, req, err.message)
-    })
+const unsupportedOperation = (req, res, next) => {
+    res.status(405).json({ error: "Unsupported HTTP method!" })
 }
 
 module.exports = {
-    showQuizOverview,
-    showQuiz,
-    //Admin
     createQuiz,
     deleteQuiz,
     updateQuiz,
@@ -165,5 +147,7 @@ module.exports = {
     getQuestion,
     updateQuestion,
     deleteQuestion,
-    getQuizzes
+    getQuizzes,
+    getQuiz,
+    unsupportedOperation
   };
