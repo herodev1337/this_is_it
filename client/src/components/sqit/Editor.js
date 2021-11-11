@@ -39,7 +39,7 @@ const Editor = ({setter1, setter2, getter}) => {
         onChange={getter}
         height={ed1_height + "px"}
         width={ed1_width + "px"}
-        value={setter1()}
+        value={setter1}
         setOptions={{
           wrap: true,
           highlightActiveLine: false,
@@ -57,7 +57,7 @@ const Editor = ({setter1, setter2, getter}) => {
         readOnly={true}
         showPrintMargin={false}
         showGutter={false}
-        value={setter2()}
+        value={setter2}
         setOptions={{
           wrap: true,
           highlightActiveLine: false,

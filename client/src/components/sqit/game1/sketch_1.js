@@ -81,61 +81,44 @@ let Sketch = p => {
   };
 };
 
-const get_sketch = ref => {
+const get_sketch = (ref, setText1, setText2) => {
   const editor_text = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
   const editor2_text = `Output:\n'close'`;
-  let isTxtDone1 = false;
-  let isTxtDone2 = false;
+  const editor2_temp = `Output:\n`
+  let isExtraTxt = false;
+  let isGateOpen = false;
+
   const myp5 = new p5(Sketch, ref);
 
+
   const editorGetter = value => {
+    const ret = helpers.get_pureReturn(value, true)
+    const searchedVariable = isExtraTxt ? "interval" : "gate"
+    
+    setText1(value)
+    setText2(`Output:\n${ret? helpers.get_userCode(value, searchedVariable)[0] : ret}`);
+
     if (!helpers.get_validation(value, 'open', 'gate')) {
       myp5.anim = false;
       return;
     } else myp5.anim = true;
-  };
 
-  const editor1Setter = () => {
-    if (!isTxtDone1) {
-      isTxtDone1 = true;
-      return editor_text
+    if (!isExtraTxt && myp5.anim) {
+      isExtraTxt = true;
+      setText1(
+        value +
+          `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
+      );
     }
-  };
-
-  const editor2Setter = () => {
-    if (!isTxtDone2) {
-      isTxtDone2 = true;
-      return editor2_text
-    }
+    const [userInterval, status] = helpers.get_userCode(value, 'interval');
+    myp5.interval = status ? userInterval : 4;
   };
 
   // return [myp5, editorGetter, editor1Setter, editor2Setter];
   return {
-    "p5": myp5,
-    "getter": editorGetter,
-    "setter1": editor1Setter,
-    "setter2": editor2Setter
-  }
+    p5: myp5,
+    getter: editorGetter,
+  };
 };
 
 export default get_sketch;
-
-
-// let extraText = false;
-// const enterCallback = () => {
-//   if (!helpers.get_validation(mainEditor.editor.getValue(), 'open', 'gate')) {
-//     anim = false;
-//     return;
-//   } else anim = true;
-
-//   if (!extraText) {
-//     add_editor_text();
-//     extraText = true;
-//     add_output_text(helpers.get_userCode(mainEditor.editor.getValue(), 'gate'));
-//   } else
-//     add_output_text(
-//       helpers.get_userCode(mainEditor.editor.getValue(), 'interval')
-//     );
-
-//   interval = helpers.get_userCode(mainEditor.editor.getValue(), 'interval');
-// };
