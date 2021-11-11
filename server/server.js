@@ -4,12 +4,15 @@ const path = require('path'),
   helmet = require('helmet'),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
-  bearerToken = require('express-bearer-token'),
   cors = require('cors'),
   //Custom Utils
   logger = require('./utils/logger'),
   networkInterfaces = require('./utils/networkInterfaces'),
-  Post = require('./models/Post')
+  Post = require('./models/Post'),
+  
+  process = require('process')
+  process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
+  const config = require("config")
 
   require('./utils/db')();
 
@@ -23,9 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(cookieParser()); //Uses the cookieParser module
 app.use(helmet()); //helmet for setting http headers
 app.use(cors());
-app.use(bearerToken());
 
-app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.token))
+app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.cookies.auth_token))
 // app.use(require('./router.js'));
 app.use('/api/', require('./routes/api/quizApi.route'))
 app.use('/api/', require('./routes/auth.route'))

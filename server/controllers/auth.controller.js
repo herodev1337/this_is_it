@@ -6,10 +6,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require("config")
 
-const showLogin = (req, res) => {
-    res.render('auth/login')
-}
-
 const registerUser = async (req, res) => {
     //Validation
     const { error } = registerValidator(req.body)
@@ -51,7 +47,8 @@ const loginUser = async (req, res) => {
     if (!currentUser) return res.status(400).json({ error: 'User dosent exist!' })
 
     //If password dosent match -> 400
-    if (!comparePassword(req.body.password, currentUser.password)) return res.status(400).json({ error: 'Password dosent match!' })
+    let compPassword = await comparePassword(req.body.password, currentUser.password);
+    if (!compPassword) return res.status(400).json({ error: 'Password dosent match!' })
 
     res.cookie('auth_token', generateJWTtoken({ id: currentUser._id }))
         .json({ 
@@ -106,5 +103,4 @@ const generateJWTtoken = (data) => {
 module.exports = {
     registerUser,
     loginUser,
-    showLogin,
 }
