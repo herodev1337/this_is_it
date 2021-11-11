@@ -4,6 +4,7 @@ const { registerValidator } = require('../utils/validator')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const config = require("config")
 
 const showLogin = (req, res) => {
     res.render('auth/login')
@@ -52,7 +53,6 @@ const loginUser = async (req, res) => {
     //If password dosent match -> 400
     if (!comparePassword(req.body.password, currentUser.password)) return res.status(400).json({ error: 'Password dosent match!' })
 
-    //TODO: Add token_secret to config
     res.cookie('auth_token', generateJWTtoken({ id: currentUser._id }))
         .json({ 
             error: null,
@@ -96,12 +96,11 @@ const comparePassword = async (password, hashedPassword) => {
 
 /**
  * Generates the JWT token with the data provided and signs it
- * TODO: Add token_secret to config
  * @param  {Object} data - The data in the JWT token
  * @returns {String}
  */
 const generateJWTtoken = (data) => {
-    return jwt.sign(data, 'TOKEN_SECRET')
+    return jwt.sign(data, config.auth.token_secret)
 }
 
 module.exports = {

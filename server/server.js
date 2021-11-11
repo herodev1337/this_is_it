@@ -28,6 +28,7 @@ app.use(bearerToken());
 app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.token))
 // app.use(require('./router.js'));
 app.use('/api/', require('./routes/api/quizApi.route'))
+app.use('/api/', require('./routes/auth.route'))
 
 //Listen on PORT
 app.listen(PORT, () => {
