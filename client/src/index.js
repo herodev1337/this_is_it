@@ -27,7 +27,7 @@ ReactDOM.render(
         <Route path="/admin" element={<Admin />} >
           <Route path="login" element={<AdminLogin />} />
           <Route path="user">
-            <Route path=":id" element={
+            <Route path=":id/*" element={
               <AuthWrapper>
                 <AdminUser />
               </AuthWrapper>

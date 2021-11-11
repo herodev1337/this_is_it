@@ -10,13 +10,9 @@ import QuestionEditor from './QuestionEditor';
 import QuestionView from './QuestionView';
 
 const axios = require('axios').default;
-const instance = axios.create({
+const apiQuiz = axios.create({
   baseURL: 'http://localhost:3000/api/quizzes/',
   timeout: 1000,
-  withCredentials: true,
-  headers: {
-    'Access-Control-Allow-Origin': 'http://localhost:8081',
-  }
 });
 
 export default function QuizEditor() {
@@ -47,8 +43,8 @@ export default function QuizEditor() {
       isEnabled: enabled,
       questions: questions,
     };
-    instance
-      .post('./create', quiz)
+    apiQuiz
+      .post('./', quiz)
       .then(function(response) {
         console.log(response);
         setName("")

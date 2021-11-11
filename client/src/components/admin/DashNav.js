@@ -2,9 +2,11 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Accordion from 'react-bootstrap/Accordion';
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom'
 import { PersonCheck } from 'react-bootstrap-icons';
 
 function DashNav() {
+
   return (
     <div className="dash-nav">
       <Row className="nav-brand">
@@ -13,9 +15,13 @@ function DashNav() {
       <Row>
         <Accordion>
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Accordion Item #1</Accordion.Header>
+            <Accordion.Header>Quiz</Accordion.Header>
             <Accordion.Body>
-              <Nav></Nav>
+              <Nav>
+                <Nav.Item>
+                  <Nav.Link as={Link} to='./quiz-editor'>Quiz-Edior</Nav.Link>
+                </Nav.Item>
+              </Nav>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
