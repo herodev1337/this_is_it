@@ -6,32 +6,71 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono";
+  background-color: #1D073B;
+  
 }
 
 //topbar
+h3 {
+  background-color: transparent;
+}
 #karriere_header {
   width: 100%;
-
   display: flex;
   flex-direction: row;
-
-  justify-content: center;
-
   color: #00B4C5;
 }
 .button {
   width: 50%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin: 0px 32px;
+  color: #00B4C5;
 }
 .active_button {
   background-color: #00B4C5;
   color: #1D073B;
 }
+
+//main
+
 #karriere_main_content {
   height: 80vh;
-
   border: 0.1rem solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00B4C5;
+}
+
+//Category
+
+.category-row {
+  width: 100%;
+  display: flex;
+  background-color: transparent;
+}
+.category-column {
+  width: 50%;
+}
+.penta {
+  margin-left: 10rem;
+  background-color: #00B4C5;
+  height: 500px;
+  width: 500px;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.category-field {
+  margin: 1.5rem;
+  border: solid 3px  #00B4C5;
+  border-radius: 5px;
+  h2 {
+    margin: 0.6rem 3rem;
+  }
+}
+.category-field:hover {
+  color: #00eaff;
 }
 
 
