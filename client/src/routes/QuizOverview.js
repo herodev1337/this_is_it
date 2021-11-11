@@ -9,10 +9,9 @@ const axios = require('axios').default;
 const instance = axios.create({
   baseURL: 'http://localhost:3000/api/quizzes/',
   timeout: 1000,
-  withCredentials: true,
 });
 
-import EditButtons from '../components/quiz_editor/EditButtons';
+import EditButtons from '../components/admin/quiz_editor/EditButtons';
 
 export default function App() {
   const [quizzes, setQuizzes] = useState([])

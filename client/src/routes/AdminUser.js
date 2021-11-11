@@ -1,10 +1,10 @@
 import React from 'react';
-import QuizEditor from "../components/quiz_editor/QuizEditor";
+import AdminUser from "../components/admin/AdminUser";
 
 export default function App() {
   return (
     <div>
-      <QuizEditor />
+      <AdminUser />
     </div>
   );
 }
