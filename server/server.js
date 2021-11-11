@@ -4,12 +4,14 @@ const path = require('path'),
   helmet = require('helmet'),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
+  bearerToken = require('express-bearer-token'),
+  cors = require('cors'),
   //Custom Utils
   logger = require('./utils/logger'),
   networkInterfaces = require('./utils/networkInterfaces'),
-  Post = require('./models/Post');
-require('./utils/db')();
-const cors = require('cors')
+  Post = require('./models/Post')
+
+  require('./utils/db')();
 
 //Variables
 const PORT = process.env.PORT || 3000; //Port for the app
@@ -20,8 +22,10 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser()); //Uses the cookieParser module
 app.use(helmet()); //helmet for setting http headers
-app.use(cors())
+app.use(cors());
+app.use(bearerToken());
 
+app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.token))
 // app.use(require('./router.js'));
 app.use('/api/', require('./routes/api/quizApi.route'))
 
