@@ -1,16 +1,24 @@
-import React, {useState} from 'react'
+import React from "react"
 import Content from './contents/Content'
+import {useState} from 'react'
 
 
-let IsCategory; Boolean;
 const Karriere = () => {
+//changing active Tab 
+ const [activeTab, setActiveTab] = useState(1);
+  const handleTab = (tab) => {
+    setActiveTab(tab);
+  };
+
     return (
         <>
           <div id="karriere_header">
-            <div className="button active_button" onClick={() => {IsCategory = true}}>
+            <div className={activeTab === 1 ? "button active-button" : "button"}
+                 onClick={() => handleTab(1)}>
                 <h3>Kategorien</h3>
             </div>
-            <div className="button" onClick={() => {IsCategory = false}}>
+            <div className={activeTab === 2 ? "button active-button" : "button"}
+                 onClick={() => handleTab(2)}>
                 <h3>Karriere</h3>
             </div>
           </div>
@@ -20,10 +28,11 @@ const Karriere = () => {
           </div>
 
           <div id="karriere_main_content">
-              <Content />
+              <Content
+                activeTab={activeTab}
+              />
           </div>
         </>
     )
 }
-export {IsCategory}
 export default Karriere

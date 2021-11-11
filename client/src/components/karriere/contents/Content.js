@@ -1,15 +1,9 @@
-import Category from "./Category";
-import Career from "./Career";
+import Category from "./Category/Category";
+import Career from "./Career/Career";
 import React from "react";
-import { IsCategory } from "../Karriere"
 
-function activeClass (e) {
-  
-}
-
-
-const Content = () => {
-    if (IsCategory === true) {
+const Content = ({ activeTab }) => {
+    if (activeTab === 1) {
         return <Category />
     }
   return <Career />  

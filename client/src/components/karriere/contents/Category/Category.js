@@ -7,6 +7,7 @@ const Category = () => {
             <div class="category-column">
                <div class="penta"></div>
             </div>
+
             <div class="category-column">
                 <div class="category-field">
                     <h2>Wozu Kategorien?</h2>
@@ -27,6 +28,7 @@ const Category = () => {
                     <h2>Wirtschaft</h2>
                 </div>
             </div>
+            
         </div>
 
         </>

@@ -18,6 +18,7 @@ h3 {
   width: 100%;
   display: flex;
   flex-direction: row;
+  
   color: #00B4C5;
 }
 .button {
@@ -27,24 +28,21 @@ h3 {
   margin: 0px 32px;
   color: #00B4C5;
 }
-.active_button {
+.active-button {
   background-color: #00B4C5;
   color: #1D073B;
 }
 
 //main
-
 #karriere_main_content {
+  display: flex;
+  flex-direction: row;
   height: 80vh;
   border: 0.1rem solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #00B4C5;
 }
 
 //Category
-
 .category-row {
   width: 100%;
   display: flex;
@@ -67,11 +65,43 @@ h3 {
   border-radius: 5px;
   h2 {
     margin: 0.6rem 3rem;
+    background-color: transparent;
   }
 }
 .category-field:hover {
-  color: #00eaff;
+  background-color: #00B4C5;
+  color: #1D073B;
 }
+
+//Career
+.card {
+  width: 16vw;
+  height: 16vw;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+  
+  margin-top: 1.5rem;
+  border: solid #00b4c5;
+  border-radius: 2%;
+  margin: 2rem;
+  color: #1D073B;
+  background-color:#00B4C5;
+  h2 {
+    background-color: transparent;
+    margin-top: 1rem;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.75rem;
+    color: #1D073B;
+    text-align: center;
+  }
+}
+p {
+  background-color: transparent;
+}  
 
 
 /*
