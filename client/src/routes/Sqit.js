@@ -6,7 +6,7 @@ import "styles/scss/sqit_games.scss"
 import sqit_bg from "static/images/sqit/lowPolyBG.svg"
 
 import Editor from "components/sqit/Editor"
-import Sketch1 from "components/sqit/game1/Sketch1"
+import Sketch1 from "components/sqit/game2/Sketch1"
 
 const Sqit = () => {
   // css overides body properties for every page so this is a workaround
