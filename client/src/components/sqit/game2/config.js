@@ -1,50 +1,22 @@
 import p5 from 'p5';
 
-import {Sketch} from "./sketch"
+import { Sketch } from './sketch';
 import * as helpers from '../helpers';
 
-
 const get_sketch = (ref, setText1, setText2) => {
-  const editor_text = `// It seems like our spaceship got no chance to survive the swarm of enemies...
-// The enemy uses a shieldbreaker to deactivate our shield everytime we try to turn it on ...
-// Create a if/else statement that turns our shield on(true) everytime it is turned off(false)
-// and when our shield is turned on deactivate(false) the enemy shieldbreaker....
-// Maybe this will outsmart the enemies...\n\nlet shield = false;\n\nlet shieldbreaker = true\n\nif(){
-
-}else if(){
-
-}`;
-  const editor2_text = `Output:\n'close'`;
-  const editor2_temp = `Output:\n`
-  let isExtraTxt = false;
-  let isGateOpen = false;
+  const re = /if\((?:!shield|shield === false|shield===false)\)(?:{| {)\n(?:\t+| +)(?:shield=true;|shield += +true;|shield += +true +;)\n}(?:\n|| +)(?:else if\(shield\){|else if +\( +shield +\) +{|else if\(shield===true\){|else if +\( +shield +=== +true +\) +{)\n+(?:shieldbreaker=false;|(?: +|\t+)shieldbreaker += +false;)\n}/;
 
   const myp5 = new p5(Sketch, ref);
-
-
-  const editorGetter = value => {
-    console.log(helpers.get_userCode(value, '[shield, shieldbreaker]'))
-
-    const ret = helpers.get_pureReturn(value, true)
-    const searchedVariable = isExtraTxt ? "interval" : "gate"
-    // myp5.isBreakerActive = false
-    setText1(value)
-    setText2(`Output:\n${ret? helpers.get_userCode(value, searchedVariable)[0] : ret}`);
-
-    if (!helpers.get_validation(value, 'open', 'gate')) {
-      myp5.anim = false;
-      return;
-    } else myp5.anim = true;
-
-    if (!isExtraTxt && myp5.anim) {
-      isExtraTxt = true;
-      setText1(
-        value +
-          `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
-      );
+  const editorGetter = (value) => {
+    console.log(value.match(re))
+    // console.log(helpers.get_userCode(value.match(re)[0], "shieldbreaker"));
+    const ret = helpers.get_pureReturn(value, true);
+    if(value.match(re)){
+      myp5.isBreakerActive = false;
     }
-    const [userInterval, status] = helpers.get_userCode(value, 'interval');
-    myp5.interval = status ? userInterval : 4;
+    else{
+      myp5.isBreakerActive = true;
+    }
   };
 
   return {
@@ -52,18 +24,17 @@ const get_sketch = (ref, setText1, setText2) => {
     getter: editorGetter,
   };
 };
-  
-  const ed1_txt = `// It seems like our spaceship got no chance to survive the swarm of enemies...
+
+const ed1_txt = `// It seems like our spaceship got no chance to survive the swarm of enemies...
   // The enemy uses a shieldbreaker to deactivate our shield everytime we try to turn it on ...
-  // Create a if/else statement that turns our shield on(true) everytime it is turned off(false)
-  // and when our shield is turned on deactivate(false) the enemy shieldbreaker....
+  // Create a if() statement that turns our shield on(true) if it is turned off(false)
+  // and after that create a else if() statement that deactivate(false) the enemy shieldbreaker when our shield is aktive(true)....
   // Maybe this will outsmart the enemies...\n\nlet shield = false;\n\nlet shieldbreaker = true\n\nif(){
   
   }else if(){
   
-  }`
-  const ed2_txt = `Output:\nclose`;
-  
-  export {ed1_txt, ed2_txt}
-  export default get_sketch;
-  
+  }`;
+const ed2_txt = `Output:\nclose`;
+
+export { ed1_txt, ed2_txt };
+export default get_sketch;
