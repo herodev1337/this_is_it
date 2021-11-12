@@ -5,9 +5,8 @@ const realWidth = percent => (window.innerWidth / 100) * percent;
 const view_2_px = (vh, height = true) =>
   $(window)[height ? 'height' : 'width']() * (vh / 100);
 
+  
 // Code validation
-
-
 const get_pureReturn = (codeStr, undefiniedRet=false) => {
   try {
     const value = new Function(codeStr)()

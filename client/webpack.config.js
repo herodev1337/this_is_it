@@ -1,7 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  // entry: './src/index.js',
+  entry: ['regenerator-runtime/runtime.js', './src/index.js'],
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'public'),
@@ -20,9 +21,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
     ],
+  },
+  experiments: {
+    topLevelAwait: true,
   },
   resolve: {
     modules: [path.resolve('./src'), path.resolve('./node_modules')],

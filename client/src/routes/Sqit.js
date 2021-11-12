@@ -6,7 +6,7 @@ import "styles/scss/sqit_games.scss"
 import sqit_bg from "static/images/sqit/lowPolyBG.svg"
 
 import Editor from "components/sqit/Editor"
-import Sketch1 from "components/sqit/game2/Sketch1"
+import Sketch1 from "components/sqit/Sketch1"
 
 const Sqit = () => {
   // css overides body properties for every page so this is a workaround
@@ -18,7 +18,7 @@ const Sqit = () => {
   document.body.style.padding = "0 0 5% 0";
   document.body.style.margin = 0;
 
-  console.log("Params: ", useParams())
+  // console.log("Params: ", useParams())
 
   return (
     <div className="contentHolder">

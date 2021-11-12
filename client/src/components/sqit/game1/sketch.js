@@ -1,10 +1,9 @@
-import p5 from 'p5';
 import $ from 'jquery';
 
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
-let Sketch = p => {
+let sketch_builder = p => {
   p.anim = false;
   p.interval = 4;
 
@@ -81,44 +80,4 @@ let Sketch = p => {
   };
 };
 
-const get_sketch = (ref, setText1, setText2) => {
-  const editor_text = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
-  const editor2_text = `Output:\n'close'`;
-  const editor2_temp = `Output:\n`
-  let isExtraTxt = false;
-  let isGateOpen = false;
-
-  const myp5 = new p5(Sketch, ref);
-
-
-  const editorGetter = value => {
-    const ret = helpers.get_pureReturn(value, true)
-    const searchedVariable = isExtraTxt ? "interval" : "gate"
-    
-    setText1(value)
-    setText2(`Output:\n${ret? helpers.get_userCode(value, searchedVariable)[0] : ret}`);
-
-    if (!helpers.get_validation(value, 'open', 'gate')) {
-      myp5.anim = false;
-      return;
-    } else myp5.anim = true;
-
-    if (!isExtraTxt && myp5.anim) {
-      isExtraTxt = true;
-      setText1(
-        value +
-          `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
-      );
-    }
-    const [userInterval, status] = helpers.get_userCode(value, 'interval');
-    myp5.interval = status ? userInterval : 4;
-  };
-
-  // return [myp5, editorGetter, editor1Setter, editor2Setter];
-  return {
-    p5: myp5,
-    getter: editorGetter,
-  };
-};
-
-export default get_sketch;
+export {sketch_builder}
