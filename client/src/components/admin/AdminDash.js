@@ -7,11 +7,11 @@ import '../../styles/scss/admin_panel.scss';
 import DashNav from './DashNav';
 import DashView from './DashView';
 
-function AdminUser() {
+function AdminDash() {
   // TODO: add auth context (preferably using hooks)
 
   return (
-    <div>
+    <div style={{maxWidth: "99vw"}}>
       <Row>
         <Col sm={2}>
           <DashNav />
@@ -24,4 +24,4 @@ function AdminUser() {
   );
 }
 
-export default AdminUser;
+export default AdminDash;

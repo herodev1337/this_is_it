@@ -13,6 +13,7 @@ const axios = require('axios').default;
 const apiQuiz = axios.create({
   baseURL: 'http://localhost:3000/api/quizzes/',
   timeout: 1000,
+  withCredentials: true
 });
 
 export default function QuizEditor() {
@@ -58,8 +59,8 @@ export default function QuizEditor() {
   }
 
   return (
-    <div>
-      <Form id="quizEditor">
+    <div id="quizEditor">
+      <Form>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="formQuizName">

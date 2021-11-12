@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { CaretRightFill } from 'react-bootstrap-icons';
+import { CaretDownFill } from 'react-bootstrap-icons';
 
 import "styles/scss/quiz_editor.scss"
 
@@ -81,7 +81,7 @@ export default function QuestionEditor(props) {
               <div style={{display: 'flex', justifyContent: "space-between"}}>
                 <div onClick={()=>setOpen(!open)} style={{cursor:'pointer'}}> 
                   Answers 
-                  <CaretRightFill className={`${rotate} ${transform}`}/>
+                  <CaretDownFill className={`${rotate} ${transform}`}/>
                 </div>
                 <Form.Group>
                   <Form.Check type="checkbox" label="Enabled" checked={enabled} onChange={()=>setEnabled(!enabled)} />

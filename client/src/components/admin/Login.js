@@ -3,21 +3,24 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import auth from './auth'
+import {useAuth} from '../../utils/hooks/use-auth'
 
 function Login() {
+  const auth = useAuth();
+
   const [username , setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [remember, setRemember] = useState(false)
 
   const navigate = useNavigate();
+  const location = useLocation()
 
   const submitLogin = (e) => {
     e.preventDefault()
     auth.login(username, password, ()=>{
-      navigate('/admin/user/'+username)
+      navigate(location.state ? location.state.from : '/admin/dash/')
     })
   }
 
