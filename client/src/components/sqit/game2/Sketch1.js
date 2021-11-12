@@ -8,44 +8,46 @@ import Editor from 'components/sqit/Editor';
 
 const Sketch1 = () => {
   const p5Ref = useRef();
-  let myp5, editorCallback;
-
-  // const [width, height] = getEditorSizes();
-  // console.log(width, height);
+  const baseProps = {
+    "p5": undefined,
+    "getter": () => ""
+  }
+  const [editorProps, setProps] = useState(baseProps)
+  const [textState1, setText1] = useState(`// It seems like our spaceship got no chance to survive the swarm of enemies...
+// The enemy uses a shieldbreaker to deactivate our shield everytime we try to turn it on ...
+// Create a if/else statement that turns our shield on(true) everytime it is turned off(false)
+// and when our shield is turned on deactivate(false) the enemy shieldbreaker....
+// Maybe this will outsmart the enemies...\n\nlet shield = false;\n\nlet shieldbreaker = true\n\nif(){
+  
+}else if(){
+  
+}`)
+  const [textState2, setText2] = useState(`Output:\nclose`)
 
   useEffect(() => {
-    // [myp5, editorCallback] = get_sketch(p5Ref.current);
-    // p5.width = width;
-    // p5.height = height;
-    // p5.resizeCanvas(width, height);
-    myp5 = get_sketch(p5Ref.current);
+    const newProps = get_sketch(p5Ref.current, setText1, setText2)
+    setProps(newProps)
 
-    window.addEventListener(
-      'resize',
-      () =>
-        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
-        // p5.resizeCanvas(width, height)
-        // (p5.width = 6)
+    window.addEventListener('resize', () =>
+      newProps.p5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
     );
-
-    // window.dispatchEvent(new Event('resize'));
 
     return () =>
       window.removeEventListener('resize', () =>
-        myp5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
+      newProps.p5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
       );
   }, []);
 
   return (
     <>
-      <div
-        ref={p5Ref}
-      ></div>
-      <Editor/>
+      <div className="canvasHolder" ref={p5Ref}></div>
+      <Editor
+        setter1={textState1}
+        setter2={textState2}
+        getter={value => editorProps.getter(value)}
+      />
     </>
   );
 };
 
 export default Sketch1;
-
-
