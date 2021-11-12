@@ -11,7 +11,7 @@ const registerUser = async (req, res) => {
     const { error } = registerValidator(req.body)
     if (error) {
         logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Authentication Controller', 3)
-        res.status(400).json({ error: error.message })
+        return res.status(400).json({ error: error.message })
     }
 
     //Check if User Exists
@@ -19,21 +19,26 @@ const registerUser = async (req, res) => {
 
     //User Creation
     const user = new User({
-        username: req.body.username,
-        password: await hashPassword(req.body.password),
+        username : req.body.username,
+        fullname : req.body.username,
+        password : await hashPassword(req.body.password),
     })
 
     try {
         const savedUser = await user.save()
-        res.cookie('auth_token', generateJWTtoken({ id: savedUser._id }))
-            .json({
-                error: null,
-                data: {
-                    message: 'User created successfully'
-                }
-            })
+        return res.cookie('auth_token', generateJWTtoken({
+            username: currentUser.username,
+            fullname: currentUser.username,
+            groups: currentUser.groups
+        }))
+        .json({
+            error: null,
+            data: {
+                message: 'User created successfully'
+            }
+        })
     } catch (e) {
-        res.status(400)
+        return res.status(400)
             .json({
                 error: e.message
             })
@@ -42,21 +47,22 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const currentUser = await getUser(req.body.username)
+    if (!currentUser) return res.status(200).json({ error: 'User dosent exist!' })
 
-    //If user dosent exist -> 400
-    if (!currentUser) return res.status(400).json({ error: 'User dosent exist!' })
+    const compPassword = await comparePassword(req.body.password, currentUser.password);
+    if (!compPassword) return res.status(200).json({ error: 'Password dosent match!' })
 
-    //If password dosent match -> 400
-    let compPassword = await comparePassword(req.body.password, currentUser.password);
-    if (!compPassword) return res.status(400).json({ error: 'Password dosent match!' })
-
-    res.cookie('auth_token', generateJWTtoken({ id: currentUser._id }))
-        .json({ 
-            error: null,
-            data: { 
-                message: 'Logged in successfully!'
-            }
-        })
+    return res.cookie('auth_token', generateJWTtoken({
+        username: currentUser.username,
+        fullname: currentUser.username,
+        groups: currentUser.groups
+    }))
+    .json({ 
+        error: null,
+        data: { 
+            message: 'Logged in successfully!'
+        }
+    })
 }
 
 /**

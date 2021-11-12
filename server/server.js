@@ -28,9 +28,9 @@ app.use(helmet()); //helmet for setting http headers
 app.use(cors());
 
 app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.cookies.auth_token))
-// app.use(require('./router.js'));
-app.use('/api/', require('./routes/api/quizApi.route'))
+app.use('/api/', require('./routes/quizApi.route'))
 app.use('/api/', require('./routes/auth.route'))
+app.use('/api/', require('./routes/group.route'))
 
 //Listen on PORT
 app.listen(PORT, () => {

@@ -1,7 +1,7 @@
 let router = require('express').Router();
-const quizController = require('../../controllers/api/quizApi.controller');
-const Quiz= require('../../models/Quiz');
-const authMiddleware = require('../../middleware/auth.middleware');
+const quizController = require('../controllers/quizApi.controller');
+const Quiz= require('../models/Quiz');
+const authMiddleware = require('../middleware/auth.middleware');
 
  
 router
@@ -33,10 +33,9 @@ router
   .delete(authMiddleware, quizController.deleteQuestion) //? [AUTH] Delete a question
 
 
-//DEBUG
+//TODO: DEBUG
 
 router.put("/test/:quizId/:questionId", (req, res, next) => {
-    // console.log(req)
     Quiz.findOne({'questions': {$elemMatch: { _id: req.params.questionId}}}).then(responseData => {
         return res.json(responseData)
     }).catch(err => {

@@ -1,6 +1,6 @@
 var router = require('express').Router()
-const postController = require('../../controllers/api/postApi.controller')
-const authMiddleware = require('../../middleware/auth.middleware')
+const postController = require('../controllers/postApi.controller')
+const authMiddleware = require('../middleware/auth.middleware')
 
 
 router.route('/')

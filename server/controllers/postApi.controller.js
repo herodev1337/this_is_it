@@ -28,7 +28,7 @@ const createPost = async (req, res, next) => {
     const newPost = await new Post(req.body);
     try{
         newPost.save();
-        res.redirect(`/admin/${newPost._id}/edit`)
+        sendData(res, { data: newPost});
     }catch(e){
         sendError(res, req, e.message)
     }
@@ -50,22 +50,11 @@ const deletePost = (req, res, next) => {
     })
 }
 
-//Adminpanel
-
-const showAdminPanel = (req, res) => {
-    Post.find().then(responseData => { 
-      res.render('admin/panel', { posts: responseData });
-    }).catch(err => {
-       console.log(err.message);
-    })
-  }
-
 
 module.exports = {
     getPosts, //User
     getPost, //User
     createPost,
     updatePost,
-    deletePost,
-    showAdminPanel
+    deletePost
   };

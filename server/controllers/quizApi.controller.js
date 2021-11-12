@@ -1,5 +1,5 @@
-const Quiz = require("../../models/Quiz");
-const { sendData, sendError } = require("../../utils/sendJSON");
+const Quiz = require("../models/Quiz");
+const { sendData, sendError } = require("../utils/sendJSON");
 
 
 //* GET - /api/quizzes/
