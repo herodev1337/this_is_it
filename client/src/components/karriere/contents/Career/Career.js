@@ -19,13 +19,13 @@ const posts = [
     description: 'wretz',
   },
   {
-    name: "Ford Mondeo",
-    description: "i bims cool"
+    name: 'Ford Mondeo',
+    description: 'i bims cool',
   },
   {
-    name: "Ford Mondeo",
-    description: "i bims cool"
-  }
+    name: 'Ford Mondeo',
+    description: 'i bims cool',
+  },
 ];
 
 const filterPosts = (posts, query) => {
@@ -43,18 +43,16 @@ const Career = () => {
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
   const [searchQuery, setSearchQuery] = useState(query || '');
-  searchQuery.toLowerCase()
   const filteredPosts = filterPosts(posts, searchQuery);
   return (
     <>
-      
-    <div id="card-div">
-      {filteredPosts.map(post => (
-        <div className="card">
-          <h2>{post.name}</h2>
-          <p>{post.description}</p>
-        </div>
-      ))}
+      <div id="card-div">
+        {filteredPosts.map(post => (
+          <div className="card">
+            <h2>{post.name}</h2>
+            <p>{post.description}</p>
+          </div>
+        ))}
       </div>
       <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     </>
