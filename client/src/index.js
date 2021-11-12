@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './styles/stylesheet.scss'
+
+import AuthWrapper from './routes/AuthWrapper'
 
 import Home from './routes/Home';
 import Knowledge from './routes/Knowledge';
@@ -12,7 +14,8 @@ import Admin from './routes/Admin';
 import Sqit from './routes/Sqit';
 import QuizOverview from './routes/QuizOverview';
 import Quiz from './routes/Quiz';
-import QuizEditor from './routes/QuizEditor';
+import AdminLogin from './routes/AdminLogin'
+import AdminUser from './routes/AdminUser'
 
 
 
@@ -22,7 +25,14 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} >
-          <Route path="quiz-editor" element={<QuizEditor/>} />
+          <Route path="login" element={<AdminLogin />} />
+          <Route path="user">
+            <Route path=":id/*" element={
+              <AuthWrapper>
+                <AdminUser />
+              </AuthWrapper>
+            }/>
+          </Route>
         </Route>
 
         <Route path="/knowledge" element={<Knowledge />}>

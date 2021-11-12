@@ -1,11 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import Login from "../components/admin/Login";
 
 export default function App() {
   return (
     <div>
-      {/* <p>Admin Seite</p> */}
-      <Outlet/>
+      <Login />
     </div>
   );
 }

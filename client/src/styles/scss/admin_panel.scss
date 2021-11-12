@@ -1,0 +1,33 @@
+@import url(./colors.scss);
+
+.dash-nav {
+  min-height: 100vh;
+  background-color: var(--FrontManGrey);
+  color: var(--white);
+
+  >*{
+      padding: 10px 0;
+  }
+
+  .nav-brand {
+      font-size: 50px;
+      padding-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .accordion-item {
+    border: none;
+    button {
+      background-color: var(--FrontManGrey);
+      color: var(--white);
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .accordion-body {
+      background-color: var(--FrontManGrey);
+      color: var(--white);
+    }
+  }
+}
