@@ -1,38 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Column1 from './Columns/Column1';
+import Column2 from './Columns/Column2';
+
+const content = [
+  {
+    title: 'Wozu Kategorien?',
+    content: 'lorem ipsum',
+  },
+  {
+    title: 'Kreativität',
+    content: 'lorem ipsum',
+  },
+  {
+    title: 'Technik',
+    content: 'lorem ipsum',
+  },
+  {
+    title: 'Soziales',
+    content: 'lorem ipsum',
+  },
+  {
+    title: 'Forschung',
+    content: 'lorem ipsum',
+  },
+  {
+    title: 'Wirtschaft',
+    content: 'lorem ipsum',
+  },
+];
+const OnlyCat = content.slice(1, 6);
 
 const Category = () => {
-    return (
-        <>
-        <div class="category-row">
-            <div class="category-column">
-               <div class="penta"></div>
-            </div>
-
-            <div class="category-column">
-                <div class="category-field">
-                    <h2>Wozu Kategorien?</h2>
-                </div>
-                <div class="category-field">
-                    <h2>Kreativität</h2>
-                </div>
-                <div class="category-field">
-                    <h2>Technik</h2>
-                </div>
-                <div class="category-field">
-                    <h2>Soziales</h2>
-                </div>
-                <div class="category-field">
-                    <h2>Forschung</h2>
-                </div>
-                <div class="category-field">
-                    <h2>Wirtschaft</h2>
-                </div>
-            </div>
-            
+  return (
+    <>
+      <div class="category-row">
+        <div class="category-column">
+          <Column1 OnlyCat={OnlyCat} />
         </div>
+        <div class="category-column">
+          <Column2 content={content} />
+        </div>
+      </div>
+    </>
+  );
+};
 
-        </>
-    )
-}
-
-export default Category
+export default Category;

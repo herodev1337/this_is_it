@@ -40,7 +40,6 @@ h3 {
   display: flex;
   flex-direction: row;
   height: 80vh;
-  border: 0.1rem solid white;
   color: #00B4C5;
 }
 
@@ -52,12 +51,51 @@ h3 {
 }
 .category-column {
   width: 50%;
+
+
+//words around penta - pls change this   
+#Kreativität {
+  position: absolute;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 4rem 19.5rem;
+}
+
+#Technik {
+  position: absolute;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 11rem 9rem;
+}
+
+#Soziales {
+  position: absolute;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 11rem 33rem;
+}
+
+#Forschung {
+  position: absolute;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 22rem 9.5rem;
+}
+
+#Wirtschaft {
+  position: absolute;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 22rem 30rem;
+}
+
 }
 .penta {
-  margin-left: 10rem;
+  margin-left: 35% ;
+  margin-top: 15%;
   background-color: #00B4C5;
-  height: 500px;
-  width: 500px;
+  height: 250px;
+  width: 250px;
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }
 
