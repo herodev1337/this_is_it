@@ -23,7 +23,35 @@ const posts = [
     description: 'i bims cool',
   },
   {
-    name: 'Ford Mondeo',
+    name: 'looooooooreeee',
+    description: 'baaaaa',
+  },
+  {
+    name: 'Tooor',
+    description: 'hihi',
+  },
+  {
+    name: 'Fachinformatiker',
+    description: 'swag',
+  },
+  {
+    name: 'Anwendungen',
+    description: 'cool',
+  },
+  {
+    name: 'React',
+    description: 'reaktiv',
+  },
+  {
+    name: 'Comic Sans TM',
+    description: 'best font',
+  },
+  {
+    name: 'Thinkbook',
+    description: 'teuer',
+  },
+  {
+    name: 'Sqit',
     description: 'i bims cool',
   },
 ];
@@ -40,8 +68,7 @@ const filterPosts = (posts, query) => {
 };
 
 const Career = () => {
-  const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
+  const query = document.getElementsByName('s').value;
   const [searchQuery, setSearchQuery] = useState(query || '');
   const filteredPosts = filterPosts(posts, searchQuery);
   return (
@@ -49,8 +76,14 @@ const Career = () => {
       <div id="card-div">
         {filteredPosts.map(post => (
           <div className="card">
-            <h2>{post.name}</h2>
-            <p>{post.description}</p>
+            <div className="card-inner">
+              <div className="card-front">
+                <h2>{post.name}</h2>
+              </div>
+              <div className="card-back">
+                <p>{post.description}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

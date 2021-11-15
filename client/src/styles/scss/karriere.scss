@@ -1,16 +1,16 @@
 //  IMPORTS
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 //  GENERAL
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Mono";
-  background-color: #1D073B;
+  font-family: 'Roboto Mono';
+  background-color: #1d073b;
 }
 body {
-height: 100vh;
-background-color: #1D073B;
+  height: 100%;
+  background-color: #1d073b;
 }
 
 //topbar
@@ -21,30 +21,32 @@ h3 {
   width: 100%;
   display: flex;
   flex-direction: row;
-  
-  color: #00B4C5;
+
+  color: #00b4c5;
 }
 .button {
   width: 50%;
   display: flex;
   justify-content: center;
   margin: 0px 32px;
-  color: #00B4C5;
+  color: #00b4c5;
   h3 {
     margin: 0;
   }
 }
 .active-button {
-  background-color: #00B4C5;
-  color: #1D073B;
+  background-color: #00b4c5;
+  color: #1d073b;
 }
 
 //main
 #karriere_main_content {
   display: flex;
   flex-direction: row;
-  height: 80vh;
-  color: #00B4C5;
+  min-height: 42.2vw;
+  height: 100%;
+  color: #00b4c5;
+  background-color: #1d073b;
 }
 
 //Category
@@ -56,48 +58,46 @@ h3 {
 .category-column {
   width: 50%;
 
+  //words around penta - pls change this
+  #Kreativität {
+    position: absolute;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 4rem 19.5rem;
+  }
 
-//words around penta - pls change this   
-#Kreativität {
-  position: absolute;
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 4rem 19.5rem;
-}
+  #Technik {
+    position: absolute;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 11rem 9rem;
+  }
 
-#Technik {
-  position: absolute;
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 11rem 9rem;
-}
+  #Soziales {
+    position: absolute;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 11rem 33rem;
+  }
 
-#Soziales {
-  position: absolute;
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 11rem 33rem;
-}
+  #Forschung {
+    position: absolute;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 22rem 9.5rem;
+  }
 
-#Forschung {
-  position: absolute;
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 22rem 9.5rem;
-}
-
-#Wirtschaft {
-  position: absolute;
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 22rem 30rem;
-}
-
+  #Wirtschaft {
+    position: absolute;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 22rem 30rem;
+  }
 }
 .penta {
-  margin-left: 35% ;
+  margin-left: 35%;
   margin-top: 15%;
-  background-color: #00B4C5;
+  background-color: #00b4c5;
   height: 250px;
   width: 250px;
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
@@ -105,179 +105,85 @@ h3 {
 
 .category-field {
   margin: 1.5rem;
-  border: solid 3px  #00B4C5;
+  border: solid 3px #00b4c5;
   border-radius: 5px;
   h2 {
     margin: 0.6rem 3rem;
     background-color: transparent;
   }
+  p {
+    background-color: transparent;
+    margin-left: 1rem;
+  }
 }
 .category-field:hover {
-  background-color: #00B4C5;
-  color: #1D073B;
+  background-color: #00b4c5;
+  color: #1d073b;
 }
 
 //Career
 #bar {
-  margin:  1rem 0 0 84%;
+  margin: 1rem 0 0 84%;
   position: absolute;
   display: flex;
   justify-self: flex-end;
 }
 #header-search {
-  background-color: #1D073B;
-  color: #00B4C5;
-  border: solid 2px #00B4C5;
+  background-color: #1d073b;
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
 }
-  
+
 #card-div {
-  min-width: 100vw;
+  min-width: 98.9vw;
   display: flex;
   flex-flow: row wrap;
-  
   margin-top: 2rem;
 }
 .card {
   min-width: 16vw;
-  height: 16vw;
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-between;
-  
-  margin-top: 1.5rem;
-  border: solid #00b4c5;
-  border-radius: 2%;
-  margin: 1.5rem;
-  color: #1D073B;
-  background-color:#00B4C5;
-  h2 {
-    background-color: transparent;
-    margin-top: 1rem;
-    font-family: "Roboto Mono", monospace;
-    font-size: 1.75rem;
-    color: #1D073B;
-    text-align: center;
-  }
-}
-p {
-  background-color: transparent;
-}  
-
-
-/*
-//  TAGS
-header {
-  display: flex;
-  flex-direction: row;
-}
-
-h1 {
-  margin-bottom: 0.2rem;
-  font-size: 1.75rem;
-  font-family: 'Roboto Mono', monospace;
-}
-
-hr {
-  border: 0.05rem solid #00B4C5;
-}
-
-form {
-  display: flex;
-  flex-direction: row;
-}
-
-// IDs
-#karriere_content {
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-
-  background-color: #1D073B;
-}
-
-//  CLASSES
-.container {
-  margin: 1.5rem;
-}
-
-.content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  justify-content: space-between;
-}
-
-.heading {
-  width: 100%;
-  
-  display: flex;
-  flex-direction: column;
-}
-
-.field {
-  margin-left: 1.5rem;
-  padding: 0 0.5rem;
-  border: 0.1rem solid #00B4C5;
-
-  background-color: #1D073B;
-
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1.75rem;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.card {
   width: 16vw;
   height: 16vw;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-between;
-  
-  margin-top: 1.5rem;
-  border: solid #00b4c5;
-  border-radius: 2%;
-
-  background-color:  #005c99;
-  
+  margin: 1.5rem;
+  background-color: transparent;
+}
+.card-inner {
+  height: 100%;
+  width: 100%;
+  border: solid 5px #00b4c5;
+  border-radius: 5px;
+  color: #1d073b;
+  background-color: #00b4c5;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
   h2 {
     margin-top: 1rem;
-
-    font-family: "Roboto Mono", monospace;
-    font-size: 1rem;
-
-    color: #1D073B;
-
-    text-align: center;
+    background-color: transparent;
+    color: #1d073b;
   }
-
   p {
-    margin: 2rem 1rem;
-
-    font-family: Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-
-    color: #1D073B;
-  }
-
-  &:hover {
-    border: solid #b7e2ff;
-  }
-
-  .karriereprofil {
-    width: 100%;
-
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    background-color: transparent;
+    color: #1d073b;
   }
 }
-*/
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  background-color: #00b4c5;
+  color: #1d073b;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
