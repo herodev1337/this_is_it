@@ -3,8 +3,8 @@ import Search from '../Header, Search, Filter/Search';
 
 const posts = [
   {
-    name: 'Fiat Multipla',
-    description: 'beste auto, yeah',
+    name: 'Game Designer',
+    description: '',
   },
   {
     name: 'Fiat 500',
@@ -72,7 +72,10 @@ const Career = () => {
   const [searchQuery, setSearchQuery] = useState(query || '');
   const filteredPosts = filterPosts(posts, searchQuery);
   return (
-    <>
+    <div id="career">
+      <div id="search">
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      </div>
       <div id="card-div">
         {filteredPosts.map(post => (
           <div className="card">
@@ -87,8 +90,7 @@ const Career = () => {
           </div>
         ))}
       </div>
-      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-    </>
+    </div>
   );
 };
 

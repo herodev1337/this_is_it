@@ -33,11 +33,11 @@ const OnlyCat = content.slice(1, 6);
 const Category = () => {
   return (
     <>
-      <div class="category-row">
-        <div class="category-column">
+      <div className="category-row">
+        <div className="category-column">
           <Column1 OnlyCat={OnlyCat} />
         </div>
-        <div class="category-column">
+        <div className="category-column">
           <Column2 content={content} />
         </div>
       </div>
