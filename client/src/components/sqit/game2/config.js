@@ -4,7 +4,7 @@ import { Sketch } from './sketch';
 import * as helpers from '../helpers';
 
 const get_sketch = (ref, setText1, setText2) => {
-  const re = /if\((?:!shield|shield === false|shield===false)\)(?:{| {)\n(?:\t+| +)(?:shield=true;|shield += +true;|shield += +true +;)\n}(?:\n|| +)(?:else if\(shield\){|else if +\( +shield +\) +{|else if\(shield===true\){|else if +\( +shield +=== +true +\) +{)\n+(?:shieldbreaker=false;|(?: +|\t+)shieldbreaker += +false;)\n}/;
+  const re = /if\((?:!shield| +shield!| +!shield +|shield===false| +shield===false| +shield===false +| +shield +=== +false +)\)(?:{| +{|\n{|\n+ +{)\n(?: +||\t+)shield(?:=true| +=true| += +true);\n+}(?:else if| +else if +| +else if|else if +|\nelse if| +\nelse if|\n+else if +| +\nelse if +)\((?:shield| +shield|shield +| +shield +|shield===true| +shield===true|shield===true +| +shield===true +|shield +=== +true| +shield +=== +true +)\)(?:\n{|{| +{)\n+(?:\t+| +||)shieldbreaker(?:=false| +=false| += +false|= +false);\n+}/;
 
   const myp5 = new p5(Sketch, ref);
   const editorGetter = (value) => {
@@ -30,10 +30,10 @@ const ed1_txt = `// It seems like our spaceship got no chance to survive the swa
   // Create a if() statement that turns our shield on(true) if it is turned off(false)
   // and after that create a else if() statement that deactivate(false) the enemy shieldbreaker when our shield is aktive(true)....
   // Maybe this will outsmart the enemies...\n\nlet shield = false;\n\nlet shieldbreaker = true\n\nif(){
+
+}else if(){
   
-  }else if(){
-  
-  }`;
+}`;
 const ed2_txt = `Output:\nclose`;
 
 export { ed1_txt, ed2_txt };

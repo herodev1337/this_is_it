@@ -19,7 +19,9 @@ let Sketch = (p) => {
   let starColor = 255;
   let shield = false;
   let shieldbreaker = true;
-  p.isBreakerActive = true
+  p.isBreakerActive = true;
+  //maybe implement autofire if var is set to true (to end the game faster)
+  let autoFire = false;
 
   p.setup = () => {
     p.createCanvas(helpers.realWidth(90), helpers.view_2_px(55));
@@ -53,6 +55,20 @@ let Sketch = (p) => {
       shieldbreaker = false;
       shield = true;
     }
+    if(!autoFire){
+      p.keyPressed = () => {
+        if (p.keyCode === 32) {
+          player.fire(shots);
+        }
+        if (p.keyCode === 83) {
+          shield = true;
+        }
+      }
+    }else if(autoFire){
+      if(p.keyIsDown(32)){
+        player.fire(shots);
+      }
+    }
     
     p.push();
     p.noStroke();
@@ -79,18 +95,11 @@ let Sketch = (p) => {
     enemyfunc();
   };
 
-  p.keyPressed = () => {
-    if (p.keyCode === 32) {
-      player.fire(shots);
-    }
-    if (p.keyCode === 83) {
-      shield = true;
-    }
-  }
+  
   function shotfunc() {
     for (let shot of shots) {
-      shot.draw(shots);
-      shot.move(enemies, shield, enemy);
+      shot.draw(shots, autoFire);
+      shot.move(enemies, shield, enemy,p);
     }
   }
 
