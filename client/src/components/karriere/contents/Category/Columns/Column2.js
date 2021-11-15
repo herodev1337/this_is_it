@@ -6,6 +6,7 @@ const Column2 = ({ content }) => {
     <>
       {content.map((el, i) => (
         <div
+          key={el.title}
           onClick={() => (active === i ? setActive(null) : setActive(i))}
           class="category-field"
         >

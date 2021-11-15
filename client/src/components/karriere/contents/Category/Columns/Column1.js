@@ -10,7 +10,9 @@ const Column1 = ({ OnlyCat }) => {
   return (
     <>
       {OnlyCat.map(el => (
-        <p id={el.title}>{el.title}</p>
+        <p key={el.title} id={el.title}>
+          {el.title}
+        </p>
       ))}
       <div
         class="penta"

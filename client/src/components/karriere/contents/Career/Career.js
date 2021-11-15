@@ -78,7 +78,7 @@ const Career = () => {
       </div>
       <div id="card-div">
         {filteredPosts.map(post => (
-          <div className="card">
+          <div className="card" key={post.name}>
             <div className="card-inner">
               <div className="card-front">
                 <h2>{post.name}</h2>
