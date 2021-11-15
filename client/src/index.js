@@ -35,9 +35,8 @@ ReactDOM.render(
           <Route path="sqit">
             <Route path=":game" element={<Sqit />} />
           </Route>
-          <Route path="quiz" element={<QuizOverview />}>
-            <Route path=":id" element={<Quiz />} />
-          </Route>
+          <Route path="quiz/:quizId" element={<Quiz />} />
+          <Route path="quiz" element={<QuizOverview />} />
         </Route>
       </Routes>
     }

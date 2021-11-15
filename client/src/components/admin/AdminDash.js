@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import { validateJWT } from '../../utils/hooks/use-auth';
 
 import '../../styles/scss/admin_panel.scss';
 
@@ -8,10 +11,17 @@ import DashNav from './DashNav';
 import DashView from './DashView';
 
 function AdminDash() {
-  // TODO: add auth context (preferably using hooks)
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(
+    () =>
+      validateJWT(() => navigate('../login', { state: { from: location } })),
+    []
+  );
 
   return (
-    <div style={{maxWidth: "99vw"}}>
+    <div style={{ maxWidth: '99vw' }}>
       <Row>
         <Col sm={2}>
           <DashNav />

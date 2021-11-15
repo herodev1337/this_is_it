@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useLocation } from 'react-router';
 
 import 'styles/scss/quiz_editor.scss';
 
@@ -13,16 +14,24 @@ const axios = require('axios').default;
 const apiQuiz = axios.create({
   baseURL: 'http://localhost:3000/api/quizzes/',
   timeout: 1000,
-  withCredentials: true
+  withCredentials: true,
 });
 
 export default function QuizEditor() {
-  const [name, setName] = useState('');
-  const [instructions, setInstructions] = useState('');
-  const [enabled, setEnabled] = useState(true);
+  const location = useLocation();
+  const initialQuiz = location.state ? location.state.quiz : {
+    name: '',
+    instructions: '',
+    isEnabled: true,
+    questions: [],
+  };
+
+  const [name, setName] = useState(initialQuiz.name);
+  const [instructions, setInstructions] = useState(initialQuiz.instructions);
+  const [enabled, setEnabled] = useState(initialQuiz.isEnabled);
   const [httpResponse, setHttpResponse] = useState('');
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState(initialQuiz.questions);
   const [question, setQuestion] = useState('');
   const [explanation, setExplanation] = useState('');
   const [questionEnabled, setQuestionEnabled] = useState(true);
@@ -44,18 +53,35 @@ export default function QuizEditor() {
       isEnabled: enabled,
       questions: questions,
     };
-    apiQuiz
-      .post('./', quiz)
-      .then(function(response) {
-        console.log(response);
-        setName("")
-        setInstructions("")
-        setEnabled(true)
-        setQuestions([])
-      })
-      .catch(function(error) {
-        setHttpResponse(error.message);
-      });
+    if (location.state) {
+      apiQuiz
+        .put(`./${location.state.quiz._id}`, quiz)
+        .then(function (response) {
+          console.log(response);
+          setName('');
+          setInstructions('');
+          setEnabled(true);
+          setQuestions([]);
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error)
+          setHttpResponse(error.message);
+        });
+    } else {
+      apiQuiz
+        .post('./', quiz)
+        .then(function (response) {
+          console.log(response);
+          setName('');
+          setInstructions('');
+          setEnabled(true);
+          setQuestions([]);
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error)
+          setHttpResponse(error.message);
+        });
+    }
   }
 
   return (
@@ -67,7 +93,7 @@ export default function QuizEditor() {
               <Form.Label>Quiz Name</Form.Label>
               <Form.Control
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Choose a Name for your Quiz"
                 required
               />
@@ -76,7 +102,7 @@ export default function QuizEditor() {
               <Form.Label>Instructions</Form.Label>
               <Form.Control
                 value={instructions}
-                onChange={e => setInstructions(e.target.value)}
+                onChange={(e) => setInstructions(e.target.value)}
                 placeholder="Give Instructions for your Quiz (optional)"
               />
             </Form.Group>

@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const logger = require('../utils/logger')
 const { registerValidator } = require('../utils/validator')
+const { checkAccessPermission, decodeToken } = require('../utils/auth')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -26,7 +27,7 @@ const registerUser = async (req, res) => {
 
     try {
         const savedUser = await user.save()
-        return res.cookie('auth_token', generateJWTtoken({
+        return res.cookie('auth_token', generateJWToken({
             username: currentUser.username,
             fullname: currentUser.username,
             groups: currentUser.groups
@@ -52,7 +53,7 @@ const loginUser = async (req, res) => {
     const compPassword = await comparePassword(req.body.password, currentUser.password);
     if (!compPassword) return res.status(200).json({ error: 'Password dosent match!' })
 
-    return res.cookie('auth_token', generateJWTtoken({
+    return res.cookie('auth_token', generateJWToken({
         username: currentUser.username,
         fullname: currentUser.username,
         groups: currentUser.groups
@@ -102,11 +103,23 @@ const comparePassword = async (password, hashedPassword) => {
  * @param  {Object} data - The data in the JWT token
  * @returns {String}
  */
-const generateJWTtoken = (data) => {
+const generateJWToken = (data) => {
     return jwt.sign(data, config.auth.token_secret)
 }
+
+const validateJWToken = async (req, res) => {
+  let token = await decodeToken(req.cookies.auth_token);
+  if (token) {
+    return res.status(200).json(token);
+  } else {
+    return res
+      .status(401)
+      .json({ error: 'No valid JSON WebToken in cookies, please re-log!' });
+  }
+};
 
 module.exports = {
     registerUser,
     loginUser,
+    validateJWToken
 }

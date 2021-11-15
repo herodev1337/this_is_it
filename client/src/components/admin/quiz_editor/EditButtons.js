@@ -9,19 +9,19 @@ export default function EditButtons(props){
   return(
     <div>
       <span
-        onClick={()=>props.moveItem(props.index, -1)}
+        onClick={(e)=>props.moveItem(e, props.index, -1)}
         style={{cursor:'pointer'}}
       >
         <ArrowUp data-tip="move item up" data-for="edit-buttons"/>
       </span>
       <span
-        onClick={()=>props.moveItem(props.index, 1)}
+        onClick={(e)=>props.moveItem(e, props.index, 1)}
         style={{cursor:'pointer'}}
       >
         <ArrowDown data-tip="move item down" data-for="edit-buttons"/>
       </span>
       <span
-        onClick={()=>props.trashItem(props.index)}
+        onClick={(e)=>props.trashItem(e, props.index)}
         style={{cursor:'pointer'}}
       >
         <Trash data-tip="delete item" data-for="edit-buttons"/>

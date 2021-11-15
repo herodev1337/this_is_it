@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 
-const authContext = createContext();
+const AuthContext = createContext();
 
 const axios = require('axios').default;
 const api = axios.create({
@@ -18,8 +18,8 @@ function useProvideAuth() {
       .post('./login', { username: username, password: password }) // TODO: "remember me"
       .then((response) => {
         console.log(response.data.data.message);
-        setIsAuthenticated(true); // TODO: doesnt currently work
-        cb();
+        setIsAuthenticated(true);
+        cb()
       })
       .catch(function (error) {
         // TODO: Error handling
@@ -46,10 +46,25 @@ function useProvideAuth() {
 
 //* Authentication Wrapper
 export function AuthWrapper( { children } ) {
-  const auth = useAuth();
-  return (<authContext.Provider value={auth}>{children}</authContext.Provider>)
+  const auth = useProvideAuth();
+  return (<AuthContext.Provider value={auth}>{children}</AuthContext.Provider>)
 }
 
+//* Api Hook
 export const useAuth = () => {
-  return useContext(authContext);
+  return useContext(AuthContext);
 }
+
+//* JWT Verification Effect
+export const validateJWT = (redirect) => {
+  api
+    .get('./validate')
+    .then(function (response) {
+      console.log(response);
+      console.log('valid token')
+    })
+    .catch(function (error) {
+      console.log(error.response.data.error);
+      redirect()
+    });
+} 

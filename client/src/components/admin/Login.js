@@ -20,7 +20,7 @@ function Login() {
   const submitLogin = (e) => {
     e.preventDefault()
     auth.login(username, password, ()=>{
-      navigate(location.state ? location.state.from : '/admin/dash/')
+      navigate(location.state ? location.state.from : '../dash/')
     })
   }
 

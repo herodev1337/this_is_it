@@ -6,9 +6,7 @@ import { AuthWrapper } from '../utils/hooks/use-auth';
 export default function App() {
   return (
     <div>
-      <AuthWrapper>
-        <Login />
-      </AuthWrapper>
+      <Login />
     </div>
   );
 }
