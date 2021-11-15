@@ -18,7 +18,7 @@ function useProvideAuth() {
       .post('./login', { username: username, password: password }) // TODO: "remember me"
       .then((response) => {
         console.log(response.data.data.message);
-        setIsAuthenticated(true);
+        setIsAuthenticated(true); // TODO: doesnt currently work
         cb();
       })
       .catch(function (error) {
@@ -46,7 +46,7 @@ function useProvideAuth() {
 
 //* Authentication Wrapper
 export function AuthWrapper( { children } ) {
-  const auth = useProvideAuth();
+  const auth = useAuth();
   return (<authContext.Provider value={auth}>{children}</authContext.Provider>)
 }
 
