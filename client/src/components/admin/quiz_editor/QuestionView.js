@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import ListGroup from 'react-bootstrap/ListGroup'
-import Collapse from 'react-bootstrap/Collapse'
 import Badge from 'react-bootstrap/Badge'
 import { DashCircleDotted, BoxArrowUpRight } from 'react-bootstrap-icons';
 
@@ -12,7 +11,7 @@ import "styles/scss/quiz_editor.scss"
 export default function QuestionView(props) {
   const [questions, setQuestions] = [props.questions, props.setQuestions]
 
-  function moveQuestion(i, dir){
+  function moveQuestion(_, i, dir){
     if (i+dir >= 0 && i+dir < questions.length){
       let newQuestions = [...questions];
       let temp = newQuestions[i]
@@ -22,7 +21,7 @@ export default function QuestionView(props) {
     }
   }
 
-  function trashQuestion(i){
+  function trashQuestion(_, i){
     let newQuestions = [...questions];
     newQuestions.splice(i, 1);
     setQuestions(newQuestions);

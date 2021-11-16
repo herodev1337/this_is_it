@@ -60,8 +60,7 @@ export const validateJWT = (redirect) => {
   api
     .get('./validate')
     .then(function (response) {
-      console.log(response);
-      console.log('valid token')
+      console.log(response.data);
     })
     .catch(function (error) {
       console.log(error.response.data.error);

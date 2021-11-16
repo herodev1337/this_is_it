@@ -54,7 +54,7 @@ export default function QuizOverview() {
 
   const editQuiz = (e, quiz, i) => {
     e.stopPropagation()
-    navigate('../quiz-editor', { state: { quiz: quiz, index: i } })
+    navigate('/admin/dash/quiz-editor', { state: { quiz: quiz } })
   }
 
   return (

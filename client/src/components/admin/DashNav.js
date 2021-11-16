@@ -1,40 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Accordion from 'react-bootstrap/Accordion';
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
-import { BoxArrowRight, PersonCheck } from 'react-bootstrap-icons';
+import { BoxArrowRight, PersonCheck, PlusLg } from 'react-bootstrap-icons';
+import { useLocation } from 'react-router-dom';
 
 import { useAuth } from '../../utils/hooks/use-auth'
 
 function DashNav() {
   const auth = useAuth();
+  const location = useLocation();
+  const [activeView, setActiveView] = useState('dash-')
+
+  useEffect(()=>{
+    const tag = location.pathname.split("/").slice(3)
+    setActiveView('dash-'+tag.join('-'))
+  }, [location])
 
   return (
     <div className="dash-nav">
       <Row className="nav-brand">
         <PersonCheck />
       </Row>
+      {activeView}
       <Row>
         <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Quiz</Accordion.Header>
+          <ListGroupItem id="dash-main" as={Link} to='./'>Main</ListGroupItem>
+
+          <Accordion.Item id="dash-posts" eventKey="0">
+            <Accordion.Header as={Link} to='./posts'>Posts</Accordion.Header>
             <Accordion.Body>
               <Nav>
                 <Nav.Item>
-                  <Nav.Link as={Link} to='./quiz-editor'>Quiz-Editor</Nav.Link>
-                  <Nav.Link as={Link} to='./quizzes'>Quizzes</Nav.Link>
+                  <Nav.Link as={Link} to='./'>placeholder</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>Accordion Item #2</Accordion.Header>
+
+          <Accordion.Item id="dash-users" eventKey="1">
+            <Accordion.Header as={Link} to='./users'>Users</Accordion.Header>
             <Accordion.Body>
-              <Nav></Nav>
+              <Nav>
+                <Nav.Item>
+                  <Nav.Link as={Link} to='./'><PlusLg /> Add User</Nav.Link>
+                </Nav.Item>
+              </Nav>
             </Accordion.Body>
           </Accordion.Item>
+
+          <Accordion.Item id="dash-quizzes" eventKey="2">
+            <Accordion.Header as={Link} to='./quizzes'>Quiz</Accordion.Header>
+            <Accordion.Body>
+              <Nav>
+                <Nav.Item id="dash-quiz-editor">
+                  <Nav.Link as={Link} to='./quiz-editor'><PlusLg /> Create New</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Accordion.Body>
+          </Accordion.Item>
+
         </Accordion>
       </Row>
       <Row>

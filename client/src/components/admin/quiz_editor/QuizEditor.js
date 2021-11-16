@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -19,12 +19,21 @@ const apiQuiz = axios.create({
 
 export default function QuizEditor() {
   const location = useLocation();
-  const initialQuiz = location.state ? location.state.quiz : {
+  let initialQuiz = {
     name: '',
     instructions: '',
     isEnabled: true,
     questions: [],
-  };
+  }
+  if (location.state) {
+    if (location.state.quiz) {
+      initialQuiz = location.state.quiz
+    } else {
+      if (location.state.from.state.quiz) {
+        initialQuiz = location.state.from.state.quiz
+      }
+    }
+  }
 
   const [name, setName] = useState(initialQuiz.name);
   const [instructions, setInstructions] = useState(initialQuiz.instructions);
@@ -127,7 +136,7 @@ export default function QuizEditor() {
             >
               Submit Quiz
             </Button>
-            <p>{httpResponse}</p>
+            <span>{httpResponse}</span>
           </Col>
           <Col>
             <QuestionEditor

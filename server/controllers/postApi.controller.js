@@ -6,7 +6,7 @@ const { sendData, sendError } = require("../utils/sendJSON");
 
 const getPosts = (req, res, next) => {
     let searchString = {public: true};
-    if(auth(req.cookies.auth_token)){
+    if(auth.verifyToken(req.cookies.auth_token)){
         searchString = {};
     }
     Post.find(searchString).then(responseData => { 

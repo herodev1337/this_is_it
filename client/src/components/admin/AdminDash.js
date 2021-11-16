@@ -15,8 +15,9 @@ function AdminDash() {
   const navigate = useNavigate();
 
   useEffect(
-    () =>
-      validateJWT(() => navigate('../login', { state: { from: location } })),
+    () => {
+      validateJWT(() => navigate('../login', { state: { from: location } }))
+    },
     []
   );
 
