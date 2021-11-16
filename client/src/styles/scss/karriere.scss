@@ -29,6 +29,7 @@ h3 {
   justify-content: center;
   margin: 0px 32px;
   color: #00b4c5;
+  cursor: pointer;
   h3 {
     margin: 0;
   }
@@ -58,11 +59,15 @@ h3 {
   width: 50%;
 
   //words around penta - pls change this
-  #Kreativität {
-    position: absolute;
+  #Kreativität::before{
+    content: 'asdassdfsdfd';
+    position:absolute;
     font-size: 1.75rem;
     font-weight: bold;
-    margin: 4rem 19.5rem;
+    color: white;
+    background-color: aliceblue;
+    z-index: 1000;
+    display: block;
   }
 
   #Technik {
@@ -86,7 +91,7 @@ h3 {
     margin: 22rem 9.5rem;
   }
 
-  #Wirtschaft {
+  #Wirtschaft::before {
     position: absolute;
     font-size: 1.75rem;
     font-weight: bold;
@@ -94,8 +99,7 @@ h3 {
   }
 }
 .penta {
-  margin-left: 35%;
-  margin-top: 15%;
+  margin: 7rem auto auto auto;
   background-color: #00b4c5;
   height: 250px;
   width: 250px;
@@ -105,6 +109,7 @@ h3 {
   margin: 1.5rem;
   border: solid 3px #00b4c5;
   border-radius: 5px;
+  cursor: pointer;
   h2 {
     margin: 0.6rem 3rem;
     background-color: transparent;
@@ -190,6 +195,45 @@ h3 {
 .card-back {
   transform: rotateY(180deg);
 }
+.modal-content {
+  height: 90vh;
+  border-radius: 5px;
+  background-color: #00b4c5;
+  color: #1d073b;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Mono';
+  button {
+    justify-self: flex-end;
+    background-color: transparent;
+    width: 50%;
+  }
+}
+.fade.modal.show {
+  background-color: transparent;
+}
+
+#card-big {
+  margin-top: 1rem;
+  height: 90%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  h3 {
+    align-self: center;
+  }
+  h2 {
+    margin-top: 1rem;
+    align-self: flex-start;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  p{
+    background-color: transparent;
+  }
+}
 
 @media only screen and (max-width: 800px) {
   //Category
@@ -200,10 +244,8 @@ h3 {
     width: 100%;
   }
   .penta {
-    margin-top: 2rem;
+    margin: auto;
     justify-self: center;
-    margin-bottom: 3rem;
-    margin-left: 17rem;
   }
   #Kreativität,
   #Technik,

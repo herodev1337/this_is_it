@@ -8,7 +8,7 @@ const Column2 = ({ content }) => {
         <div
           key={el.title}
           onClick={() => (active === i ? setActive(null) : setActive(i))}
-          class="category-field"
+          className="category-field"
         >
           <h2>{el.title}</h2>
           <p style={active === i ? {} : { display: 'none' }}>{el.content}</p>
