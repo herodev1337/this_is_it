@@ -62,6 +62,21 @@ class Player {
       }
     }
   }
+  collision(other) {
+    this.v1 = 0;
+    this.v2 = 0;
+    this.direction = p5.Vector.sub(other.pos, this.pos)
+    this.dist = this.direction.mag()
+    this.direction.normalize();
+    //this is 60 because that is the radius you give them times two
+    this.correction = ((this.shieldSize+this.r)*2)-this.dist;
+    
+    other.pos.add(p5.Vector.mult(this.direction,this.correction/2))
+    this.v1 = this.direction.dot(this.vel)
+    this.v2 = this.direction.dot(other.vel)
+    this.direction.mult(this.v1-this.v2)
+    other.vel.add(p5.Vector.mult(this.direction,1))
+  }
 
   show(p, shield) {
     p.push();

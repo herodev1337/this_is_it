@@ -17,11 +17,11 @@ let Sketch = (p) => {
   let enemy;
   let shot;
   let starColor = 255;
-  let shield = false;
+  let shield = true;
   let shieldbreaker = true;
-  p.isBreakerActive = true;
+  p.isBreakerActive = false;
   //maybe implement autofire if var is set to true (to end the game faster)
-  let autoFire = false;
+  let autoFire = true;
 
   p.setup = () => {
     p.createCanvas(helpers.realWidth(90), helpers.view_2_px(55));
@@ -114,11 +114,12 @@ let Sketch = (p) => {
         player.pos.x,
         player.pos.y
       );
-      if (playerDistance < enemy.r + player.shieldSize + player.r && shield) {
-        enem.vel.x *= -10;
-        enem.vel.y *= -10;
-        enem.pos.x -= player.shieldSize;
-        enem.pos.y -= player.shieldSize;
+      if (playerDistance <= enemy.r + player.shieldSize + player.r && shield) {
+        player.collision(enem);
+        // enem.vel.x *= -10;
+        // enem.vel.y *= -10;
+        enem.acc.x *= -(player.dist);
+        enem.acc.y *=  -(player.dist);
       }
     }
   }
