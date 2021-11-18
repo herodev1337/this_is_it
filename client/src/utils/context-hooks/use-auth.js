@@ -54,16 +54,3 @@ export function AuthWrapper( { children } ) {
 export const useAuth = () => {
   return useContext(AuthContext);
 }
-
-//* JWT Verification Effect
-export const validateJWT = (redirect) => {
-  api
-    .get('./validate')
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.log(error.response.data.error);
-      redirect()
-    });
-} 

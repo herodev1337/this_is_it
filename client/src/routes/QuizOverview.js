@@ -1,7 +1,7 @@
 import React from 'react';
 import QuizOverview from '../components/quiz/QuizOverview';
 
-import {AuthWrapper} from '../utils/hooks/use-auth';
+import {AuthWrapper} from '../utils/context-hooks/use-auth';
 
 export default function App() {
   return (

@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { validateJWT } from '../../utils/hooks/use-auth';
+import { useUser } from '../../utils/context-hooks/use-user';
 
 import '../../styles/scss/admin_panel.scss';
 
@@ -13,10 +13,11 @@ import DashView from './DashView';
 function AdminDash() {
   const location = useLocation();
   const navigate = useNavigate();
+  const user = useUser();
 
   useEffect(
     () => {
-      validateJWT(() => navigate('../login', { state: { from: location } }))
+      user.validateJWT(() => navigate('../login', { state: { from: location } }))
     },
     []
   );

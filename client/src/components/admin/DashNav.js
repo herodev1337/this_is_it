@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { BoxArrowRight, PersonCheck, PlusLg } from 'react-bootstrap-icons';
 import { useLocation } from 'react-router-dom';
 
-import { useAuth } from '../../utils/hooks/use-auth'
+import { useAuth } from '../../utils/context-hooks/use-auth'
 
 function DashNav() {
   const auth = useAuth();

@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useLocation } from "react-router-dom";
 
-import {useAuth} from '../../utils/hooks/use-auth'
+import {useAuth} from '../../utils/context-hooks/use-auth'
 
 function Login() {
   const auth = useAuth();

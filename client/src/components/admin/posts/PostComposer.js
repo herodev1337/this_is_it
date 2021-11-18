@@ -6,10 +6,11 @@ import Button from 'react-bootstrap/Button';
 
 function PostComposer({ addPost }) {
   const [postContent, setPostContent] = useState("")
-  const [remainingChars, setRemainingChars] = useState(180)
+  const charlimit = 180;
+  const [remainingChars, setRemainingChars] = useState(charlimit)
 
   useEffect(() => {
-    setRemainingChars(180 - postContent.length)
+    setRemainingChars(charlimit - postContent.length)
     if (remainingChars <= 0) {
       setPostContent(postContent.slice(0, 180))
     }
@@ -22,7 +23,7 @@ function PostComposer({ addPost }) {
   }
   
   return (
-    <div>
+    <div style={{margin: "15px 0"}}>
       <Card>
         <Form onSubmit={e => submitPost(e)} style={{ color: 'black' }}>
           <FloatingLabel

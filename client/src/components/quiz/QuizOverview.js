@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import EditButtons from '../admin/quiz_editor/EditButtons';
 
-import { useAuth } from '../../utils/hooks/use-auth'
+import { useAuth } from '../../utils/context-hooks/use-auth'
 
 const axios = require('axios').default;
 const api = axios.create({

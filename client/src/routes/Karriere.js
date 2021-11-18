@@ -1,9 +1,10 @@
 import React from 'react';
+import Karriere from '../components/Karriere';
 
 export default function App() {
   return (
     <div>
-      <p>Berufsinformations Seite</p>
+      <Karriere />
     </div>
   );
 }

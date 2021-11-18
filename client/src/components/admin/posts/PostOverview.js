@@ -29,13 +29,13 @@ function PostOverview() {
   }
 
   return (
-    <div>
+    <div style={{maxWidth: "50%", marginLeft: "20%"}}>
+      <PostComposer addPost={addPost}/>
       <div id="timeline">
-        {posts.length ? posts.map((post, i) => (
-          <Post post={post}/>
+        {posts.length ? posts.reverse().map((post, i) => (
+          <Post key={`post_${i}`} post={post}/>
         )) : "no posts yet"}
       </div>
-      <PostComposer addPost={addPost}/>
     </div>
   );
 }
