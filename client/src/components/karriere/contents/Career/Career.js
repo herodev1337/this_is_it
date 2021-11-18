@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import Search from '../Header, Search, Filter/Search';
 import { Modal } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button'
+import React from 'react';
+import { useState } from 'react';
 
 const posts = [
   {
@@ -15,28 +15,33 @@ const posts = [
   {
     name: 'Game Artist',
     type: 'schulische Ausbildung',
-    core: 'Visuelle Gestaltung von Spielen, Level-Design(Landschaften und Storyboards), Modelle erstellen und Character-Design',
+    core:
+      'Visuelle Gestaltung von Spielen, Level-Design(Landschaften und Storyboards), Modelle erstellen und Character-Design',
     use: 'Spielehersteller, Gamestudios, Film & Fernsehen',
-    info: 'Unvergütete Ausbildung, https://www.ausbildung.de/berufe/game-artist/',
+    info:
+      'Unvergütete Ausbildung, https://www.ausbildung.de/berufe/game-artist/',
   },
   {
     name: 'Medieninformatik',
     type: '(Duales) Studium',
-    core: 'Verwaltung und Wartung von Rechnersystemen, Implementierung von Internetanwendungen, Erstellen von interaktiven Anwendungen',
+    core:
+      'Verwaltung und Wartung von Rechnersystemen, Implementierung von Internetanwendungen, Erstellen von interaktiven Anwendungen',
     use: 'Netzwerkunternehmen, Forschung, IT-Consulting',
     info: 'https://www.studycheck.de/studium/medieninformatik',
   },
   {
     name: 'Mediengestalter Digital und Print',
     type: 'Duale Ausbildung',
-    core: 'Gestaltung digitaler und gedruckter Medien, Analyse von Kundenwünschen',
+    core:
+      'Gestaltung digitaler und gedruckter Medien, Analyse von Kundenwünschen',
     use: 'Verlagshäuser, Werbeagenturen, Druckereien',
     info: 'https://www.ausbildung.de/berufe/mediengestalter-digital-print/',
   },
   {
     name: 'Game Programmer',
     type: 'Weiterbildung',
-    core: 'Umsetzen von Spielideen und Spielmechaniken, Anpassen von Spielen an unterschiedliche Betriebssysteme und Plattformen, 3D-Animation',
+    core:
+      'Umsetzen von Spielideen und Spielmechaniken, Anpassen von Spielen an unterschiedliche Betriebssysteme und Plattformen, 3D-Animation',
     use: 'Spielestudios, Software- und Datenbankanbieter',
     info: 'https://www.ausbildung.de/berufe/game-programmer/',
   },
@@ -103,8 +108,9 @@ const Career = () => {
   //Modal
   const [show, setShow] = useState(Array(posts.length).fill(false));
   const handleClose = () => {
-    setShow(Array(posts.length).fill(false))
-    };
+    setShow(Array(posts.length).fill(false));
+    console.log('dasd');
+  };
   const handleShow = i => {
     setShow(show.map((_, j) => i === j));
   };
@@ -116,16 +122,18 @@ const Career = () => {
       </div>
       <div id="card-div">
         {filteredPosts.map((post, i) => (
-          <div className="card" key={i} onClick={() => handleShow(i)}>
-            <div className="card-inner">
-              <div className="card-front">
-                <h2>{post.name}</h2>
-              </div>
-              <div className="card-back">
-                <p>{post.description}</p>
+          <>
+            <div className="card" key={i} onClick={() => handleShow(i)}>
+              <div className="card-inner">
+                <div className="card-front">
+                  <h2>{post.name}</h2>
+                </div>
+                <div className="card-back">
+                  <p>{post.description}</p>
+                </div>
               </div>
             </div>
-            <Modal show={show[i]} onHide={() => handleClose()}>
+            <Modal show={show[i]} onHide={handleClose}>
               <div id="card-big">
                 <h3>{post.name}</h3>
                 <h2>Ausbildungsart</h2>
@@ -137,11 +145,10 @@ const Career = () => {
                 <h2>Weitere Infos</h2>
                 <p>{post.info}</p>
               </div>
-              <Button type="button" onClick={() => handleClose()}>
-                Close
-              </Button>
+
+              <button onClick={handleClose}>Close</button>
             </Modal>
-          </div>
+          </>
         ))}
       </div>
     </div>

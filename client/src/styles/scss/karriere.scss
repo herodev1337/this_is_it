@@ -59,8 +59,7 @@ h3 {
   width: 50%;
 
   //words around penta - pls change this
-  #Kreativität::before{
-    content: 'asdassdfsdfd';
+  #Kreativität{
     position:absolute;
     font-size: 1.75rem;
     font-weight: bold;
@@ -71,10 +70,9 @@ h3 {
   }
 
   #Technik {
-    position: absolute;
     font-size: 1.75rem;
     font-weight: bold;
-    margin: 11rem 9rem;
+    margin: -19rem 20rem;
   }
 
   #Soziales {
@@ -91,7 +89,7 @@ h3 {
     margin: 22rem 9.5rem;
   }
 
-  #Wirtschaft::before {
+  #Wirtschaft {
     position: absolute;
     font-size: 1.75rem;
     font-weight: bold;
@@ -209,9 +207,9 @@ h3 {
     width: 50%;
   }
 }
-.fade.modal.show {
-  background-color: transparent;
-}
+// .fade.modal.show {
+//  background: none;
+// }
 
 #card-big {
   margin-top: 1rem;
