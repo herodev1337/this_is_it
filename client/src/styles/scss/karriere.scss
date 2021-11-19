@@ -58,49 +58,43 @@ h3 {
 .category-column {
   width: 50%;
 
+  .cats {
+    position: absolute;
+  }
+
+  .cat-box {
+    position: absolute;
+  }
+
   //words around penta - pls change this
-  #Kreativität{
-    position:absolute;
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: white;
-    background-color: aliceblue;
-    z-index: 1000;
-    display: block;
+  #Kreativität {
   }
 
   #Technik {
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin: -19rem 20rem;
   }
 
   #Soziales {
-    position: absolute;
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin: 11rem 33rem;
   }
 
   #Forschung {
-    position: absolute;
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin: 22rem 9.5rem;
   }
 
   #Wirtschaft {
-    position: absolute;
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin: 22rem 30rem;
   }
 }
+#svg-container {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
 .penta {
-  margin: 7rem auto auto auto;
-  background-color: #00b4c5;
-  height: 250px;
-  width: 250px;
+  margin: 15vh 0 0 13vw;
+  height: 300px;
+  width: 300px;
+  fill: #00b4c5;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #00b4c5;
 }
 
 .category-field {
@@ -175,7 +169,7 @@ h3 {
   }
 }
 
-.card:hover .card-inner {
+.card:hover  .card-inner {
   transform: rotateY(180deg);
 }
 
@@ -228,7 +222,7 @@ h3 {
     font-size: 1rem;
     font-weight: bold;
   }
-  p{
+  p {
     background-color: transparent;
   }
 }
@@ -245,19 +239,19 @@ h3 {
     margin: auto;
     justify-self: center;
   }
-  #Kreativität,
-  #Technik,
-  #Soziales,
-  #Forschung,
-  #Wirtschaft {
-    display: none;
+
+  #card-div {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .card {
+    width: 35vw;
+    height: 35vw;
+    margin: 1.5rem;
+    
+  }
+  .card:hover  .card-inner {
+    transform: none;
   }
 
-  //Career
-  .card:hover {
-    width: 70%;
-    height: 70%;
-    position: absolute;
-    z-index: 1;
-  }
 }

@@ -1,0 +1,305 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono';
+  background-color: #1d073b;
+}
+
+body {
+  height: 100%;
+  background-color: #1d073b;
+}
+
+h3 {
+  background-color: transparent;
+}
+
+#karriere_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: #00b4c5;
+}
+
+.button {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0px 32px;
+  color: #00b4c5;
+  cursor: pointer;
+}
+
+.button h3 {
+  margin: 0;
+}
+
+.active-button {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
+
+#karriere_main_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  min-height: 42.2vw;
+  height: 100%;
+  color: #00b4c5;
+  background-color: #1d073b;
+}
+
+.category-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+}
+
+.category-column {
+  width: 50%;
+}
+
+.category-column .cats {
+  position: absolute;
+}
+
+.category-column .cat-box {
+  position: absolute;
+}
+
+#svg-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.penta {
+  margin: 15vh 0 0 13vw;
+  height: 300px;
+  width: 300px;
+  fill: #00b4c5;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #00b4c5;
+}
+
+.category-field {
+  margin: 1.5rem;
+  border: solid 3px #00b4c5;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.category-field h2 {
+  margin: 0.6rem 3rem;
+  background-color: transparent;
+}
+
+.category-field p {
+  background-color: transparent;
+  margin-left: 1rem;
+}
+
+.category-field:hover {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
+
+#career {
+  width: 100%;
+}
+
+#search {
+  height: 1rem;
+  margin: 1rem 2rem 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#header-search {
+  background-color: #1d073b;
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+}
+
+#card-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  margin-top: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card {
+  min-width: 16vw;
+  width: 16vw;
+  height: 16vw;
+  margin: 1.5rem;
+  background-color: transparent;
+}
+
+.card-inner {
+  height: 100%;
+  width: 100%;
+  border: solid 5px #00b4c5;
+  border-radius: 5px;
+  color: #1d073b;
+  background-color: #00b4c5;
+  text-align: center;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.card-inner h2 {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #1d073b;
+  font-family: 'Roboto Mono';
+}
+
+.card-inner p {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #1d073b;
+  font-family: 'Roboto Mono';
+}
+
+.card:hover .card-inner {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  background-color: #00b4c5;
+  color: #1d073b;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+.card-back {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.modal-content {
+  height: 90vh;
+  border-radius: 5px;
+  background-color: #00b4c5;
+  color: #1d073b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Roboto Mono';
+}
+
+.modal-content button {
+  justify-self: flex-end;
+  background-color: transparent;
+  width: 50%;
+}
+
+#card-big {
+  margin-top: 1rem;
+  height: 90%;
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: transparent;
+}
+
+#card-big h3 {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#card-big h2 {
+  margin-top: 1rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#card-big p {
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 800px) {
+  .category-row {
+    display: -ms-grid;
+    display: grid;
+  }
+  .category-column {
+    width: 100%;
+  }
+  .penta {
+    margin: auto;
+    -ms-grid-column-align: center;
+        justify-self: center;
+  }
+  #card-div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .card {
+    width: 35vw;
+    height: 35vw;
+    margin: 1.5rem;
+  }
+  .card:hover .card-inner {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+/*# sourceMappingURL=karriere.css.map */

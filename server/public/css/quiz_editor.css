@@ -1,0 +1,101 @@
+:root {
+  font-size: 16px;
+  --neonpink: #FF6EC7;
+  --neonblue: #3fdac5;
+  --shadowcolor: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  --defaultfont: 'Roboto Mono', monospace;
+  --backgroundgrey: #404040;
+  --hovercolor: #DDFFF7;
+}
+
+#quizEditor {
+  background-color: var(--backgroundgrey);
+  color: white;
+  padding: 10px 20px;
+}
+
+#quizEditor #submitQuiz {
+  width: 10%;
+  min-width: 150px;
+}
+
+#quizEditor .card {
+  color: black;
+}
+
+#quizEditor tbody td {
+  vertical-align: middle;
+}
+
+#quizEditor .input-group {
+  vertical-align: middle;
+}
+
+.rot-down {
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-name: rotDown;
+          animation-name: rotDown;
+}
+
+.rot-up {
+  -webkit-animation-duration: 400ms;
+          animation-duration: 400ms;
+  -webkit-animation-name: rotUp;
+          animation-name: rotUp;
+}
+
+.up {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.down {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+@-webkit-keyframes rotDown {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+@keyframes rotDown {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+@-webkit-keyframes rotUp {
+  from {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes rotUp {
+  from {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+/*# sourceMappingURL=quiz_editor.css.map */
