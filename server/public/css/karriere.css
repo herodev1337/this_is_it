@@ -278,14 +278,30 @@ h3 {
   .category-column {
     width: 101vw;
   }
+  #1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
   #svg-container {
-    margin-left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   #svg-container .catName {
     display: none;
   }
   #pentagon {
-    margin-right: 10rem;
+    margin-right: 6vw;
     padding-right: 2rem;
   }
   #card-div {

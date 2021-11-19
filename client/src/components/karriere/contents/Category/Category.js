@@ -33,7 +33,7 @@ const OnlyCat = content.slice(1, 6);
 const Category = () => {
   const [selected, setSelected] = useState(null);
 
-  const mouseEnter = (i) => {
+  const mouseEnter = i => {
     setSelected(i);
   };
 
@@ -44,11 +44,21 @@ const Category = () => {
   return (
     <>
       <div className="category-row">
-        <div className="category-column">
-          <Column1 OnlyCat={OnlyCat} mouseEnter={mouseEnter} mouseLeave={mouseLeave} selected={selected} />
+        <div className="category-column" id="1">
+          <Column1
+            OnlyCat={OnlyCat}
+            mouseEnter={mouseEnter}
+            mouseLeave={mouseLeave}
+            selected={selected}
+          />
         </div>
         <div className="category-column">
-          <Column2 content={content} mouseEnter={mouseEnter} mouseLeave={mouseLeave} selected={selected} />
+          <Column2
+            content={content}
+            mouseEnter={mouseEnter}
+            mouseLeave={mouseLeave}
+            selected={selected}
+          />
         </div>
       </div>
     </>

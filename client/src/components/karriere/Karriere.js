@@ -3,7 +3,6 @@ import Content from './contents/Content';
 import { useState } from 'react';
 import Header from './contents/Header, Search, Filter/Header';
 
-
 const Karriere = () => {
   //changing active Tab
   const [activeTab, setActiveTab] = useState(1);
