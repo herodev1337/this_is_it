@@ -86,15 +86,12 @@ h3 {
   display: flex;
   justify-self: center;
   align-self: center;
+  margin: 8vh 0 0 12vw;
 }
-.penta {
-  margin: 15vh 0 0 13vw;
-  height: 300px;
-  width: 300px;
-  fill: #00b4c5;
+.catName {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #00b4c5;
+  font-family: 'Roboto Mono';
 }
 
 .category-field {
@@ -169,7 +166,7 @@ h3 {
   }
 }
 
-.card:hover  .card-inner {
+.card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
@@ -248,10 +245,8 @@ h3 {
     width: 35vw;
     height: 35vw;
     margin: 1.5rem;
-    
   }
-  .card:hover  .card-inner {
+  .card:hover .card-inner {
     transform: none;
   }
-
 }

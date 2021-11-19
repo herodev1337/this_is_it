@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Column2 = ({ content }) => {
+const Column2 = ({ content, mouseEnter, mouseLeave }) => {
   const [active, setActive] = useState(null);
   return (
     <>
@@ -8,6 +8,8 @@ const Column2 = ({ content }) => {
         <div
           key={el.title}
           onClick={() => (active === i ? setActive(null) : setActive(i))}
+          onMouseEnter={() => mouseEnter(i - 1)}
+          onMouseLeave={() => mouseLeave(i - 1)}
           className="category-field"
         >
           <h2>{el.title}</h2>
