@@ -27,7 +27,7 @@ const content = [
     content: 'lorem ipsum',
   },
 ];
-const OnlyCat = content.slice(1, 6);
+const labels = content.slice(1, 6).map(entry => entry.title);
 
 function Karriere() {
   return (
@@ -36,7 +36,7 @@ function Karriere() {
         style={{ border: '1px blue solid', width: '300px', height: '300px' }}
       >
       </div>
-      <Pentagon side={300} content={OnlyCat} />
+      <Pentagon side={300} labels={labels} />
     </div>
   );
 }

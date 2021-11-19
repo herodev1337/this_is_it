@@ -9,15 +9,10 @@ import 'styles/scss/quiz_editor.scss';
 
 import QuestionEditor from './QuestionEditor';
 import QuestionView from './QuestionView';
-
-const axios = require('axios').default;
-const apiQuiz = axios.create({
-  baseURL: 'http://localhost:3000/api/quizzes/',
-  timeout: 1000,
-  withCredentials: true,
-});
+import { useApi } from '../../../utils/context-hooks/use-api';
 
 export default function QuizEditor() {
+  const api = useApi();
   const location = useLocation();
   let initialQuiz = {
     name: '',
@@ -63,8 +58,8 @@ export default function QuizEditor() {
       questions: questions,
     };
     if (location.state) {
-      apiQuiz
-        .put(`./${location.state.quiz._id}`, quiz)
+      api
+        .put(`./quizzes/${location.state.quiz._id}`, quiz)
         .then(function (response) {
           console.log(response);
           setName('');
@@ -77,8 +72,8 @@ export default function QuizEditor() {
           setHttpResponse(error.message);
         });
     } else {
-      apiQuiz
-        .post('./', quiz)
+      api
+        .post('./quizzes/', quiz)
         .then(function (response) {
           console.log(response);
           setName('');

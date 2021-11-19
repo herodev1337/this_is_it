@@ -10,6 +10,7 @@ router.route('/')
 router.route('/:postId')
     .get(postController.getPost) //TODO: Show the post
     .put(authMiddleware, postController.updatePost) //TODO: Update post
+    .put(authMiddleware, postController.likePost)
     .delete(authMiddleware, postController.deletePost) //TODO: Delete post
 
 

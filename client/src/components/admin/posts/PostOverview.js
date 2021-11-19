@@ -2,30 +2,36 @@ import React, { useState, useEffect } from 'react';
 
 import PostComposer from './PostComposer';
 import Post from './Post'
-
-const axios = require('axios').default;
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api/',
-  timeout: 1000,
-  withCredentials: true,
-});
+import { useApi } from '../../../utils/context-hooks/use-api';
 
 function PostOverview() {
+  const api = useApi()
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const refreshPosts = () => {
     api
-      .get('./posts')
+      .get('./posts/')
       .then(function (response) {
         setPosts(response.data.data);
       })
       .catch(function (error) {
         console.log(error.message);
       });
+  }
+
+  useEffect(() => {
+    refreshPosts()
   }, []);
 
   const addPost = (post) => {
-    setPosts([...posts, post])
+    api
+      .post('./posts/', post)
+      .then(function (response) {
+        setPosts([...posts, response.data.data.data]);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
   }
 
   return (

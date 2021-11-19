@@ -50,7 +50,21 @@ const userSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default: new Date()
-    }
+    },
+    likedPosts: [{
+      postId: mongoose.Types.ObjectId,
+      likedAt: {
+        type: Date,
+        default: Date.now()
+      }
+    }],
+    savedPosts: [{
+      postId: mongoose.Types.ObjectId,
+      savedAt: {
+        type: Date,
+        default: Date.now()
+      }
+    }]
 })
 
 module.exports = mongoose.model("User", userSchema);
