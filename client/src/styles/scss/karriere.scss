@@ -65,22 +65,6 @@ h3 {
   .cat-box {
     position: absolute;
   }
-
-  //words around penta - pls change this
-  #Kreativität {
-  }
-
-  #Technik {
-  }
-
-  #Soziales {
-  }
-
-  #Forschung {
-  }
-
-  #Wirtschaft {
-  }
 }
 #svg-container {
   display: flex;
@@ -225,16 +209,27 @@ h3 {
 }
 
 @media only screen and (max-width: 800px) {
+
   //Category
   .category-row {
     display: grid;
+    max-width: 100%;
+    overflow: hidden;
+    
   }
   .category-column {
-    width: 100%;
+    width: 101vw;
   }
-  .penta {
-    margin: auto;
-    justify-self: center;
+  #svg-container {
+    margin-left: 0;
+    .catName {
+      display: none;
+    }
+  }
+  #pentagon {
+   
+    margin-right: 10rem;
+    padding-right: 2rem;
   }
 
   #card-div {
