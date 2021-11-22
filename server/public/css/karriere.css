@@ -23,6 +23,7 @@ h3 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin-top: 1rem;
   color: #00b4c5;
 }
 

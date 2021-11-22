@@ -2,6 +2,7 @@ import Search from '../Header, Search, Filter/Search';
 import { Modal } from 'react-bootstrap';
 import React from 'react';
 import { useState } from 'react';
+import Filter from '../Header, Search, Filter/Searchfilter';
 
 const posts = [
   {
@@ -11,6 +12,7 @@ const posts = [
     use: 'Entwicklungsstudios für Spiele, Online-Agenturen, Online-Marketing',
     info:
       'Meist an privaten Universitäten -> hohe Kosten, o	https://www.medien-studieren.net/studiengaenge/game-design/#studienformen',
+    field: "Kreativität"  
   },
   {
     name: 'Game Artist',
@@ -20,6 +22,7 @@ const posts = [
     use: 'Spielehersteller, Gamestudios, Film & Fernsehen',
     info:
       'Unvergütete Ausbildung, https://www.ausbildung.de/berufe/game-artist/',
+    field: "Kreativität"  
   },
   {
     name: 'Medieninformatik',
@@ -28,6 +31,7 @@ const posts = [
       'Verwaltung und Wartung von Rechnersystemen, Implementierung von Internetanwendungen, Erstellen von interaktiven Anwendungen',
     use: 'Netzwerkunternehmen, Forschung, IT-Consulting',
     info: 'https://www.studycheck.de/studium/medieninformatik',
+    field: "Technik"
   },
   {
     name: 'Mediengestalter Digital und Print',
@@ -36,6 +40,7 @@ const posts = [
       'Gestaltung digitaler und gedruckter Medien, Analyse von Kundenwünschen',
     use: 'Verlagshäuser, Werbeagenturen, Druckereien',
     info: 'https://www.ausbildung.de/berufe/mediengestalter-digital-print/',
+    field: "Kreativität"
   },
   {
     name: 'Game Programmer',
@@ -44,6 +49,7 @@ const posts = [
       'Umsetzen von Spielideen und Spielmechaniken, Anpassen von Spielen an unterschiedliche Betriebssysteme und Plattformen, 3D-Animation',
     use: 'Spielestudios, Software- und Datenbankanbieter',
     info: 'https://www.ausbildung.de/berufe/game-programmer/',
+    field: "Technik"
   },
   {
     name: '',
@@ -51,6 +57,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
   {
     name: '',
@@ -58,6 +65,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
   {
     name: '',
@@ -65,6 +73,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
   {
     name: '',
@@ -72,6 +81,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
   {
     name: '',
@@ -79,6 +89,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
   {
     name: '',
@@ -86,6 +97,7 @@ const posts = [
     core: '',
     use: '',
     info: '',
+    field:""
   },
 ];
 
@@ -99,17 +111,27 @@ const filterPosts = (posts, query) => {
     return postName.includes(query.toLowerCase());
   });
 };
+const filterForChosen = (posts, chosen) => {
+  if (!chosen) {
+    return posts}
+
+  return posts.filter(post => {
+     return post.field === chosen 
+  })
+}
+
 
 const Career = () => {
   //searchbar
-  const query = document.getElementsByName('s').value;
-  const [searchQuery, setSearchQuery] = useState(query || '');
+  const [searchQuery, setSearchQuery] = useState("");
   const filteredPosts = filterPosts(posts, searchQuery);
+  //Filter
+  const [chosen, setChosen] = useState("")
+  const DoubleFilteredPosts = filterForChosen(filteredPosts, chosen)
   //Modal
   const [show, setShow] = useState(Array(posts.length).fill(false));
   const handleClose = () => {
     setShow(Array(posts.length).fill(false));
-    console.log('dasd');
   };
   const handleShow = i => {
     setShow(show.map((_, j) => i === j));
@@ -119,9 +141,10 @@ const Career = () => {
     <div id="career">
       <div id="search">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Filter chosen={chosen} setChosen={setChosen} />
       </div>
       <div id="card-div">
-        {filteredPosts.map((post, i) => (
+        {DoubleFilteredPosts.map((post, i) => (
           <>
             <div className="card" key={i} onClick={() => handleShow(i)}>
               <div className="card-inner">

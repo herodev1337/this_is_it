@@ -3,10 +3,11 @@ import React from 'react';
 const Search = ({ searchQuery, setSearchQuery }) => {
   return (
     <div id="bar">
-      <form action="/" method="get">
+      <form onSubmit={e => e.preventDefault()}>
         <input
           value={searchQuery}
           onInput={e => setSearchQuery(e.target.value)}
+          autoComplete="off"
           type="text"
           id="header-search"
           placeholder="i bims 1 searchbar"
