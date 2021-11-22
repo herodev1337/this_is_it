@@ -17,9 +17,9 @@ let Sketch = (p) => {
   let enemy;
   let shot;
   let starColor = 255;
-  let shield = true;
+  let shield = false;
   let shieldbreaker = true;
-  p.isBreakerActive = false;
+  p.isBreakerActive = true;
   //maybe implement autofire if var is set to true (to end the game faster)
   let autoFire = true;
 
