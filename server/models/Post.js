@@ -10,6 +10,17 @@ const editSchema = new mongoose.Schema({
   }
 })
 
+const likeSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Types.ObjectId,
+    required: true
+  },
+  likedAt: {
+    type: Date,
+    default: Date.now()
+  }
+})
+
 const postSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -34,10 +45,7 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  likes: {
-    type: Number,
-    default: 0,
-  },
+  likes: [likeSchema],
   edits: [editSchema]
 });
 

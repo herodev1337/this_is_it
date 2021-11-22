@@ -54,6 +54,7 @@ const loginUser = async (req, res) => {
     if (!compPassword) return res.status(200).json({ error: 'Password dosent match!' })
 
     return res.cookie('auth_token', generateJWToken({
+        db_id: currentUser._id,
         username: currentUser.username,
         fullname: currentUser.username,
         groups: currentUser.groups

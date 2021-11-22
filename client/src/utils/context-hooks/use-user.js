@@ -1,46 +1,36 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useApi } from './use-api';
 
 const UserContext = createContext();
 
-const axios = require('axios').default;
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api/',
-  timeout: 1000,
-  withCredentials: true,
-});
-
 //* Method Hook
 function useProvideUser() {
-  const [username, setUsername] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [groups, setGroups] = useState([]);
-  const [iat, setIat] = useState(null);
+  const api = useApi()
 
-  const getUser = () => {
-    return { username: username, fullname: fullname, groups: groups, iat: iat };
-  };
+  const [user, setUser] = useState({
+    db_id: null,
+    username: '',
+    fullname: '',
+    groups: [],
+    iat: null
+  });
 
-  const updateUser = (user) => {
-    setUsername(user.username);
-    setFullname(user.fullname);
-    setGroups(user.groups);
-    setIat(user.iat);
-    return getUser();
-  };
+  const getUser = () => { return user };
 
   const addGroup = (g) => {
-    setGroups([...groups, g])
+    setUser({groups: [...user.groups, g], ...user})
   }
 
   const removeGroups = (groupList) => {
-    setGroups(groups.filter(group => !groupList.includes(group)))
+    setUser({groups: [user.groups.filter(group => !groupList.includes(group))], ...user})
+    setGroups()
   }
 
   const validateJWT = (redirect) => {
     api
       .get('./validate')
       .then(function (response) {
-        updateUser(response.data);
+        setUser(response.data);
       })
       .catch(function (error) {
         console.log(error.response.data.error);
@@ -50,7 +40,6 @@ function useProvideUser() {
 
   return {
     getUser,
-    updateUser,
     addGroup,
     removeGroups,
     validateJWT

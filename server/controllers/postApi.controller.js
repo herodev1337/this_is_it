@@ -43,7 +43,15 @@ const updatePost = (req, res, next) => {
 }
 
 const likePost = (req, res, next) => {
-    Post.findByIdAndUpdate(req.params.postId, { $inc: {likes: req.body } }).then(responseData => {
+    Post.findByIdAndUpdate(req.params.postId, { $push: {likes: req.body } }).then(responseData => {
+        sendData(res, responseData)
+    }).catch(err => {
+        sendError(res, req, err.message);
+    })
+}
+
+const unlikePost = (req, res, next) => {
+    Post.findByIdAndUpdate(req.params.postId, { $pull: {likes: req.body } }).then(responseData => {
         sendData(res, responseData)
     }).catch(err => {
         sendError(res, req, err.message);
@@ -65,5 +73,6 @@ module.exports = {
     createPost,
     updatePost,
     likePost,
+    unlikePost,
     deletePost
   };

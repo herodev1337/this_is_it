@@ -52,14 +52,20 @@ const userSchema = new mongoose.Schema({
       default: new Date()
     },
     likedPosts: [{
-      postId: mongoose.Types.ObjectId,
+      postId: {
+        type: mongoose.Types.ObjectId,
+        required: true
+      },
       likedAt: {
         type: Date,
         default: Date.now()
       }
     }],
     savedPosts: [{
-      postId: mongoose.Types.ObjectId,
+      postId: {
+        type: mongoose.Types.ObjectId,
+        required: true
+      },
       savedAt: {
         type: Date,
         default: Date.now()

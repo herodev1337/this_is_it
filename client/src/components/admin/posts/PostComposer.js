@@ -29,7 +29,7 @@ function PostComposer({ addPost }) {
         content: postContent,
       },
       createdAt: Date.now(),
-      likes: 0,
+      likes: [],
       edits: []
     });
     setPostContent('');
