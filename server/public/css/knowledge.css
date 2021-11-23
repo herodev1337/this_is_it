@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+#Landing-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+#Landing-container h1 {
+  color: #00b4c5;
+  margin: 2rem;
+  font-family: 'Roboto Mono';
+}
+
+#Landing-container .card-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#Landing-container .card-row .card {
+  width: 45vw;
+  height: 70vh;
+  border: solid 10px #00b4c5;
+  border-radius: 5px;
+  background-color: #00b4c5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-shadow: 2.5px 2.5px 7.5px 2.5px black;
+          box-shadow: 2.5px 2.5px 7.5px 2.5px black;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  transition: -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+#Landing-container .card-row .card h2 {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #1d073b;
+  font-family: 'Roboto Mono';
+}
+
+#Landing-container .card-row .card p {
+  background-color: transparent;
+  color: #1d073b;
+}
+
+#Landing-container .card-row .card img {
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+#Landing-container .card-row .card:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+@media only screen and (max-width: 800px) {
+  .card-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+  }
+  .card-row .card {
+    width: 90vw !important;
+    height: 45vh !important;
+  }
+}
+/*# sourceMappingURL=knowledge.css.map */

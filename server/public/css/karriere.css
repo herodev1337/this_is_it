@@ -136,7 +136,15 @@ h3 {
           justify-content: flex-end;
 }
 
+#search #chosen {
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+  margin-left: 1rem;
+  height: 2rem;
+}
+
 #header-search {
+  height: 2rem;
   background-color: #1d073b;
   color: #00b4c5;
   border: solid 2px #00b4c5;

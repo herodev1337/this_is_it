@@ -26,10 +26,10 @@ ReactDOM.render(
         </Route>
 
         <Route path="/knowledge" element={<Knowledge />}>
-          <Route path="karriere" element={<Karriere />} />
           <Route path="berufsquiz" element={<Berufsquiz />} />
           <Route path="berufsswiper" element={<Berufsswiper />} />
         </Route>
+        <Route path="/karriere" element={<Karriere />} />
 
         <Route path="/games">
           <Route path="sqit">
