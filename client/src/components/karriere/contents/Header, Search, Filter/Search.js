@@ -10,7 +10,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
           autoComplete="off"
           type="text"
           id="header-search"
-          placeholder="i bims 1 searchbar"
+          placeholder="Suche..."
           name="s"
         />
       </form>
