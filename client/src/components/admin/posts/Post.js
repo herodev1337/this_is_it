@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Output from 'editorjs-react-renderer';
+
 import { useApi } from '../../../utils/context-hooks/use-api';
 import { useUser } from '../../../utils/context-hooks/use-user';
 
@@ -53,7 +55,7 @@ function Post({ post, saved }) {
           {`${post.author} posted on ${date} at ${time}:`}
         </Card.Header>
         <Card.Body>
-          <Card.Text>{post.postData.content}</Card.Text>
+          <Output data={post.postData.content}/>
         </Card.Body>
         <Card.Footer>
           <span style={{marginRight: "10px"}}>

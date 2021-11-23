@@ -40,14 +40,14 @@ export default function QuizView({ quizId }) {
         </Carousel.Item>
 
         {quiz.questions.map((question, i) => (
-          <Carousel.Item>
+          <Carousel.Item key={i}>
             <div>
               <Container>
                 <h2>{question.question}</h2>
                 <h5>{question.explanation}</h5>
                 <div>
                   {question.answers.map((answer, j) => (
-                    <Button onClick={(e) => handleChosenAnswer(e, i, j)}>{answer.answer}</Button>
+                    <Button key={`${i}_${j}`} onClick={(e) => handleChosenAnswer(e, i, j)}>{answer.answer}</Button>
                   ))}
                 </div>
               </Container>

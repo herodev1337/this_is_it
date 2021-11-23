@@ -23,12 +23,8 @@ function PostOverview() {
   };
 
   useEffect(() => {
-    refreshPosts();
-  }, []);
-
-  useEffect(() => {
     if (user.getUser().db_id === null) {
-      return;
+      return refreshPosts();
     }
     api
       .get(`./users/${user.getUser().db_id}`)
@@ -38,30 +34,40 @@ function PostOverview() {
       .catch(function (error) {
         console.log(error.message);
       });
+    return refreshPosts();
   }, [user]);
 
   const addPost = (post) => {
-    api
-      .post('./posts/', post)
-      .then(function (response) {
-        setPosts([...posts, response.data.data.data]);
-      })
-      .catch(function (error) {
-        console.log(error.message);
-      });
+    // api
+    //   .post('./posts/', post)
+    //   .then(function (response) {
+    //     setPosts([...posts, response.data.data.data]);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error.message);
+    //   });
+    console.log(post)
   };
 
   return (
-    <div style={{ maxWidth: '50%', marginLeft: '20%' }}>
-      <PostComposer addPost={addPost} />
+    <div
+      style={{
+        maxWidth: '100%',
+        maxHeight: '100vh',
+        paddingLeft: '20%',
+        paddingRight: "30%",
+        overflowY: 'auto',
+      }}
+    >
+      <PostComposer addPost={addPost}/>
       <div id="timeline">
         {posts.length
-          ? posts.reverse().map((post, i) => {
+          ? [...posts].reverse().map((post, i) => {
               return (
                 <Post
                   key={`post_${i}`}
                   post={post}
-                  saved={saved.some((p) => p.postId == post._id)}
+                  saved={saved.some((p) => p.postId === post._id)}
                 />
               );
             })

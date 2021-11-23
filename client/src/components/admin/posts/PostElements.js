@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart, HeartFill, Bookmark, BookmarkFill } from 'react-bootstrap-icons';
 
 
@@ -13,6 +13,10 @@ import { Heart, HeartFill, Bookmark, BookmarkFill } from 'react-bootstrap-icons'
  */
 function ToggleElement({ IconActive, IconInactive, colorActive, onClick, initialState }) {
   const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    setState(initialState)
+  }, [initialState])
 
   const toggleState = () => {
     onClick(!state);
