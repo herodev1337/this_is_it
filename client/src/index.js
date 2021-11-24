@@ -14,15 +14,13 @@ import QuizOverview from './routes/QuizOverview';
 import Quiz from './routes/Quiz';
 import QuizEditor from './routes/QuizEditor';
 
-
-
 ReactDOM.render(
   <BrowserRouter>
     {
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} >
-          <Route path="quiz-editor" element={<QuizEditor/>} />
+        <Route path="/admin" element={<Admin />}>
+          <Route path="quiz-editor" element={<QuizEditor />} />
         </Route>
 
         <Route path="/knowledge" element={<Knowledge />}>
@@ -35,8 +33,8 @@ ReactDOM.render(
           <Route path="sqit">
             <Route path=":game" element={<Sqit />} />
           </Route>
-          <Route path="quiz" element={<QuizOverview/>}>
-            <Route path=":id" element={<Quiz />}/>
+          <Route path="quiz" element={<QuizOverview />}>
+            <Route path=":id" element={<Quiz />} />
           </Route>
         </Route>
       </Routes>
