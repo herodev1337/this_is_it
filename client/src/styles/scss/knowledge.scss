@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  align-items: center;
 
   h1 {
     color: #00b4c5;
@@ -17,17 +18,18 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
+    width: 92vw;
 
     .card {
-      width: 95vw;
-      min-width: 45vw;
+      width: 92vw;
+      min-width: 40vw;
       height: 70vh;
       border-radius: 5px;
       background-color: #00b4c5;
       display: flex;
       text-align: center;
       box-shadow: 2.5px 2.5px 7.5px 2.5px black;
-      transition: transform 0.2s ease, background-color 1.5s ease;
+      transition: transform 0.2s ease;
       h2 {
         margin-top: 1rem;
         background-color: transparent;
@@ -37,6 +39,7 @@
       p {
         background-color: transparent;
         color: #1d073b;
+        font-family: 'Roboto Mono';
       }
       img {
         margin: 2rem;

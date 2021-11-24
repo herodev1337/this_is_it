@@ -16,10 +16,12 @@ const LandingPage = () => {
         <div className="card">
           <h2>Berufsquiz</h2>
           <p>Überprüfe dein Wissen zu den verschiedenen Berufen</p>
+          <img />
         </div>
         <div className="card">
           <h2>Berufsswiper</h2>
           <p>Welcher Beruf passt zu dir?</p>
+          <img />
         </div>
       </div>
     </div>
