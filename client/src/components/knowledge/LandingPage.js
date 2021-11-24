@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Kategorie from './pictures/Kategorie.png';
 
 const LandingPage = () => {
