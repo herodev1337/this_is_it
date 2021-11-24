@@ -6,14 +6,10 @@ const LandingPage = () => {
     <div id="Landing-container">
       <h1>Knowledge</h1>
       <div className="card-row">
-        <div className="card" id="h" onClick={() => window.location = "/karriere"}>
+        <div className="card" onClick={() => (window.location = '/karriere')}>
           <h2>Karriereinformationen</h2>
           <p>Erfahre mehr über mögliche Karrieren in der IT!</p>
           <img src={Kategorie} />
-        </div>
-        <div className="card">
-          <h2>Berufsswiper</h2>
-          <p>Welcher Weg in die IT passt zu dir?</p>
         </div>
       </div>
       <div className="card-row">
@@ -22,7 +18,8 @@ const LandingPage = () => {
           <p>Überprüfe dein Wissen zu den verschiedenen Berufen</p>
         </div>
         <div className="card">
-          <h2></h2>
+          <h2>Berufsswiper</h2>
+          <p>Welcher Beruf passt zu dir?</p>
         </div>
       </div>
     </div>
