@@ -46,7 +46,7 @@ const Sketch1 = () => {
 
   return (
     <>
-      <div className="canvasHolder" ref={p5Ref}></div>
+      <div id ="canvas" className="canvasHolder" ref={p5Ref}></div>
       <Editor
         setter1={textState1}
         setter2={textState2}
