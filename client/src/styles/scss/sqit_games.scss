@@ -1,0 +1,125 @@
+// body {
+//   text-align: center;
+//   margin-bottom: 10vh;
+//   background-image: url("../../static/images/sqit/lowPolyBG.svg");
+//   background-size: cover;
+//   background-attachment: fixed;
+//   margin: 0;
+//   padding: 0 0 5% 0;
+// }
+
+* {
+  font-family: var(--montserrat);
+}
+
+#editor,
+#editor2 {
+  margin: auto !important;
+}
+
+#canvasHolder {
+  height: 50vh;
+}
+
+.timer {
+  display: inline-block;
+  margin: 0 0 1% 0;
+  padding: 0.75%;
+  // background-color: wheat;
+  border-radius: 1.2vh;
+  // color: var(--GuardRedLight);
+  color: white;
+  // background-color: var(--color-navy-800);
+  background: linear-gradient(to right, #0f2027, #203a43 150%, #2c5364 150%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.editorHolders {
+  // border: 2px solid black;
+  display: inline-grid;
+  vertical-align: top;
+  border-radius: 2.5vh;
+  overflow: hidden;
+  box-shadow: 0.5vh 1.1vh 5vh black;
+}
+
+.editorHolder,
+#canvasHolder {
+  // border: 4px solid black;
+  vertical-align: top;
+  display: inline-block;
+  // box-shadow: 0.5vh 1.1vh 5vh black;
+}
+
+.spacer {
+  width: 100%;
+  margin: 2.5% 0%;
+}
+
+.gameTimer {
+  &.flowed {
+    margin: 0;
+    position: relative;
+    width: 90%;
+    background-color: gray;
+
+    .value {
+      height: 1.5vh;
+    }
+  }
+
+  border-radius: 5vh;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  // background-image: url("https://c.tenor.com/26KgBqLSQUgAAAAC/stars-star-gazing.gif");
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 5;
+  transform: translateX(-50%);
+  transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+
+  .value {
+    // &::before{
+    //   content: "";
+    //   width: 5vh;
+    //   height: 5vh;
+    //   border-radius: 5vh;
+    //   background-color: red;
+    // }
+    // transition: height 0.1s ease-in-out;
+    height: 1vh;
+    width: 100%;
+    // background-color: green;
+    background: linear-gradient(
+      to right,
+      #11998e,
+      #38ef7d
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    // transform: translateX(-100%);
+    transform: translateX(-50%);
+    border-radius: 5vh;
+    // transition: 1s ease-in-out;
+  }
+}
+
+.nextSite {
+  visibility: visible;
+  margin-top: 5%;
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: var(--GuardRed);
+    }
+    transition: color 0.5s ease-in-out;
+    // font-family: var(--montserrat);
+    color: var(--GuardRedLight);
+    text-decoration: none;
+    background-color: var(--color-navy-800);
+    border-radius: 5vh;
+    padding: 1%;
+  }
+}

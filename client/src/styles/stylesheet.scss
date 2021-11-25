@@ -1,0 +1,10 @@
+//Hier alles importen :)
+@import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+// @import url('../../node_modules/bootstrap-avatar/scss/avatar');
+@import url('./scss/colors.scss');
+
+
+body {
+    background-color: var(--color-navy-800);
+    color: var(--white);
+}

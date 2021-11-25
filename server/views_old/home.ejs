@@ -1,8 +1,0 @@
-<% layout('templates/rootTemplate') -%>
-
-<h1>Alle Posts</h1>
-<ul>
-    <% posts.forEach(post => { %>
-        <li> <a href="/post/<%= post._id %>"> <%= post.title %> </a></li>
-    <% }) %>
-</ul>
