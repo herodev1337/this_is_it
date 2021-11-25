@@ -27,7 +27,7 @@ export default function AnswerEditor(props) {
     setAnswers(newAnswers)
   }
 
-  function moveAnswer(i, dir){
+  function moveAnswer(_, i, dir){
     if (i+dir >= 0 && i+dir < answers.length){
       let newAnswers = [...answers];
       let newEdits = [...edits];
@@ -42,7 +42,7 @@ export default function AnswerEditor(props) {
     }
   }
 
-  function trashAnswer(i){
+  function trashAnswer(_, i){
     let newAnswers = [...answers];
     let newEdits = [...edits];
     newAnswers.splice(i, 1);

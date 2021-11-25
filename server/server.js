@@ -25,10 +25,12 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser()); //Uses the cookieParser module
 app.use(helmet()); //helmet for setting http headers
-app.use(cors());
+app.use(cors({credentials: true, origin: ["http://localhost:8080", "http://localhost:8081"]}));
 
-app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token ->" + req.cookies.auth_token))
-app.use('/api/', require('./routes/quizApi.route'))
+app.get('/', (req, res) => res.status(200).send("This is IT REST API | Token -> " + req.cookies.auth_token))
+app.use('/api/users/', require('./routes/userApi.route'))
+app.use('/api/posts/', require('./routes/postApi.route'))
+app.use('/api/quizzes/', require('./routes/quizApi.route'))
 app.use('/api/', require('./routes/auth.route'))
 app.use('/api/', require('./routes/group.route'))
 

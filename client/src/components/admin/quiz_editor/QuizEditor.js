@@ -1,27 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useLocation } from 'react-router';
 
 import 'styles/scss/quiz_editor.scss';
 
 import QuestionEditor from './QuestionEditor';
 import QuestionView from './QuestionView';
-
-const axios = require('axios').default;
-const apiQuiz = axios.create({
-  baseURL: 'http://localhost:3000/api/quizzes/',
-  timeout: 1000,
-});
+import { useApi } from '../../../utils/context-hooks/use-api';
 
 export default function QuizEditor() {
-  const [name, setName] = useState('');
-  const [instructions, setInstructions] = useState('');
-  const [enabled, setEnabled] = useState(true);
+  const api = useApi();
+  const location = useLocation();
+  let initialQuiz = {
+    name: '',
+    instructions: '',
+    isEnabled: true,
+    questions: [],
+  }
+  if (location.state) {
+    if (location.state.quiz) {
+      initialQuiz = location.state.quiz
+    } else {
+      if (location.state.from.state.quiz) {
+        initialQuiz = location.state.from.state.quiz
+      }
+    }
+  }
+
+  const [name, setName] = useState(initialQuiz.name);
+  const [instructions, setInstructions] = useState(initialQuiz.instructions);
+  const [enabled, setEnabled] = useState(initialQuiz.isEnabled);
   const [httpResponse, setHttpResponse] = useState('');
 
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState(initialQuiz.questions);
   const [question, setQuestion] = useState('');
   const [explanation, setExplanation] = useState('');
   const [questionEnabled, setQuestionEnabled] = useState(true);
@@ -43,30 +57,47 @@ export default function QuizEditor() {
       isEnabled: enabled,
       questions: questions,
     };
-    apiQuiz
-      .post('./', quiz)
-      .then(function(response) {
-        console.log(response);
-        setName("")
-        setInstructions("")
-        setEnabled(true)
-        setQuestions([])
-      })
-      .catch(function(error) {
-        setHttpResponse(error.message);
-      });
+    if (location.state) {
+      api
+        .put(`./quizzes/${location.state.quiz._id}`, quiz)
+        .then(function (response) {
+          console.log(response);
+          setName('');
+          setInstructions('');
+          setEnabled(true);
+          setQuestions([]);
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error)
+          setHttpResponse(error.message);
+        });
+    } else {
+      api
+        .post('./quizzes/', quiz)
+        .then(function (response) {
+          console.log(response);
+          setName('');
+          setInstructions('');
+          setEnabled(true);
+          setQuestions([]);
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error)
+          setHttpResponse(error.message);
+        });
+    }
   }
 
   return (
-    <div>
-      <Form id="quizEditor">
+    <div id="quizEditor">
+      <Form>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="formQuizName">
               <Form.Label>Quiz Name</Form.Label>
               <Form.Control
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Choose a Name for your Quiz"
                 required
               />
@@ -75,7 +106,7 @@ export default function QuizEditor() {
               <Form.Label>Instructions</Form.Label>
               <Form.Control
                 value={instructions}
-                onChange={e => setInstructions(e.target.value)}
+                onChange={(e) => setInstructions(e.target.value)}
                 placeholder="Give Instructions for your Quiz (optional)"
               />
             </Form.Group>
@@ -100,7 +131,7 @@ export default function QuizEditor() {
             >
               Submit Quiz
             </Button>
-            <p>{httpResponse}</p>
+            <span>{httpResponse}</span>
           </Col>
           <Col>
             <QuestionEditor

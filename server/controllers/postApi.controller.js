@@ -6,7 +6,7 @@ const { sendData, sendError } = require("../utils/sendJSON");
 
 const getPosts = (req, res, next) => {
     let searchString = {public: true};
-    if(auth(req.cookies.auth_token)){
+    if(auth.verifyToken(req.cookies.auth_token)){
         searchString = {};
     }
     Post.find(searchString).then(responseData => { 
@@ -42,6 +42,22 @@ const updatePost = (req, res, next) => {
     })
 }
 
+const likePost = (req, res, next) => {
+    Post.findByIdAndUpdate(req.params.postId, { $push: {likes: req.body } }).then(responseData => {
+        sendData(res, responseData)
+    }).catch(err => {
+        sendError(res, req, err.message);
+    })
+}
+
+const unlikePost = (req, res, next) => {
+    Post.findByIdAndUpdate(req.params.postId, { $pull: {likes: req.body } }).then(responseData => {
+        sendData(res, responseData)
+    }).catch(err => {
+        sendError(res, req, err.message);
+    })
+}
+
 const deletePost = (req, res, next) => {
     Post.findByIdAndRemove(req.params.postId).then(responseData => {
         sendData(res, responseData)
@@ -56,5 +72,7 @@ module.exports = {
     getPost, //User
     createPost,
     updatePost,
+    likePost,
+    unlikePost,
     deletePost
   };
