@@ -1,0 +1,11 @@
+{
+  "SECRET_TOKEN" : "this_is_it",
+  "Debug": true,
+  "Database": {
+    "enabled": true,
+    "url": ""
+  },
+  "RestAPI": {
+    "enabled": false
+  }
+}

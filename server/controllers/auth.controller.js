@@ -4,18 +4,25 @@ const { registerValidator } = require('../utils/validator')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const config = require("config")
+const config = require('config')
 
+/**
+ * Tries to create a new User
+ * @async
+ * @param {Object} req - Request
+ * @param {Object} res - Response
+ * @returns {Object} JSON
+ */
 const registerUser = async (req, res) => {
     //Validation
     const { error } = registerValidator(req.body)
-    if (error) {
+    if (error && config.Debug) {
         logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Authentication Controller', 3)
         return res.status(400).json({ error: error.message })
     }
 
     //Check if User Exists
-    if (await getUser(req.body.username)) return res.status(400).json({ error: 'User already exists!' })
+    if (await getUser(req.body.username)) return res.status(400).json({ error: 'Username already exists!' })
 
     //User Creation
     const user = new User({
@@ -46,6 +53,7 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
+    //If user dosent exist -> Error
     const currentUser = await getUser(req.body.username)
     if (!currentUser) return res.status(200).json({ error: 'User dosent exist!' })
 
@@ -94,7 +102,8 @@ const hashPassword = async (password) => {
  * @return {Boolean}
  */
 const comparePassword = async (password, hashedPassword) => {
-    return (await bcrypt.compare(password, hashedPassword)) ? true : false
+    let comparedPassword = await bcrypt.compare(password, hashedPassword);
+    return comparedPassword
 }
 
 /**
