@@ -25,23 +25,28 @@ const getEditorSizes = () => {
   return size;
 }
 
-const Editor = () => {
-  const onChange = (newValue) => {
-    console.log('change', newValue);
-  }
+const Editor = ({setter1, setter2, getter}) => {
 
   const [[ed1_width, ed1_height], [ed2_width, ed2_height]] = getEditorSizes();
 
   return (
-    <div>
+    <div className="editorHolder">
       <AceEditor
         className="editor1"
         mode="javascript"
         theme="monokai"
         showPrintMargin={false}
-        onChange={onChange}
+        onChange={getter}
         height={ed1_height + "px"}
         width={ed1_width + "px"}
+        value={setter1}
+        setOptions={{
+          wrap: true,
+          highlightActiveLine: false,
+          highlightGutterLine: false,
+          hScrollBarAlwaysVisible: false,
+          vScrollBarAlwaysVisible: false,
+        }}
       />
       <AceEditor
         className="editor1"
@@ -52,6 +57,7 @@ const Editor = () => {
         readOnly={true}
         showPrintMargin={false}
         showGutter={false}
+        value={setter2}
         setOptions={{
           wrap: true,
           highlightActiveLine: false,
@@ -60,7 +66,7 @@ const Editor = () => {
           vScrollBarAlwaysVisible: false,
           readOnly: true,
           useWorker: false,
-          showLineNumbers: false,
+          // showLineNumbers: false,
         }}
       />
     </div>
