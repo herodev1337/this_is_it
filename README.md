@@ -74,7 +74,7 @@ this_is_it/
   <figcaption>Quelle: mongodb.com/mern-stack</figcaption>
 </figure>
 
-Zum [nachlesen](https://www.mongodb.com/languages/mern-stack-tutorial)
+Zum [Nachlesen](https://www.mongodb.com/languages/mern-stack-tutorial)
 
 #### React Routing
 
