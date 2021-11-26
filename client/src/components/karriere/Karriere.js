@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Header from './contents/Header, Search, Filter/Header';
 
 const Karriere = () => {
-  //changing active Tab
+  // Changing active Tab
   const [activeTab, setActiveTab] = useState(1);
   const handleTab = tab => {
     setActiveTab(tab);
