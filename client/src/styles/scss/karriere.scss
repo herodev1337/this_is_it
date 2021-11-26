@@ -1,125 +1,257 @@
 //  IMPORTS
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 //  GENERAL
 * {
   margin: 0;
   padding: 0;
-
-  font-size: 1rem;
-  color: #00B4C5;
+  font-family: 'Roboto Mono';
+  background-color: #1d073b;
+}
+body {
+  height: 100%;
+  background-color: #1d073b;
 }
 
-//  TAGS
-header {
+//topbar
+h3 {
+  background-color: transparent;
+}
+#karriere_header {
   display: flex;
   flex-direction: row;
+  margin-top: 1rem;
+  color: #00b4c5;
 }
-
-h1 {
-  margin-bottom: 0.2rem;
-  font-size: 1.75rem;
-  font-family: 'Roboto Mono', monospace;
-}
-
-hr {
-  border: 0.05rem solid #00B4C5;
-}
-
-form {
+.button {
+  width: 50%;
   display: flex;
-  flex-direction: row;
-}
-
-// IDs
-#karriere_content {
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-
-  background-color: #1D073B;
-}
-
-//  CLASSES
-.container {
-  margin: 1.5rem;
-}
-
-.content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  justify-content: space-between;
-}
-
-.heading {
-  width: 100%;
-  
-  display: flex;
-  flex-direction: column;
-}
-
-.field {
-  margin-left: 1.5rem;
-  padding: 0 0.5rem;
-  border: 0.1rem solid #00B4C5;
-
-  background-color: #1D073B;
-
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1.75rem;
-
-  &:focus {
-    outline: none;
+  justify-content: center;
+  margin: 0px 32px;
+  color: #00b4c5;
+  cursor: pointer;
+  h3 {
+    margin: 0;
   }
 }
+.active-button {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
 
+//main
+#karriere_main_content {
+  display: flex;
+  flex-direction: row;
+  min-height: 42.2vw;
+  height: 100%;
+  color: #00b4c5;
+  background-color: #1d073b;
+}
+
+//Category
+.category-row {
+  width: 100%;
+  display: flex;
+  background-color: transparent;
+}
+.category-column {
+  width: 50%;
+
+  .cats {
+    position: absolute;
+  }
+
+  .cat-box {
+    position: absolute;
+  }
+}
+#svg-container {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin: 8vh 0 0 12vw;
+}
+.catName {
+  font-size: 1.75rem;
+  font-weight: bold;
+  font-family: 'Roboto Mono';
+}
+
+.category-field {
+  margin: 1.5rem;
+  border: solid 3px #00b4c5;
+  border-radius: 5px;
+  cursor: pointer;
+  h2 {
+    margin: 0.6rem 3rem;
+    background-color: transparent;
+  }
+  p {
+    background-color: transparent;
+    margin-left: 1rem;
+  }
+}
+.category-field:hover {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
+
+//Career
+#career {
+  width: 100%;
+}
+#search {
+  height: 1rem;
+  margin: 1rem 2rem 0 0;
+  display: flex;
+  justify-content: flex-end;
+#chosen {
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+  margin-left: 1rem;
+  height: 2rem;
+}  
+}
+#header-search {
+  height: 2rem;
+  background-color: #1d073b;
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+}
+
+#card-div {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 2rem;
+  justify-content: center;
+}
 .card {
+  min-width: 16vw;
   width: 16vw;
   height: 16vw;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-between;
-  
-  margin-top: 1.5rem;
-  border: solid #00b4c5;
-  border-radius: 2%;
-
-  background-color:  #005c99;
-  
+  margin: 1.5rem;
+  background-color: transparent;
+}
+.card-inner {
+  height: 100%;
+  width: 100%;
+  border: solid 5px #00b4c5;
+  border-radius: 5px;
+  color: #1d073b;
+  background-color: #00b4c5;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
   h2 {
     margin-top: 1rem;
-
-    font-family: "Roboto Mono", monospace;
-    font-size: 1rem;
-
-    color: #1D073B;
-
-    text-align: center;
+    background-color: transparent;
+    color: #1d073b;
+    font-family: 'Roboto Mono';
   }
-
   p {
-    margin: 2rem 1rem;
+    margin-top: 1rem;
+    background-color: transparent;
+    color: #1d073b;
+    font-family: 'Roboto Mono';
+  }
+}
 
-    font-family: Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  background-color: #00b4c5;
+  color: #1d073b;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+.modal-content {
+  height: 90vh;
+  border-radius: 5px;
+  background-color: #00b4c5;
+  color: #1d073b;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Mono';
+  button {
+    justify-self: flex-end;
+    background-color: transparent;
+    width: 50%;
+  }
+}
+// .fade.modal.show {
+//  background: none;
+// }
+
+#card-big {
+  margin-top: 1rem;
+  height: 90%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  h3 {
+    align-self: center;
+  }
+  h2 {
+    margin-top: 1rem;
+    align-self: flex-start;
+    background-color: transparent;
+    font-size: 1rem;
     font-weight: bold;
+  }
+  p {
+    background-color: transparent;
+  }
+}
 
-    color: #1D073B;
+@media only screen and (max-width: 800px) {
+  //Category
+  .category-row {
+    display: grid;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .category-column {
+    width: 101vw;
+  }
+  #1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #svg-container {
+    display: flex;
+    justify-content: center;
+    .catName {
+      display: none;
+    }
+  }
+  #pentagon {
+    margin-right: 6vw;
+    padding-right: 2rem;
   }
 
-  &:hover {
-    border: solid #b7e2ff;
+  #card-div {
+    display: flex;
+    justify-content: space-evenly;
   }
-
-  .karriereprofil {
-    width: 100%;
-
-    margin-bottom: 2rem;
+  .card {
+    width: 35vw;
+    height: 35vw;
+    margin: 1.5rem;
+  }
+  .card:hover .card-inner {
+    transform: none;
   }
 }
