@@ -73,6 +73,7 @@ this_is_it/
   <img src="https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png" alt="mern-stack" style="width:100%">
   <figcaption>Quelle: mongodb.com/mern-stack</figcaption>
 </figure>
+
 Zum [nachlesen](https://www.mongodb.com/languages/mern-stack-tutorial)
 
 #### React Routing
