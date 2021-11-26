@@ -55,7 +55,7 @@ function Post({ post, saved }) {
           {`${post.author} posted on ${date} at ${time}:`}
         </Card.Header>
         <Card.Body>
-          <Output data={post.postData.content}/>
+          <Output data={post.postData}/>
         </Card.Body>
         <Card.Footer>
           <span style={{marginRight: "10px"}}>

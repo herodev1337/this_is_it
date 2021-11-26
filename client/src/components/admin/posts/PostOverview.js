@@ -38,6 +38,8 @@ function PostOverview() {
   }, [user]);
 
   const addPost = (post) => {
+    console.log("New Post:", post)
+    setPosts([...posts, post])
     // api
     //   .post('./posts/', post)
     //   .then(function (response) {
@@ -46,7 +48,6 @@ function PostOverview() {
     //   .catch(function (error) {
     //     console.log(error.message);
     //   });
-    console.log(post)
   };
 
   return (
