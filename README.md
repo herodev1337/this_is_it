@@ -50,13 +50,13 @@ oder
 ````
 this_is_it/
 ├─ client/           // REACT WEBSERVER
-│  ├─ public/		 <-- Diese Dateien werden von React generiert, hier sollte nichts verändert werden
+│  ├─ public/	     <-- Diese Dateien werden von React generiert, hier sollte nichts verändert werden
 │  ├─ src/           
 │  │  ├─ components/ <-- Sekundäre React-Komponenten
-│  │  ├─ routes/ 	 <-- Primäre React-Komponenten, die in index.js verwendet werden
-│  │  ├─ static/ 	 <-- Statische Assets, wie z.B. Bilder
-│  │  ├─ styles/ 	 <-- (S)CSS Dateien
-│  │  ├─ utils/ 	 <-- JS-Dateien wie Contexts, Hooks, Konfigurationsdateien, etc.
+│  │  ├─ routes/     <-- Primäre React-Komponenten, die in index.js verwendet werden
+│  │  ├─ static/     <-- Statische Assets, wie z.B. Bilder
+│  │  ├─ styles/     <-- (S)CSS Dateien
+│  │  ├─ utils/      <-- JS-Dateien wie Contexts, Hooks, Konfigurationsdateien, etc.
 │
 ├─ server/           // EXPRESS SERVER
 │  ├─ config/        <-- Konfigurationsdateien z.B. Database Credentials und URL, Settings...
