@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 
 import { AuthWrapper } from '../utils/context-hooks/use-auth';
 import { UserWrapper } from '../utils/context-hooks/use-user';

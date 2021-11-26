@@ -1,7 +1,6 @@
 import React from 'react';
 import {useParams} from "react-router-dom"
 
-import "styles/css/colors.css"
 import "styles/scss/sqit_games.scss"
 import sqit_bg from "static/images/sqit/lowPolyBG.svg"
 
