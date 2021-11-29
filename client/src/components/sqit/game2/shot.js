@@ -28,13 +28,9 @@ class Shot {
       if (this.pos.y < 0 || this.pos.y > this.p.height || this.pos.x < 0 || this.pos.x > this.p.width) {
         shots.splice(0, 1);
       }
-<<<<<<< HEAD
-    } 
-=======
 
     } 
     p.pop()
->>>>>>> c6678c71c55d2a42773fb2b2cca6f701b9a9d862
   }
 
   move(enemies, shield, enemy,p) {

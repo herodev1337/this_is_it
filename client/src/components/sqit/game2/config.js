@@ -11,10 +11,10 @@ const get_sketch = (ref, setText1, setText2) => {
     console.log(value.match(re))
     // console.log(helpers.get_userCode(value.match(re)[0], "shieldbreaker"));
     const ret = helpers.get_pureReturn(value, true);
-    if(value.match(re)){
+    if(value.match(re)) {
       myp5.isBreakerActive = false;
     }
-    else{
+    else {
       myp5.isBreakerActive = true;
     }
   };

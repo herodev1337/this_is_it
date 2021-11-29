@@ -7,7 +7,7 @@ const view_2_px = (vh, height = true) =>
 
   
 // Code validation
-const get_pureReturn = (codeStr, undefiniedRet=false) => {
+const get_pureReturn = (codeStr, undefiniedRet=false) => { //! get out of here
   try {
     const value = new Function(codeStr)()
     return undefiniedRet ? undefiniedRet : value
