@@ -114,6 +114,7 @@ const deleteQuestion = (req, res, next) => {
  *                Quiz
  * 
  **/
+
 const createQuiz = async (req, res, next) => {
     //const {error} = quizValidator(req.body);
     // if(error) {
@@ -122,7 +123,7 @@ const createQuiz = async (req, res, next) => {
     const newQuiz = await new Quiz(req.body);
     try{
         newQuiz.save();
-        sendData(res, { data: newQuiz});
+        sendData(res, { data: newQuiz} );
     }catch(e){
         sendError(res, req, e.message)
     }
