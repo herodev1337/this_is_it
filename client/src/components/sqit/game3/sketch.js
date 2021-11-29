@@ -55,7 +55,7 @@ let Sketch = (p) => {
 
   };
   p.draw = () => {
-    
+    frog.update(p);
     bg.draw(p,frog,backgroundsheet,bgSprites);
     p.push()
     p.imageMode(p.CENTER)
@@ -67,7 +67,7 @@ let Sketch = (p) => {
       object = false;
     }
     p.pop()
-    frog.update(p);
+    
     frog.hitBox(p,activate,object);
     frog.create(p,activate,frogSprites);
     frog.move(p,activate);

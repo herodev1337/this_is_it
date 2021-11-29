@@ -27,9 +27,11 @@ class Frog{
     p.noSmooth();
     if(p.frameCount % 120 < 60 && !activate.walk && !activate.jump){
       p.image(frogSprites[0],0,0,this.size,this.size)
+      
     }
     else{
       p.image(frogSprites[0],0,0,this.size-this.size/10,this.size-this.size/40)
+      
     }
     if(!activate.jump && activate.walk && p.frameCount % 30 < 15){
       p.image(frogSprites[0],0,0,this.size,this.size)
@@ -52,6 +54,8 @@ class Frog{
     this.pos.add(this.vel)
     this.acc.set(0,0)
     this.applyForce(this.gravity);
+    
+    
   }
   hitBox(p,activate,object){
     
@@ -86,12 +90,19 @@ class Frog{
      
       this.vel.x = -2;
     }
-    else if(!activate.jump){
+    else if(!activate.jump && !activate.walk){
       this.vel.set(0,0)
     }
+    if( !activate.jump && !activate.walk){
+      this.acc.y +=4
+    }
+    // else if(!p.keyIsDown(p.LEFT_ARROW) && !p.keyIsDown(p.RIGHT_ARROW) && !activate.jump){
+
+    // }
     if(activate.walk && !p.keyIsDown(p.LEFT_ARROW) && !p.keyIsDown(p.RIGHT_ARROW)){
       activate.walk = false;
     }
+    
   }
 }
 export { Frog};
