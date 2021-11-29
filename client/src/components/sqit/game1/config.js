@@ -7,12 +7,13 @@ import * as helpers from '../helpers';
 const get_sketch = (ref, setText1, setText2) => {
     let isExtraTxt = false;
   
-    const myp5 = new p5(sketch_builder, ref);
+    const myp5 = new p5(sketch_builder, ref);                     //! required
   
-    const editorGetter = value => {
+    const editorGetter = value => {                               //! required
       const ret = helpers.get_pureReturn(value, true);
       const searchedVariable = isExtraTxt ? 'interval' : 'gate';
   
+      console.log(value)
       setText1(value);
       setText2(
         `Output:\n${ret ? helpers.get_userCode(value, searchedVariable)[0] : ret}`
@@ -34,7 +35,7 @@ const get_sketch = (ref, setText1, setText2) => {
       myp5.interval = status ? userInterval : 4;
     };
   
-    return {
+    return {                                                      //! required
       p5: myp5,
       getter: editorGetter,
     };

@@ -1,9 +1,15 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 
-export default function App() {
+import QuizView from '../components/quiz/QuizView'
+
+
+export default function Quiz() {
+  let { quizId } = useParams();
+
   return (
     <div>
-      <p>Quiz Seite</p>
+      <QuizView quizId={quizId}/>
     </div>
   );
 }

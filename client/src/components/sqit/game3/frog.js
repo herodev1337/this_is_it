@@ -76,6 +76,14 @@ class Frog{
       this.pos.x = 0 + this.size
       this.pos.y = p.height - this.size*2
     }
+    if (this.pos.x >= p.width - this.size) {
+      this.pos.x = p.width - this.size;
+      this.vel.x *= -1;
+    }
+    if (this.pos.x <= 0) {
+      this.pos.x = 0;
+      this.vel.x *= -1;
+    }
   }
   move(p,activate){  
     if(p.keyIsDown(p.RIGHT_ARROW)){
@@ -93,12 +101,10 @@ class Frog{
     else if(!activate.jump && !activate.walk){
       this.vel.set(0,0)
     }
-    if( !activate.jump && !activate.walk){
-      this.acc.y +=4
-    }
-    // else if(!p.keyIsDown(p.LEFT_ARROW) && !p.keyIsDown(p.RIGHT_ARROW) && !activate.jump){
+    if( !activate.jump && !activate.walk && this.pos.y < p.height -this.size || !activate.jump && !activate.walk && this.pos.y > p.height -this.size){
+      activate.jump = true;
 
-    // }
+    }
     if(activate.walk && !p.keyIsDown(p.LEFT_ARROW) && !p.keyIsDown(p.RIGHT_ARROW)){
       activate.walk = false;
     }
@@ -106,4 +112,4 @@ class Frog{
   }
 }
 export { Frog};
-// Force adden, animations cleaner machen platform einbauen...
+// win animation ausbauen bei beiden games

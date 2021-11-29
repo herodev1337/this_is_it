@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  // entry: './src/index.js',
-  entry: ['regenerator-runtime/runtime.js', './src/index.js'],
+  devtool: "eval-cheap-source-map",
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'public'),

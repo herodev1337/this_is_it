@@ -1,5 +1,6 @@
 const logger = require('./logger'),
-    mongoose = require('mongoose')
+    mongoose = require('mongoose'),
+    config = require('config');
 
 module.exports = async () => {
     try {
@@ -11,7 +12,7 @@ module.exports = async () => {
                 logger('MongoDB connected successfully!', 'Database', 1)
             })
       
-        await mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
+        await mongoose.connect(config.dbConfig.uri, { useNewUrlParser: true })
     } catch (error) {
         logger(error, 'Database', 3)
     }
