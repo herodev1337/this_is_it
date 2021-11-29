@@ -1,17 +1,15 @@
 import React from 'react';
-import Carousel from 'react-bootstrap/Carousel'
-
 import { useParams } from "react-router-dom";
 
-export default function Quiz(props) {
-  let params = useParams();
+import QuizView from '../components/quiz/QuizView'
+
+
+export default function Quiz() {
+  let { quizId } = useParams();
 
   return (
     <div>
-      <Carousel>
-
-      </Carousel>
-      {JSON.stringify(props.quizzes)}
+      <QuizView quizId={quizId}/>
     </div>
   );
 }

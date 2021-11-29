@@ -1,42 +1,52 @@
 const User = require('../models/User')
 const logger = require('../utils/logger')
 const { registerValidator } = require('../utils/validator')
+const { checkAccessPermission, decodeToken } = require('../utils/auth')
 const chalk = require('chalk')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const config = require('config')
 
-const showLogin = (req, res) => {
-    res.render('auth/login')
-}
-
+/**
+ * Tries to create a new User
+ * @async
+ * @param {Object} req - Request
+ * @param {Object} res - Response
+ * @returns {Object} JSON
+ */
 const registerUser = async (req, res) => {
     //Validation
     const { error } = registerValidator(req.body)
-    if (error) {
+    if (error && config.Debug) {
         logger(`${chalk.cyan(req.ip)} throwed error ${chalk.bgRed(error)}`, 'Authentication Controller', 3)
-        res.status(400).json({ error: error.message })
+        return res.status(400).json({ error: error.message })
     }
 
     //Check if User Exists
-    if (await getUser(req.body.username)) return res.status(400).json({ error: 'User already exists!' })
+    if (await getUser(req.body.username)) return res.status(400).json({ error: 'Username already exists!' })
 
     //User Creation
     const user = new User({
-        username: req.body.username,
-        password: await hashPassword(req.body.password),
+        username : req.body.username,
+        fullname : req.body.username,
+        password : await hashPassword(req.body.password),
     })
 
     try {
         const savedUser = await user.save()
-        res.cookie('auth_token', generateJWTtoken({ id: savedUser._id }))
-            .json({
-                error: null,
-                data: {
-                    message: 'User created successfully'
-                }
-            })
+        return res.cookie('auth_token', generateJWToken({
+            username: currentUser.username,
+            fullname: currentUser.username,
+            groups: currentUser.groups
+        }))
+        .json({
+            error: null,
+            data: {
+                message: 'User created successfully'
+            }
+        })
     } catch (e) {
-        res.status(400)
+        return res.status(400)
             .json({
                 error: e.message
             })
@@ -44,22 +54,25 @@ const registerUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
+    //If user dosent exist -> Error
     const currentUser = await getUser(req.body.username)
+    if (!currentUser) return res.status(200).json({ error: 'User dosent exist!' })
 
-    //If user dosent exist -> 400
-    if (!currentUser) return res.status(400).json({ error: 'User dosent exist!' })
+    const compPassword = await comparePassword(req.body.password, currentUser.password);
+    if (!compPassword) return res.status(200).json({ error: 'Password dosent match!' })
 
-    //If password dosent match -> 400
-    if (!comparePassword(req.body.password, currentUser.password)) return res.status(400).json({ error: 'Password dosent match!' })
-
-    //TODO: Add token_secret to config
-    res.cookie('auth_token', generateJWTtoken({ id: currentUser._id }))
-        .json({ 
-            error: null,
-            data: { 
-                message: 'Logged in successfully!'
-            }
-        })
+    return res.cookie('auth_token', generateJWToken({
+        db_id: currentUser._id,
+        username: currentUser.username,
+        fullname: currentUser.username,
+        groups: currentUser.groups
+    }))
+    .json({ 
+        error: null,
+        data: { 
+            message: 'Logged in successfully!'
+        }
+    })
 }
 
 /**
@@ -91,21 +104,32 @@ const hashPassword = async (password) => {
  * @return {Boolean}
  */
 const comparePassword = async (password, hashedPassword) => {
-    return (await bcrypt.compare(password, hashedPassword)) ? true : false
+    let comparedPassword = await bcrypt.compare(password, hashedPassword);
+    return comparedPassword
 }
 
 /**
  * Generates the JWT token with the data provided and signs it
- * TODO: Add token_secret to config
  * @param  {Object} data - The data in the JWT token
  * @returns {String}
  */
-const generateJWTtoken = (data) => {
-    return jwt.sign(data, 'TOKEN_SECRET')
+const generateJWToken = (data) => {
+    return jwt.sign(data, config.auth.token_secret)
 }
+
+const validateJWToken = async (req, res) => {
+  let token = await decodeToken(req.cookies.auth_token);
+  if (token) {
+    return res.status(200).json(token);
+  } else {
+    return res
+      .status(401)
+      .json({ error: 'No valid JSON WebToken in cookies, please re-log!' });
+  }
+};
 
 module.exports = {
     registerUser,
     loginUser,
-    showLogin,
+    validateJWToken
 }

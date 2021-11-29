@@ -6,22 +6,26 @@ import * as cls2 from './player';
 import * as cls3 from './shot';
 
 let Sketch = (p) => {
-  p.anim = false;
-  p.interval = 4;
+  
+  let opacity = 0;
+  let widthL = 0;
+  let widthR = p.width;
+  let win = false;
 
-  let on, anim, finished;
+  
   let shots = [];
   let enemies = [];
   let stars = [];
   let player;
   let enemy;
   let shot;
-  let starColor = 255;
+  let starColor;
+  
   let shield = false;
-  let shieldbreaker = true;
+  let shieldbreaker = false;
   p.isBreakerActive = true;
   //maybe implement autofire if var is set to true (to end the game faster)
-  let autoFire = false;
+  let autoFire = true;
 
   p.setup = () => {
     p.createCanvas(helpers.realWidth(90), helpers.view_2_px(55));
@@ -93,12 +97,45 @@ let Sketch = (p) => {
     }
     shotfunc();
     enemyfunc();
+    if(enemies.length == 0 && p.frameCount >= 1500){
+      win = true;
+    }
+    if (win) {
+      p.push();
+      
+      opacity += 2;
+      let winText = ' You Win !';
+      let nextText = '>> Press Next <<';
+      p.fill(255, opacity);
+      p.textSize(p.width / 50);
+      p.textAlign(p.CENTER);
+      p.text(winText, p.width / 2, p.height / 2);
+      p.pop();
+      p.push();
+      
+      p.fill(255);
+      p.rect(0, 0, widthL, p.height);
+      if (widthL <= p.width / 2 && opacity > 200) {
+        widthL += Math.round(p.width / 400);
+      }
+      p.fill(255);
+      p.rect(p.width, 0, widthR, p.height);
+      if (widthR >= -p.width / 2 && opacity > 200) {
+        widthR -= Math.round(p.width / 400);
+      }
+      if (widthR <= -p.width / 2) {
+        p.fill(0);
+        p.textSize(p.width / 75);
+        p.text(nextText, p.width - p.width / 9, p.height - p.height / 50);
+      }
+      p.pop();
+    }
   };
 
   
   function shotfunc() {
     for (let shot of shots) {
-      shot.draw(shots, autoFire);
+      shot.draw(p,shots, autoFire);
       shot.move(enemies, shield, enemy,p);
     }
   }
@@ -114,11 +151,12 @@ let Sketch = (p) => {
         player.pos.x,
         player.pos.y
       );
-      if (playerDistance < enemy.r + player.shieldSize + player.r && shield) {
-        enem.vel.x *= -10;
-        enem.vel.y *= -10;
-        enem.pos.x -= player.shieldSize;
-        enem.pos.y -= player.shieldSize;
+      if (playerDistance <= enemy.r + player.shieldSize + player.r && shield) {
+        player.collision(enem);
+        // enem.vel.x *= -10;
+        // enem.vel.y *= -10;
+        enem.acc.x *= -(player.dist);
+        enem.acc.y *=  -(player.dist);
       }
     }
   }
