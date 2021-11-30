@@ -91,14 +91,14 @@ p.playerWin = false
 //   else {
 //     str = str.replace(regex_Current_KI, 'Players turn');
 //   }
-//   console.log(win, oneTime);
+  // console.log(win, oneTime);
 //   if (!win) {
-//     console.log(mainEditor.editor.getSession().getAnnotations());
-//     console.log(str.match(regex_err));
+    // console.log(mainEditor.editor.getSession().getAnnotations());
+    // console.log(str.match(regex_err));
 
 //     mainEditor.editor.setValue(str + `fields = [${fields_}];`);
 //     if (str.match(regex_err)) {
-//       console.log(str.match(regex_err));
+      // console.log(str.match(regex_err));
 //       str = str.replace(regex, '');
 //       mainEditor.editor.setValue(str + `fields = [${fieldsReset}];`);
 //     }
@@ -149,7 +149,7 @@ p.setup = () => {
 function calculateCross() {
   let printedCross = 0;
   let printedCircle = 0;
-  console.log("---", created)
+  // console.log("---", created)
   if (!p.yourTurn) {
     for (let i = 0; i <= created.length; i++) {
       if (created[i] === 1) {
@@ -162,7 +162,7 @@ function calculateCross() {
       printedCircle++;
     }
   }
-  console.log("-x-x-", created)
+  // console.log("-x-x-", created)
   if (hardMode) {
     if (
       printedCircle === 1 &&
@@ -687,7 +687,7 @@ function calculateCross() {
       (created[0] === 1 && created[4] === 1 && created[8] === 1)
     ) && !pp4){
       p.playerWin = true;
-      console.log('player wins ');
+      // console.log('player wins ');
       pp4 = true
       // enterCallback();
     }
@@ -1148,10 +1148,10 @@ p.draw = () => {
     p.pop();
     // circle(circles[0], circles[1], circles[2]);
   }
-  console.log(p.fields__, created)
+  // console.log(p.fields__, created)
 
   if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
-    console.log("creating 0..")
+    // console.log("creating 0..")
     let circles = newCircle(0);
     p.push();
     p.translate(p.width / 2 - 100, p.height / 2 - 100);
