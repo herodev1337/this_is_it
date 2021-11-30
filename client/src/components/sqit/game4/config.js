@@ -9,6 +9,10 @@ let extraText = false;
 const get_sketch = (ref, setText1, setText2) => {
   const myp5 = new p5(sketch_builder, ref);
 
+  myp5.customResize = () => {
+    myp5.setup()
+  }
+
   const editorGetter = (value) => {
     if (!extraText) {
       const fields_ = helpers.get_userCode(value, 'fields');
@@ -21,7 +25,7 @@ const get_sketch = (ref, setText1, setText2) => {
       if (myp5.KI_Mode_ === 'normal' || myp5.KI_Mode_ === 'easy')
         myp5.hardMode = false;
 
-      if (gameFinished) extraText = true;
+      // if (gameFinished) extraText = true;
       add_editor_text(fields_);
     }
     // setText1(value);

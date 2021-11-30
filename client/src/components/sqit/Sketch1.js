@@ -34,9 +34,13 @@ const Sketch1 = () => {
     const newProps = get_sketch(p5Ref.current, setText1, setText2);
     setProps(newProps);
 
-    window.addEventListener('resize', () =>
+    window.addEventListener('resize', () =>{
       newProps.p5.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(55))
-    );
+
+      if (newProps.p5["customResize"]){
+        newProps.p5.customResize()
+      }
+    });
 
     return () =>
       window.removeEventListener('resize', () =>
