@@ -1148,7 +1148,7 @@ p.draw = () => {
     p.pop();
     // circle(circles[0], circles[1], circles[2]);
   }
-  console.log(p.fields__, created)
+  console.log(p.fields__, created, p.fields__[0],p.fields__[0],  created[0])
 
   if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
     console.log("creating 0..")

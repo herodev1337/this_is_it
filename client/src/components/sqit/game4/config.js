@@ -69,7 +69,7 @@ const get_sketch = (ref, setText1, setText2) => {
     };
     if (!extraText) {
       const fields_ = helpers.get_userCode(value, 'fields');
-      
+      // const [fields_,status] = ....
       // console.log(fields_);
 
       const KI_Mode = helpers.get_userCode(value, 'KI_Mode');
