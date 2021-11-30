@@ -6,23 +6,13 @@ import { fields } from './tictactoe.js';
 
 
 let sketch_builder = (p) => {
-const regex = new RegExp('fields(.|\n)*');
-const regex_Current_Player = new RegExp('KI starts');
-const regex_Current_KI = new RegExp('Players turn');
-const regex_err1 = new RegExp(
-  'fieldss*=s*.*[s*ReferenceError:s* .*s* is s*nots* defineds*];'
-);
-const regex_err2 = new RegExp(
-  "fieldss*=s*.*[s*SyntaxError: s*Unexpecteds*tokens* ':'s*];"
-);
-const regex_err = new RegExp(`${regex_err1 || regex_err2}`);
+
 
 let extraText = false;
 let gameFinished = false;
 let valid = false;
 p.fields__ = ''
-let fields__ = p.fields__;
-var yourTurn = false;
+p.yourTurn = false
 let start = true;
 let test = false;
 let created = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -59,10 +49,8 @@ let allAnims = [];
 let circleAnimFinished = [];
 let timex = 0;
 let updateEditor = false;
-let oneTime = false;
 let fieldsReset;
 p.KI_Mode_
-let KI_Mode_ = p.KI_Mode_; //expand KI_Mode with p.
 p.hardMode = true
 let hardMode = p.hardMode;
 let pp = false;
@@ -70,7 +58,6 @@ let pp2 = false;
 let pp3 = false;
 let pp4 = false;
 p.playerWin = false
-let playerWin = p.playerWin;
 
 // const enterCallback = () => {
 //   if (!extraText) {
@@ -162,7 +149,8 @@ p.setup = () => {
 function calculateCross() {
   let printedCross = 0;
   let printedCircle = 0;
-  if (!yourTurn) {
+  console.log("---", created)
+  if (!p.yourTurn) {
     for (let i = 0; i <= created.length; i++) {
       if (created[i] === 1) {
         createdCheck[i] = created[i];
@@ -174,6 +162,7 @@ function calculateCross() {
       printedCircle++;
     }
   }
+  console.log("-x-x-", created)
   if (hardMode) {
     if (
       printedCircle === 1 &&
@@ -208,9 +197,9 @@ function calculateCross() {
           createdCheck[8] === 1)
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -223,10 +212,10 @@ function calculateCross() {
           createdCheck[7] === 1 ||
           createdCheck[8] === 1)
       ) {
-        win = true;
+        p.win = true;
         created[2] = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -239,9 +228,9 @@ function calculateCross() {
           createdCheck[8] === 1)
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -254,9 +243,9 @@ function calculateCross() {
           createdCheck[8] === 1)
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -269,9 +258,9 @@ function calculateCross() {
           createdCheck[8] === 1)
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -284,17 +273,17 @@ function calculateCross() {
           createdCheck[0] === 1)
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       } else {
         if (created[4] != 2 && created[7] != 1) {
           created[7] = 2;
-          win = true;
+          p.win = true;
           if (!updateEditor) {
-            enterCallback();
+            // enterCallback();
           }
           updateEditor = true;
         }
@@ -315,9 +304,9 @@ function calculateCross() {
 
       if (createdCheck[2] === 1 && createdCheck[5] === 1 && created[4] != 2) {
         created[8] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -341,9 +330,9 @@ function calculateCross() {
         createdCheck[2] != 1
       ) {
         created[2] = 2;
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -354,7 +343,7 @@ function calculateCross() {
         created[0] = 2;
       }
     }
-    if (printedCircle === 3 && !win) {
+    if (printedCircle === 3 && !p.win) {
       if (
         created[0] === 1 &&
         created[7] === 1 &&
@@ -383,9 +372,9 @@ function calculateCross() {
       ) {
         created[3] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -397,9 +386,9 @@ function calculateCross() {
       ) {
         created[7] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -410,9 +399,9 @@ function calculateCross() {
       ) {
         created[3] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -423,9 +412,9 @@ function calculateCross() {
       ) {
         created[4] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -438,10 +427,10 @@ function calculateCross() {
       ) {
         created[0] = 2;
 
-        win = true;
+        p.win = true;
 
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -461,9 +450,9 @@ function calculateCross() {
         } else {
           created[0] = 2;
         }
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -475,9 +464,9 @@ function calculateCross() {
       ) {
         created[3] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -488,9 +477,9 @@ function calculateCross() {
       ) {
         created[8] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -501,9 +490,9 @@ function calculateCross() {
       ) {
         created[7] = 2;
 
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -519,9 +508,9 @@ function calculateCross() {
         } else {
           created[0] = 2;
         }
-        win = true;
+        p.win = true;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -540,10 +529,10 @@ function calculateCross() {
         createdCheck[2] === 1 &&
         createdCheck[3] === 1
       ) {
-        win = true;
+        p.win = true;
         created[8] = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -598,7 +587,7 @@ function calculateCross() {
         created[1] = 2;
       }
     }
-    if (printedCircle === 4 && !win) {
+    if (printedCircle === 4 && !p.win) {
       if (
         createdCheck[4] === 1 &&
         createdCheck[7] === 1 &&
@@ -606,9 +595,9 @@ function calculateCross() {
         createdCheck[2] === 1
       ) {
         created[0] = 2;
-        win = 2;
+        p.win = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -619,9 +608,9 @@ function calculateCross() {
         createdCheck[7] === 1
       ) {
         created[0] = 2;
-        win = 2;
+        p.win = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -633,9 +622,9 @@ function calculateCross() {
         createdCheck[5] === 1
       ) {
         created[2] = 2;
-        win = 2;
+        p.win = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -646,9 +635,9 @@ function calculateCross() {
         createdCheck[3] === 1
       ) {
         created[5] = 2;
-        win = 2;
+        p.win = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -661,7 +650,7 @@ function calculateCross() {
         created[3] = 2;
         win = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -682,7 +671,7 @@ function calculateCross() {
       ) {
         created[0] = 2;
         if (!updateEditor) {
-          enterCallback();
+          // enterCallback();
         }
         updateEditor = true;
       }
@@ -697,12 +686,12 @@ function calculateCross() {
       (created[2] === 1 && created[5] === 1 && created[8] === 1) ||
       (created[0] === 1 && created[4] === 1 && created[8] === 1)
     ) && !pp4){
-      playerWin = true;
+      p.playerWin = true;
       console.log('player wins ');
       pp4 = true
-      enterCallback();
+      // enterCallback();
     }
-    if (!playerWin) {
+    if (!p.playerWin) {
       if (printedCircle === 1 && !pp) {
         let i = randomCross();
         created[i] = 2;
@@ -767,7 +756,7 @@ function newCross(position) {
         [p.width / 2 - 125, p.height / 2 + 75, p.width / 2 - 70, p.height / 2 + 130],
       ];
       start = false;
-      yourTurn = true;
+      p.yourTurn = true;
       checkPosition[6] = true;
       created[6] = 2;
       return cross6;
@@ -777,7 +766,7 @@ function newCross(position) {
   //field 3
   if (position === 3 && created[3] != 1) {
     if (
-      (!yourTurn && !checkPosition[3] && !start) ||
+      (!p.yourTurn && !checkPosition[3] && !start) ||
       (!start && created[3] === 2)
     ) {
       let cross3 = [
@@ -785,14 +774,14 @@ function newCross(position) {
         [p.width / 2 - 125, p.height / 2 - 25, p.width / 2 - 70, p.height / 2 + 30],
       ];
       checkPosition[3] = true;
-      yourTurn = true;
+      p.yourTurn = true;
       return cross3;
     }
   }
   //   field4
   if (position === 4 && created[4] != 1) {
     if (
-      (!yourTurn && !checkPosition[4] && !start) ||
+      (!p.yourTurn && !checkPosition[4] && !start) ||
       (!start && created[4] === 2)
     ) {
       let cross4 = [
@@ -800,14 +789,14 @@ function newCross(position) {
         [p.width / 2 + 30, p.height / 2 - 25, p.width / 2 - 25, p.height / 2 + 30],
       ];
       checkPosition[2] = true;
-      yourTurn = true;
+      p.yourTurn = true;
       return cross4;
     }
   }
   //field 5
   if (position === 5 && created[5] != 1) {
     if (
-      (!yourTurn && !checkPosition[5] && !start) ||
+      (!p.yourTurn && !checkPosition[5] && !start) ||
       (!start && created[5] === 2)
     ) {
       let cross5 = [
@@ -815,7 +804,7 @@ function newCross(position) {
         [p.width / 2 + 75, p.height / 2 - 25, p.width / 2 + 125, p.height / 2 + 30],
       ];
       checkPosition[5] = true;
-      yourTurn = true;
+      p.yourTurn = true;
 
       return cross5;
     }
@@ -825,7 +814,7 @@ function newCross(position) {
 
   if (position === 8 && created[8] != 1) {
     if (
-      (!yourTurn && !checkPosition[8] && !start) ||
+      (!p.yourTurn && !checkPosition[8] && !start) ||
       (!start && created[8] === 2)
     ) {
       let cross8 = [
@@ -833,7 +822,7 @@ function newCross(position) {
         [p.width / 2 + 75, p.height / 2 + 75, p.width / 2 + 125, p.height / 2 + 130],
       ];
       checkPosition[8] = true;
-      yourTurn = true;
+      p.yourTurn = true;
 
       return cross8;
     }
@@ -842,7 +831,7 @@ function newCross(position) {
   //field 7
   if (position === 7 && created[7] != 1) {
     if (
-      (!yourTurn && !checkPosition[7] && !start) ||
+      (!p.yourTurn && !checkPosition[7] && !start) ||
       (!start && created[7] === 2)
     ) {
       let cross7 = [
@@ -850,7 +839,7 @@ function newCross(position) {
         [p.width / 2 + 30, p.height / 2 + 75, p.width / 2 - 25, p.height / 2 + 130],
       ];
       checkPosition[7] = true;
-      yourTurn = true;
+      p.yourTurn = true;
 
       return cross7;
     }
@@ -859,7 +848,7 @@ function newCross(position) {
   //field 0
   if (position === 0 && created[0] != 1) {
     if (
-      (!yourTurn && !checkPosition[0] && !start) ||
+      (!p.yourTurn && !checkPosition[0] && !start) ||
       (!start && created[0] === 2)
     ) {
       let cross0 = [
@@ -867,7 +856,7 @@ function newCross(position) {
         [p.width / 2 - 125, p.height / 2 - 125, p.width / 2 - 70, p.height / 2 - 70],
       ];
       checkPosition[0] = true;
-      yourTurn = true;
+      p.yourTurn = true;
 
       return cross0;
     }
@@ -876,7 +865,7 @@ function newCross(position) {
   //field 1
   if (position === 1 && created[1] != 1) {
     if (
-      (!yourTurn && !checkPosition[1] && !start) ||
+      (!p.yourTurn && !checkPosition[1] && !start) ||
       (!start && created[1] === 2)
     ) {
       let cross1 = [
@@ -884,7 +873,7 @@ function newCross(position) {
         [p.width / 2 + 30, p.height / 2 - 125, p.width / 2 - 25, p.height / 2 - 70],
       ];
       checkPosition[1] = true;
-      yourTurn = true;
+      p.yourTurn = true;
       return cross1;
     }
   }
@@ -892,7 +881,7 @@ function newCross(position) {
   //field 2
   if (position === 2 && created[2] != 1) {
     if (
-      (!yourTurn && !checkPosition[2] && !start) ||
+      (!p.yourTurn && !checkPosition[2] && !start) ||
       (!start && created[2] === 2)
     ) {
       let cross2 = [
@@ -900,7 +889,7 @@ function newCross(position) {
         [p.width / 2 + 75, p.height / 2 - 125, p.width / 2 + 125, p.height / 2 - 70],
       ];
       checkPosition[2] = true;
-      yourTurn = true;
+      p.yourTurn = true;
 
       return cross2;
     }
@@ -947,7 +936,7 @@ function animCreate(position) {
   ];
 
   if (!animFinished[position]) {
-    if (frameCount && position != 5) {
+    if (p.frameCount && position != 5) {
       if (getAnim[0][0] <= getAnim[0][2] && getAnim[0][1] <= getAnim[0][3]) {
         getAnim[0][0] += 1.5;
         getAnim[0][1] += 1.5;
@@ -968,6 +957,7 @@ let angle = 0;
 let point = 9000;
 
 p.draw = () => {
+  // console.log("-----------------------",p.fields_)
   // background($(':root').css('--color-navy-800'));
   angle += 0.06;
   p.fill(255);
@@ -1015,12 +1005,12 @@ p.draw = () => {
 
   p.noFill();
 
-  if (!yourTurn || created[6] === 2) {
+  if (!p.yourTurn || created[6] === 2) {
     let cross = newCross(6);
     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
   }
-  if (!yourTurn || created[4] === 2) {
+  if (!p.yourTurn || created[4] === 2) {
     let x = animCreate(4);
 
     if (animFinished[4]) {
@@ -1032,7 +1022,7 @@ p.draw = () => {
       p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
     }
   }
-  if (!yourTurn || created[8] === 2) {
+  if (!p.yourTurn || created[8] === 2) {
     let x = animCreate(8);
 
     if (animFinished[8]) {
@@ -1044,7 +1034,7 @@ p.draw = () => {
       p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
     }
   }
-  if (!yourTurn || created[1] === 2) {
+  if (!p.yourTurn || created[1] === 2) {
     let x = animCreate(1);
 
     if (animFinished[1]) {
@@ -1056,7 +1046,7 @@ p.draw = () => {
       p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
     }
   }
-  if (!yourTurn || created[2] === 2) {
+  if (!p.yourTurn || created[2] === 2) {
     let x = animCreate(2);
 
     if (animFinished[2]) {
@@ -1069,7 +1059,7 @@ p.draw = () => {
     }
   }
 
-  if (!yourTurn || created[0] === 2) {
+  if (!p.yourTurn || created[0] === 2) {
     let x = animCreate(0);
 
     if (animFinished[0]) {
@@ -1082,7 +1072,7 @@ p.draw = () => {
     }
   }
 
-  if (!yourTurn || created[3] === 2) {
+  if (!p.yourTurn || created[3] === 2) {
     let x = animCreate(3);
 
     if (animFinished[3]) {
@@ -1095,7 +1085,7 @@ p.draw = () => {
     }
   }
 
-  if (!yourTurn || created[5] === 2) {
+  if (!p.yourTurn || created[5] === 2) {
     let x = animCreate(5);
 
     if (animFinished[5]) {
@@ -1108,7 +1098,7 @@ p.draw = () => {
     }
   }
 
-  if (!yourTurn || created[7] === 2) {
+  if (!p.yourTurn || created[7] === 2) {
     let x = animCreate(7);
 
     if (animFinished[7]) {
@@ -1120,7 +1110,8 @@ p.draw = () => {
       p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
     }
   }
-  if (((fields__[6] && yourTurn) || created[6] === 1) && created[6] != 2) {
+
+  if (((p.fields__[6] && p.yourTurn) || created[6] === 1) && created[6] != 2) {
     let circles = newCircle(6);
     p.push();
     p.translate(p.width / 2 - 100, p.height / 2 + 100);
@@ -1129,7 +1120,7 @@ p.draw = () => {
     p.pop();
     // circle(circles[0], circles[1], circles[2]);
   }
-  if (((fields__[8] && yourTurn) || created[8] === 1) && created[8] != 2) {
+  if (((p.fields__[8] && p.yourTurn) || created[8] === 1) && created[8] != 2) {
     let circles = newCircle(8);
     p.push();
     p.translate(p.width / 2 + 100, p.height / 2 + 100);
@@ -1139,7 +1130,7 @@ p.draw = () => {
     // circle(circles[0], circles[1], circles[2]);
   }
 
-  if ((fields__[7] || created[7] === 1) && created[7] != 2) {
+  if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
     let circles = newCircle(7);
     p.push();
     p.translate(p.width / 2, p.height / 2 + 100);
@@ -1148,7 +1139,7 @@ p.draw = () => {
     p.pop();
     // circle(circles[0], circles[1], circles[2]);
   }
-  if ((fields__[5] || created[5] === 1) && created[5] != 2) {
+  if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
     let circles = newCircle(5);
     p.push();
     p.translate(p.width / 2 + 100, p.height / 2);
@@ -1157,7 +1148,10 @@ p.draw = () => {
     p.pop();
     // circle(circles[0], circles[1], circles[2]);
   }
-  if ((fields__[0] || created[0] === 1) && created[0] != 2) {
+  console.log(p.fields__, created)
+
+  if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
+    console.log("creating 0..")
     let circles = newCircle(0);
     p.push();
     p.translate(p.width / 2 - 100, p.height / 2 - 100);
@@ -1167,7 +1161,7 @@ p.draw = () => {
     // circle(circles[0], circles[1], circles[2]);
   }
 
-  if ((fields__[1] || created[1] === 1) && created[1] != 2) {
+  if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
     let circles = newCircle(1);
     p.push();
     p.translate(p.width / 2, p.height / 2 - 100);
@@ -1177,7 +1171,7 @@ p.draw = () => {
     // circle(circles[0], circles[1], circles[2]);
   }
 
-  if ((fields__[2] || created[2] === 1) && created[2] != 2) {
+  if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
     let circles = newCircle(2);
     p.push();
     p.translate(p.width / 2 + 100, p.height / 2 - 100);
@@ -1187,7 +1181,7 @@ p.draw = () => {
     // circle(circles[0], circles[1], circles[2]);
   }
 
-  if ((fields__[3] || created[3] === 1) && created[3] != 2) {
+  if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
     let circles = newCircle(3);
     p.push();
     p.translate(p.width / 2 - 100, p.height / 2);
@@ -1197,7 +1191,7 @@ p.draw = () => {
     // circle(circles[0], circles[1], circles[2]);
   }
 
-  if ((fields__[4] || created[4] === 1) && created[4] != 2) {
+  if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
     let circles = newCircle(4);
     p.push();
     p.translate(p.width / 2, p.height / 2);
@@ -1213,13 +1207,13 @@ function newCircle(position) {
     let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
     checkPosition[0] = true;
     created[0] = 1;
-    yourTurn = false;
+    p.yourTurn = false;
     return circle0;
   }
   if (position === 1 && !checkPosition[1]) {
     let circle1 = [p.width / 2, p.height / 2 - 100, 50];
     checkPosition[1] = true;
-    yourTurn = false;
+    p.yourTurn = false;
     created[1] = 1;
     return circle1;
   }
@@ -1227,13 +1221,13 @@ function newCircle(position) {
     let circle2 = [p.width / 2 + 100, p.height / 2 - 100, 50];
     checkPosition[2] = true;
     created[2] = 1;
-    yourTurn = false;
+    p.yourTurn = false;
     return circle2;
   }
   if (position === 3 && !checkPosition[3]) {
     let circle3 = [p.width / 2 - 100, p.height / 2, 50];
     checkPosition[3] = true;
-    yourTurn = false;
+    p.yourTurn = false;
     created[3] = 1;
     return circle3;
   }
@@ -1241,27 +1235,27 @@ function newCircle(position) {
     let circle4 = [p.width / 2, p.height / 2, 50];
     checkPosition[4] = true;
     created[4] = 1;
-    yourTurn = false;
+    p.yourTurn = false;
     return circle4;
   }
   if (position === 5 && !checkPosition[5]) {
     let circle5 = [p.width / 2 + 100, p.height / 2, 50];
     checkPosition[5] = true;
-    yourTurn = false;
+    p.yourTurn = false;
     created[5] = 1;
     return circle5;
   }
   if (position === 6 && !checkPosition[6]) {
     let circle6 = [p.width / 2 - 100, p.height / 2 + 100, 50];
     checkPosition[6] = true;
-    yourTurn = false;
+    p.yourTurn = false;
     created[6] = 1;
     return circle6;
   }
   if (position === 7 && !checkPosition[7]) {
     let circle7 = [p.width / 2, p.height / 2 + 100, 50];
     checkPosition[7] = true;
-    yourTurn = false;
+    p.yourTurn = false;
     created[7] = 1;
     return circle7;
   }
@@ -1269,7 +1263,7 @@ function newCircle(position) {
     let circle8 = [p.width / 2 + 100, p.height / 2 + 100, 50];
     checkPosition[8] = true;
     created[8] = 1;
-    yourTurn = false;
+    p.yourTurn = false;
     return circle8;
   }
 }
