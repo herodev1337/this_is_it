@@ -85,7 +85,8 @@ const get_sketch = (ref, setText1, setText2) => {
       if (!myp5.win && !myp5.playerWin) myp5.fields__ = fields_;
       if (myp5.KI_Mode_ === 'normal' || myp5.KI_Mode_ === 'easy')
         myp5.hardMode = false;
-
+      
+      console.log(myp5.hardMode)
       add_editor_text(fields_);
     }
   };
