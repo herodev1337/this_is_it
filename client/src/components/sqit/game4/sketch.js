@@ -964,41 +964,6 @@ p.draw = () => {
   p.rect(p.width / 2 - 50, p.height / 2, 5, 250);
   p.rect(p.width / 2 + 50, p.height / 2, 5, 250);
   p.stroke(255);
-  //field 4
-  // line(width/2 -25, height/2 -25, width/2 +30, height/2 +30)
-  // line(width/2 +30 , height/2 -25, width/2 -25, height/2 +30)
-  //
-  // //field 3
-  // line(width/2 -70, height/2 -25, width/2 -125, height/2 +30)
-  // line(width/2 -125, height/2 -25, width/2 -70, height/2 +30)
-  //
-  // //field 5
-  // line(width/2 +125, height/2 -25, width/2 +70, height/2 +30)
-  // line(width/2 +75, height/2 -25, width/2 +125, height/2 +30)
-  //
-  // //field 8
-  // line(width/2 +125, height/2 +75, width/2 +70, height/2 +130)
-  // line(width/2 +75, height/2 +75, width/2 +125, height/2 +130)
-  //
-  // //field 7
-  // line(width/2 -25, height/2 +75, width/2 +30, height/2 +130)
-  // line(width/2 +30 , height/2 +75, width/2 -25, height/2 +130)
-  //
-  // // field 6
-  // line(width/2 -70, height/2 +75, width/2 -125, height/2 +130)
-  // line(width/2 -125, height/2 +75, width/2 -70, height/2 +130)
-  //
-  // //field 0
-  // line(width/2 -70, height/2 -125, width/2 -125, height/2 -70)
-  // line(width/2 -125, height/2 -125, width/2 -70, height/2 -70)
-  //
-  // //field 1
-  // line(width/2 -25, height/2 -125, width/2 +30, height/2 -70)
-  // line(width/2 +30 , height/2 -125, width/2 -25, height/2 -70)
-  //
-  // //field 2
-  // line(width/2 +125, height/2 -125, width/2 +70, height/2 -70)
-  // line(width/2 +75, height/2 -125, width/2 +125, height/2 -70)
 
   p.rect(p.width / 2, p.height / 2 + 50, 250, 5);
   p.rect(p.width / 2, p.height / 2 - 50, 250, 5);
@@ -1120,99 +1085,54 @@ p.draw = () => {
   }
 
   if (((p.fields__[6] && p.yourTurn) || created[6] === 1) && created[6] != 2) {
-    // let circles = newCircle(6);
-    // p.push();
-    // p.translate(p.width / 2 - 100, p.height / 2 + 100);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(6);
 
     draw_circle([-100, 100])
   }
   if (((p.fields__[8] && p.yourTurn) || created[8] === 1) && created[8] != 2) {
     let circles = newCircle(8);
-    p.push();
-    p.translate(p.width / 2 + 100, p.height / 2 + 100);
-    p.rotate(angle);
-    p.circle(0, 25, 1);
-    p.pop();
     
     draw_circle([100, 100])
   }
 
   if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
-    // let circles = newCircle(7);
-    // p.push();
-    // p.translate(p.width / 2, p.height / 2 + 100);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(7);
 
     draw_circle([0, 100])
   }
   if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
-    // let circles = newCircle(5);
-    // p.push();
-    // p.translate(p.width / 2 + 100, p.height / 2);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(5);
     
     draw_circle([+100, 0])
   }
 
   if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
     // console.log("creating 0..")
-    // let circles = newCircle(0);
-    // p.push();
-    // p.translate(p.width / 2 - 100, p.height / 2 - 100);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(0);
     
     draw_circle([-100, -100])
   }
 
   if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
-    // let circles = newCircle(1);
-    // p.push();
-    // p.translate(p.width / 2, p.height / 2 - 100);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(1);
     
     draw_circle([0, -100])
   }
 
   if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
-    // let circles = newCircle(2);
-    // p.push();
-    // p.translate(p.width / 2 + 100, p.height / 2 - 100);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(2);
     
     draw_circle([100, -100])
   }
 
   if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
-    // let circles = newCircle(3);
-    // p.push();
-    // p.translate(p.width / 2 - 100, p.height / 2);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(3);
     
     draw_circle([-100, 0])
   }
 
   if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
-    // let circles = newCircle(4);
-    // p.push();
-    // p.translate(p.width / 2, p.height / 2);
-    // p.rotate(angle);
-    // p.circle(0, 25, 1);
-    // p.pop();
+    let circles = newCircle(4);
 
     draw_circle([0, 0])
   }
