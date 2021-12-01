@@ -25,10 +25,11 @@ const get_sketch = (ref, setText1, setText2) => {
   
   const editorGetter = (value) => {
     if (gameFinished) extraText = true;
+
     const add_editor_text = (fields_) => {
       let str = value;
-      fields_.pop()
-      fields_ = fields_[0]
+      // fields_.pop()
+      // fields_ = fields_[0]
 
       str = str.replace(regex, '');
       if (myp5.yourTurn) str = str.replace(regex_Current_Player, 'KIs turn');
@@ -36,10 +37,8 @@ const get_sketch = (ref, setText1, setText2) => {
         str = str.replace(regex_Current_KI, 'Players turn');
       }
       if (!myp5.win) {
-        console.log(str, fields_)
+        // console.log(str, fields_)
         setText1(str + `fields = [${fields_}];`);
-        console.log("setting fields..")
-        console.log(value)
         if (str.match(regex_err)) {
           str = str.replace(regex, '');
           setText1(str + `fields = [${fieldsReset}];`);
@@ -67,34 +66,27 @@ const get_sketch = (ref, setText1, setText2) => {
         setText1(str + `fields = [${fieldsReset}];`);
       }
     };
-    if (!extraText) {
-      const fields_ = helpers.get_userCode(value, 'fields');
-      // const [fields_,status] = ....
-      // console.log(fields_);
 
-      const KI_Mode = helpers.get_userCode(value, 'KI_Mode');
+    if (!extraText) {
+      const [fields_, status] = helpers.get_userCode(value, 'fields');
+      
+      if (!status) return
+
+      const [KI_Mode, _] = helpers.get_userCode(value, 'KI_Mode');
 
       myp5.KI_Mode_ = KI_Mode;
-      console.log(fields_.includes(undefined));
+      // console.log(fields_.includes(undefined));
 
-      // const temp = fields_.filter((val, i) => { if (Object.keys(val)) return val })
-      // console.log(temp.length)
+    
 
-      // const temp = fields_.filter((val, i) => {
-      //   if (val || val === false) return true;
-      // });
-
-      // for (let i = 0; i <= fields_[0].length; i++) {
-      //   console.log('hey', fields_[0].length, i);
-      // }
-
-      if(fields_[0].includes(undefined)) return
+      // if(fields_[0].includes(undefined)) return
       console.log(fields_);
       // console.log(temp.length);
       if (!myp5.win && !myp5.playerWin) myp5.fields__ = fields_;
       if (myp5.KI_Mode_ === 'normal' || myp5.KI_Mode_ === 'easy')
         myp5.hardMode = false;
-
+      
+      console.log(myp5.hardMode)
       add_editor_text(fields_);
     }
   };
