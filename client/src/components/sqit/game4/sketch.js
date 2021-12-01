@@ -1096,119 +1096,44 @@ let sketch_builder = (p) => {
       }
     }
 
-    draw_cross(6)
+    // draw_cross(6)
+    // created.forEach((isCreated, i) => {
+    //   if (i === 6) return;
+    //   if (!p.yourTurn || isCreated === 2) draw_cross(i)
+    // })
 
-    created.forEach((isCreated, i) => {
-      if (i === 6) return;
-      // console.log(!p.yourTurn)
-      if (!p.yourTurn || isCreated === 2) draw_cross(i)
-    })
-
-    // if (!p.yourTurn || created[6] === 2) {
-    //   let cross = newCross(6);
-    //   p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //   p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    // }
+    if (!p.yourTurn || created[6] === 2) {
+      draw_cross(6)
+    }
     
-    // if (!p.yourTurn || created[4] === 2) {
-    //   let x = animCreate(4);
-    //   if (animFinished[4]) {
-    //     let cross = newCross(4);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-    // if (!p.yourTurn || created[8] === 2) {
-    //   let x = animCreate(8);
+    if (!p.yourTurn || created[4] === 2) {
+      draw_cross(4)
+    }
+    if (!p.yourTurn || created[8] === 2) {
+      draw_cross(8)
+    }
+    if (!p.yourTurn || created[1] === 2) {
+      draw_cross(1)
+    }
+    if (!p.yourTurn || created[2] === 2) {
+      draw_cross(2)
+    }
 
-    //   if (animFinished[8]) {
-    //     let cross = newCross(8);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-    // if (!p.yourTurn || created[1] === 2) {
-    //   let x = animCreate(1);
+    if (!p.yourTurn || created[0] === 2) {
+      draw_cross(0)
+    }
 
-    //   if (animFinished[1]) {
-    //     let cross = newCross(1);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-    // if (!p.yourTurn || created[2] === 2) {
-    //   let x = animCreate(2);
+    if (!p.yourTurn || created[3] === 2) {
+      draw_cross(3)
+    }
 
-    //   if (animFinished[2]) {
-    //     let cross = newCross(2);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
+    if (!p.yourTurn || created[5] === 2) {
+      draw_cross(5)
+    }
 
-    // if (!p.yourTurn || created[0] === 2) {
-    //   let x = animCreate(0);
-
-    //   if (animFinished[0]) {
-    //     let cross = newCross(0);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-
-    // if (!p.yourTurn || created[3] === 2) {
-    //   let x = animCreate(3);
-
-    //   if (animFinished[3]) {
-    //     let cross = newCross(3);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-
-    // if (!p.yourTurn || created[5] === 2) {
-    //   let x = animCreate(5);
-
-    //   if (animFinished[5]) {
-    //     let cross = newCross(5);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
-
-    // if (!p.yourTurn || created[7] === 2) {
-    //   let x = animCreate(7);
-
-    //   if (animFinished[7]) {
-    //     let cross = newCross(7);
-    //     p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
-    //     p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
-    //   } else {
-    //     p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
-    //     p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
-    //   }
-    // }
+    if (!p.yourTurn || created[7] === 2) {
+      draw_cross(7)
+    }
 
     const draw_circle = ([first, second], circleAnimFinished, position) => {
       if (!getAngle[position]) {
@@ -1256,88 +1181,88 @@ let sketch_builder = (p) => {
 
     // if (!p.fields__) return
 
-    p.fields__.forEach((field, i) => {
-      // if ([6, 8].includes(i)) {
-      //   if (!(((p.fields__[i] && p.yourTurn) || created[i] ===  createdCheck[i][0]) && created[i] !=  createdCheck[i][1])) return;
-      // } else 
-      if (
-        !(
-          (field || created[i] === createdCheck[i][0]) &&
-          created[i] != createdCheck[i][1]
-        )
-      )
-        {
-        //   console.log("statement", (field || created[i] === createdCheck[i][0]) &&
-        //   created[i] != createdCheck[i][1]
-        // )
-          return
-        };
+    // p.fields__.forEach((field, i) => {
+    //   // if ([6, 8].includes(i)) {
+    //   //   if (!(((p.fields__[i] && p.yourTurn) || created[i] ===  createdCheck[i][0]) && created[i] !=  createdCheck[i][1])) return;
+    //   // } else 
+    //   if (
+    //     !(
+    //       (field || created[i] === createdCheck[i][0]) &&
+    //       created[i] != createdCheck[i][1]
+    //     )
+    //   )
+    //     {
+    //     //   console.log("statement", (field || created[i] === createdCheck[i][0]) &&
+    //     //   created[i] != createdCheck[i][1]
+    //     // )
+    //       return
+    //     };
 
-      // console.log("Goin through")
-      let circles = newCircle(i);
-      if (!circleAnimFinished[i])
-        draw_circle(circleAdders[i], circleAnimFinished, i);
-      else {
-        p.circle(circles[0], circles[1], circles[2]);
-      }
-    });
+    //   // console.log("Goin through")
+    //   let circles = newCircle(i);
+    //   if (!circleAnimFinished[i])
+    //     draw_circle(circleAdders[i], circleAnimFinished, i);
+    //   else {
+    //     p.circle(circles[0], circles[1], circles[2]);
+    //   }
+    // });
 
     // console.log(p.fields__)
 
-    // if (
-    //   ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
-    //   created[6] != 2
-    // ) {
-    //   let circles = newCircle(6);
-    //   draw_circle([-100, 100], circleAnimFinished, 6);
-    // }
-    // if (
-    //   ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
-    //   created[8] != 2
-    // ) {
-    //   let circles = newCircle(8);
-    //   draw_circle([100, 100], circleAnimFinished, 8);
-    // }
+    if (
+      ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
+      created[6] != 2
+    ) {
+      let circles = newCircle(6);
+      draw_circle([-100, 100], circleAnimFinished, 6);
+    }
+    if (
+      ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
+      created[8] != 2
+    ) {
+      let circles = newCircle(8);
+      draw_circle([100, 100], circleAnimFinished, 8);
+    }
 
-    // if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
-    //   let circles = newCircle(7);
-    //   draw_circle([0, 100], circleAnimFinished, 7);
-    // }
-    // if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
-    //   let circles = newCircle(5);
-    //   draw_circle([+100, 0]);
-    // }
+    if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
+      let circles = newCircle(7);
+      draw_circle([0, 100], circleAnimFinished, 7);
+    }
+    if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
+      let circles = newCircle(5);
+      draw_circle([+100, 0]);
+    }
 
-    // if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
-    //   let circles = newCircle(0);
-    //   if (!circleAnimFinished[0])
-    //     draw_circle([-100, -100], circleAnimFinished, 0);
-    //   else {
-    //     console.log(circles);
-    //     // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
-    //     p.circle(circles[0], circles[1], circles[2]);
-    //   }
-    // }
+    if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
+      let circles = newCircle(0);
+      if (!circleAnimFinished[0])
+        draw_circle([-100, -100], circleAnimFinished, 0);
+      else {
+        console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
+      }
+    }
 
-    // if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
-    //   let circles = newCircle(1);
-    //   draw_circle([0, -100], circleAnimFinished, 1);
-    // }
+    if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
+      let circles = newCircle(1);
+      draw_circle([0, -100], circleAnimFinished, 1);
+    }
 
-    // if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
-    //   let circles = newCircle(2);
-    //   draw_circle([100, -100], circleAnimFinished, 2);
-    // }
+    if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
+      let circles = newCircle(2);
+      draw_circle([100, -100], circleAnimFinished, 2);
+    }
 
-    // if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
-    //   let circles = newCircle(3);
-    //   draw_circle([-100, 0], circleAnimFinished, 3);
-    // }
+    if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
+      let circles = newCircle(3);
+      draw_circle([-100, 0], circleAnimFinished, 3);
+    }
 
-    // if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
-    //   let circles = newCircle(4);
-    //   draw_circle([0, 0], circleAnimFinished, 4);
-    // }
+    if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
+      let circles = newCircle(4);
+      draw_circle([0, 0], circleAnimFinished, 4);
+    }
   };
 
   function newCircle(position) {
