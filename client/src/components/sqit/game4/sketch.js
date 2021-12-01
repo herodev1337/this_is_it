@@ -1153,6 +1153,32 @@ let sketch_builder = (p) => {
         circleAnimFinished[position] = true;
         // angle[position] =0
       }
+
+      let circles = newCircle(position);
+      if (!circleAnimFinished[position]){
+        if (!getAngle[position]) {
+          getAngle[position] = angle[position];
+        }
+        // console.log(getAngle[position], angle[position]);
+  
+        if (angle[position] - getAngle[position] < 360) {
+          angle[position] += 3;
+  
+          p.push();
+          p.translate(p.width / 2 + first, p.height / 2 + second);
+          p.rotate(angle[position]);
+          p.circle(0, 25, 1);
+          p.pop();
+        } else {
+          circleAnimFinished[position] = true;
+          // angle[position] =0
+        }
+      }
+      else {
+        console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
+      }
     };
 
     const circleAdders = [
@@ -1213,54 +1239,47 @@ let sketch_builder = (p) => {
       ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
       created[6] != 2
     ) {
-      let circles = newCircle(6);
+      // let circles = newCircle(6);
       draw_circle([-100, 100], circleAnimFinished, 6);
     }
     if (
       ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
       created[8] != 2
     ) {
-      let circles = newCircle(8);
+      // let circles = newCircle(8);
       draw_circle([100, 100], circleAnimFinished, 8);
     }
 
     if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
-      let circles = newCircle(7);
+      // let circles = newCircle(7);
       draw_circle([0, 100], circleAnimFinished, 7);
     }
     if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
-      let circles = newCircle(5);
-      draw_circle([+100, 0]);
+      // let circles = newCircle(5);
+      draw_circle([+100, 0], circleAnimFinished, 5);
     }
 
     if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
-      let circles = newCircle(0);
-      if (!circleAnimFinished[0])
-        draw_circle([-100, -100], circleAnimFinished, 0);
-      else {
-        console.log(circles);
-        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
-        p.circle(circles[0], circles[1], circles[2]);
-      }
+      draw_circle([-100, -100], circleAnimFinished, 0);
     }
 
     if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
-      let circles = newCircle(1);
+      // let circles = newCircle(1);
       draw_circle([0, -100], circleAnimFinished, 1);
     }
 
     if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
-      let circles = newCircle(2);
+      // let circles = newCircle(2);
       draw_circle([100, -100], circleAnimFinished, 2);
     }
 
     if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
-      let circles = newCircle(3);
+      // let circles = newCircle(3);
       draw_circle([-100, 0], circleAnimFinished, 3);
     }
 
     if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
-      let circles = newCircle(4);
+      // let circles = newCircle(4);
       draw_circle([0, 0], circleAnimFinished, 4);
     }
   };
