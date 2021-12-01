@@ -1070,7 +1070,7 @@ let sketch_builder = (p) => {
   let point = 9000;
 
   p.draw = () => {
-    console.log(p.win)
+    console.log(created)
     // console.log("-----------------------",p.fields_)
     // background($(':root').css('--color-navy-800'));
     p.fill(255);
@@ -1102,7 +1102,7 @@ let sketch_builder = (p) => {
     created.forEach((isCreated, i) => {
       if (i === 6) return;
       // console.log(!p.yourTurn)
-      if (!p.yourTurn || isCreated === 2) draw_cross(i)
+      if (!p.yourTurn || isCreated=== 2) draw_cross(i)
     })
 
     // if (!p.yourTurn || created[6] === 2) {
