@@ -19,7 +19,7 @@ let sketch_builder = (p) => {
   let extraText = false;
   let gameFinished = false;
   let valid = false;
-  p.fields__ = '';
+  p.fields__ = [];
   p.yourTurn = false;
   let start = true;
   let test = false;
@@ -75,6 +75,8 @@ let sketch_builder = (p) => {
   let pp3 = false;
   let pp4 = false;
   p.playerWin = false;
+
+  let resized = false;
 
   // const enterCallback = () => {
   //   if (!extraText) {
@@ -1225,69 +1227,126 @@ let sketch_builder = (p) => {
       if (!getAngle[position]) {
         getAngle[position] = angle[position];
       }
-      angle[position] += 3;
       console.log(getAngle[position], angle[position]);
+
       if (angle[position] - getAngle[position] < 360) {
+        angle[position] += 3;
+
         p.push();
         p.translate(p.width / 2 + first, p.height / 2 + second);
         p.rotate(angle[position]);
         p.circle(0, 25, 1);
         p.pop();
-      } else circleAnimFinished[position] = true;
+      } else {
+        circleAnimFinished[position] = true;
+        // angle[position] =0
+      }
     };
 
-    if (
-      ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
-      created[6] != 2
-    ) {
-      let circles = newCircle(6);
-      draw_circle([-100, 100], circleAnimFinished, 6);
-    }
-    if (
-      ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
-      created[8] != 2
-    ) {
-      let circles = newCircle(8);
-      draw_circle([100, 100], circleAnimFinished, 8);
-    }
+    const circleAdders = [
+      [-100, -100],
+      [0, -100],
+      [100, -100],
+      [-100, 0],
+      [0, 0],
+      [100, 0],
+      [-100, 100],
+      [0, 100],
+      [100, 100],
+    ];
 
-    if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
-      let circles = newCircle(7);
-      draw_circle([0, 100], circleAnimFinished, 7);
-    }
-    if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
-      let circles = newCircle(5);
-      draw_circle([+100, 0]);
-    }
+    const createdCheck = [
+      [0, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1,2],
+      [1, 2],
+      [1,2],
+    ];
 
-    if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
-      let circles = newCircle(0);
-      if (!circleAnimFinished[0])
-        draw_circle([-100, -100], circleAnimFinished, 0);
+    // if (!p.fields__) return
+
+    p.fields__.forEach((elem, i) => {
+      // if ([6, 8].includes(i)) {
+      //   if (!(((p.fields__[i] && p.yourTurn) || created[i] ===  createdCheck[i][0]) && created[i] !=  createdCheck[i][1])) return;
+      // } else 
+      if (
+        !(
+          (p.fields__[i] || created[i] === createdCheck[i][0]) &&
+          created[i] != createdCheck[i][1]
+        )
+      )
+        return;
+
+      let circles = newCircle(i);
+      if (!circleAnimFinished[i])
+        draw_circle(circleAdders[i], circleAnimFinished, i);
       else {
-        p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        // console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
       }
-    }
+    });
 
-    if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
-      let circles = newCircle(1);
-      draw_circle([0, -100], circleAnimFinished, 1);
-    }
+    // console.log(p.fields__)
 
-    if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
-      let circles = newCircle(2);
-      draw_circle([100, -100], circleAnimFinished, 2);
-    }
+    // if (
+    //   ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
+    //   created[6] != 2
+    // ) {
+    //   let circles = newCircle(6);
+    //   draw_circle([-100, 100], circleAnimFinished, 6);
+    // }
+    // if (
+    //   ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
+    //   created[8] != 2
+    // ) {
+    //   let circles = newCircle(8);
+    //   draw_circle([100, 100], circleAnimFinished, 8);
+    // }
 
-    if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
-      let circles = newCircle(3);
-      draw_circle([-100, 0], circleAnimFinished, 3);
-    }
+    // if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
+    //   let circles = newCircle(7);
+    //   draw_circle([0, 100], circleAnimFinished, 7);
+    // }
+    // if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
+    //   let circles = newCircle(5);
+    //   draw_circle([+100, 0]);
+    // }
 
-    if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
-      let circles = newCircle(4);
-      draw_circle([0, 0], circleAnimFinished, 4);
-    }
+    // if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
+    //   let circles = newCircle(0);
+    //   if (!circleAnimFinished[0])
+    //     draw_circle([-100, -100], circleAnimFinished, 0);
+    //   else {
+    //     console.log(circles);
+    //     // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+    //     p.circle(circles[0], circles[1], circles[2]);
+    //   }
+    // }
+
+    // if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
+    //   let circles = newCircle(1);
+    //   draw_circle([0, -100], circleAnimFinished, 1);
+    // }
+
+    // if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
+    //   let circles = newCircle(2);
+    //   draw_circle([100, -100], circleAnimFinished, 2);
+    // }
+
+    // if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
+    //   let circles = newCircle(3);
+    //   draw_circle([-100, 0], circleAnimFinished, 3);
+    // }
+
+    // if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
+    //   let circles = newCircle(4);
+    //   draw_circle([0, 0], circleAnimFinished, 4);
+    // }
   };
 
   function newCircle(position) {
@@ -1382,6 +1441,7 @@ let sketch_builder = (p) => {
   // window.windowResized = p.windowResized;
   p.customResize = () => {
     p.setup();
+    resized = true;
   };
 };
 
