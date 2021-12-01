@@ -1070,6 +1070,7 @@ let sketch_builder = (p) => {
   let point = 9000;
 
   p.draw = () => {
+    console.log(created)
     // console.log("-----------------------",p.fields_)
     // background($(':root').css('--color-navy-800'));
     p.fill(255);
