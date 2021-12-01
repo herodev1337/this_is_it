@@ -72,6 +72,10 @@ const get_sketch = (ref, setText1, setText2) => {
       
       if (!status) return
 
+      if (fields_.filter((val) => !!val || val === false).length !== 9) return
+
+      // console.log(fields_.filter((val) => !!val || val === false).length)
+
       const [KI_Mode, _] = helpers.get_userCode(value, 'KI_Mode');
 
       myp5.KI_Mode_ = KI_Mode;
