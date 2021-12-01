@@ -1068,6 +1068,7 @@ let sketch_builder = (p) => {
   let point = 9000;
 
   p.draw = () => {
+    console.log(p.win)
     // console.log("-----------------------",p.fields_)
     // background($(':root').css('--color-navy-800'));
     p.fill(255);
@@ -1226,7 +1227,7 @@ let sketch_builder = (p) => {
         getAngle[position] = angle[position];
       }
       angle[position] += 3;
-      console.log(getAngle[position], angle[position]);
+      // console.log(getAngle[position], angle[position]);
       if (angle[position] - getAngle[position] < 360) {
         p.push();
         p.translate(p.width / 2 + first, p.height / 2 + second);

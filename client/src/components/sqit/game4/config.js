@@ -44,11 +44,13 @@ const get_sketch = (ref, setText1, setText2) => {
           setText1(str + `fields = [${fieldsReset}];`);
         }
       } else if (myp5.win === 2 && !oneTime) {
+        console.log("Tie")
         setText2(`Output: Tie`);
         oneTime = true;
         fieldsReset = fields_;
       } else {
         if (!oneTime) {
+        console.log("Loose")
           setText2(`Output: You did lose!`);
           oneTime = true;
           fieldsReset = fields_;
@@ -58,6 +60,7 @@ const get_sketch = (ref, setText1, setText2) => {
         setText1(str + `fields = [${fieldsReset}];`);
       }
       if (myp5.playerWin && !oneTime) {
+        console.log("Win")
         fieldsReset = fields_;
         setText2(`Output: You did it!`);
         oneTime = true;
