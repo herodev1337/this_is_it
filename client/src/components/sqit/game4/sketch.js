@@ -1265,7 +1265,7 @@ let sketch_builder = (p) => {
       if (!circleAnimFinished[0])
         draw_circle([-100, -100], circleAnimFinished, 0);
       else {
-        p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
       }
     }
 
