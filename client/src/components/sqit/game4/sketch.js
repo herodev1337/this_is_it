@@ -1296,103 +1296,201 @@ let sketch_builder = (p) => {
       p.pop();
       // circle(circles[0], circles[1], circles[2]);
     }
-
-    if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
-      let circles = newCircle(4);
-      p.push();
-      p.translate(p.width / 2, p.height / 2);
-      p.rotate(angle);
-      p.circle(0, 25, 1);
-      p.pop();
-    }
-  };
-
-  function newCircle(position) {
-    let checkPosition = checkPositionCircle();
-    if (position === 0 && !checkPosition[0]) {
-      let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
-      checkPosition[0] = true;
-      created[0] = 1;
-      p.yourTurn = false;
-      return circle0;
-    }
-    if (position === 1 && !checkPosition[1]) {
-      let circle1 = [p.width / 2, p.height / 2 - 100, 50];
-      checkPosition[1] = true;
-      p.yourTurn = false;
-      created[1] = 1;
-      return circle1;
-    }
-    if (position === 2 && !checkPosition[2]) {
-      let circle2 = [p.width / 2 + 100, p.height / 2 - 100, 50];
-      checkPosition[2] = true;
-      created[2] = 1;
-      p.yourTurn = false;
-      return circle2;
-    }
-    if (position === 3 && !checkPosition[3]) {
-      let circle3 = [p.width / 2 - 100, p.height / 2, 50];
-      checkPosition[3] = true;
-      p.yourTurn = false;
-      created[3] = 1;
-      return circle3;
-    }
-    if (position === 4 && !checkPosition[4]) {
-      let circle4 = [p.width / 2, p.height / 2, 50];
-      checkPosition[4] = true;
-      created[4] = 1;
-      p.yourTurn = false;
-      return circle4;
-    }
-    if (position === 5 && !checkPosition[5]) {
-      let circle5 = [p.width / 2 + 100, p.height / 2, 50];
-      checkPosition[5] = true;
-      p.yourTurn = false;
-      created[5] = 1;
-      return circle5;
-    }
-    if (position === 6 && !checkPosition[6]) {
-      let circle6 = [p.width / 2 - 100, p.height / 2 + 100, 50];
-      checkPosition[6] = true;
-      p.yourTurn = false;
-      created[6] = 1;
-      return circle6;
-    }
-    if (position === 7 && !checkPosition[7]) {
-      let circle7 = [p.width / 2, p.height / 2 + 100, 50];
-      checkPosition[7] = true;
-      p.yourTurn = false;
-      created[7] = 1;
-      return circle7;
-    }
-    if (position === 8 && !checkPosition[8]) {
-      let circle8 = [p.width / 2 + 100, p.height / 2 + 100, 50];
-      checkPosition[8] = true;
-      created[8] = 1;
-      p.yourTurn = false;
-      return circle8;
-    }
   }
 
-  function checkPositionCircle() {
-    var checkPosition = [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ];
-
-    return checkPosition;
+  const draw_circle = ([first, second]) => {
+    p.push();
+    p.translate(p.width / 2 + first, p.height / 2 + second);
+    p.rotate(angle);
+    p.circle(0, 25, 1);
+    p.pop();
   }
 
-  // function windowResized() {
-  //   p.resizeCanvas(helpers.realWidth(90), helpers.view_2_px(50));
-  // }
+  if (((p.fields__[6] && p.yourTurn) || created[6] === 1) && created[6] != 2) {
+    // let circles = newCircle(6);
+    // p.push();
+    // p.translate(p.width / 2 - 100, p.height / 2 + 100);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+
+    draw_circle([-100, 100])
+  }
+  if (((p.fields__[8] && p.yourTurn) || created[8] === 1) && created[8] != 2) {
+    let circles = newCircle(8);
+    p.push();
+    p.translate(p.width / 2 + 100, p.height / 2 + 100);
+    p.rotate(angle);
+    p.circle(0, 25, 1);
+    p.pop();
+    
+    draw_circle([100, 100])
+  }
+
+  if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
+    // let circles = newCircle(7);
+    // p.push();
+    // p.translate(p.width / 2, p.height / 2 + 100);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+
+    draw_circle([0, 100])
+  }
+  if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
+    // let circles = newCircle(5);
+    // p.push();
+    // p.translate(p.width / 2 + 100, p.height / 2);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+    
+    draw_circle([+100, 0])
+  }
+
+  if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
+    // console.log("creating 0..")
+    // let circles = newCircle(0);
+    // p.push();
+    // p.translate(p.width / 2 - 100, p.height / 2 - 100);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+    
+    draw_circle([-100, -100])
+  }
+
+  if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
+    // let circles = newCircle(1);
+    // p.push();
+    // p.translate(p.width / 2, p.height / 2 - 100);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+    
+    draw_circle([0, -100])
+  }
+
+  if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
+    // let circles = newCircle(2);
+    // p.push();
+    // p.translate(p.width / 2 + 100, p.height / 2 - 100);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+    
+    draw_circle([100, -100])
+  }
+
+  if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
+    // let circles = newCircle(3);
+    // p.push();
+    // p.translate(p.width / 2 - 100, p.height / 2);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+    
+    draw_circle([-100, 0])
+  }
+
+  if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
+    // let circles = newCircle(4);
+    // p.push();
+    // p.translate(p.width / 2, p.height / 2);
+    // p.rotate(angle);
+    // p.circle(0, 25, 1);
+    // p.pop();
+
+    draw_circle([0, 0])
+  }
+}
+
+function newCircle(position) {
+  let checkPosition = checkPositionCircle();
+  if (position === 0 && !checkPosition[0]) {
+    let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
+    checkPosition[0] = true;
+    created[0] = 1;
+    p.yourTurn = false;
+    return circle0;
+  }
+  if (position === 1 && !checkPosition[1]) {
+    let circle1 = [p.width / 2, p.height / 2 - 100, 50];
+    checkPosition[1] = true;
+    p.yourTurn = false;
+    created[1] = 1;
+    return circle1;
+  }
+  if (position === 2 && !checkPosition[2]) {
+    let circle2 = [p.width / 2 + 100, p.height / 2 - 100, 50];
+    checkPosition[2] = true;
+    created[2] = 1;
+    p.yourTurn = false;
+    return circle2;
+  }
+  if (position === 3 && !checkPosition[3]) {
+    let circle3 = [p.width / 2 - 100, p.height / 2, 50];
+    checkPosition[3] = true;
+    p.yourTurn = false;
+    created[3] = 1;
+    return circle3;
+  }
+  if (position === 4 && !checkPosition[4]) {
+    let circle4 = [p.width / 2, p.height / 2, 50];
+    checkPosition[4] = true;
+    created[4] = 1;
+    p.yourTurn = false;
+    return circle4;
+  }
+  if (position === 5 && !checkPosition[5]) {
+    let circle5 = [p.width / 2 + 100, p.height / 2, 50];
+    checkPosition[5] = true;
+    p.yourTurn = false;
+    created[5] = 1;
+    return circle5;
+  }
+  if (position === 6 && !checkPosition[6]) {
+    let circle6 = [p.width / 2 - 100, p.height / 2 + 100, 50];
+    checkPosition[6] = true;
+    p.yourTurn = false;
+    created[6] = 1;
+    return circle6;
+  }
+  if (position === 7 && !checkPosition[7]) {
+    let circle7 = [p.width / 2, p.height / 2 + 100, 50];
+    checkPosition[7] = true;
+    p.yourTurn = false;
+    created[7] = 1;
+    return circle7;
+  }
+  if (position === 8 && !checkPosition[8]) {
+    let circle8 = [p.width / 2 + 100, p.height / 2 + 100, 50];
+    checkPosition[8] = true;
+    created[8] = 1;
+    p.yourTurn = false;
+    return circle8;
+  }
+}
+
+function checkPositionCircle() {
+  var checkPosition = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
+  return checkPosition;
+}
+
+p.customResize = ()=> {
+  // p.background($(':root').css('--color-navy-800'));
+}
 
   // window.setup = p.setup;
   // window.draw = p.draw;
