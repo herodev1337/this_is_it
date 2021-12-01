@@ -1285,8 +1285,6 @@ let sketch_builder = (p) => {
       if (!circleAnimFinished[i])
         draw_circle(circleAdders[i], circleAnimFinished, i);
       else {
-        // console.log(circles);
-        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
         p.circle(circles[0], circles[1], circles[2]);
       }
     });
