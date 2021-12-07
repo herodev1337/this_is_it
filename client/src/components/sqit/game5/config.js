@@ -26,7 +26,7 @@ const get_sketch = (ref, setText1, setText2) => {
 
     console.log(rotten);
     myp5.rotten_ = rotten;
-    add_editor_text();
+    // add_editor_text();
   };
 
   return {

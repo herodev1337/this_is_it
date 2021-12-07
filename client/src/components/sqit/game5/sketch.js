@@ -60,7 +60,7 @@ let sketch_builder = (p) => {
     endGame() {
       let x = this.body[this.body.length - 1].x;
       let y = this.body[this.body.length - 1].y;
-      if (x > w - 1 || x < 1 || y > h - 1 || y < 1) {
+      if (x > w  || x < 1 || y > h  || y < 1) {
         foodLocation();
         return true;
       }
@@ -106,7 +106,7 @@ let sketch_builder = (p) => {
     p.ellipseMode(p.CENTER);
     w = p.floor(p.width / rez);
     h = p.floor(p.height / rez);
-    p.frameRate(5);
+    p.frameRate(10);
     snake = new Snake();
     foodLocation();
   };
@@ -146,7 +146,7 @@ let sketch_builder = (p) => {
     }
 
     p.noStroke();
-    p.fill(255, 0, 0);
+    p.fill(255,0,0);
     p.rect(food.x, food.y, 1, 1);
   };
 };

@@ -43,6 +43,7 @@ const get_sketch = (ref, setText1, setText2) => {
           str = str.replace(regex, '');
           setText1(str + `fields = [${fieldsReset}];`);
         }
+        // console.log("win", myp5.win, "playerWin", myp5.playerWin)
       } else if (myp5.win === 2 && !oneTime) {
         console.log("Tie")
         setText2(`Output: Tie`);
@@ -54,6 +55,7 @@ const get_sketch = (ref, setText1, setText2) => {
           setText2(`Output: You did lose!`);
           oneTime = true;
           fieldsReset = fields_;
+      // add_editor_text(fields_);
         }
       }
       if (myp5.win) {
@@ -63,13 +65,14 @@ const get_sketch = (ref, setText1, setText2) => {
         console.log("Win")
         fieldsReset = fields_;
         setText2(`Output: You did it!`);
+        
         oneTime = true;
       }
       if (myp5.playerWin) {
         setText1(str + `fields = [${fieldsReset}];`);
       }
     };
-
+    
     if (!extraText) {
       const [fields_, status] = helpers.get_userCode(value, 'fields');
       
@@ -105,9 +108,9 @@ const get_sketch = (ref, setText1, setText2) => {
   };
 };
 
-const ed1_txt = `//hm what should i do?.. maybe i complete this.\n//some people whispered me, the upper left field-position starts with the number 0..\n\n//KI starts...\n\nlet KI_Mode = "unbeatable"\n\nfields = [false,false,false,false,false,false,false,false,false];`;
+const ed1_txt = `//hm what should i do?.. maybe i complete this.\n//some people whispered me, the upper left field-position starts with the number 0..\n\n//KI starts...\n\nlet KI_Mode = "unbeatable";\n\nfields = [false,false,false,false,false,false,false,false,false];`;
 const ed2_txt = `Output: `;
 
 export { ed1_txt, ed2_txt };
-export default get_sketch;
+export default get_sketch
 
