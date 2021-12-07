@@ -11,10 +11,10 @@ Learn more about P5 [here.](https://p5js.org/get-started/)
 `sketch_builder($p:p5_instance) => void`
 
 ```
-At the start of the 'sketch_builder' function we define a 'p.anim' & 'p.interval' variable.  
+First we define all variables, which will be used in this function.
 We also import p5 classes which just wrap simple shapes which are going to be drawn when executed.
 ``` 
-
+### Important Variables
 `p.anim:boolean = false`  
 ```
 This variable controlls the first stage of the game. //controls
