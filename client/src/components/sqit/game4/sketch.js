@@ -1169,6 +1169,31 @@ let sketch_builder = (p) => {
         circleAnimFinished[position] = true;
         // angle[position] =0
       }
+
+      let circles = newCircle(position);
+      if (!circleAnimFinished[position]) {
+        if (!getAngle[position]) {
+          getAngle[position] = angle[position];
+        }
+        // console.log(getAngle[position], angle[position]);
+
+        if (angle[position] - getAngle[position] < 360) {
+          angle[position] += 3;
+
+          p.push();
+          p.translate(p.width / 2 + first, p.height / 2 + second);
+          p.rotate(angle[position]);
+          p.circle(0, 25, 1);
+          p.pop();
+        } else {
+          circleAnimFinished[position] = true;
+          // angle[position] =0
+        }
+      } else {
+        // console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
+      }
     };
 
     const circleAdders = [

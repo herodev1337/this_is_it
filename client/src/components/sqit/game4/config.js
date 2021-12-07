@@ -42,6 +42,7 @@ const get_sketch = (ref, setText1, setText2) => {
         if (str.match(regex_err)) {
           str = str.replace(regex, '');
           setText1(str + `fields = [${fieldsReset}];`);
+          // setText2(`Output: You did lose!`);
         }
         // console.log("win", myp5.win, "playerWin", myp5.playerWin)
       } else if (myp5.win === 2 && !oneTime) {
