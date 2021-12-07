@@ -59,7 +59,6 @@ let sketch_builder = (p) => {
     false,
   ];
   let updateEditor = false;
-  p.KI_Mode_;
   p.hardMode = true;
   let pp = false;
   let pp2 = false;
@@ -81,7 +80,6 @@ let sketch_builder = (p) => {
   };
 
   function calculateCross() {
-    let printedCross = 0;
     let printedCircle = 0;
     if (!p.yourTurn) {
       for (let i = 0; i <= created.length; i++) {

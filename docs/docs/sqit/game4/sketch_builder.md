@@ -15,14 +15,30 @@ First we define all variables, which will be used in this function.
 We also import p5 classes which just wrap simple shapes which are going to be drawn when executed.
 ``` 
 ### Important Variables
-`p.anim:boolean = false`  
+------------------------------------
+
+`p.hardMode:boolean`
 ```
-This variable controlls the first stage of the game. //controls
-Only when the right code was entered in the main editor do we set it to 'true'. //main editor here? 
+This variable controls the Mode, which could be equals to "unbeatable", "easy" or "normal
 ```
 
-`p.interval:number = 4`  
+`p.playerWin:boolean`  
 ```
-This variable controlls the speed at which the lights flicker.  //constrols
-The value the user enters in the editor get's passed to the p5 variable directly. //editor here?
+This variable controls the state of playerWin is true or not, 
+if true, the Player has won,
+if not, the Player has not won.
 ```
+`p.win:boolean`  
+```
+This variable controls the state of win is true or not, 
+if true, the KI has won,
+if not, the KI has not won,
+if win = 2, the game ends with a tie.
+```
+`p.yourTurn:boolean`  
+```
+This variable controls the state of yourTurn is true or not, 
+if true, Player's turn,
+if not, KI's turn.
+```
+
