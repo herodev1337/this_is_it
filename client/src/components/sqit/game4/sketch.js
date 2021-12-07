@@ -1070,14 +1070,13 @@ let sketch_builder = (p) => {
   let point = 9000;
 
   p.draw = () => {
-    console.log(created)
     // console.log("-----------------------",p.fields_)
     // background($(':root').css('--color-navy-800'));
     p.fill(255);
     p.rect(p.width / 2 - 50, p.height / 2, 5, 250);
     p.rect(p.width / 2 + 50, p.height / 2, 5, 250);
     p.stroke(255);
-   
+
     p.rect(p.width / 2, p.height / 2 + 50, 250, 5);
     p.rect(p.width / 2, p.height / 2 - 50, 250, 5);
 
@@ -1085,7 +1084,7 @@ let sketch_builder = (p) => {
 
     const draw_cross = (i) => {
       // console.log(i)
-      
+
       if (animFinished[i]) {
         let cross = newCross(i);
         p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
@@ -1095,7 +1094,7 @@ let sketch_builder = (p) => {
         p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
         p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
       }
-    }
+    };
 
     // draw_cross(6)
     // created.forEach((isCreated, i) => {
@@ -1104,36 +1103,36 @@ let sketch_builder = (p) => {
     // })
 
     if (!p.yourTurn || created[6] === 2) {
-      draw_cross(6)
+      draw_cross(6);
     }
-    
+
     if (!p.yourTurn || created[4] === 2) {
-      draw_cross(4)
+      draw_cross(4);
     }
     if (!p.yourTurn || created[8] === 2) {
-      draw_cross(8)
+      draw_cross(8);
     }
     if (!p.yourTurn || created[1] === 2) {
-      draw_cross(1)
+      draw_cross(1);
     }
     if (!p.yourTurn || created[2] === 2) {
-      draw_cross(2)
+      draw_cross(2);
     }
 
     if (!p.yourTurn || created[0] === 2) {
-      draw_cross(0)
+      draw_cross(0);
     }
 
     if (!p.yourTurn || created[3] === 2) {
-      draw_cross(3)
+      draw_cross(3);
     }
 
     if (!p.yourTurn || created[5] === 2) {
-      draw_cross(5)
+      draw_cross(5);
     }
 
     if (!p.yourTurn || created[7] === 2) {
-      draw_cross(7)
+      draw_cross(7);
     }
 
     const draw_circle = ([first, second], circleAnimFinished, position) => {
@@ -1156,15 +1155,15 @@ let sketch_builder = (p) => {
       }
 
       let circles = newCircle(position);
-      if (!circleAnimFinished[position]){
+      if (!circleAnimFinished[position]) {
         if (!getAngle[position]) {
           getAngle[position] = angle[position];
         }
         // console.log(getAngle[position], angle[position]);
-  
+
         if (angle[position] - getAngle[position] < 360) {
           angle[position] += 3;
-  
+
           p.push();
           p.translate(p.width / 2 + first, p.height / 2 + second);
           p.rotate(angle[position]);
@@ -1174,9 +1173,8 @@ let sketch_builder = (p) => {
           circleAnimFinished[position] = true;
           // angle[position] =0
         }
-      }
-      else {
-        console.log(circles);
+      } else {
+        // console.log(circles);
         // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
         p.circle(circles[0], circles[1], circles[2]);
       }
@@ -1201,9 +1199,9 @@ let sketch_builder = (p) => {
       [1, 2],
       [1, 2],
       [1, 2],
-      [1,2],
       [1, 2],
-      [1,2],
+      [1, 2],
+      [1, 2],
     ];
 
     // if (!p.fields__) return
@@ -1211,7 +1209,7 @@ let sketch_builder = (p) => {
     // p.fields__.forEach((field, i) => {
     //   // if ([6, 8].includes(i)) {
     //   //   if (!(((p.fields__[i] && p.yourTurn) || created[i] ===  createdCheck[i][0]) && created[i] !=  createdCheck[i][1])) return;
-    //   // } else 
+    //   // } else
     //   if (
     //     !(
     //       (field || created[i] === createdCheck[i][0]) &&
