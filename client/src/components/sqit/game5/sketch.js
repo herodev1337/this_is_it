@@ -60,7 +60,8 @@ let sketch_builder = (p) => {
     endGame() {
       let x = this.body[this.body.length - 1].x;
       let y = this.body[this.body.length - 1].y;
-      if (x > w  || x < 1 || y > h  || y < 1) {
+      if (x > w || x < 1 || y > h || y < 1) {
+        // console.log(x);
         foodLocation();
         return true;
       }
@@ -146,7 +147,7 @@ let sketch_builder = (p) => {
     }
 
     p.noStroke();
-    p.fill(255,0,0);
+    p.fill(255, 0, 0);
     p.rect(food.x, food.y, 1, 1);
   };
 };
