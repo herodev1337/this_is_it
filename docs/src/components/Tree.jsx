@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const Tree = ({ data = [] }) => {
+const Tree = ({ data = [], root = null }) => {
+    console.log("Root ", root)
   return (
     <div className="treeContainer">
-      <ul className="treeList">
+      <ul className={`treeList ${root !== null && "root"}`}>
         {data.map((tree) => (
           <TreeNode key={uuidv4()} node={tree} />
         ))}

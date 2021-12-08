@@ -2,11 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
 
-
-:root{
+:root {
   --font1: 'Inconsolata', monospace;
 }
-
 
 body {
   margin: 0;
@@ -30,13 +28,13 @@ body {
 }
 
 .mdContent {
-  width: calc(100% - 20%);
+  width: calc(100vw - 20vw);
 
-  a{
-    color:#3794ff;
+  a {
+    color: #3794ff;
     text-decoration: none;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -46,34 +44,88 @@ body {
     white-space: pre-wrap;
   }
 
-  code{
+  code {
     color: #eba386;
   }
 
-  pre{
+  pre {
     padding: 5%;
     background-color: #0a0a0a66;
 
-    // div{
-    //   background-color: #0a0a0a66;
-    // }
-    code{
-      color:white;
-      // &:not(.language-javascript){
-      //   padding: 5%;
-
-      // }
+    code {
+      color: white;
     }
   }
 }
 
-.treeContainer {
-  ul {
-    list-style: none;
+.menuHolder {
+  // padding: 5vh 1vh;
+  padding: calc(2em - 0.67em) 1vh;
+  // width: 20vw;
+  // width: 10%;
+  // margin-right: 1%;
+  white-space: pre-line;
+  // overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: flex-start;
+  transition: width 1s ease-in-out;
+
+  &::-webkit-scrollbar {
+    width: 0%;
   }
 
-  .toggle {
-    display: flex;
-    gap: 1vh;
+  &.hidden {
+    // padding: calc(2em - 0.67em) 1vh;
+    width: 5vh;
+  }
+
+  .menu {
+    // position: fixed;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .treeHolder {
+
+    font-size:1.3rem;
+
+    .nodesToggle{
+      transition: all 1s ease-in-out;
+      &.active{
+        transform: rotate(90deg);
+      }
+    }
+
+    .treeHead{
+      margin: 1% 0%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5vh;
+
+      i{
+        font-size: .7em;
+      }
+    }
+    .treeContainer {
+      margin-right: 2vh;
+      ul {
+        list-style: none;
+        margin: 1% 0vh;
+        padding: 0;
+        padding-inline-start: 2vh;
+      }
+      .root {
+        padding-inline-start: 0;
+      }
+
+      .toggle {
+        display: flex;
+        gap: 1.5vh;
+      }
+    }
   }
 }

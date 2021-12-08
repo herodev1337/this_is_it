@@ -7,6 +7,7 @@ import { vscDarkPlus as dark } from 'react-syntax-highlighter/dist/esm/styles/pr
 
 import './App.scss';
 import Tree from './components/Tree';
+import Menu from './components/Menu';
 // import md_file from "root/docs/sqit/Sketch.md"
 
 const docs = {
@@ -197,18 +198,13 @@ function App() {
 
   return (
     <>
-      {/* <div className="navBarWrapper">
-        <div className="navBar">
-          {Object.keys(docs).map((v) => {
-            const obj = docs[v]
-
-            return <div>{v}</div>
-            
-          })}
-          {construct()}
+      {/* <div className="treeHolder hidden">
+        <div className="menu">
+        <i className="fas fa-bars"></i>
         </div>
       </div> */}
-      <Tree data={treeData} />
+
+      <Menu/>
       {/* {text && <ReactMarkdown className="mdContent" children={text} />} */}
 
       <ReactMarkdown
@@ -217,7 +213,6 @@ function App() {
         components={{
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
-            console.log(match)
             return !inline && match ? (
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
@@ -225,8 +220,8 @@ function App() {
                 language={match[1]}
                 PreTag="div"
                 customStyle={{
-                  padding:"0",
-                  background: "#0a0a0a66 !important"
+                  padding: '0',
+                  background: '#0a0a0a66 !important',
                 }}
                 {...props}
               />
