@@ -16,19 +16,12 @@ let sketch_builder = (p) => {
     false,
     false,
   ];
-  let extraText = false;
-  let gameFinished = false;
-  let valid = false;
   p.fields__ = [];
   p.yourTurn = false;
   let start = true;
-  let test = false;
   let created = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   var createdCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var tie = false;
   p.win = false;
-  var win = p.win;
-  var done = false;
   var getAnim;
   let animCreated = [
     false,
@@ -65,10 +58,7 @@ let sketch_builder = (p) => {
     false,
     false,
   ];
-  let timex = 0;
   let updateEditor = false;
-  let fieldsReset;
-  p.KI_Mode_;
   p.hardMode = true;
   let pp = false;
   let pp2 = false;
@@ -76,87 +66,12 @@ let sketch_builder = (p) => {
   let pp4 = false;
   p.playerWin = false;
 
-  let resized = false;
 
-  // const enterCallback = () => {
-  //   if (!extraText) {
-  //     const fields_ = helpers.get_userCode(
-  //       mainEditor.editor.getValue(),
-  //       'fields'
-  //     );
-
-  //     const KI_Mode = helpers.get_userCode(
-  //       mainEditor.editor.getValue(),
-  //       'KI_Mode'
-  //     );
-
-  //     KI_Mode_ = KI_Mode;
-  //     if(!win && !playerWin) fields__ = fields_;
-  //     if (KI_Mode_ === 'normal' || KI_Mode_ === 'easy') hardMode = false;
-
-  //     if (gameFinished) extraText = true;
-  //     add_editor_text(fields_);
-
-  //     valid = true;
-  //   }
-  // };
-
-  // const add_editor_text = fields_ => {
-  //   let str = mainEditor.editor.getValue();
-  //   let strout = mainEditor.editor2.getValue();
-
-  //   str = str.replace(regex, '');
-  //   if (yourTurn) str = str.replace(regex_Current_Player, 'KIs turn');
-  //   else {
-  //     str = str.replace(regex_Current_KI, 'Players turn');
-  //   }
-  // console.log(win, oneTime);
-  //   if (!win) {
-  // console.log(mainEditor.editor.getSession().getAnnotations());
-  // console.log(str.match(regex_err));
-
-  //     mainEditor.editor.setValue(str + `fields = [${fields_}];`);
-  //     if (str.match(regex_err)) {
-  // console.log(str.match(regex_err));
-  //       str = str.replace(regex, '');
-  //       mainEditor.editor.setValue(str + `fields = [${fieldsReset}];`);
-  //     }
-  //   } else if (win === 2 && !oneTime) {
-  //     mainEditor.editor2.setValue(strout + `Tie`);
-  //     oneTime = true;
-  //     fieldsReset = fields_;
-  //   } else {
-  //     if (!oneTime) {
-  //       mainEditor.editor2.setValue(strout + `You did lose!`);
-  //       oneTime = true;
-  //       fieldsReset = fields_;
-  //     }
-  //   }
-  //   if (win) {
-  //     mainEditor.editor.setValue(str + `fields = [${fieldsReset}];`);
-  //   }
-  //   if (playerWin && !oneTime) {
-  //     fieldsReset = fields_;
-  //     mainEditor.editor2.setValue(strout + `You did it!`);
-  //     oneTime = true;
-  //   }
-  //   if(playerWin){
-  //     mainEditor.editor.setValue(str + `fields = [${fieldsReset}];`);
-  //   }
-  // };
-
-  function gameEnded() {}
-
-  function resetFields() {}
-
-  // const mainEditor = new EditorSingleton();
-  // mainEditor.enterCallback(enterCallback);
 
   p.setup = () => {
     p.rectMode(p.CENTER);
     p.angleMode(p.DEGREES);
-    // let cnv = p.createCanvas(helpers.realWidth(90), helpers.view_2_px(50));
-    // cnv.parent('canvasHolder');
+   
     p.createCanvas(helpers.realWidth(90), helpers.view_2_px(50));
     p.ellipseMode(p.CENTER);
 
@@ -165,9 +80,7 @@ let sketch_builder = (p) => {
   };
 
   function calculateCross() {
-    let printedCross = 0;
     let printedCircle = 0;
-    // console.log("---", created)
     if (!p.yourTurn) {
       for (let i = 0; i <= created.length; i++) {
         if (created[i] === 1) {
@@ -180,7 +93,6 @@ let sketch_builder = (p) => {
         printedCircle++;
       }
     }
-    // console.log("-x-x-", created)
     if (p.hardMode) {
       if (
         printedCircle === 1 &&
@@ -217,7 +129,7 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
+    
           }
           updateEditor = true;
         }
@@ -233,7 +145,6 @@ let sketch_builder = (p) => {
           p.win = true;
           created[2] = 2;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -248,7 +159,6 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -263,7 +173,6 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -278,7 +187,6 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -293,7 +201,6 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         } else {
@@ -301,7 +208,6 @@ let sketch_builder = (p) => {
             created[7] = 2;
             p.win = true;
             if (!updateEditor) {
-              // enterCallback();
             }
             updateEditor = true;
           }
@@ -324,7 +230,6 @@ let sketch_builder = (p) => {
           created[8] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -354,7 +259,6 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -396,7 +300,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -410,7 +313,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -423,7 +325,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -436,7 +337,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -452,7 +352,6 @@ let sketch_builder = (p) => {
           p.win = true;
 
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -474,7 +373,6 @@ let sketch_builder = (p) => {
           }
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -488,7 +386,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -501,7 +398,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
@@ -514,7 +410,6 @@ let sketch_builder = (p) => {
 
           p.win = true;
           if (!updateEditor) {
-            // enterCallback();
           }
           updateEditor = true;
         }
