@@ -565,7 +565,7 @@ let sketch_builder = (p) => {
           createdCheck[5] === 1
         ) {
           created[3] = 2;
-          win = 2;
+          p.win = 2;
           if (!updateEditor) {
             // enterCallback();
           }

@@ -17,7 +17,7 @@ const get_sketch = (ref, setText1, setText2) => {
 
   const editorGetter = (value) => {
     const add_editor_text = () => {
-      if (myp5.score < 10) setText2(`Output: Score = ${score}`);
+      if (myp5.score <= 10) setText2(`Output: Score = ${score}`);
       else setText2(`Output: You did it!`);
     };
     const [rotten, status] = helpers.get_userCode(value, 'rotten');

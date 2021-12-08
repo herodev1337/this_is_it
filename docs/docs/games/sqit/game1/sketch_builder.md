@@ -12,7 +12,7 @@ Learn more about P5 [here.](https://p5js.org/get-started/)
 
 ```
 At the start of the 'sketch_builder' function we define a 'p.anim' & 'p.interval' variable.  
-We also import p5 classes which just wrap simple shapes which are going to be drawn when executed.
+We also import p5 classes, which just wrap simple shapes, which are going to be drawn when executed.
 ``` 
 
 `p.anim:boolean = false`  

@@ -23,8 +23,7 @@ get_sketch(...) => void | {
 ```
 
 ```
-At the start of the function we define the variable rotten, which controls, if the food is rotten or not. We'll await true, to end the game. If false, we'll never could end the game, because the snake will not grow.
-
+At the start of the function we define the variable rotten, which controls, if rotten is true or not. If true, you could never be able to win the game, because the food is rotten and the snake can not grow. If the value of rotten is false, you could win the game and the snake can grow and the second defined variable score increases with every collect of the food by one. 
 
 
 ```
