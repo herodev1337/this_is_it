@@ -4,7 +4,7 @@
 
 Entry point for the first game.
 
-Learn more about the corrosponding sketch_builder [here.](sketch_builder.md)  //corresponding
+Learn more about the corrosponding sketch_builder [here.](sketch_builder.md) //corresponding
 Learn more about the sketch_builder, in general, [here.](../sketch_builder.md)  
 Learn more about P5 [here.](https://p5js.org/get-started/)
 
