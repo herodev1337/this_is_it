@@ -1,4 +1,5 @@
 # config.js
+------------------------------------
 
 ## About
 
@@ -6,8 +7,8 @@ This file is the main entry point to the p5 games. In the sketch.js the game its
 
 Learn more about the sketch_builder [here.](sketch_builder.md)
 
-## Functions
 ------------------------------------
+## Functions
 
 `get_sketch($ref:React.useRef, $setText1:(val:string)=>void, $setText2:(val:string)=>void)`
 

@@ -1,0 +1,79 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+:root{
+  --font1: 'Inconsolata', monospace;
+}
+
+
+body {
+  margin: 0;
+  background-color: #1e1e1e;
+  color: white;
+
+  font-family: var(--font1);
+}
+
+#root {
+  display: flex;
+}
+
+.navBarWrapper {
+  width: 20%;
+  .parent {
+    div {
+      margin-left: 2vh;
+    }
+  }
+}
+
+.mdContent {
+  width: calc(100% - 20%);
+
+  a{
+    color:#3794ff;
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  p,
+  pre {
+    white-space: pre-wrap;
+  }
+
+  code{
+    color: #eba386;
+  }
+
+  pre{
+    padding: 5%;
+    background-color: #0a0a0a66;
+
+    // div{
+    //   background-color: #0a0a0a66;
+    // }
+    code{
+      color:white;
+      // &:not(.language-javascript){
+      //   padding: 5%;
+
+      // }
+    }
+  }
+}
+
+.treeContainer {
+  ul {
+    list-style: none;
+  }
+
+  .toggle {
+    display: flex;
+    gap: 1vh;
+  }
+}
