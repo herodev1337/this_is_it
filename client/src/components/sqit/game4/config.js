@@ -23,21 +23,22 @@ let oneTime = false;
 const get_sketch = (ref, setText1, setText2) => {
   const myp5 = new p5(sketch_builder, ref);
 
-  // p.set_win = (win = true) => {
-  //   myp5.win = true;
+  myp5.set_win = (win = true, playerWin = true) => {
+    myp5.win = true;
+    if (win) setText2(`Output: You did lose!`);
 
-  //   if (!win) {
-  //     setText2(`Output: You did lose!`);
-  //   }
-  // };
+    if (win === 2) setText2(`Output: Tie!`);
+
+    if (playerWin && !win && !(win === 2)) setText2(`Output: You did it!`);
+  };
 
   const editorGetter = (value) => {
     if (gameFinished) extraText = true;
 
-    const add_editor_text = (felder) => {
+    const add_editor_text = (fieldsSet) => {
       let str = value;
-      // felder.pop()
-      // felder = felder[0]
+      // fieldsSet.pop()
+      // fieldsSet = fieldsSet[0]
 
       str = str.replace(regex, '');
       if (myp5.yourTurn) str = str.replace(regex_Current_Player, 'KIs turn');
@@ -45,38 +46,35 @@ const get_sketch = (ref, setText1, setText2) => {
         str = str.replace(regex_Current_KI, 'Players turn');
       }
       if (!myp5.win) {
-        
-        // console.log(str, felder)
-        setText1(str + `fields = [${felder}];`);
+        // console.log(str, fieldsSet)
+        setText1(str + `fields = [${fieldsSet}];`);
         if (str.match(regex_err)) {
           str = str.replace(regex, '');
           setText1(str + `fields = [${fieldsReset}];`);
-          // 
+          //
         }
         // console.log("win", myp5.win, "playerWin", myp5.playerWin)
       } else if (myp5.win === 2 && !oneTime) {
         console.log('Tie');
         setText2(`Output: Tie!`);
         oneTime = true;
-        fieldsReset = felder;
+        fieldsReset = fieldsSet;
       } else {
         if (!oneTime) {
           console.log('Loose');
           setText2(`Output: You did lose!`);
           oneTime = true;
-          fieldsReset = fields_;
+          fieldsReset = fieldsSet;
           // add_editor_text(fields_);
         }
       }
-
-      
 
       if (myp5.win) {
         setText1(str + `fields = [${fieldsReset}];`);
       }
       if (myp5.playerWin && !oneTime) {
         console.log('Win');
-        fieldsReset = fields_;
+        fieldsReset = fieldsSet;
         setText2(`Output: You did it!`);
 
         oneTime = true;
@@ -84,7 +82,6 @@ const get_sketch = (ref, setText1, setText2) => {
       if (myp5.playerWin) {
         setText1(str + `fields = [${fieldsReset}];`);
       }
-      
     };
 
     if (!extraText) {
@@ -102,14 +99,14 @@ const get_sketch = (ref, setText1, setText2) => {
       // if(fields_[0].includes(undefined)) return
       // console.log(fields_);
       // console.log(temp.length);
-      
+
       if (!myp5.win && !myp5.playerWin) myp5.fields__ = fields_;
       if (myp5.KI_Mode_ === 'normal' || myp5.KI_Mode_ === 'easy')
         myp5.hardMode = false;
 
       // console.log(myp5.hardMode)
       add_editor_text(fields_);
-      console.log(myp5.win)
+      console.log(myp5.win);
     }
   };
   // setText1(value);
