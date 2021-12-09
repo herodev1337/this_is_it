@@ -74,7 +74,7 @@ const Menu = () => {
   const [treeData, setTreeData] = useState([])
 
   useEffect(async () =>{
-    const data = await fetch(`/structure.json`).then((res) => res.json());
+    const data = await fetch(`/this_is_it/structure.json`).then((res) => res.json());
     
     if (data) setTreeData(data)
   }, [])
