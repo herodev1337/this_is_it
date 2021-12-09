@@ -19,11 +19,11 @@ export async function createUserSessionHandler(req: Request, res: Response) {
     return res.status(401).send("Invalid email or password");
   }
 
-  // create a session
+  // Create a session
   let userId:string = user._id;
   let userAgent:string = req.get("user-agent") || "Not found";
   let userIpAddress:string = <string>req.headers['x-forwarded-for'] || req.socket.remoteAddress || "Not found";
-  log.info("Creating session with parameters: ", {userId, userAgent, userIpAddress})
+
   const session = await createSession(userId, userAgent, userIpAddress);
 
   // create an access token
@@ -43,6 +43,7 @@ export async function createUserSessionHandler(req: Request, res: Response) {
   // return access & refresh tokens
   return res.send({ accessToken, refreshToken });
 }
+
 /**
  * Returns all sessions from the user
  * @param  {Request} req
