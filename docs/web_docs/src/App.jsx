@@ -17,7 +17,7 @@ function App() {
 
   useEffect(async () => {
     // const loc = window.location.origin
-    const md = await fetch(`/docs/${route}.md`).then((res) => res.text());
+    const md = await fetch(`/this_is_it/docs/${route}.md`).then((res) => res.text());
 
     if (!md) {
       setText('# Not Found :/');
