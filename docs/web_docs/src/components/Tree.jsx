@@ -27,7 +27,8 @@ const TreeNode = ({ node }) => {
 
   const treeHeadClick = (e)=>{
     if (node.type === "file"){
-      navigate(node.path)
+      // navigate(node.path)
+      window.location = node.path
     }
   }
 

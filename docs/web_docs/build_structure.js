@@ -46,5 +46,4 @@ const ret = scan_dir(dir);
 const out = path.join(up, 'structure.json');
 const data = JSON.stringify(ret, null, 2);
 
-console.log("Hier: ", out)
 fs.writeFileSync(out, data);
