@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
+    "prebuild": "build_structure",
     "build": "vite build",
     "serve": "vite preview"
   },

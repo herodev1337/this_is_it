@@ -93,6 +93,7 @@ body {
     font-size:1.3rem;
 
     .nodesToggle{
+      cursor: pointer;
       transition: all 1s ease-in-out;
       &.active{
         transform: rotate(90deg);
@@ -100,13 +101,24 @@ body {
     }
 
     .treeHead{
+      cursor: pointer;
       margin: 1% 0%;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: .5vh;
+      // justify-content: center;
+      align-items: baseline;
+      // gap: 1vh;
 
-      i{
+      &.dir i{
+        margin-right: .4rem;
+        font-size: .7em;
+      }
+
+      &.file{
+        font-size: .8em;
+      }
+
+      &.file i{
+        margin-right: .2rem;
         font-size: .7em;
       }
     }
@@ -124,6 +136,7 @@ body {
 
       .toggle {
         display: flex;
+        align-items: flex-end;
         gap: 1.5vh;
       }
     }

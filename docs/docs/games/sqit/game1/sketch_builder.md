@@ -17,7 +17,7 @@ We also import p5 classes, which just wrap simple shapes, which are going to be 
 
 `p.anim:boolean = false`  
 ```
-This variable controlls the first stage of the game. //controls
+This variable controls the first stage of the game.
 Only when the right code was entered in the main editor do we set it to 'true'. //main editor here? 
 ```
 

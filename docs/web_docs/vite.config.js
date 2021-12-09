@@ -5,6 +5,10 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/this_is_it/",
+  build: {
+    outDir: "../../docs",
+  },
   resolve: {
     alias: {
       root: __dirname,

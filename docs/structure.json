@@ -1,0 +1,108 @@
+[
+  {
+    "label": "games",
+    "title": "Games folder",
+    "path": "/games",
+    "type": "dir",
+    "children": [
+      {
+        "label": "sqit",
+        "title": "Sqit folder",
+        "path": "/games/sqit",
+        "type": "dir",
+        "children": [
+          {
+            "label": "config",
+            "title": "Config file",
+            "path": "/games/sqit/config",
+            "type": "file"
+          },
+          {
+            "label": "Editor",
+            "title": "Editor file",
+            "path": "/games/sqit/Editor",
+            "type": "file"
+          },
+          {
+            "label": "game1",
+            "title": "Game1 folder",
+            "path": "/games/sqit/game1",
+            "type": "dir",
+            "children": [
+              {
+                "label": "config",
+                "title": "Config file",
+                "path": "/games/sqit/game1/config",
+                "type": "file"
+              },
+              {
+                "label": "sketch_builder",
+                "title": "Sketch_builder file",
+                "path": "/games/sqit/game1/sketch_builder",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "label": "game4",
+            "title": "Game4 folder",
+            "path": "/games/sqit/game4",
+            "type": "dir",
+            "children": [
+              {
+                "label": "config",
+                "title": "Config file",
+                "path": "/games/sqit/game4/config",
+                "type": "file"
+              },
+              {
+                "label": "sketch_builder",
+                "title": "Sketch_builder file",
+                "path": "/games/sqit/game4/sketch_builder",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "label": "game5",
+            "title": "Game5 folder",
+            "path": "/games/sqit/game5",
+            "type": "dir",
+            "children": [
+              {
+                "label": "config",
+                "title": "Config file",
+                "path": "/games/sqit/game5/config",
+                "type": "file"
+              },
+              {
+                "label": "sketch_builder",
+                "title": "Sketch_builder file",
+                "path": "/games/sqit/game5/sketch_builder",
+                "type": "file"
+              }
+            ]
+          },
+          {
+            "label": "helpers",
+            "title": "Helpers file",
+            "path": "/games/sqit/helpers",
+            "type": "file"
+          },
+          {
+            "label": "Sketch",
+            "title": "Sketch file",
+            "path": "/games/sqit/Sketch",
+            "type": "file"
+          },
+          {
+            "label": "sketch_builder",
+            "title": "Sketch_builder file",
+            "path": "/games/sqit/sketch_builder",
+            "type": "file"
+          }
+        ]
+      }
+    ]
+  }
+]
