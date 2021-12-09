@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
+import { UserDocument } from './user.model'
 
 export interface SessionDocument extends mongoose.Document {
-    user: string
+    user: UserDocument["_id"]
     valid: boolean
     userAgent: string
     ipAddress: string

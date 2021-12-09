@@ -1,6 +1,6 @@
 import Session, { SessionDocument } from '../model/session.model';
 import config from 'config';
-import { FilterQuery, LeanDocument } from 'mongoose';
+import { FilterQuery, LeanDocument, UpdateQuery } from 'mongoose';
 import { signJwt, verifyJwt } from '../utils/jwt.utils';
 import { get } from 'lodash';
 import { findUser } from './user.service';
@@ -47,4 +47,9 @@ export async function reIssueAccessToken({ refreshToken }:{ refreshToken:string 
  */
 export async function findSessions(query: FilterQuery<SessionDocument>) {
   return Session.find(query).lean();
+}
+
+export async function updateSession(
+  query: FilterQuery<SessionDocument>, update: UpdateQuery<SessionDocument>) {
+  return Session.updateOne(query, update);
 }

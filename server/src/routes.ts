@@ -2,7 +2,7 @@ import { Express, Request, Response } from 'express'
 import { createUserHandler } from './controller/user.controller'
 import { createUserSchema } from './schema/user.schema'
 import { validate as validateRequest } from './middleware/validateRequest'
-import { createUserSessionHandler, getUserSessionsHandler } from './controller/session.controller'
+import { createUserSessionHandler, deleteUserSessionHandler, getUserSessionsHandler } from './controller/session.controller'
 import { createSessionSchema } from './schema/session.schema'
 import requireUser from './middleware/requireUser'
 
@@ -21,8 +21,7 @@ export default function(app: Express){
     //Get the users sessions - GET - /api/auth/sessions
     app.get('/api/auth/sessions', requireUser, getUserSessionsHandler)
 
-    
-
     //Logout - DEL - /api/auth/sessions
+    app.delete('/api/auth/sessions', requireUser, deleteUserSessionHandler)
 
 } 

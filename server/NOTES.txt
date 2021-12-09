@@ -1,8 +1,0 @@
-Techstack:
-* Express - Liefert die Requets/Response
-* MongoDB + Mongoose - Database
-
-
-POST - /api/auth/login - Login user with credentials -> returns access&refreshtoken
-POST - /api/auth/register - Register user -> returns registered user
-GET - /api
