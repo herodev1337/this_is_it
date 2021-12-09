@@ -88,14 +88,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ParentComponent from './routes/ParentComponent';
 import ChildComponent from './routes/ChildComponent';
 <BrowserRouter>
-	{
-        <Routes>
-            ...
-            <Route path="/parent" element={<ParentComponent/>}>
-                <Route path="child" element={<ChildComponent/>} />
-            </Route>
-        </Routes>
-	}
+  {
+    <Routes>
+      ...
+      <Route path="/parent" element={<ParentComponent/>}>
+        <Route path="child" element={<ChildComponent/>} />
+      </Route>
+    </Routes>
+  }
 </BrowserRouter>
 ```
 
@@ -105,12 +105,12 @@ Die Parent-Route wäre dann über `localhost:8080/parent` zu erreichen, die Chil
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 function ParentComponent() {
-	return (
-		<div>
-            ...
-			<Outlet />
-		</div>
-	);
+  return (
+    <div>
+      ...
+      <Outlet />
+    </div>
+  );
 }
 export default ParentComponent;
 ```
@@ -136,14 +136,14 @@ const router = require('express').Router();
 const beispielController = require('../controllers/beispielApi.controller');
 
 router
-	.route('/')
-    .get(beispielController.getBeispielÜbersicht)
-    ...
+  .route('/')
+  .get(beispielController.getBeispielÜbersicht)
+  ...
 router
-	.route('/:beispielId')
-	.get(beispielController.getBeispiel)
-	.post(/*Optional Middleware*/ beispielController.createBeispiel)
-	...
+  .route('/:beispielId')
+  .get(beispielController.getBeispiel)
+  .post(/*Optional Middleware*/ beispielController.createBeispiel)
+  ...
 ...
 module.exports = router;
 ```
@@ -153,16 +153,16 @@ const Beispiel = require("../models/Beispiel");
 
 //* GET - /api/beispiel/
 const getBeispielÜbersicht = (req, res, next) => {
-    Quiz.find({/* OPTIONS */}).then(data => { 
-        // Handle Data
-    }).catch(error => {
-        // Handle Error
-    })
+  Quiz.find({/* OPTIONS */}).then(data => { 
+    // Handle Data
+  }).catch(error => {
+    // Handle Error
+  })
 }
 ...
 module.exports = {
-    getBeispielÜbersicht,
-    ...
+  getBeispielÜbersicht,
+  ...
 };
 ```
 
@@ -173,14 +173,14 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ApiWrapper } from '../utils/context-hooks/use-api';
 function ParentComponent() {
-	return (
-		<div>
-            <ApiWrapper>
-            	...
-				<Outlet />
-            <ApiWrapper>
-		</div>
-	);
+  return (
+    <div>
+      <ApiWrapper>
+        ...
+        <Outlet />
+      <ApiWrapper>
+    </div>
+  );
 }
 export default ParentComponent;
 ```
@@ -191,26 +191,26 @@ Innerhalb des Wrappers bzw. in `<ChildComponent/>` kann der Context nun mit dem 
 import React, { useState, useEffect } from 'react';
 import { useApi } from '../utils/context-hooks/use-api';
 function ChildComponent() {
-	const api = useApi();
-	const [content, setContent] = useState();
-	
-	useEffect(() => {
-		api.get('./beispiel/')
-			.then(function (response) {
-				setContent(response.data) // genaue Verwendung abhängig von Datenstruktur der HTTP-Response
-			})
-			.catch(function (error) {
-				// Handle Error
-			});
-	}, [])
+  const api = useApi();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+  api.get('./beispiel/')
+    .then(function (response) {
+      setContent(response.data) // genaue Verwendung abhängig von Datenstruktur der HTTP-Response
+    })
+    .catch(function (error) {
+      // Handle Error
+    });
+  }, [])
     
-	return (
-		<div>
-            {content.map((beispiel, i) => {
-                // Stelle hier die Inhalte dar
-            })};
-		</div>
-	);
+  return (
+    <div>
+      {content.map((beispiel, i) => {
+        // Stelle hier die Inhalte dar
+      })};
+    </div>
+  );
 }
 export default ParentComponent;
 ```
