@@ -19,4 +19,11 @@ app.use(requestLogger);
 app.listen(port, () => {
   log.info(`Listening on port ${port}`);
   routes(app);
+
+  app._router.stack.forEach(function(r:any){
+  if (r.route && r.route.path){
+    console.log(r.route)
+  }
+})
+
 });
