@@ -1,10 +1,19 @@
 class SlidingDoors {
+  /**
+   * A class representing a 2 rectangles, sliding apart from each other when activated.
+   * 
+   * @param {Object} p P5 Instance
+   * @param {number[]} color List of numbers representing a rgb color
+   */
   constructor(p,color) {
     this.col = color;
     this.push = 0;
     this.p = p
   }
 
+  /**
+   * Show the rectangles.
+   */
   show() {
     this.p.fill(this.col);
     this.p.rect(-5 - this.push, 0, this.p.width / 2 + 5, this.p.height);
@@ -13,6 +22,11 @@ class SlidingDoors {
     this.p.rect(this.p.width / 2 + this.push, 0, this.p.width / 2 + 5, this.p.height);
   }
 
+  /**
+   * Animate the sliding rectangles.
+   * 
+   * @param {boolean} anim Boolean value that activated the animation.
+   */
   move(anim) {
     if (anim) {
       this.push = this.push < this.p.width / 2 ? this.push + 1 : this.p.width / 2;
@@ -23,6 +37,14 @@ class SlidingDoors {
 }
 
 class BlinkLight {
+  /**
+   * A class representing 2 circles that light up back and forth.
+   * 
+   * @param {object} p P5 instance
+   * @param {number} r Radius of the circles
+   * @param {number[]} color List of number representing a rgb color
+   * @param {number} dir Number representing the direction in which the blur should be applied
+   */
   constructor(p, r, color, dir = -1) {
     this.x = 0;
     this.y = 0;
@@ -33,6 +55,9 @@ class BlinkLight {
     this.p = p
   }
 
+  /**
+   * Show the circles by drawing them many times which scaled down to get a blur effect on the edges.
+   */
   show() {
     // this.update(p)
     this.p.noStroke();
@@ -44,11 +69,19 @@ class BlinkLight {
     // circle(this.x - this.push * this.dir, this.y, this.r * 2);
   }
 
+  /**
+   * 
+   * @param {number} x Updated X value 
+   * @param {number} y Updated Y value
+   */
   update(x,y) {
     this.x = x
     this.y = y
   }
 
+  /**
+   * Increment the a push variable which slides the circles apart from each other.
+   */
   move() {
     this.push++;
   }

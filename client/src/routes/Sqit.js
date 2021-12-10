@@ -1,11 +1,9 @@
 import React from 'react';
-import {useParams} from "react-router-dom"
 
 import "styles/scss/sqit_games.scss"
 import sqit_bg from "static/images/sqit/lowPolyBG.svg"
 
-import Editor from "components/sqit/Editor"
-import Sketch1 from "components/sqit/Sketch1"
+import Sketch from "components/sqit/Sketch"
 
 const Sqit = () => {
   // css overides body properties for every page so this is a workaround
@@ -24,7 +22,7 @@ const Sqit = () => {
       <div className="spacer"></div>
 
       <div className="contentHolders">
-        <Sketch1/>
+        <Sketch/>
       </div>
 
       <div className="spacer"></div>
