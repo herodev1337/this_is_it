@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch1.html">Sketch1</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
                 
             </nav>
         </div>
@@ -158,7 +158,7 @@ const import_sketch = page => {
  * 
  * @component
  */
-const Sketch1 = () => {
+const Sketch = () => {
   const {get_sketch, text1, text2} = import_sketch(useParams().game);
   const p5Ref = useRef();
   const [textState1, setText1] = useState(text1);
@@ -200,7 +200,7 @@ const Sketch1 = () => {
   );
 };
 
-export default Sketch1;</code></pre>
+export default Sketch;</code></pre>
         </article>
     </section>
 

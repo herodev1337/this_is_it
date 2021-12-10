@@ -26,4 +26,4 @@
 reactComponents['Editor'] = Component0;
 
 import Component1 from '../client/src/components/sqit/Sketch.js';
-reactComponents['Sketch1'] = Component1;
+reactComponents['Sketch'] = Component1;

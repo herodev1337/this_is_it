@@ -63,7 +63,7 @@ const import_sketch = page => {
  * 
  * @component
  */
-const Sketch1 = () => {
+const Sketch = () => {
   const {get_sketch, text1, text2} = import_sketch(useParams().game);
   const p5Ref = useRef();
   const [textState1, setText1] = useState(text1);
@@ -105,4 +105,4 @@ const Sketch1 = () => {
   );
 };
 
-export default Sketch1;
+export default Sketch;
