@@ -1,16 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/this_is_it/assets/favicon.63a26457.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <script type="module" crossorigin src="/this_is_it/assets/index.c4378519.js"></script>
-    <link rel="modulepreload" href="/this_is_it/assets/vendor.b2c50f6f.js">
-    <link rel="stylesheet" href="/this_is_it/assets/index.ac5652c9.css">
-  </head>
-  <body>
-    <div id="root"></div>
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Home</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
-  </body>
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">This is it - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch1.html">Sketch1</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p></p>
+                    <h1>Home</h1>
+                </header>
+                
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1 align="center">This is IT</h1>
+<p>//TODO: Description...</p>
+<hr>
+<h2>Getting Started</h2>
+<h4>Prerequisites</h4>
+<ul>
+<li><a href="https://nodejs.org/en/">node.js</a>
+<ul>
+<li>npm</li>
+</ul>
+</li>
+</ul>
+<h4>Clone</h4>
+<p><code>git clone https://github.com/herodev1337/this_is_it.git</code></p>
+<p>oder</p>
+<p><code>git clone git@github.com:herodev1337/this_is_it.git</code></p>
+<h4>Server starten</h4>
+<ol>
+<li><code>cd this_is_it/server</code></li>
+<li><code>npm install</code> <strong>oder</strong> <code>npm i</code> (nur nach dem ersten pull/clone)</li>
+<li><code>npm start</code> <strong>oder</strong> <code>node server.js</code></li>
+<li>Server sollte gestartet sein!</li>
+</ol>
+<h4>React Devserver starten</h4>
+<ol>
+<li><code>cd this_is_it/client</code></li>
+<li><code>npm install</code> <strong>oder</strong> <code>npm i</code> (nur nach dem ersten pull/clone)</li>
+<li><code>npm start</code></li>
+<li>Etwas warten, Webpack kompiliert euch den den Development-Server</li>
+</ol>
+<h2>Development</h2>
+<h4>Ordnerstruktur</h4>
+<pre class="prettyprint source"><code>this_is_it/
+├─ client/           // REACT WEBSERVER
+│  ├─ public/	     &lt;-- Diese Dateien werden von React generiert, hier sollte nichts verändert werden
+│  ├─ src/           
+│  │  ├─ components/ &lt;-- Sekundäre React-Komponenten
+│  │  ├─ routes/     &lt;-- Primäre React-Komponenten, die in index.js verwendet werden
+│  │  ├─ static/     &lt;-- Statische Assets, wie z.B. Bilder
+│  │  ├─ styles/     &lt;-- (S)CSS Dateien
+│  │  ├─ utils/      &lt;-- JS-Dateien wie Contexts, Hooks, Konfigurationsdateien, etc.
+│
+├─ server/           // EXPRESS SERVER
+│  ├─ config/        &lt;-- Konfigurationsdateien z.B. Database Credentials und URL, Settings...
+│  ├─ controllers/   &lt;-- API Controller für Datenbank und Authentifizierung
+│  ├─ middleware/    &lt;-- Liegt zwischen Route und Controller und kann z.B. authentifizieren
+│  ├─ models/        &lt;-- MongoDB Models
+│  ├─ routes/        &lt;-- Routing-Dateien
+│  ├─ util/          &lt;-- Hilfe-Dateien, wie z.B. Logger
+</code></pre>
+<h4>Der MERN Techstack</h4>
+<figure>
+  <img src="https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png" alt="mern-stack" style="width:100%">
+  <figcaption>Quelle: mongodb.com/mern-stack</figcaption>
+</figure>
+<p>Zum <a href="https://www.mongodb.com/languages/mern-stack-tutorial">Nachlesen</a></p>
+<h4>React Routing</h4>
+<p>Die Website ist eine Single-Page-Application, d.h. es werden keine separaten HTML-Files geladen, sondern React rendert die benötigten Komponenten immer auf der selben Seite. Um dennoch gezielt navigieren zu können, nutzen wir die <a href="https://reactrouter.com/docs/en/v6">React Router</a> <strong>v6</strong> library.</p>
+<p>Zum Erstellen einer neue Route muss in <code>client\src\index.js</code> ein entsprechender Eintrag eingefügt werden:</p>
+<pre class="prettyprint source lang-react"><code>import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// ...
+import ParentComponent from './routes/ParentComponent';
+import ChildComponent from './routes/ChildComponent';
+&lt;BrowserRouter>
+  {
+    &lt;Routes>
+      ...
+      &lt;Route path=&quot;/parent&quot; element={&lt;ParentComponent/>}>
+        &lt;Route path=&quot;child&quot; element={&lt;ChildComponent/>} />
+      &lt;/Route>
+    &lt;/Routes>
+  }
+&lt;/BrowserRouter>
+</code></pre>
+<p>Die Parent-Route wäre dann über <code>localhost:8080/parent</code> zu erreichen, die Child-Route über <code>localhost:8080/parent/child</code>. Damit <code>&lt;ChildComponent/&gt;</code> angezeigt werden kann, muss in <code>&lt;ParentComponent /&gt;</code> spezifiziert werden, an welcher Stelle; dies geschieht mit der <code>&lt;Outlet/&gt;</code> Komponente:</p>
+<pre class="prettyprint source lang-react"><code>import React from 'react';
+import { Outlet } from 'react-router-dom';
+function ParentComponent() {
+  return (
+    &lt;div>
+      ...
+      &lt;Outlet />
+    &lt;/div>
+  );
+}
+export default ParentComponent;
+</code></pre>
+<p>Das oben gezeigte <em>Nesting</em> ist optional aber empfohlen, um die Seiten- und Routerstruktur intuitiv und übersichtlich zu halten. Alle in <code>client\src\index.js</code> verwendeten Komponenten sollten in dem Ordner <code>client\src\routes\</code> liegen. Die darin verwendeten Sub-Komponenten kommen in einen entsprechenden Ordner in <code>client\src\components\</code>.</p>
+<h4>API</h4>
+<p>Die Server-APIs für Datenbankabfragen, Authentifizierung usw. werden mit <a href="https://expressjs.com/">Express.js</a> spezifiziert. Serverseitig würde eine API-Route beispielsweise folgendermaßen aussehen:</p>
+<p><code>server\server.js</code>:</p>
+<pre class="prettyprint source lang-js"><code>const express = require('express');
+const app = express();
+...
+app.use('/api/beispiel/', require('./routes/beispielApi.route'))
+</code></pre>
+<p><code>server\routes\beispielApi.route.js</code>:</p>
+<pre class="prettyprint source lang-js"><code>const router = require('express').Router();
+const beispielController = require('../controllers/beispielApi.controller');
+
+router
+  .route('/')
+  .get(beispielController.getBeispielÜbersicht)
+  ...
+router
+  .route('/:beispielId')
+  .get(beispielController.getBeispiel)
+  .post(/*Optional Middleware*/ beispielController.createBeispiel)
+  ...
+...
+module.exports = router;
+</code></pre>
+<p><code>server\controllers\beispielApi.controller.js</code>:</p>
+<pre class="prettyprint source lang-js"><code>const Beispiel = require(&quot;../models/Beispiel&quot;);
+
+//* GET - /api/beispiel/
+const getBeispielÜbersicht = (req, res, next) => {
+  Quiz.find({/* OPTIONS */}).then(data => { 
+    // Handle Data
+  }).catch(error => {
+    // Handle Error
+  })
+}
+...
+module.exports = {
+  getBeispielÜbersicht,
+  ...
+};
+</code></pre>
+<p>Client-seitig werden API-Requests mit <a href="https://axios-http.com/">Axios</a> durchgeführt. Hierfür gibt es bereits einen Context, in dem eine Axios-Instanz konfiguriert ist. Um den Context zur Verfügung zu stellen (<em>provide</em>), muss die Komponente, in der ein HTTP-Request gemacht werden soll, in den Wrapper aus <code>client\src\utils\context-hooks\use-api.js</code> verpackt werden. Anhand des vorherigen Beispiels:</p>
+<pre class="prettyprint source lang-react"><code>import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { ApiWrapper } from '../utils/context-hooks/use-api';
+function ParentComponent() {
+  return (
+    &lt;div>
+      &lt;ApiWrapper>
+        ...
+        &lt;Outlet />
+      &lt;ApiWrapper>
+    &lt;/div>
+  );
+}
+export default ParentComponent;
+</code></pre>
+<p>Innerhalb des Wrappers bzw. in <code>&lt;ChildComponent/&gt;</code> kann der Context nun mit dem <code>useApi</code>-Hook verwendet werden (<em>consume</em>):</p>
+<pre class="prettyprint source lang-react"><code>import React, { useState, useEffect } from 'react';
+import { useApi } from '../utils/context-hooks/use-api';
+function ChildComponent() {
+  const api = useApi();
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+  api.get('./beispiel/')
+    .then(function (response) {
+      setContent(response.data) // genaue Verwendung abhängig von Datenstruktur der HTTP-Response
+    })
+    .catch(function (error) {
+      // Handle Error
+    });
+  }, [])
+    
+  return (
+    &lt;div>
+      {content.map((beispiel, i) => {
+        // Stelle hier die Inhalte dar
+      })};
+    &lt;/div>
+  );
+}
+export default ParentComponent;
+</code></pre>
+<h4>Styling</h4>
+<p>//TODO: Styling muss modularisiert werden! Aktuell kontaminieren sich die verschiedenen Stylesheets gegenseitig</p></article>
+    </section>
+
+
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
 </html>

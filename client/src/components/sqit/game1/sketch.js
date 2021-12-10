@@ -3,6 +3,11 @@ import $ from 'jquery';
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
+/**
+ * Builds the p5 sketch.
+ * 
+ * @param {object} p P5 instance. 
+ */
 let sketch_builder = p => {
   p.anim = false;
   p.interval = 4;

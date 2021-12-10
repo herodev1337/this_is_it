@@ -129,7 +129,7 @@ let sketch_builder = (p) => {
           created[2] = 2;
           p.win = true;
           if (!updateEditor) {
-    
+            p.set_win(p.win)
           }
           updateEditor = true;
         }
@@ -594,6 +594,7 @@ let sketch_builder = (p) => {
         }
       }
     } else {
+      
       if (
         ((created[0] === 1 && created[1] === 1 && created[2] === 1) ||
           (created[3] === 1 && created[4] === 1 && created[5] === 1) ||

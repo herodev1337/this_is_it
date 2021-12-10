@@ -4,6 +4,14 @@ import {sketch_builder} from "./sketch"
 import * as helpers from '../helpers';
 
 
+/**
+ * Builds a p5 instance and connects it with the main editor.
+ * 
+ * @param {Object} ref React ref object holding the div where the p5 canvas should be placed
+ * @param {function} setText1 Text setter for main editor
+ * @param {function} setText2 Text setter for output editor
+ * @returns {object} An object containing the P5 instance and the main editor getter
+ */
 const get_sketch = (ref, setText1, setText2) => {
     let isExtraTxt = false;
   
