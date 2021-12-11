@@ -2,9 +2,10 @@ import React, { useState, useRef, useEffect, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import p5 from 'p5';
 // import 'regenerator-runtime/runtime'; // needs to be imported if async/await is beeing used
-
 import Editor from 'components/sqit/Editor';
 import * as helpers from './helpers.js';
+
+/** @module Sqit-General */
 
 /**
  * Imports the P5 sketch based on the given string.
@@ -15,6 +16,7 @@ import * as helpers from './helpers.js';
  * If not, we return the hell out of here.
  * If yes, require the needed config.js from the path associated with '$page'.
  * Then we return an object with the keys 'get_sketch, text1, text2' and there corrosponding function/strings.
+ * 
  */
 const import_sketch = page => {
   const re = /game[1-6]/g;
@@ -59,7 +61,6 @@ const import_sketch = page => {
  * @see [Editor Component]{@link Editor}
  * @see [P5]{@link https://p5js.org/get-started/}
  * @see [AceEditor]{@link https://ace.c9.io/}
- * 
  * 
  * @component
  */

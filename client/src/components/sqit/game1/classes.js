@@ -1,6 +1,9 @@
+/** @module Sqit-Game1 */
+
 class SlidingDoors {
   /**
    * A class representing a 2 rectangles, sliding apart from each other when activated.
+   * 
    * 
    * @param {Object} p P5 Instance
    * @param {number[]} color List of numbers representing a rgb color

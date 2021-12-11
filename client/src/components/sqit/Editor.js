@@ -9,6 +9,9 @@ import AceEditor from 'react-ace';
 
 import * as helpers from './helpers.js';
 
+// /** @namespace sqit */
+/** @module Sqit-General */
+
 /**
  * This functions initializes the editor sizes as a react state of nested arrays.
  * We useLayoutEffect here to wait for the ui to load in first.

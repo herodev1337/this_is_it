@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Sqit-Game1.html">Sqit-Game1</a></li><li><a href="module-Sqit-General.html">Sqit-General</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-Game1-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-Game1-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit-General-Editor.html">Editor</a></li><li><a href="module-Sqit-General-Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li></ul></div>
                 
             </nav>
         </div>
@@ -97,9 +97,10 @@
 import { useParams } from 'react-router-dom';
 import p5 from 'p5';
 // import 'regenerator-runtime/runtime'; // needs to be imported if async/await is beeing used
-
 import Editor from 'components/sqit/Editor';
 import * as helpers from './helpers.js';
+
+/** @module Sqit-General */
 
 /**
  * Imports the P5 sketch based on the given string.
@@ -110,6 +111,7 @@ import * as helpers from './helpers.js';
  * If not, we return the hell out of here.
  * If yes, require the needed config.js from the path associated with '$page'.
  * Then we return an object with the keys 'get_sketch, text1, text2' and there corrosponding function/strings.
+ * 
  */
 const import_sketch = page => {
   const re = /game[1-6]/g;
@@ -154,7 +156,6 @@ const import_sketch = page => {
  * @see [Editor Component]{@link Editor}
  * @see [P5]{@link https://p5js.org/get-started/}
  * @see [AceEditor]{@link https://ace.c9.io/}
- * 
  * 
  * @component
  */

@@ -3,10 +3,12 @@ import p5 from 'p5';
 import {sketch_builder} from "./sketch"
 import * as helpers from '../helpers';
 
+// /** @namespace sqit */
+/** @module Sqit-Game1 */
 
 /**
  * Builds a p5 instance and connects it with the main editor.
- * 
+ *
  * @param {Object} ref React ref object holding the div where the p5 canvas should be placed
  * @param {function} setText1 Text setter for main editor
  * @param {function} setText2 Text setter for output editor

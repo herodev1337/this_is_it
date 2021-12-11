@@ -3,8 +3,12 @@ import $ from 'jquery';
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
+/** @module Sqit-Game1 */
+// /** @module sqit-game1 */
+
 /**
  * Builds the p5 sketch.
+ * 
  * 
  * @param {object} p P5 instance. 
  */

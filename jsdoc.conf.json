@@ -8,7 +8,7 @@
       "includePattern": ".+\\.js(doc|x)?$",
       "excludePattern": "(^|\\/|\\\\)_"
     },
-    "plugins": ["plugins/markdown", "node_modules/better-docs/component"],
+    "plugins": ["plugins/markdown", "node_modules/better-docs/component", "node_modules/better-docs/category"],
     "templates": {
     "cleverLinks": false,
     "monospaceLinks": true,

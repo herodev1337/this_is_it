@@ -1,4 +1,99 @@
-import $, { get, type } from 'jquery';
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> game4/sketch.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">This is it - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Sqit-Game1.html">Sqit-Game1</a></li><li><a href="module-Sqit-General.html">Sqit-General</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-Game1-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-Game1-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit-General-Editor.html">Editor</a></li><li><a href="module-Sqit-General-Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>game4/sketch.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import $, { get, type } from 'jquery';
 import p5 from 'p5';
 // import { EditorSingleton } from '../editor.js';
 import * as helpers from '../helpers.js';
@@ -111,20 +206,20 @@ let sketch_builder = (p) => {
   function calculateCross() {
     let printedCircle = 0;
     if (!p.yourTurn) {
-      for (let i = 0; i <= created.length; i++) {
+      for (let i = 0; i &lt;= created.length; i++) {
         if (created[i] === 1) {
           createdCheck[i] = created[i];
         }
       }
     }
-    for (let i = 0; i <= createdCheck.length; i++) {
+    for (let i = 0; i &lt;= createdCheck.length; i++) {
       if (createdCheck[i] === 1) {
         printedCircle++;
       }
     }
     if (p.hardMode) {
       if (
-        printedCircle === 1 &&
+        printedCircle === 1 &amp;&amp;
         (createdCheck[1] === 1 ||
           createdCheck[0] === 1 ||
           createdCheck[3] === 1 ||
@@ -137,10 +232,10 @@ let sketch_builder = (p) => {
         created[8] = 2;
       }
       if (printedCircle === 2) {
-        if (createdCheck[4] === 1 && createdCheck[7] === 1) {
+        if (createdCheck[4] === 1 &amp;&amp; createdCheck[7] === 1) {
           created[1] = 2;
         }
-        if (createdCheck[2] === 1 && createdCheck[3] === 1) {
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[3] === 1) {
           created[8] = 2;
         }
         if (createdCheck[0] === 1) {
@@ -148,7 +243,7 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[0] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
           (createdCheck[1] === 1 ||
             createdCheck[3] === 1 ||
             createdCheck[5] === 1 ||
@@ -164,7 +259,7 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[1] === 1 &&
+          createdCheck[1] === 1 &amp;&amp;
           (createdCheck[0] === 1 ||
             createdCheck[3] === 1 ||
             createdCheck[5] === 1 ||
@@ -178,7 +273,7 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[3] === 1 &&
+          createdCheck[3] === 1 &amp;&amp;
           (createdCheck[1] === 1 ||
             createdCheck[0] === 1 ||
             createdCheck[5] === 1 ||
@@ -192,7 +287,7 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[5] === 1 &&
+          createdCheck[5] === 1 &amp;&amp;
           (createdCheck[1] === 1 ||
             createdCheck[3] === 1 ||
             createdCheck[0] === 1 ||
@@ -206,7 +301,7 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[7] === 1 &&
+          createdCheck[7] === 1 &amp;&amp;
           (createdCheck[1] === 1 ||
             createdCheck[3] === 1 ||
             createdCheck[5] === 1 ||
@@ -220,7 +315,7 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[8] === 1 &&
+          createdCheck[8] === 1 &amp;&amp;
           (createdCheck[1] === 1 ||
             createdCheck[3] === 1 ||
             createdCheck[5] === 1 ||
@@ -233,7 +328,7 @@ let sketch_builder = (p) => {
           }
           updateEditor = true;
         } else {
-          if (created[4] != 2 && created[7] != 1) {
+          if (created[4] != 2 &amp;&amp; created[7] != 1) {
             created[7] = 2;
             p.win = true;
             if (!updateEditor) {
@@ -242,20 +337,20 @@ let sketch_builder = (p) => {
           }
         }
 
-        if (createdCheck[7] === 1 && createdCheck[8] === 1) {
+        if (createdCheck[7] === 1 &amp;&amp; createdCheck[8] === 1) {
           created[2] = 2;
         }
 
-        if (createdCheck[2] === 1 && createdCheck[8] === 1) {
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[8] === 1) {
           created[5] = 2;
         }
-        if (createdCheck[1] === 1 && createdCheck[2] === 1) {
+        if (createdCheck[1] === 1 &amp;&amp; createdCheck[2] === 1) {
           if (created[6] != 2 || created[8] != 2) {
             created[0] = 2;
           }
         }
 
-        if (createdCheck[2] === 1 && createdCheck[5] === 1 && created[4] != 2) {
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[5] === 1 &amp;&amp; created[4] != 2) {
           created[8] = 2;
           p.win = true;
           if (!updateEditor) {
@@ -264,25 +359,25 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[5] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
           created[4] === 2
         ) {
           created[8] = 2;
         }
         if (
-          created[6] != 2 &&
-          created[8] != 2 &&
+          created[6] != 2 &amp;&amp;
+          created[8] != 2 &amp;&amp;
           (createdCheck[5] === 1 ||
             createdCheck[7] === 1 ||
             createdCheck[8] === 1 ||
             createdCheck[3] === 1 ||
-            createdCheck[0] === 1) &&
+            createdCheck[0] === 1) &amp;&amp;
           (createdCheck[0] === 1 ||
             createdCheck[1] ||
             createdCheck[3] ||
             createdCheck[7] ||
-            createdCheck[8]) &&
+            createdCheck[8]) &amp;&amp;
           createdCheck[2] != 1
         ) {
           created[2] = 2;
@@ -291,38 +386,38 @@ let sketch_builder = (p) => {
           }
           updateEditor = true;
         }
-        if (createdCheck[0] === 1 && createdCheck[2] === 1) {
+        if (createdCheck[0] === 1 &amp;&amp; createdCheck[2] === 1) {
           created[1] = 2;
         }
-        if (createdCheck[7] === 1 && createdCheck[2] === 1) {
+        if (createdCheck[7] === 1 &amp;&amp; createdCheck[2] === 1) {
           created[0] = 2;
         }
       }
-      if (printedCircle === 3 && !p.win) {
+      if (printedCircle === 3 &amp;&amp; !p.win) {
         if (
-          created[0] === 1 &&
-          created[7] === 1 &&
-          created[2] === 1 &&
-          created[1] === 2 &&
-          created[4] === 2 &&
-          created[6] === 2 &&
+          created[0] === 1 &amp;&amp;
+          created[7] === 1 &amp;&amp;
+          created[2] === 1 &amp;&amp;
+          created[1] === 2 &amp;&amp;
+          created[4] === 2 &amp;&amp;
+          created[6] === 2 &amp;&amp;
           created[8] != 2
         ) {
           created[5] = 2;
         }
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[5] === 1 &&
-          !createdCheck[1] === 1 &&
-          !createdCheck[2] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
+          !createdCheck[1] === 1 &amp;&amp;
+          !createdCheck[2] === 1 &amp;&amp;
           !createdCheck[8] === 1
         ) {
           created[3] = 2;
         }
         if (
-          createdCheck[1] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           createdCheck[8] === 1
         ) {
           created[3] = 2;
@@ -334,8 +429,8 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           (createdCheck[3] === 1 || createdCheck[8] === 1)
         ) {
           created[7] = 2;
@@ -346,8 +441,8 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[4] === 1
         ) {
           created[3] = 2;
@@ -358,8 +453,8 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[4] = 2;
@@ -370,8 +465,8 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[3] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[3] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           (createdCheck[7] === 1 ||
             createdCheck[5] === 1 ||
             createdCheck[1] === 1)
@@ -386,14 +481,14 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[1] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           (createdCheck[7] === 1 || createdCheck[5] === 1)
         ) {
           if (
-            created[3] === 2 &&
-            created[4] === 2 &&
-            created[6] === 2 &&
+            created[3] === 2 &amp;&amp;
+            created[4] === 2 &amp;&amp;
+            created[6] === 2 &amp;&amp;
             created[8] === 2
           ) {
             created[3] = 2;
@@ -407,8 +502,8 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[8] === 1
         ) {
           created[3] = 2;
@@ -419,8 +514,8 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[8] = 2;
@@ -431,8 +526,8 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           createdCheck[5] === 1
         ) {
           created[7] = 2;
@@ -443,13 +538,13 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[7] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           (createdCheck[5] === 1 || createdCheck[1] === 1)
         ) {
-          if (created[4] === 1 && created[6] === 1 && created[8] === 1) {
+          if (created[4] === 1 &amp;&amp; created[6] === 1 &amp;&amp; created[8] === 1) {
             created[4] = 2;
-          } else if (created[0] === 2 && created[4] === 2 && created[6] === 2) {
+          } else if (created[0] === 2 &amp;&amp; created[4] === 2 &amp;&amp; created[6] === 2) {
             created[3] = 2;
           } else {
             created[0] = 2;
@@ -461,18 +556,18 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[4] === 2 &&
-          createdCheck[6] === 2 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[4] === 2 &amp;&amp;
+          createdCheck[6] === 2 &amp;&amp;
           createdCheck[8] === 2
         ) {
           created[5] = 2;
         }
         if (
-          createdCheck[1] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           p.win = true;
@@ -483,61 +578,61 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[8] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[8] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[1] = 2;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
-          !createdCheck[4] === 2 &&
-          !createdCheck[6] === 2 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          !createdCheck[4] === 2 &amp;&amp;
+          !createdCheck[6] === 2 &amp;&amp;
           !createdCheck[8] === 2
         ) {
           created[3] = 2;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[4] === 2 &&
-          createdCheck[6] === 2 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[4] === 2 &amp;&amp;
+          createdCheck[6] === 2 &amp;&amp;
           createdCheck[8] === 2
         ) {
           created[3] = 2;
         }
 
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[5] = 2;
         }
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[5] === 1
         ) {
           created[3] = 2;
         }
 
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[2] === 1
         ) {
           created[1] = 2;
         }
       }
-      if (printedCircle === 4 && !p.win) {
+      if (printedCircle === 4 &amp;&amp; !p.win) {
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[3] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1 &amp;&amp;
           createdCheck[2] === 1
         ) {
           created[0] = 2;
@@ -548,9 +643,9 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[2] === 1 &&
-          createdCheck[8] === 1 &&
-          createdCheck[3] === 1 &&
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[8] === 1 &amp;&amp;
+          createdCheck[3] === 1 &amp;&amp;
           createdCheck[7] === 1
         ) {
           created[0] = 2;
@@ -562,9 +657,9 @@ let sketch_builder = (p) => {
         }
 
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[0] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[0] === 1 &amp;&amp;
           createdCheck[5] === 1
         ) {
           created[2] = 2;
@@ -575,9 +670,9 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[5] = 2;
@@ -588,9 +683,9 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[7] === 1 &&
-          createdCheck[2] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
           createdCheck[5] === 1
         ) {
           created[3] = 2;
@@ -601,18 +696,18 @@ let sketch_builder = (p) => {
           updateEditor = true;
         }
         if (
-          createdCheck[0] === 1 &&
-          createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[3] === 1
         ) {
           created[8] = 2;
         }
 
         if (
-          createdCheck[4] === 1 &&
-          createdCheck[5] === 1 &&
-          createdCheck[7] === 1 &&
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
           createdCheck[2] === 1
         ) {
           created[0] = 2;
@@ -625,13 +720,13 @@ let sketch_builder = (p) => {
     } else {
       
       if (
-        ((created[0] === 1 && created[1] === 1 && created[2] === 1) ||
-          (created[3] === 1 && created[4] === 1 && created[5] === 1) ||
-          (created[6] === 1 && created[7] === 1 && created[8] === 1) ||
-          (created[0] === 1 && created[3] === 1 && created[6] === 1) ||
-          (created[1] === 1 && created[4] === 1 && created[7] === 1) ||
-          (created[2] === 1 && created[5] === 1 && created[8] === 1) ||
-          (created[0] === 1 && created[4] === 1 && created[8] === 1)) &&
+        ((created[0] === 1 &amp;&amp; created[1] === 1 &amp;&amp; created[2] === 1) ||
+          (created[3] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[5] === 1) ||
+          (created[6] === 1 &amp;&amp; created[7] === 1 &amp;&amp; created[8] === 1) ||
+          (created[0] === 1 &amp;&amp; created[3] === 1 &amp;&amp; created[6] === 1) ||
+          (created[1] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[7] === 1) ||
+          (created[2] === 1 &amp;&amp; created[5] === 1 &amp;&amp; created[8] === 1) ||
+          (created[0] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[8] === 1)) &amp;&amp;
         !pp4
       ) {
         p.playerWin = true;
@@ -640,22 +735,22 @@ let sketch_builder = (p) => {
         // enterCallback();
       }
       if (!p.playerWin) {
-        if (printedCircle === 1 && !pp) {
+        if (printedCircle === 1 &amp;&amp; !pp) {
           let i = randomCross();
           created[i] = 2;
           pp = true;
         }
-        if (printedCircle === 2 && !pp2) {
+        if (printedCircle === 2 &amp;&amp; !pp2) {
           let i = randomCross();
           created[i] = 2;
           pp2 = true;
         }
-        if (printedCircle === 3 && !pp3) {
+        if (printedCircle === 3 &amp;&amp; !pp3) {
           let i = randomCross();
           created[i] = 2;
           pp3 = true;
         }
-        if (printedCircle === 4 && !pp4) {
+        if (printedCircle === 4 &amp;&amp; !pp4) {
           let i = randomCross();
           created[i] = 2;
           pp4 = true;
@@ -668,7 +763,7 @@ let sketch_builder = (p) => {
   function randomCross() {
     let runs = 0;
     let randint = parseInt(Math.random() * 9);
-    for (let i = 0; i <= created.length; i++) {
+    for (let i = 0; i &lt;= created.length; i++) {
       runs++;
       if (i === randint) {
         if (created[i] === 0) {
@@ -697,7 +792,7 @@ let sketch_builder = (p) => {
     createdCheck = calculateCross();
 
     // field 6
-    if (position === 6 && created[6] != 1) {
+    if (position === 6 &amp;&amp; created[6] != 1) {
       if (start || created[6] === 2) {
         let cross6 = [
           [
@@ -722,10 +817,10 @@ let sketch_builder = (p) => {
     }
 
     //field 3
-    if (position === 3 && created[3] != 1) {
+    if (position === 3 &amp;&amp; created[3] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[3] && !start) ||
-        (!start && created[3] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[3] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[3] === 2)
       ) {
         let cross3 = [
           [
@@ -747,10 +842,10 @@ let sketch_builder = (p) => {
       }
     }
     //   field4
-    if (position === 4 && created[4] != 1) {
+    if (position === 4 &amp;&amp; created[4] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[4] && !start) ||
-        (!start && created[4] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[4] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[4] === 2)
       ) {
         let cross4 = [
           [
@@ -772,10 +867,10 @@ let sketch_builder = (p) => {
       }
     }
     //field 5
-    if (position === 5 && created[5] != 1) {
+    if (position === 5 &amp;&amp; created[5] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[5] && !start) ||
-        (!start && created[5] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[5] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[5] === 2)
       ) {
         let cross5 = [
           [
@@ -800,10 +895,10 @@ let sketch_builder = (p) => {
 
     //field 8
 
-    if (position === 8 && created[8] != 1) {
+    if (position === 8 &amp;&amp; created[8] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[8] && !start) ||
-        (!start && created[8] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[8] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[8] === 2)
       ) {
         let cross8 = [
           [
@@ -827,10 +922,10 @@ let sketch_builder = (p) => {
     }
 
     //field 7
-    if (position === 7 && created[7] != 1) {
+    if (position === 7 &amp;&amp; created[7] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[7] && !start) ||
-        (!start && created[7] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[7] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[7] === 2)
       ) {
         let cross7 = [
           [
@@ -854,10 +949,10 @@ let sketch_builder = (p) => {
     }
 
     //field 0
-    if (position === 0 && created[0] != 1) {
+    if (position === 0 &amp;&amp; created[0] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[0] && !start) ||
-        (!start && created[0] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[0] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[0] === 2)
       ) {
         let cross0 = [
           [
@@ -881,10 +976,10 @@ let sketch_builder = (p) => {
     }
 
     //field 1
-    if (position === 1 && created[1] != 1) {
+    if (position === 1 &amp;&amp; created[1] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[1] && !start) ||
-        (!start && created[1] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[1] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[1] === 2)
       ) {
         let cross1 = [
           [
@@ -907,10 +1002,10 @@ let sketch_builder = (p) => {
     }
 
     //field 2
-    if (position === 2 && created[2] != 1) {
+    if (position === 2 &amp;&amp; created[2] != 1) {
       if (
-        (!p.yourTurn && !checkPosition[2] && !start) ||
-        (!start && created[2] === 2)
+        (!p.yourTurn &amp;&amp; !checkPosition[2] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[2] === 2)
       ) {
         let cross2 = [
           [
@@ -975,13 +1070,13 @@ let sketch_builder = (p) => {
     ];
 
     if (!animFinished[position]) {
-      if (p.frameCount && position != 5 && position != 8 && position != 3) {
-        if (getAnim[0][0] <= getAnim[0][2] && getAnim[0][1] <= getAnim[0][3]) {
+      if (p.frameCount &amp;&amp; position != 5 &amp;&amp; position != 8 &amp;&amp; position != 3) {
+        if (getAnim[0][0] &lt;= getAnim[0][2] &amp;&amp; getAnim[0][1] &lt;= getAnim[0][3]) {
           getAnim[0][0] += 1.5;
           getAnim[0][1] += 1.5;
         } else if (
-          getAnim[1][2] <= getAnim[1][0] &&
-          getAnim[1][1] <= getAnim[1][3]
+          getAnim[1][2] &lt;= getAnim[1][0] &amp;&amp;
+          getAnim[1][1] &lt;= getAnim[1][3]
         ) {
           getAnim[1][2] += 1.5;
           getAnim[1][3] -= 1.5;
@@ -990,13 +1085,13 @@ let sketch_builder = (p) => {
         }
 
       }
-      if(p.frameCount && position === 5 || position === 8 || position === 3){
-      if (getAnim[0][0] <= getAnim[0][2] && getAnim[0][1] <= getAnim[0][3]) {
+      if(p.frameCount &amp;&amp; position === 5 || position === 8 || position === 3){
+      if (getAnim[0][0] &lt;= getAnim[0][2] &amp;&amp; getAnim[0][1] &lt;= getAnim[0][3]) {
         getAnim[0][0] += 1.5;
         getAnim[0][1] += 1.5;
       } else if (
-        getAnim[1][2] <= getAnim[1][0] &&
-        getAnim[1][1] <= getAnim[1][3]
+        getAnim[1][2] &lt;= getAnim[1][0] &amp;&amp;
+        getAnim[1][1] &lt;= getAnim[1][3]
       ) {
         getAnim[1][2] += 1.5;
         getAnim[1][3] -= 1.5;
@@ -1082,7 +1177,7 @@ let sketch_builder = (p) => {
       }
       // console.log(getAngle[position], angle[position]);
 
-      if (angle[position] - getAngle[position] < 360) {
+      if (angle[position] - getAngle[position] &lt; 360) {
         angle[position] += 3;
 
         p.push();
@@ -1102,7 +1197,7 @@ let sketch_builder = (p) => {
         }
         // console.log(getAngle[position], angle[position]);
 
-        if (angle[position] - getAngle[position] < 360) {
+        if (angle[position] - getAngle[position] &lt; 360) {
           angle[position] += 3;
 
           p.push();
@@ -1149,16 +1244,16 @@ let sketch_builder = (p) => {
 
     // p.fields__.forEach((field, i) => {
     //   // if ([6, 8].includes(i)) {
-    //   //   if (!(((p.fields__[i] && p.yourTurn) || created[i] ===  createdCheck[i][0]) && created[i] !=  createdCheck[i][1])) return;
+    //   //   if (!(((p.fields__[i] &amp;&amp; p.yourTurn) || created[i] ===  createdCheck[i][0]) &amp;&amp; created[i] !=  createdCheck[i][1])) return;
     //   // } else
     //   if (
     //     !(
-    //       (field || created[i] === createdCheck[i][0]) &&
+    //       (field || created[i] === createdCheck[i][0]) &amp;&amp;
     //       created[i] != createdCheck[i][1]
     //     )
     //   )
     //     {
-    //     //   console.log("statement", (field || created[i] === createdCheck[i][0]) &&
+    //     //   console.log("statement", (field || created[i] === createdCheck[i][0]) &amp;&amp;
     //     //   created[i] != createdCheck[i][1]
     //     // )
     //       return
@@ -1176,30 +1271,30 @@ let sketch_builder = (p) => {
     // console.log(p.fields__)
 
     if (
-      ((p.fields__[6] && p.yourTurn) || created[6] === 1) &&
+      ((p.fields__[6] &amp;&amp; p.yourTurn) || created[6] === 1) &amp;&amp;
       created[6] != 2
     ) {
       let circles = newCircle(6);
       draw_circle([-100, 100], circleAnimFinished, 6);
     }
     if (
-      ((p.fields__[8] && p.yourTurn) || created[8] === 1) &&
+      ((p.fields__[8] &amp;&amp; p.yourTurn) || created[8] === 1) &amp;&amp;
       created[8] != 2
     ) {
       let circles = newCircle(8);
       draw_circle([100, 100], circleAnimFinished, 8);
     }
 
-    if ((p.fields__[7] || created[7] === 1) && created[7] != 2) {
+    if ((p.fields__[7] || created[7] === 1) &amp;&amp; created[7] != 2) {
       let circles = newCircle(7);
       draw_circle([0, 100], circleAnimFinished, 7);
     }
-    if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
+    if ((p.fields__[5] || created[5] === 1) &amp;&amp; created[5] != 2) {
       let circles = newCircle(5);
       draw_circle([+100, 0]);
     }
 
-    if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
+    if ((p.fields__[0] || created[0] === 1) &amp;&amp; created[0] != 2) {
       let circles = newCircle(0);
       if (!circleAnimFinished[0])
         draw_circle([-100, -100], circleAnimFinished, 0);
@@ -1210,22 +1305,22 @@ let sketch_builder = (p) => {
       }
     }
 
-    if ((p.fields__[1] || created[1] === 1) && created[1] != 2) {
+    if ((p.fields__[1] || created[1] === 1) &amp;&amp; created[1] != 2) {
       let circles = newCircle(1);
       draw_circle([0, -100], circleAnimFinished, 1);
     }
 
-    if ((p.fields__[2] || created[2] === 1) && created[2] != 2) {
+    if ((p.fields__[2] || created[2] === 1) &amp;&amp; created[2] != 2) {
       let circles = newCircle(2);
       draw_circle([100, -100], circleAnimFinished, 2);
     }
 
-    if ((p.fields__[3] || created[3] === 1) && created[3] != 2) {
+    if ((p.fields__[3] || created[3] === 1) &amp;&amp; created[3] != 2) {
       let circles = newCircle(3);
       draw_circle([-100, 0], circleAnimFinished, 3);
     }
 
-    if ((p.fields__[4] || created[4] === 1) && created[4] != 2) {
+    if ((p.fields__[4] || created[4] === 1) &amp;&amp; created[4] != 2) {
       let circles = newCircle(4);
       draw_circle([0, 0], circleAnimFinished, 4);
     }
@@ -1233,63 +1328,63 @@ let sketch_builder = (p) => {
 
   function newCircle(position) {
     let checkPosition = checkPositionCircle();
-    if (position === 0 && !checkPosition[0]) {
+    if (position === 0 &amp;&amp; !checkPosition[0]) {
       let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
       checkPosition[0] = true;
       created[0] = 1;
       p.yourTurn = false;
       return circle0;
     }
-    if (position === 1 && !checkPosition[1]) {
+    if (position === 1 &amp;&amp; !checkPosition[1]) {
       let circle1 = [p.width / 2, p.height / 2 - 100, 50];
       checkPosition[1] = true;
       p.yourTurn = false;
       created[1] = 1;
       return circle1;
     }
-    if (position === 2 && !checkPosition[2]) {
+    if (position === 2 &amp;&amp; !checkPosition[2]) {
       let circle2 = [p.width / 2 + 100, p.height / 2 - 100, 50];
       checkPosition[2] = true;
       created[2] = 1;
       p.yourTurn = false;
       return circle2;
     }
-    if (position === 3 && !checkPosition[3]) {
+    if (position === 3 &amp;&amp; !checkPosition[3]) {
       let circle3 = [p.width / 2 - 100, p.height / 2, 50];
       checkPosition[3] = true;
       p.yourTurn = false;
       created[3] = 1;
       return circle3;
     }
-    if (position === 4 && !checkPosition[4]) {
+    if (position === 4 &amp;&amp; !checkPosition[4]) {
       let circle4 = [p.width / 2, p.height / 2, 50];
       checkPosition[4] = true;
       created[4] = 1;
       p.yourTurn = false;
       return circle4;
     }
-    if (position === 5 && !checkPosition[5]) {
+    if (position === 5 &amp;&amp; !checkPosition[5]) {
       let circle5 = [p.width / 2 + 100, p.height / 2, 50];
       checkPosition[5] = true;
       p.yourTurn = false;
       created[5] = 1;
       return circle5;
     }
-    if (position === 6 && !checkPosition[6]) {
+    if (position === 6 &amp;&amp; !checkPosition[6]) {
       let circle6 = [p.width / 2 - 100, p.height / 2 + 100, 50];
       checkPosition[6] = true;
       p.yourTurn = false;
       created[6] = 1;
       return circle6;
     }
-    if (position === 7 && !checkPosition[7]) {
+    if (position === 7 &amp;&amp; !checkPosition[7]) {
       let circle7 = [p.width / 2, p.height / 2 + 100, 50];
       checkPosition[7] = true;
       p.yourTurn = false;
       created[7] = 1;
       return circle7;
     }
-    if (position === 8 && !checkPosition[8]) {
+    if (position === 8 &amp;&amp; !checkPosition[8]) {
       let circle8 = [p.width / 2 + 100, p.height / 2 + 100, 50];
       checkPosition[8] = true;
       created[8] = 1;
@@ -1328,3 +1423,34 @@ let sketch_builder = (p) => {
 };
 
 export { sketch_builder };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>
