@@ -1,7 +1,7 @@
 import $, { get, type } from 'jquery';
 import p5 from 'p5';
 // import { EditorSingleton } from '../editor.js';
-import * as helpers from '../helpers.js';
+import * as helpers from '../helpers';
 import { fields } from './tictactoe.js';
 
 

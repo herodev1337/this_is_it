@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import p5 from 'p5';
-// import 'regenerator-runtime/runtime'; // needs to be imported if async/await is beeing used
 import Editor from 'components/sqit/Editor';
-import * as helpers from './helpers.js';
+import * as helpers from './helpers';
+
+// https://dotnet.github.io/docfx/ multi language doc generator
+
 
 /** @module Sqit-General */
 
@@ -18,7 +20,7 @@ import * as helpers from './helpers.js';
  * Then we return an object with the keys 'get_sketch, text1, text2' and there corrosponding function/strings.
  * 
  */
-const import_sketch = page => {
+const import_sketch = (page:string) => {
   const re = /game[1-6]/g;
   if (!page.match(re)) return
 
@@ -64,7 +66,7 @@ const import_sketch = page => {
  * 
  * @component
  */
-const Sketch = () => {
+const Sketch = ():JSX.Element => {
   const {get_sketch, text1, text2} = import_sketch(useParams().game);
   const p5Ref = useRef();
   const [textState1, setText1] = useState(text1);
@@ -72,7 +74,7 @@ const Sketch = () => {
 
   const [editorProps, setProps] = useState({
     p5: undefined,
-    getter: () => '',
+    getter: (val:string) => '',
   });
 
   
@@ -100,7 +102,7 @@ const Sketch = () => {
       <Editor
         setter1={textState1}
         setter2={textState2}
-        getter={value => editorProps.getter(value)}
+        getter={(value:string) => editorProps.getter(value)}
       />
     </>
   );

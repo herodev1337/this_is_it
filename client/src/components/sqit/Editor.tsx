@@ -7,10 +7,13 @@ import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/webpack-resolver';
 import AceEditor from 'react-ace';
 
-import * as helpers from './helpers.js';
+import * as helpers from './helpers';
+
+import {Editor} from "./typings"
 
 // /** @namespace sqit */
 /** @module Sqit-General */
+
 
 /**
  * This functions initializes the editor sizes as a react state of nested arrays.
@@ -20,7 +23,7 @@ import * as helpers from './helpers.js';
  *
  * @return {number[][]} Array containing 2 tuples with height & width for both editors.
  */
-const getEditorSizes = () => {
+const getEditorSizes = ():number[][] => {
   const [size, setSize] = useState([
     [0, 0],
     [0, 0],
@@ -69,7 +72,7 @@ const getEditorSizes = () => {
  *
  * return <Editor setter1={setter1} setter2={setter2} getter={getter} />
  */
-const Editor = ({ setter1, setter2, getter }) => {
+const Editor = ({ setter1, setter2, getter}: Editor):JSX.Element => {
   const [[ed1_width, ed1_height], [ed2_width, ed2_height]] = getEditorSizes();
 
   return (
@@ -114,22 +117,6 @@ const Editor = ({ setter1, setter2, getter }) => {
       />
     </div>
   );
-};
-
-Editor.propTypes = {
-  /**
-   * Main editors text that should be shown.
-   */
-  setter1: PropTypes.string.isRequired,
-  /**
-   * Second editors (output) text that should be shown.
-   */
-  setter2: PropTypes.string.isRequired,
-  /**
-   * Main editors onChange function, should accept a string parameter.
-   * Get's called when something gets typed in the main editor.
-   */
-  getter: PropTypes.func.isRequired,
 };
 
 export default Editor;

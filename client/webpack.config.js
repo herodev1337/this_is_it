@@ -11,6 +11,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         loader: 'babel-loader',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -18,10 +23,12 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
+        exclude: /node_modules/,
       },
     ],
   },
@@ -30,7 +37,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve('./src'), path.resolve('./node_modules')],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', ".ts", ".tsx"],
   },
   mode: 'development',
   devServer: {

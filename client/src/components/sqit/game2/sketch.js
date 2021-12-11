@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import $ from 'jquery';
-import * as helpers from '../helpers.js';
+import * as helpers from '../helpers';
 import * as cls1 from './enemy';
 import * as cls2 from './player';
 import * as cls3 from './shot';

@@ -6,7 +6,7 @@ import frogjson from './Sprites/frog.json';
 import frogpng from './Sprites/frog.png';
 import backgroundimg from './Sprites/Background.png';
 
-import * as helpers from '../helpers.js';
+import * as helpers from '../helpers';
 import * as cls1 from './frog';
 import * as cls2 from './background';
 import { fill } from 'lodash';
