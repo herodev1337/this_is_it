@@ -3,8 +3,8 @@ import p5 from 'p5';
 import {sketch_builder} from "./sketch"
 import * as helpers from '../helpers';
 
-// /** @namespace sqit */
-/** @module Sqit-Game1 */
+import {P5Extend} from "../types";
+
 
 /**
  * Builds a p5 instance and connects it with the main editor.
@@ -14,12 +14,13 @@ import * as helpers from '../helpers';
  * @param {function} setText2 Text setter for output editor
  * @returns {object} An object containing the P5 instance and the main editor getter
  */
-const get_sketch = (ref, setText1, setText2) => {
+const get_sketch = (ref:HTMLElement, setText1:(v:string)=>void, setText2:(v:string)=>void) => {
     let isExtraTxt = false;
   
-    const myp5 = new p5(sketch_builder, ref);                     //! required
+    const myp5:P5Extend = new p5(sketch_builder, ref);                    //! required
+    // const myp5 = {..._p5, anim:false, interval:5}
   
-    const editorGetter = value => {                               //! required
+    const editorGetter = (value:string) => {                               //! required
       const ret = helpers.get_pureReturn(value, true);
       const searchedVariable = isExtraTxt ? 'interval' : 'gate';
   
@@ -42,7 +43,7 @@ const get_sketch = (ref, setText1, setText2) => {
         );
       }
       const [userInterval, status] = helpers.get_userCode(value, 'interval');
-      myp5.interval = status ? userInterval : 4;
+      myp5.interval = status ? parseInt(userInterval) : 4;
     };
   
     return {                                                      //! required

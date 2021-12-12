@@ -1,13 +1,10 @@
-import React, { useState, useRef, useEffect, lazy } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import p5 from 'p5';
 import Editor from 'components/sqit/Editor';
 import * as helpers from './helpers';
 
 // https://dotnet.github.io/docfx/ multi language doc generator
 
-
-/** @module Sqit-General */
 
 /**
  * Imports the P5 sketch based on the given string.
@@ -64,7 +61,6 @@ const import_sketch = (page:string) => {
  * @see [P5]{@link https://p5js.org/get-started/}
  * @see [AceEditor]{@link https://ace.c9.io/}
  * 
- * @component
  */
 const Sketch = ():JSX.Element => {
   const {get_sketch, text1, text2} = import_sketch(useParams().game);

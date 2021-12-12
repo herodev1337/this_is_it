@@ -1,4 +1,7 @@
-/** @module Sqit-Game1 */
+import p5 from "p5";
+
+import {Vec3} from "../types";
+
 
 class SlidingDoors {
   /**
@@ -8,7 +11,12 @@ class SlidingDoors {
    * @param {Object} p P5 Instance
    * @param {number[]} color List of numbers representing a rgb color
    */
-  constructor(p,color) {
+  
+  col:string;
+  push:number;
+  p:p5;
+
+  constructor(p:p5,color:string) {
     this.col = color;
     this.push = 0;
     this.p = p
@@ -30,7 +38,7 @@ class SlidingDoors {
    * 
    * @param {boolean} anim Boolean value that activated the animation.
    */
-  move(anim) {
+  move(anim:boolean) {
     if (anim) {
       this.push = this.push < this.p.width / 2 ? this.push + 1 : this.p.width / 2;
     } else {
@@ -48,7 +56,17 @@ class BlinkLight {
    * @param {number[]} color List of number representing a rgb color
    * @param {number} dir Number representing the direction in which the blur should be applied
    */
-  constructor(p, r, color, dir = -1) {
+
+  x:number;
+  y:number;
+  r:number;
+  col:Vec3;
+  dir:number;
+  push:number;
+  p:p5;
+
+
+  constructor(p:p5, r:number, color:Vec3, dir:number = -1) {
     this.x = 0;
     this.y = 0;
     this.r = r;
@@ -77,7 +95,7 @@ class BlinkLight {
    * @param {number} x Updated X value 
    * @param {number} y Updated Y value
    */
-  update(x,y) {
+  update(x:number,y:number) {
     this.x = x
     this.y = y
   }

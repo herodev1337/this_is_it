@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
 import 'ace-builds/src-noconflict/ace';
 import 'ace-builds/src-noconflict/mode-javascript';
@@ -9,10 +8,7 @@ import AceEditor from 'react-ace';
 
 import * as helpers from './helpers';
 
-import {Editor} from "./typings"
-
-// /** @namespace sqit */
-/** @module Sqit-General */
+import {Editor} from "./types"
 
 
 /**
@@ -57,7 +53,6 @@ const getEditorSizes = ():number[][] => {
  *
  * @see [AceEditor]{@link https://ace.c9.io/}
  *
- * @component
  * @example
  * const [text1,setText1] = useState("");
  * const [text2,setText2] = useState("");
