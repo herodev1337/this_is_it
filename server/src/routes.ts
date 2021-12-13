@@ -7,6 +7,8 @@ import { createSessionSchema } from './schema/session.schema'
 import requireUser from './middleware/requireUser'
 import { createQuizSchema } from './schema/quiz.schema'
 import { createQuizHandler, deleteQuizHandler, getQuizHandler, getQuizListHandler, updateQuizHandler } from './controller/quiz.controller'
+import { createPostHandler, deletePostHandler, getPostHandler, getPostListHandler, updatePostHandler } from './controller/post.controller'
+import { createPostSchema } from './schema/post.schema'
 
 export default function(app: Express){
     /* HEALTH CHECK */
@@ -43,5 +45,23 @@ export default function(app: Express){
 
     //Delete a Quiz - DELETE - /api/quiz/:quizId
     app.delete('/api/quiz/:quizId', requireUser, deleteQuizHandler)
+
+
+    /* POST */
+
+    //Get a list of all Posts - GET - /api/post/
+    app.get('/api/post/', getPostListHandler)
+  
+    //Create a post - POST - /api/post/
+    app.post('/api/post/', requireUser, validateRequest(createPostSchema), createPostHandler)
+  
+    //Get a specific post - GET - /api/post/
+    app.get('/api/post/:postId', getPostHandler)
+
+    //Update a post - PUT - /api/post/:postId
+    app.put('/api/post/:postId', requireUser, updatePostHandler)
+
+    //Delete a post - DELETE - /api/post/:postId
+    app.delete('/api/post/:postId', requireUser, deletePostHandler)
 
 } 
