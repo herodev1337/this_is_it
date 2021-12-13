@@ -23,12 +23,10 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
-        exclude: /node_modules/,
       },
     ],
   },
