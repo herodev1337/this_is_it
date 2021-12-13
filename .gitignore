@@ -1,5 +1,6 @@
 **/logs
 db
+config
 node_modules
 build/**/*
 certs/**/*
