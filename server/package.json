@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "5.10.19",
+    "mongoose": "^6.1.1",
     "nanoid": "^3.1.30",
     "pino": "^7.5.1",
     "pino-multi-stream": "^6.0.0",
@@ -37,7 +37,6 @@
     "@types/jsonwebtoken": "^8.5.6",
     "@types/lodash": "^4.14.177",
     "@types/mongodb": "^4.0.7",
-    "@types/mongoose": "^5.11.97",
     "@types/nanoid": "^3.0.0",
     "@types/node": "^16.11.11",
     "@types/pino": "^7.0.5",
@@ -45,6 +44,7 @@
     "@types/yup": "^0.29.13",
     "better-docs": "^2.3.2",
     "nodemon": "^2.0.15",
+    "tslib": "^2.3.1",
     "typedoc": "^0.22.10"
   }
 }

@@ -17,15 +17,18 @@ const deserializeUser = async (
 ) => {
   //Gets the accessToken from the headers or returns ""
   const accessToken = get(req, "headers.authorization", "").replace(/^Bearer\s/, "")
+  console.log("🚀 ~ file: deserializeUser.ts ~ line 20 ~ accessToken", accessToken)
 
   //Gets the refresh from the headers or returns ""
   const refreshToken = get(req, "headers.x-refresh")
+  console.log("🚀 ~ file: deserializeUser.ts ~ line 24 ~ refreshToken", refreshToken)
 
   //accessToken empty? Go on with the request as unauthenticated
   if (!accessToken) return next()
 
   //Else verify that the token is genuine
   const { decoded, expired } = verifyJwt(accessToken, "accessTokenPublicKey")
+  
 
   //If token is genuine... 
   if (decoded) {

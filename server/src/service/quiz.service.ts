@@ -25,7 +25,7 @@ export async function getQuizList(query: FilterQuery<QuizDocument>){
 }
 
 export async function updateQuiz(query: FilterQuery<QuizDocument>, newQuiz: DocumentDefinition<Omit<QuizDocument, 'createdAt' | 'updatedAt'>>){
-    return Quiz.updateOne(query, newQuiz)
+    // return Quiz.updateOne(query, newQuiz)
 }
 
 export async function deleteQuiz(query: FilterQuery<QuizDocument>){
