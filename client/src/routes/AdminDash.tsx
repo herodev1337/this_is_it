@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import AdminDash from '../components/admin/AdminDash';
 
 import RedirectWrapper from '../utils/RedirectWrapper';

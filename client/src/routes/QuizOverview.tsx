@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import QuizOverview from '../components/quiz/QuizOverview';
 
 import {AuthWrapper} from '../utils/context-hooks/use-auth';

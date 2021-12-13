@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import EditorJs from './EditorJs';
 
 import { useUser } from '../../../utils/context-hooks/use-user';
+import { PostInterface } from './PostOverview'
 
-function PostComposer({ addPost }) {
+function PostComposer({ addPost }: {addPost: Function}) {
   const user = useUser();
   const [editor, setEditor] = useState(null)
-  const [post, setPost] = useState({
-    title: 'test_post',
-    author: user.username,
+  const [post, setPost] = useState<PostInterface>({
+    title: '',
+    author: user.getUser().username,
     description: '',
     public: true,
     postData: {blocks: []},
-    createdAt: undefined,
+    createdAt: Date.now(),
     likes: [],
     edits: [],
+    _id: undefined,
+    prevState: null
   });
 
   useEffect(() => {
@@ -29,10 +33,10 @@ function PostComposer({ addPost }) {
   const compilePost = () => {
     editor
       .save()
-      .then((outputData) => {
-        setPost({ ...post, postData: outputData, createdAt: Date(outputData.time) });
+      .then((outputData: any) => {
+        setPost({ ...post, postData: outputData, createdAt: Date.parse(outputData.time) });
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.log('Saving failed: ', error);
       });
     editor.clear();
@@ -41,7 +45,7 @@ function PostComposer({ addPost }) {
   return (
     <div style={{ margin: '15px 0' }}>
       <Card style={{color: 'black'}}>
-        <EditorJs holderId="composer" mount={setEditor} />
+        <EditorJs holder="composer" mount={setEditor} />
         <Button type="button" variant="primary" onClick={compilePost}>
           Post
         </Button>

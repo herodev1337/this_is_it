@@ -1,6 +1,5 @@
-import React, { useContext, createContext } from 'react';
-
-const ApiContext = createContext();
+import * as React from 'react';
+import { useContext, createContext } from 'react';
 
 const axios = require('axios').default;
 const api = axios.create({
@@ -9,8 +8,10 @@ const api = axios.create({
   withCredentials: true,
 });
 
+const ApiContext = createContext<typeof api | null>(null);
+
 //* Api Wrapper
-export function ApiWrapper( { children } ) {
+export function ApiWrapper( { children }: {children: React.ReactElement} ) {
   return (<ApiContext.Provider value={api}>{children}</ApiContext.Provider>)
 }
 

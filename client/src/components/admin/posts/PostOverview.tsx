@@ -1,23 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 import PostComposer from './PostComposer';
 import Post from './Post';
 import { useApi } from '../../../utils/context-hooks/use-api';
 import { useUser } from '../../../utils/context-hooks/use-user';
 
+export interface PostInterface{
+  title: string,
+  author: string,
+  description: string,
+  public: boolean,
+  postData: {blocks: object[]},
+  createdAt: string | number | Date,
+  likes: object[],
+  edits: object[],
+  _id: string,
+  prevState: null
+}
+
 function PostOverview() {
   const api = useApi();
   const user = useUser();
   const [saved, setSaved] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostInterface[]>([]);
 
   const refreshPosts = () => {
     api
       .get('./posts/')
-      .then(function (response) {
+      .then(function (response: any) {
         setPosts(response.data.data);
       })
-      .catch(function (error) {
+      .catch(function (error: any) {
         console.log(error.message);
       });
   };
@@ -28,16 +42,16 @@ function PostOverview() {
     }
     api
       .get(`./users/${user.getUser().db_id}`)
-      .then(function (response) {
+      .then(function (response: any) {
         setSaved(response.data.data.savedPosts);
       })
-      .catch(function (error) {
+      .catch(function (error: any) {
         console.log(error.message);
       });
     return refreshPosts();
   }, [user]);
 
-  const addPost = (post) => {
+  const addPost = (post: PostInterface) => {
     console.log("New Post:", post)
     setPosts([...posts, post])
     // api

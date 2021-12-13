@@ -2,10 +2,10 @@ const path = require('path');
 
 module.exports = {
   devtool: "eval-cheap-source-map",
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
   module: {
@@ -13,6 +13,11 @@ module.exports = {
       {
         loader: 'babel-loader',
         test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
@@ -30,7 +35,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve('./src'), path.resolve('./node_modules')],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
   },
   mode: 'development',
   devServer: {

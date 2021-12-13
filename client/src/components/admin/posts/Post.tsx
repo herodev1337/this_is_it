@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import Output from 'editorjs-react-renderer';
+const Output = require('editorjs-react-renderer');
 
 import { useApi } from '../../../utils/context-hooks/use-api';
 import { useUser } from '../../../utils/context-hooks/use-user';
 
 import { LikeElement, BookmarkElement } from './PostElements';
+import { PostInterface } from './PostOverview'
 
-function Post({ post, saved }) {
+function Post({ post, saved }: {post: PostInterface, saved: boolean}) {
   const api = useApi();
   const user = useUser();
 
@@ -15,35 +17,35 @@ function Post({ post, saved }) {
   const dateTime = new Date(post.createdAt);
   const date = dateTime.toDateString();
   const time = dateTime.toTimeString();
-  const [likes, setLikes] = useState(post.likes.length);
+  const [likes, setLikes] = useState<number>(post.likes.length);
 
-  const addLike = (liked) => {
+  const addLike = (liked: boolean) => {
     setLikes(likes + (liked ? 1 : -1));
     api
       .put(`./users/${user.getUser().db_id}/${liked ? 'like' : 'unlike'}`, { postId: id })
-      .then(function (response) {
+      .then(function (response: any) {
         console.log(response.data.data);
       })
-      .catch(function (error) {
+      .catch(function (error: any) {
         console.log(error.message);
       });
     api
       .put(`./posts/${id}/${liked ? 'like' : 'unlike'}`, { userId: user.getUser().db_id })
-      .then(function (response) {
+      .then(function (response: any) {
         console.log(response.data.data);
       })
-      .catch(function (error) {
+      .catch(function (error: any) {
         console.log(error.message);
       });
   };
 
-  const addBookmark = (saved) => {
+  const addBookmark = (saved: boolean) => {
     api
       .put(`./users/${user.getUser().db_id}/${saved ? 'save' : 'unsave'}`, { postId: id })
-      .then(function (response) {
+      .then(function (response: any) {
         console.log(response.data.data);
       })
-      .catch(function (error) {
+      .catch(function (error: any) {
         console.log(error.message);
       });
   };
@@ -59,7 +61,7 @@ function Post({ post, saved }) {
         </Card.Body>
         <Card.Footer>
           <span style={{marginRight: "10px"}}>
-            <LikeElement addLike={addLike} userLiked={post.likes.some(like => like.userId == user.getUser().db_id)} /> {likes}
+            <LikeElement addLike={addLike} userLiked={post.likes.some((like: any) => like.userId == user.getUser().db_id)} /> {likes}
           </span>
           <span style={{marginRight: "10px"}}>
             <BookmarkElement addBookmark={addBookmark} userSaved={saved} />

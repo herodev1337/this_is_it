@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Karriere from '../components/karriere/Karriere'
 
 import "styles/scss/app.scss"
