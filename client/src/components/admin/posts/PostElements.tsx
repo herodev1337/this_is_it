@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, HeartFill, Bookmark, BookmarkFill } from 'react-bootstrap-icons';
 
 
@@ -11,7 +12,13 @@ import { Heart, HeartFill, Bookmark, BookmarkFill } from 'react-bootstrap-icons'
  * @param {Boolean} initialState - initial State 
  * @returns {ReactComponent}
  */
-function ToggleElement({ IconActive, IconInactive, colorActive, onClick, initialState }) {
+function ToggleElement({ IconActive, IconInactive, colorActive, onClick, initialState }: {
+  IconActive: any, 
+  IconInactive: any, 
+  colorActive: string, 
+  onClick: Function, 
+  initialState: any
+}) {
   const [state, setState] = useState(initialState);
 
   useEffect(() => {
@@ -31,7 +38,7 @@ function ToggleElement({ IconActive, IconInactive, colorActive, onClick, initial
 }
 
 //* Implementation of ToggleElement as a Like-Button
-function LikeElement({ addLike, userLiked }) {
+function LikeElement({ addLike, userLiked }: {addLike: Function, userLiked: boolean}) {
   return (
     <>
       <ToggleElement IconActive={HeartFill} IconInactive={Heart} colorActive={'red'} onClick={addLike} initialState={userLiked} />
@@ -40,7 +47,7 @@ function LikeElement({ addLike, userLiked }) {
 }
 
 //* Implementation of ToggleElement as a Bookmark-Button
-function BookmarkElement({ addBookmark, userSaved }) {
+function BookmarkElement({ addBookmark, userSaved }: {addBookmark: Function, userSaved: boolean}) {
   return (
     <>
       <ToggleElement IconActive={BookmarkFill} IconInactive={Bookmark} colorActive={'#0065d1'} onClick={addBookmark} initialState={userSaved} />
