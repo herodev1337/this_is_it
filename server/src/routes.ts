@@ -32,11 +32,11 @@ export default function(app: Express){
     //Get a list of all quizzes - GET - /api/quiz
     app.get('/api/quiz/', getQuizListHandler)
   
-    //Get a specific quiz - GET - /api/quiz
-    app.get('/api/quiz/:quizId', getQuizHandler)
-
     //Create a Quiz - POST - /api/quiz/
     app.post('/api/quiz/', requireUser, validateRequest(createQuizSchema), createQuizHandler)
+  
+    //Get a specific quiz - GET - /api/quiz
+    app.get('/api/quiz/:quizId', getQuizHandler)
 
     //Update a Quiz - PUT - /api/quiz/:quizId
     app.put('/api/quiz/:quizId', requireUser, updateQuizHandler)
