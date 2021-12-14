@@ -14,7 +14,7 @@ function PostComposer({ addPost }: {addPost: Function}) {
     title: '',
     author: user.getUser().username,
     description: '',
-    public: true,
+    isPublic: true,
     postData: {blocks: []},
     createdAt: Date.now(),
     likes: [],

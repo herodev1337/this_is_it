@@ -34,15 +34,15 @@ function useProvideUser() {
   }
 
   const validateJWT = (redirect: any) => {
-    api
-      .get('./validate')
-      .then(function (response: any) {
-        setUser(response.data);
-      })
-      .catch(function (error: any) {
-        console.log(error.response.data.error);
-        redirect();
-      });
+    // api
+    //   .get('./validate')
+    //   .then(function (response: any) {
+    //     setUser(response.data);
+    //   })
+    //   .catch(function (error: any) {
+    //     console.log(error.response.data.error);
+    //     redirect();
+    //   });
   };
 
   return {

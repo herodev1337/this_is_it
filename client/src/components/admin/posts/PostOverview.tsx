@@ -10,7 +10,7 @@ export interface PostInterface{
   title: string,
   author: string,
   description: string,
-  public: boolean,
+  isPublic: boolean,
   postData: {blocks: object[]},
   createdAt: string | number | Date,
   likes: object[],
@@ -27,9 +27,9 @@ function PostOverview() {
 
   const refreshPosts = () => {
     api
-      .get('./posts/')
+      .get('./post/')
       .then(function (response: any) {
-        setPosts(response.data.data);
+        setPosts(response.data);
       })
       .catch(function (error: any) {
         console.log(error.message);
@@ -54,14 +54,14 @@ function PostOverview() {
   const addPost = (post: PostInterface) => {
     console.log("New Post:", post)
     setPosts([...posts, post])
-    // api
-    //   .post('./posts/', post)
-    //   .then(function (response) {
-    //     setPosts([...posts, response.data.data.data]);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error.message);
-    //   });
+    api
+      .post('./post/', post)
+      .then(function (response: any) {
+        setPosts([...posts, response.data]);
+      })
+      .catch(function (error: any) {
+        console.log(error.message);
+      });
   };
 
   return (

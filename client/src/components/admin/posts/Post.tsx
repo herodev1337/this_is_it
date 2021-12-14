@@ -63,7 +63,6 @@ function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
         <Card.Header>
           {`${post.author} posted on ${date} at ${time}:`}
         </Card.Header>
-        {console.log(post.postData)}
         {post.postData ? (
           <Card.Body>
             <Output data={post.postData} />

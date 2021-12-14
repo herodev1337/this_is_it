@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useState, useContext, createContext } from 'react';
 import {Response, Request} from 'express';
 
+import {useApi} from './use-api'
+
 interface AuthContextInterface{
   login: Function;
   logout: Function;
@@ -10,22 +12,17 @@ interface AuthContextInterface{
 
 const AuthContext = createContext<AuthContextInterface | null>(null);
 
-const axios = require('axios').default;
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api/',
-  timeout: 1000,
-  withCredentials: true,
-});
-
 //* Method Hook
 function useProvideAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const api = useApi();
 
   const login = (username: String, password: String, cb: Function) => {
     api
-      .post('./login', { username: username, password: password }) // TODO: "remember me"
+      .post('./auth/sessions', { username: username, password: password }) // TODO: "remember me"
       .then((response: any) => {
-        console.log(response.data.data.message);
+        api.defaults.headers.common['x-refresh'] = response.data.refreshToken;
+        api.defaults.headers.common['Authorization'] = response.data.accessToken;
         setIsAuthenticated(true);
         cb()
       })
