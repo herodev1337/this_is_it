@@ -5,7 +5,8 @@ import pinoms from "pino-multi-stream"
 
 const streams = [
   { stream: process.stdout },
-  { stream: fs.createWriteStream(`${process.cwd()}/logs/${dayjs().format("DD-MM-YYYY h-mm-ss")}.log`, { flags: 'a' }) },
+  { stream: fs.createWriteStream(`${process.cwd()}/logs/${dayjs().format("DD-MM-YYYY")}.log`, { flags: 'a' }) },
+  //{ stream: fs.createWriteStream(`${process.cwd()}/logs/${dayjs().format("DD-MM-YYYY h-mm-ss")}.log`, { flags: 'a' }) },
 ]
 
 const log = pino(
