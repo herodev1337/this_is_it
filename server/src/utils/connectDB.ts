@@ -9,12 +9,12 @@ async function connect(){
     const dbUrl = config.get<string>('dbUrl')
     return mongoose.connect(dbUrl, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true
+        useUnifiedTopology: true
     } as ConnectOptions).then(() => {
         log.info("Database connection established!")
     }).catch((error: any) => {
-        log.error("Database connection error -> ", error)
+        console.error(error)
+        log.error("Database connection error -> ", error.message)
         process.exit(1)
     })
 }
