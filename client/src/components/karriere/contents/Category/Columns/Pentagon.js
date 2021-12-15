@@ -1,6 +1,8 @@
 import { fill } from 'lodash';
 import React, { useState, useEffect, useRef, createRef } from 'react';
 
+import styles from "styles/scss/karriere.module.scss"
+
 const pol2cart = (r, theta) => {
   return { x: r * Math.cos(theta), y: r * Math.sin(theta) };
 };
@@ -94,19 +96,19 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
   return (
     <div ref={pentagon}>
       <svg
-        id="pentagon"
+        id={styles.pentagon}
         width={width}
         height={height}
         viewBox={`0 0 ${width} ${height}`}
       >
         <g
           ref={path}
-          id="pentagon_parts"
+          id={styles.pentagonParts}
           style={{ display: 'inline' }}
           transform={transform}
         >
           <path
-            id="penta_0"
+            id={styles.penta0}
             ref={pentRef.current[0]}
             d="M 309.98633,2.7226562 156.36523,114.33594 310.25195,326.14648 464.14062,114.33594 310.57227,2.734375 a 323.74763,323.74763 0 0 0 -0.58594,-0.011719 z"
             transform="matrix(0.26458333,0,0,0.26458333,22.912812,62.130247)"
@@ -119,7 +121,7 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
             }}
           />
           <path
-            id="penta_1"
+            id={styles.penta1}
             ref={pentRef.current[1]}
             d="m 186.36036,121.91373 -40.64583,-29.530655 -40.71677,56.040865 65.88072,21.40578 15.52693,-47.76756 a 85.658226,85.658226 0 0 0 -0.045,-0.14837 z"
             style={penta_style}
@@ -131,7 +133,7 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
             }}
           />
           <path
-            id="penta_2"
+            id={styles.penta2}
             ref={pentRef.current[2]}
             d="m 155.35136,217.61008 15.52507,-47.78196 -65.8802,-21.40637 1.5e-4,69.27104 50.22774,0.006 a 85.658226,85.658226 0 0 0 0.12721,-0.0886 z"
             style={penta_style}
@@ -143,7 +145,7 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
             }}
           />
           <path
-            id="penta_3"
+            id={styles.penta3}
             ref={pentRef.current[3]}
             d="m 54.756412,217.69057 50.240858,-2.2e-4 5.7e-4,-69.27073 -65.880628,21.40607 15.515604,47.77125 a 85.658226,85.658226 0 0 0 0.123597,0.0936 z"
             style={penta_style}
@@ -155,7 +157,7 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
             }}
           />
           <path
-            id="penta_4"
+            id={styles.penta4}
             ref={pentRef.current[4]}
             d="M 23.594314,122.04396 39.119802,169.82579 105.00036,148.4205 64.283747,92.379134 23.645169,121.89748 a 85.658226,85.658226 0 0 0 -0.05085,0.14648 z"
             style={penta_style}
@@ -184,12 +186,12 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
                   strokeDasharray: 'none',
                   strokeOpacity: '1',
                 }}
-                id="grid_border"
+                id={styles.gridBorder}
               />
             </g>
             <path
               d="m 105,62.982727 81.2347,59.020473 -31.02889,95.49712 -100.41162,-10e-6 -31.028893,-95.49712 z"
-              id="grid_net"
+              id={styles.gridNet}
               pointerEvents="none"
               style={{
                 display: 'inline',
@@ -219,7 +221,7 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
           const catPos = pol2cart(side, (-i * 72 * Math.PI) / 180);
           return (
             <span
-              className="catName"
+              className={styles.catName}
               style={{
                 position: 'absolute',
                 alignSelf: 'center',

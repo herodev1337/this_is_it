@@ -17,7 +17,7 @@
 h3 {
   background-color: transparent;
 }
-#karriere_header {
+#karriereHeader {
   display: flex;
   flex-direction: row;
   margin-top: 1rem;
@@ -34,13 +34,13 @@ h3 {
     margin: 0;
   }
 }
-.active-button {
+.activeButton {
   background-color: #00b4c5;
   color: #1d073b;
 }
 
 //main
-#karriere_main_content {
+#karriereMainContent {
   display: flex;
   flex-direction: row;
   min-height: 42.2vw;
@@ -50,23 +50,23 @@ h3 {
 }
 
 //Category
-.category-row {
+.categoryRow {
   width: 100%;
   display: flex;
   background-color: transparent;
 }
-.category-column {
+.categoryColumn {
   width: 50%;
 
   .cats {
     position: absolute;
   }
 
-  .cat-box {
+  .catBox {
     position: absolute;
   }
 }
-#svg-container {
+#svgContainer {
   display: flex;
   justify-self: center;
   align-self: center;
@@ -78,7 +78,7 @@ h3 {
   font-family: 'Roboto Mono';
 }
 
-.category-field {
+.categoryField {
   margin: 1.5rem;
   border: solid 3px #00b4c5;
   border-radius: 5px;
@@ -92,7 +92,7 @@ h3 {
     margin-left: 1rem;
   }
 }
-.category-field:hover {
+.categoryField:hover {
   background-color: #00b4c5;
   color: #1d073b;
 }
@@ -113,14 +113,14 @@ h3 {
   height: 2rem;
 }  
 }
-#header-search {
+#headerSearch {
   height: 2rem;
   background-color: #1d073b;
   color: #00b4c5;
   border: solid 2px #00b4c5;
 }
 
-#card-div {
+#cardDiv {
   display: flex;
   flex-flow: row wrap;
   margin-top: 2rem;
@@ -133,7 +133,7 @@ h3 {
   margin: 1.5rem;
   background-color: transparent;
 }
-.card-inner {
+.cardInner {
   height: 100%;
   width: 100%;
   border: solid 5px #00b4c5;
@@ -157,12 +157,12 @@ h3 {
   }
 }
 
-.card:hover .card-inner {
+.card:hover .cardInner {
   transform: rotateY(180deg);
 }
 
-.card-front,
-.card-back {
+.cardFront,
+.cardBack {
   position: absolute;
   background-color: #00b4c5;
   color: #1d073b;
@@ -172,10 +172,10 @@ h3 {
   backface-visibility: hidden;
 }
 
-.card-back {
+.cardBack {
   transform: rotateY(180deg);
 }
-.modal-content {
+.modal-content { // ! Adjusting Bootstrap classes does not work in modular css
   height: 90vh;
   border-radius: 5px;
   background-color: #00b4c5;
@@ -193,7 +193,7 @@ h3 {
 //  background: none;
 // }
 
-#card-big {
+#cardBig {
   margin-top: 1rem;
   height: 90%;
   width: 95%;
@@ -217,20 +217,20 @@ h3 {
 
 @media only screen and (max-width: 800px) {
   //Category
-  .category-row {
+  .categoryRow {
     display: grid;
     max-width: 100%;
     overflow: hidden;
   }
-  .category-column {
+  .categoryColumn {
     width: 101vw;
   }
-  #1 {
+  #one {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  #svg-container {
+  #svgContainer {
     display: flex;
     justify-content: center;
     .catName {
@@ -242,7 +242,7 @@ h3 {
     padding-right: 2rem;
   }
 
-  #card-div {
+  #cardDiv {
     display: flex;
     justify-content: space-evenly;
   }
@@ -251,7 +251,7 @@ h3 {
     height: 35vw;
     margin: 1.5rem;
   }
-  .card:hover .card-inner {
+  .card:hover .cardInner {
     transform: none;
   }
 }

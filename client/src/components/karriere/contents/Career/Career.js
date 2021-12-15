@@ -4,6 +4,8 @@ import React from 'react';
 import { useState } from 'react';
 import Filter from '../Header, Search, Filter/Searchfilter';
 
+import styles from "styles/scss/karriere.module.scss"
+
 const posts = [
   {
     name: 'Game Designer',
@@ -235,26 +237,26 @@ const Career = () => {
   };
 
   return (
-    <div id="career">
-      <div id="search">
+    <div id={styles.career}>
+      <div id={styles.search}>
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Filter chosen={chosen} setChosen={setChosen} />
       </div>
-      <div id="card-div">
+      <div id={styles.cardDiv}>
         {DoubleFilteredPosts.map((post, i) => (
           <>
-            <div className="card" key={i} onClick={() => handleShow(i)}>
-              <div className="card-inner">
-                <div className="card-front">
+            <div className={styles.card} key={i} onClick={() => handleShow(i)}>
+              <div className={styles.cardInner}>
+                <div className={styles.cardFront}>
                   <h2>{post.name}</h2>
                 </div>
-                <div className="card-back">
+                <div className={styles.cardBack}>
                   <p>{post.description}</p>
                 </div>
               </div>
             </div>
             <Modal show={show[i]} onHide={handleClose}>
-              <div id="card-big">
+              <div id={styles.cardBig}>
                 <h3>{post.name}</h3>
                 <h2>Ausbildungsart</h2>
                 <p>{post.type}</p>
