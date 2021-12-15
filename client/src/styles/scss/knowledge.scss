@@ -1,0 +1,59 @@
+//  IMPORTS
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+#Landing-container {
+  text-align: center;
+  h1 {
+    color: #00b4c5;
+    margin: 2rem;
+    font-family: 'Roboto Mono';
+  }
+  .carousel {
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: transparent;
+    }
+    .carousel-item {
+      .card {
+        width: 65vw;
+        height: 70vh;
+        border-radius: 5px;
+        background-color: #00b4c5;
+        display: flex;
+        text-align: center;
+        box-shadow: 2.5px 2.5px 7.5px 2.5px black;
+        transition: transform 0.2s ease;
+        h2 {
+          margin-top: 1rem;
+          background-color: transparent;
+          color: #1d073b;
+          font-family: 'Roboto Mono';
+        }
+        p {
+          background-color: transparent;
+          color: #1d073b;
+          font-family: 'Roboto Mono';
+        }
+        img {
+          margin: 2rem;
+          border-radius: 5px;
+          max-width: 45vw;
+          align-self: center;
+        }
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+      }
+    }
+    .carousel-indicators {
+      margin: 0 0 -2rem 0;
+      background-color: transparent;
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .card {
+    width: 80vw !important;
+  }
+}
