@@ -12,7 +12,6 @@ interface AuthContextInterface{
 
 interface UserInterface{
   username: string,
-  userId: string,
   isAuthenticated: boolean
 }
 
@@ -23,7 +22,6 @@ function useProvideAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
   const [user, setUser] = useState<UserInterface>({
     username: '',
-    userId: '',
     isAuthenticated: false
   })
   const api = useApi();
@@ -38,7 +36,6 @@ function useProvideAuth() {
         console.log("🚀 ~ file: use-auth.tsx ~ line 38 ~ .then ~ token", token)
         setUser({
           username: token.username,
-          userId: token._id,
           isAuthenticated: true
         });
         cb()
