@@ -7,7 +7,7 @@ import { createSessionSchema } from './schema/session.schema'
 import requireUser from './middleware/requireUser'
 import { createQuizSchema } from './schema/quiz.schema'
 import { createQuizHandler, deleteQuizHandler, getQuizHandler, getQuizListHandler, updateQuizHandler } from './controller/quiz.controller'
-import { createPostHandler, deletePostHandler, getPostHandler, getPostListHandler, updatePostHandler } from './controller/post.controller'
+import { createPostHandler, deletePostHandler, getLikeHandler, getPostHandler, getPostListHandler, likePostHandler, updatePostHandler } from './controller/post.controller'
 import { createPostSchema } from './schema/post.schema'
 
 export default function(app: Express){
@@ -37,7 +37,7 @@ export default function(app: Express){
     //Create a Quiz - POST - /api/quiz/
     app.post('/api/quiz/', requireUser, validateRequest(createQuizSchema), createQuizHandler)
   
-    //Get a specific quiz - GET - /api/quiz
+    //Get a specific quiz - GET - /api/quiz/:quizId
     app.get('/api/quiz/:quizId', getQuizHandler)
 
     //Update a Quiz - PUT - /api/quiz/:quizId
@@ -64,4 +64,10 @@ export default function(app: Express){
     //Delete a post - DELETE - /api/post/:postId
     app.delete('/api/post/:postId', requireUser, deletePostHandler)
 
-} 
+    //Like a post - POST - /api/post/:postId
+    app.post('/api/post/:postId/like', requireUser, likePostHandler)
+
+    //Get liked status - GET - /api/post/:postId
+    app.get('/api/post/:postId/like', requireUser, getLikeHandler)
+
+}

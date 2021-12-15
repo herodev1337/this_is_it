@@ -1,5 +1,4 @@
 import Quiz, { QuizDocument } from '../model/quiz.model';
-import config from 'config';
 import { DocumentDefinition, FilterQuery, UpdateQuery } from 'mongoose';
 
 /**

@@ -1,4 +1,4 @@
-import { array, boolean, object, string, TypeOf} from "zod"
+import { array, boolean, object, string } from "zod"
 
 export const createQuizSchema = object({
     body: object({

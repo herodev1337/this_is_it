@@ -3,8 +3,6 @@ import { createQuiz, deleteQuiz, findQuiz, getQuizList, updateQuiz } from '../se
 import log from '../utils/logger'
 
 export async function createQuizHandler(req: Request, res: Response){
-    const user = res.locals.user;
-    
     try {
         const quiz = await createQuiz(req.body)
 
