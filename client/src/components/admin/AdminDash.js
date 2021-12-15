@@ -3,8 +3,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useUser } from '../../utils/context-hooks/use-user';
-
 import '../../styles/scss/admin_panel.scss';
 
 import DashNav from './DashNav';
@@ -13,14 +11,13 @@ import DashView from './DashView';
 function AdminDash() {
   const location = useLocation();
   const navigate = useNavigate();
-  const user = useUser();
 
-  useEffect(
-    () => {
-      user.validateJWT(() => navigate('../login', { state: { from: location } }))
-    },
-    []
-  );
+  // useEffect(
+  //   () => {
+  //     user.validateJWT(() => navigate('../login', { state: { from: location } }))
+  //   },
+  //   []
+  // );
 
   return (
     <div style={{ maxWidth: '99vw' }}>

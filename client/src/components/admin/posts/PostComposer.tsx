@@ -4,15 +4,13 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import EditorJs from './EditorJs';
 
-import { useUser } from '../../../utils/context-hooks/use-user';
 import { PostInterface } from './PostOverview'
 
 function PostComposer({ addPost }: {addPost: Function}) {
-  const user = useUser();
   const [editor, setEditor] = useState(null)
   const [post, setPost] = useState<PostInterface>({
     title: '',
-    author: user.getUser().username,
+    author: '',
     description: '',
     isPublic: true,
     postData: {blocks: []},

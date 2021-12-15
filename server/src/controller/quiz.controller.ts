@@ -18,6 +18,7 @@ export async function createQuizHandler(req: Request, res: Response){
 export const updateQuizHandler = async (req: Request, res: Response) => {
     try{
         const quiz = await updateQuiz({_id: req.params.quizId}, req.body)
+        console.log("🚀 ~ file: quiz.controller.ts ~ line 21 ~ updateQuizHandler ~ req.body", req.body)
 
         return res.status(200).json(quiz) //TODO
     }catch(error: any){

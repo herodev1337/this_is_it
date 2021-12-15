@@ -9,7 +9,7 @@ export default function Quiz() {
 
   return (
     <div>
-      <QuizView quizId={quizId}/>
+      <QuizView/>
     </div>
   );
 }

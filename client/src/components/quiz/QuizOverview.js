@@ -27,9 +27,9 @@ export default function QuizOverview() {
 
   useEffect(() => {
     api
-      .get('./quizzes')
+      .get('./quiz')
       .then(function (response) {
-        setQuizzes(response.data.data);
+        setQuizzes(response.data);
       })
       .catch(function (error) {
         console.log(error.message);

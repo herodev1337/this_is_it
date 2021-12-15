@@ -1,6 +1,6 @@
 import Quiz, { QuizDocument } from '../model/quiz.model';
 import config from 'config';
-import { DocumentDefinition, FilterQuery } from 'mongoose';
+import { DocumentDefinition, FilterQuery, UpdateQuery } from 'mongoose';
 
 /**
  * Creates a new Quiz
@@ -24,8 +24,8 @@ export async function getQuizList(query: FilterQuery<QuizDocument>){
     return Quiz.find(query).lean()
 }
 
-export async function updateQuiz(query: FilterQuery<QuizDocument>, newQuiz: DocumentDefinition<Omit<QuizDocument, 'createdAt' | 'updatedAt'>>){
-    // return Quiz.updateOne(query, newQuiz)
+export async function updateQuiz(query: FilterQuery<QuizDocument>, newQuiz: UpdateQuery<Omit<QuizDocument, 'createdAt' | 'updatedAt'>>){
+    return Quiz.updateOne(query, newQuiz)
 }
 
 export async function deleteQuiz(query: FilterQuery<QuizDocument>){

@@ -30,11 +30,12 @@ ReactDOM.render(
           <Route path="berufsswiper" element={<Berufsswiper />} />
         </Route>
         <Route path="/karriere" element={<Karriere />} />
+    */}
 
         <Route path="/games">
-          <Route path="sqit">
+          {/* <Route path="sqit">
             <Route path=":game" element={<Sqit />} />
-          </Route>
+          </Route> */}
           <Route path="quiz/:quizId" element={<Quiz />} />
           <Route path="quiz" element={<QuizOverview />} />
         </Route>

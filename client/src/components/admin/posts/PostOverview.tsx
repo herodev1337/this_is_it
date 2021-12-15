@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import PostComposer from './PostComposer';
 import Post from './Post';
 import { useApi } from '../../../utils/context-hooks/use-api';
-import { useUser } from '../../../utils/context-hooks/use-user';
 
 export interface PostInterface{
   title: string,
@@ -21,7 +20,6 @@ export interface PostInterface{
 
 function PostOverview() {
   const api = useApi();
-  const user = useUser();
   const [saved, setSaved] = useState([]);
   const [posts, setPosts] = useState<PostInterface[]>([]);
 
@@ -37,19 +35,11 @@ function PostOverview() {
   };
 
   useEffect(() => {
-    if (user.getUser().db_id === null) {
-      return refreshPosts();
-    }
-    api
-      .get(`./users/${user.getUser().db_id}`)
-      .then(function (response: any) {
-        setSaved(response.data.data.savedPosts);
-      })
-      .catch(function (error: any) {
-        console.log(error.message);
-      });
+    // if (user.getUser().db_id === null) {
+    //   return refreshPosts();
+    // }
     return refreshPosts();
-  }, [user]);
+  }, []);
 
   const addPost = (post: PostInterface) => {
     console.log("New Post:", post)

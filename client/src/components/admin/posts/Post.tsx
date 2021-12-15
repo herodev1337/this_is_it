@@ -5,14 +5,12 @@ import Card from 'react-bootstrap/Card';
 import Output from 'editorjs-react-renderer';
 
 import { useApi } from '../../../utils/context-hooks/use-api';
-import { useUser } from '../../../utils/context-hooks/use-user';
 
-import { LikeElement, BookmarkElement } from './PostElements';
+import { LikeElement } from './PostElements';
 import { PostInterface } from './PostOverview';
 
 function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
   const api = useApi();
-  const user = useUser();
 
   const id = post._id;
   const dateTime = new Date(post.createdAt);
@@ -21,36 +19,11 @@ function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
   const [likes, setLikes] = useState<number>(post.likes.length);
 
   const addLike = (liked: boolean) => {
-    setLikes(likes + (liked ? 1 : -1));
     api
-      .put(`./users/${user.getUser().db_id}/${liked ? 'like' : 'unlike'}`, {
-        postId: id,
-      })
+      .post(`./post/${id}/like`)
       .then(function (response: any) {
-        console.log(response.data.data);
-      })
-      .catch(function (error: any) {
-        console.log(error.message);
-      });
-    api
-      .put(`./posts/${id}/${liked ? 'like' : 'unlike'}`, {
-        userId: user.getUser().db_id,
-      })
-      .then(function (response: any) {
-        console.log(response.data.data);
-      })
-      .catch(function (error: any) {
-        console.log(error.message);
-      });
-  };
-
-  const addBookmark = (saved: boolean) => {
-    api
-      .put(`./users/${user.getUser().db_id}/${saved ? 'save' : 'unsave'}`, {
-        postId: id,
-      })
-      .then(function (response: any) {
-        console.log(response.data.data);
+        console.log(response.data);
+        setLikes(likes + (liked ? 1 : -1));
       })
       .catch(function (error: any) {
         console.log(error.message);
@@ -75,13 +48,10 @@ function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
             <LikeElement
               addLike={addLike}
               userLiked={post.likes.some(
-                (like: any) => like.userId == user.getUser().db_id
+                (like: any) => like.userId == ''//user.getUser().db_id
               )}
             />{' '}
             {likes}
-          </span>
-          <span style={{ marginRight: '10px' }}>
-            <BookmarkElement addBookmark={addBookmark} userSaved={saved} />
           </span>
           Report, etc
         </Card.Footer>

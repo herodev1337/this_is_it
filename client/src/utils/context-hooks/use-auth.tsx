@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useContext, createContext } from 'react';
-import {Response, Request} from 'express';
+import jwt_decode from "jwt-decode";
 
 import {useApi} from './use-api'
 
@@ -10,11 +10,22 @@ interface AuthContextInterface{
   authenticate: Function;
 }
 
+interface UserInterface{
+  username: string,
+  userId: string,
+  isAuthenticated: boolean
+}
+
 const AuthContext = createContext<AuthContextInterface | null>(null);
 
 //* Method Hook
 function useProvideAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [user, setUser] = useState<UserInterface>({
+    username: '',
+    userId: '',
+    isAuthenticated: false
+  })
   const api = useApi();
 
   const login = (username: String, password: String, cb: Function) => {
@@ -23,7 +34,13 @@ function useProvideAuth() {
       .then((response: any) => {
         api.defaults.headers.common['x-refresh'] = response.data.refreshToken;
         api.defaults.headers.common['Authorization'] = response.data.accessToken;
-        setIsAuthenticated(true);
+        const token: any = jwt_decode(response.data.refreshToken)
+        console.log("🚀 ~ file: use-auth.tsx ~ line 38 ~ .then ~ token", token)
+        setUser({
+          username: token.username,
+          userId: token._id,
+          isAuthenticated: true
+        });
         cb()
       })
       .catch(function (error: any) {
@@ -43,6 +60,7 @@ function useProvideAuth() {
   };
 
   return {
+    user,
     login,
     logout,
     authenticate

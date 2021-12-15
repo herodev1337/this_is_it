@@ -19,14 +19,12 @@ export default function QuizEditor() {
     instructions: '',
     isEnabled: true,
     questions: [],
-  }
-  if (location.state) {
-    if (location.state.quiz) {
-      initialQuiz = location.state.quiz
-    } else {
-      if (location.state.from.state.quiz) {
-        initialQuiz = location.state.from.state.quiz
-      }
+  };
+  if (location?.state?.quiz){
+    initialQuiz = location.state.quiz;
+  } else {
+    if (location?.state?.from?.state?.quiz) {
+      initialQuiz = location.state.from.state.quiz;
     }
   }
 
@@ -57,9 +55,9 @@ export default function QuizEditor() {
       isEnabled: enabled,
       questions: questions,
     };
-    if (location.state) {
+    if (location?.state?.quiz) {
       api
-        .put(`./quizzes/${location.state.quiz._id}`, quiz)
+        .put(`./quiz/${location.state.quiz._id}`, quiz)
         .then(function (response) {
           console.log(response);
           setName('');
@@ -68,12 +66,12 @@ export default function QuizEditor() {
           setQuestions([]);
         })
         .catch(function (error) {
-          console.log(error.response.data.error)
+          console.log(error.response.data.error);
           setHttpResponse(error.message);
         });
     } else {
       api
-        .post('./quizzes/', quiz)
+        .post('./quiz/', quiz)
         .then(function (response) {
           console.log(response);
           setName('');
@@ -82,7 +80,7 @@ export default function QuizEditor() {
           setQuestions([]);
         })
         .catch(function (error) {
-          console.log(error.response.data.error)
+          console.log(error.response.data.error);
           setHttpResponse(error.message);
         });
     }
