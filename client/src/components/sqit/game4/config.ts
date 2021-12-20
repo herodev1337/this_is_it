@@ -2,7 +2,8 @@ import p5 from 'p5';
 
 import { sketch_builder } from './sketch';
 import * as helpers from '../helpers';
-import { fields } from './tictactoe';
+
+import {P5Extend4} from "../types"
 
 const regex = new RegExp('fields(.|\n)*');
 const regex_Current_Player = new RegExp('KI starts');
@@ -17,7 +18,7 @@ const regex_err = new RegExp(`${regex_err1 || regex_err2}`);
 
 let extraText = false;
 let gameFinished = false;
-let fieldsReset;
+let fieldsReset:string;
 let oneTime = false;
 
 
@@ -48,10 +49,10 @@ let oneTime = false;
  * @param {function} setText2 Text setter for output editor
  * @returns {object} An object containing the P5 instance and the main editor getter
  */
-const get_sketch = (ref, setText1, setText2) => {
-  const myp5 = new p5(sketch_builder, ref);
+const get_sketch = (ref:HTMLElement, setText1:(v:string)=>void, setText2:(v:string)=>void) => {
+  const myp5:P5Extend4 = new p5(sketch_builder, ref);
 
-  myp5.set_win = (win = true, playerWin = true) => {
+  myp5.set_win = (win:boolean|number = true, playerWin = true) => {
     myp5.win = true;
     if (win) setText2(`Output: You did lose!`);
 
@@ -60,10 +61,10 @@ const get_sketch = (ref, setText1, setText2) => {
     if (playerWin && !win && !(win === 2)) setText2(`Output: You did it!`);
   };
 
-  const editorGetter = (value) => {
+  const editorGetter = (value:string) => {
     if (gameFinished) extraText = true;
 
-    const add_editor_text = (fieldsSet) => {
+    const add_editor_text = (fieldsSet:string) => {
       let str = value;
       // fieldsSet.pop()
       // fieldsSet = fieldsSet[0]
@@ -117,7 +118,7 @@ const get_sketch = (ref, setText1, setText2) => {
 
       if (!status) return;
 
-      if (fields_.filter((val) => !!val || val === false).length !== 9) return;
+      if (fields_.filter((val:boolean) => !!val || val === false).length !== 9) return;
 
       const [KI_Mode, _] = helpers.get_userCode(value, 'KI_Mode');
 

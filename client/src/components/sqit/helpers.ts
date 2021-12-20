@@ -51,7 +51,7 @@ const get_pureReturn = (codeStr:string, undefiniedRet = false) => {
  * @param {string} tarVar A string containing the name of the variable which should be returned
  * @returns {Array} Array containing the returned message and a boolean value indicating the error state.
  */
-const get_userCode = (codeStr:string, tarVar:string):[string,boolean] => {
+const get_userCode = <T>(codeStr:string, tarVar:string):[string,boolean]|[T[],boolean]|[any,boolean] => {
   let retString = `return ${tarVar}`;
 
   codeStr = codeStr[codeStr.length - 1] === ';' ? codeStr : codeStr + ';';

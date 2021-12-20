@@ -8,12 +8,14 @@
       "allowJs": true,
       "moduleResolution": "node",
       "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
 
       "baseUrl": ".",
       "paths": {
         "*": ["src/*"]
         }
       },
+      "include": ["src/components", "src/declarations.d.ts"],
       // "include": [
       //   "*.ts(x|)"
       // ],

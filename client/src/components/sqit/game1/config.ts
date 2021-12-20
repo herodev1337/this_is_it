@@ -3,7 +3,7 @@ import p5 from 'p5';
 import {sketch_builder} from "./sketch"
 import * as helpers from '../helpers';
 
-import {P5Extend} from "../types";
+import {P5Extend1} from "../types";
 
 
 /**
@@ -17,7 +17,7 @@ import {P5Extend} from "../types";
 const get_sketch = (ref:HTMLElement, setText1:(v:string)=>void, setText2:(v:string)=>void) => {
     let isExtraTxt = false;
   
-    const myp5:P5Extend = new p5(sketch_builder, ref);                    //! required
+    const myp5:P5Extend1 = new p5(sketch_builder, ref);                    //! required
     // const myp5 = {..._p5, anim:false, interval:5}
   
     const editorGetter = (value:string) => {                               //! required

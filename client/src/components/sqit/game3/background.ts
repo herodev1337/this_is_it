@@ -1,11 +1,11 @@
 import p5 from 'p5';
 import * as cls1 from './frog';
+
+
 class Background {
-  constructor(){
-   
-    
-  }
-  draw(p,frog,backgroundsheet,bgSprites){
+  constructor(){}
+  
+  draw(p:p5,frog:cls1.Frog,backgroundsheet:any,bgSprites:any){
     p.image(backgroundsheet,0,0,p.width/3,p.height)
     p.image(backgroundsheet,p.width/3,0,p.width/3,p.height)
     p.image(backgroundsheet,(p.width/3)*2,0,p.width/3,p.height)      

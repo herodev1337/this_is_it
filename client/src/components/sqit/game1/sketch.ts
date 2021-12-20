@@ -3,7 +3,7 @@ import $ from 'jquery';
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
-import {P5Extend} from "../types";
+import {P5Extend1} from "../types";
 
 
 /**
@@ -12,7 +12,7 @@ import {P5Extend} from "../types";
  * 
  * @param {object} p P5 instance. 
  */
-let sketch_builder = (p:P5Extend) => {
+let sketch_builder = (p:P5Extend1) => {
   p.anim = false;
   p.interval = 4;
 

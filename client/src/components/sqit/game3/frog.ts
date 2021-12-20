@@ -1,19 +1,24 @@
 import p5 from 'p5';
+import {Active} from "../types"
+
 
 class Frog{
-  constructor(p,x,y,s){
+
+  pos:p5.Vector;
+  vel:p5.Vector;
+  acc:p5.Vector;
+
+  size:number;
+  gravity:p5.Vector;
+
+  constructor(p:p5,x:number,y:number,s:number){
     this.pos = p.createVector(x,y);
     this.vel = p.createVector(0,0);
     this.acc = p.createVector(0,0);
     this.size = s
     this.gravity = p.createVector(0,1)
-    
-    
-    
-    
-    
   }
-  create(p,activate,frogSprites){
+  create(p:p5,activate:Active,frogSprites:any){
     p.push()
     
     p.translate(this.pos.x,this.pos.y)
@@ -45,7 +50,7 @@ class Frog{
     }
     p.pop()
   }
-  applyForce(force){
+  applyForce(force:p5.Vector){
     this.acc.add(force);
     
   }
@@ -57,7 +62,7 @@ class Frog{
     
     
   }
-  hitBox(p,activate,object){
+  hitBox(p:p5,activate:Active,object:boolean){
     
     if(object && this.pos.y < p.mouseY && this.pos.y > p.mouseY -this.size  && this.pos.x > p.mouseX - p.width/8 && this.pos.x < p.mouseX + p.width/8){//|| frog.pos.y > p.mouseY - frog.size && frog.pos.x < p.mouseX + p.width/4){
       this.vel.y *= 0;
@@ -85,7 +90,7 @@ class Frog{
       this.vel.x *= -1;
     }
   }
-  move(p,activate){  
+  move(p:p5,activate:Active){  
     if(p.keyIsDown(p.RIGHT_ARROW)){
       activate.walk = true;
       activate.left = false

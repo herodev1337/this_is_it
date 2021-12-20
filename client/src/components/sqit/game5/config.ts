@@ -2,7 +2,9 @@ import p5 from 'p5';
 
 import { sketch_builder } from './sketch';
 import * as helpers from '../helpers';
-import { fields } from './tictactoe';
+
+import {P5Extend5} from "../types"
+
 
 const regex_err1 = new RegExp(
   'fieldss*=s*.*[s*ReferenceError:s* .*s* is s*nots* defineds*];'
@@ -12,10 +14,12 @@ const regex_err2 = new RegExp(
 );
 const regex_err = new RegExp(`${regex_err1 || regex_err2}`);
 let score = 0;
-const get_sketch = (ref, setText1, setText2) => {
-  const myp5 = new p5(sketch_builder, ref);
 
-  const editorGetter = (value) => {
+
+const get_sketch = (ref:HTMLElement, setText1:(v:string)=>void, setText2:(v:string)=>void) => {
+  const myp5:P5Extend5 = new p5(sketch_builder, ref);
+
+  const editorGetter = (value:string) => {
     const add_editor_text = () => {
       if (myp5.score <= 10) setText2(`Output: Score = ${score}`);
       else setText2(`Output: You did it!`);
