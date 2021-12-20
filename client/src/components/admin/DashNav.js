@@ -6,13 +6,14 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
 import { BoxArrowRight, PersonCheck, PlusLg } from 'react-bootstrap-icons';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '../../utils/context-hooks/use-auth'
 
 function DashNav() {
   const auth = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeView, setActiveView] = useState('dash-')
 
   useEffect(()=>{
@@ -25,7 +26,7 @@ function DashNav() {
       <Row className="nav-brand">
         <PersonCheck />
       </Row>
-      {activeView}
+        <span>{`${auth.session.username}@${activeView}`}</span>
       <Row>
         <Accordion>
           <ListGroupItem id="dash-main" as={Link} to='./'>Main</ListGroupItem>
@@ -66,7 +67,9 @@ function DashNav() {
         </Accordion>
       </Row>
       <Row>
-        <Button onClick={() => auth.logout("name", ()=>{})} style={{maxWidth: "80%"}}>
+        <Button onClick={() => auth.logout(auth.session.username, () => {
+          navigate("/admin/login", { from: location })
+        })} style={{maxWidth: "80%"}}>
           <span>Log out </span>
           <BoxArrowRight/>
         </Button>

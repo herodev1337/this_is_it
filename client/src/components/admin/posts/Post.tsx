@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 //@ts-ignore
 import Output from 'editorjs-react-renderer';
@@ -9,21 +9,33 @@ import { useApi } from '../../../utils/context-hooks/use-api';
 import { LikeElement } from './PostElements';
 import { PostInterface } from './PostOverview';
 
-function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
+function Post({ post }: { post: PostInterface }) {
   const api = useApi();
 
   const id = post._id;
   const dateTime = new Date(post.createdAt);
   const date = dateTime.toDateString();
   const time = dateTime.toTimeString();
+  const [userLiked, setUserLiked] = useState<boolean>(null);
   const [likes, setLikes] = useState<number>(post.likes.length);
+
+  useEffect(() => {
+    api
+      .get(`./post/${id}/like`)
+      .then(function (response: any) {
+        setUserLiked(response.data.liked)
+      })
+      .catch(function (error: any) {
+        console.log(error.message);
+      });
+  })
 
   const addLike = (liked: boolean) => {
     api
       .post(`./post/${id}/like`)
       .then(function (response: any) {
         console.log(response.data);
-        setLikes(likes + (liked ? 1 : -1));
+        setLikes(likes + (response.data.liked ? 1 : -1));
       })
       .catch(function (error: any) {
         console.log(error.message);
@@ -47,9 +59,7 @@ function Post({ post, saved }: { post: PostInterface; saved: boolean }) {
           <span style={{ marginRight: '10px' }}>
             <LikeElement
               addLike={addLike}
-              userLiked={post.likes.some(
-                (like: any) => like.userId == ''//user.getUser().db_id
-              )}
+              userLiked={userLiked}
             />{' '}
             {likes}
           </span>

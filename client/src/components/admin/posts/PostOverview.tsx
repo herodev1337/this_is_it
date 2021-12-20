@@ -20,7 +20,6 @@ export interface PostInterface{
 
 function PostOverview() {
   const api = useApi();
-  const [saved, setSaved] = useState([]);
   const [posts, setPosts] = useState<PostInterface[]>([]);
 
   const refreshPosts = () => {
@@ -72,7 +71,6 @@ function PostOverview() {
                 <Post
                   key={`post_${i}`}
                   post={post}
-                  saved={saved.some((p) => p.postId === post._id)}
                 />
               );
             })

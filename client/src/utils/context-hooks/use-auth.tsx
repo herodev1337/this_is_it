@@ -1,76 +1,110 @@
 import * as React from 'react';
-import { useState, useContext, createContext } from 'react';
-import jwt_decode from "jwt-decode";
+import { useState, useEffect, useContext, createContext } from 'react';
+import jwt_decode from 'jwt-decode';
 
-import {useApi} from './use-api'
+import { useApi } from './use-api';
 
-interface AuthContextInterface{
+interface AuthContextInterface {
+  session: SessionInterface;
   login: Function;
   logout: Function;
-  authenticate: Function;
+  checkLocalSession: Function;
 }
 
-interface UserInterface{
-  username: string,
-  isAuthenticated: boolean
+interface SessionInterface {
+  createdAt: Date | string;
+  exp: number;
+  iat: number;
+  session: string;
+  updatedAt: Date | string;
+  username: string;
+  __v: number;
+  _id: string;
 }
 
 const AuthContext = createContext<AuthContextInterface | null>(null);
 
 //* Method Hook
 function useProvideAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [user, setUser] = useState<UserInterface>({
-    username: '',
-    isAuthenticated: false
-  })
+  const [session, setSession] = useState<SessionInterface>(
+    JSON.parse(localStorage.getItem('sessionData')) || {
+      createdAt: null,
+      exp: null,
+      iat: null,
+      session: 'null',
+      updatedAt: null,
+      username: null,
+      __v: null,
+      _id: null,
+    }
+  );
   const api = useApi();
+
+  useEffect(() => {
+    function checkSessionData() {
+      const item = localStorage.getItem('sessionData');
+      if (item) {
+        setSession(JSON.parse(item));
+      } else {
+        setSession({
+          createdAt: null,
+          exp: null,
+          iat: null,
+          session: 'null',
+          updatedAt: null,
+          username: null,
+          __v: null,
+          _id: null,
+        });
+      }
+    }
+    window.addEventListener('storage', checkSessionData);
+    return () => {
+      window.removeEventListener('storage', checkSessionData);
+    };
+  }, []);
 
   const login = (username: String, password: String, cb: Function) => {
     api
       .post('./auth/sessions', { username: username, password: password }) // TODO: "remember me"
       .then((response: any) => {
         api.defaults.headers.common['x-refresh'] = response.data.refreshToken;
-        api.defaults.headers.common['Authorization'] = response.data.accessToken;
-        const token: any = jwt_decode(response.data.refreshToken)
-        console.log("🚀 ~ file: use-auth.tsx ~ line 38 ~ .then ~ token", token)
-        setUser({
-          username: token.username,
-          isAuthenticated: true
-        });
-        cb()
+        api.defaults.headers.common['Authorization'] =
+          response.data.accessToken;
+        const token: any = jwt_decode(response.data.refreshToken);
+        localStorage.setItem('sessionData', JSON.stringify(token));
+        cb();
       })
       .catch(function (error: any) {
-        // TODO: Error handling
         console.log(error.response);
       });
   };
 
-  // TODO
+  // TODO: API: Terminate Session
   const logout = (username: String, cb: Function) => {
-    setIsAuthenticated(false);
+    localStorage.removeItem('sessionData');
     cb();
   };
 
-  const authenticate = () => {
-    return isAuthenticated;
+  const checkLocalSession = () => {
+    return Boolean(session.session);
   };
 
   return {
-    user,
+    session,
     login,
     logout,
-    authenticate
-  }
+    checkLocalSession,
+  };
 }
 
 //* Authentication Wrapper
-export function AuthWrapper( { children }: {children: React.ReactElement} ) {
+export function AuthWrapper({ children }: { children: React.ReactElement }) {
   const auth = useProvideAuth();
-  return (<AuthContext.Provider value={auth}>{children}</AuthContext.Provider>)
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 
 //* Api Hook
 export const useAuth = () => {
   return useContext(AuthContext);
-}
+};

@@ -117,7 +117,7 @@ export default function QuizOverview() {
                     effect="solid"
                     delayShow={400}
                   />
-                  {auth.authenticate() ? (
+                  {auth.checkLocalSession() ? (
                     <PencilSquare
                       data-tip="edit quiz"
                       data-for="edit-quiz-tip"
@@ -135,7 +135,7 @@ export default function QuizOverview() {
                     effect="solid"
                     delayShow={400}
                   />
-                  {auth.authenticate() ? (
+                  {auth.checkLocalSession() ? (
                     <EditButtons
                       moveItem={moveQuiz}
                       trashItem={trashQuiz}

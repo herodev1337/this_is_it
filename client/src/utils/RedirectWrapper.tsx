@@ -10,7 +10,7 @@ export default function RedirectWrapper({ children }: {children: React.ReactElem
     const [route, setRoute] = useState(children)
   
     useEffect(() => {
-      setRoute(auth.authenticate() ? children : <Navigate to="/admin/login" state={{ from: location }}/>)
+      setRoute(auth.checkLocalSession() ? children : <Navigate to="/admin/login" state={{ from: location }}/>)
     }, [auth]);
   
     return route;

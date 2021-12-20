@@ -36,6 +36,7 @@
     "@editorjs/warning": "^1.2.0",
     "@types/express": "^4.17.13",
     "@types/jwt-decode": "^3.1.0",
+    "@types/react-bootstrap": "^0.32.28",
     "ace-builds": "^1.4.13",
     "axios": "^0.24.0",
     "babel-loader": "^8.2.2",
