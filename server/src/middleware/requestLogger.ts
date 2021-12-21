@@ -9,11 +9,13 @@ import log from '../utils/logger';
  * @param  {NextFunction} next
  */
 function requestLogger(req: Request, res: Response, next: NextFunction) {
-  log.info(`[${req.socket.remoteAddress}] ${req.method} - ${req.url}`)
+  log.info(`[${req.socket.remoteAddress}] ${req.method} - ${req.url}`);
   res.on('finish', () => {
-    log.info(`[${req.socket.remoteAddress}] ${req.method} - ${req.url} - [${res.statusCode}]`)
-  })
-  next()
+    log.info(
+      `[${req.socket.remoteAddress}] ${req.method} - ${req.url} - [${res.statusCode}]`
+    );
+  });
+  next();
 }
 
-export default requestLogger
+export default requestLogger;

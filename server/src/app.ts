@@ -22,11 +22,4 @@ app.use(cors({credentials: true, origin: ["http://localhost:8080", "http://local
 app.listen(port, () => {
   log.info(`Listening on port ${port}`);
   routes(app);
-
-//   app._router.stack.forEach(function(r:any){
-//   if (r.route && r.route.path){
-//     console.log(r.route.path)
-//   }
-// })
-
 });

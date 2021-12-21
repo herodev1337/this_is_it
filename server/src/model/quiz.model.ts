@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 export interface QuizInput {
-    name: string
-    instructions: string
-    isEnabled: boolean
-    questions: [QuestionDocument]
+  name: string;
+  instructions: string;
+  isEnabled: boolean;
+  questions: [QuestionDocument];
 }
 
 export interface QuizDocument extends QuizInput, mongoose.Document {
@@ -13,69 +13,69 @@ export interface QuizDocument extends QuizInput, mongoose.Document {
 }
 
 export interface AnswerDocument extends mongoose.Document {
-    answer: string
-    correct: boolean
+  answer: string;
+  correct: boolean;
 }
 
 export interface QuestionDocument extends mongoose.Document {
-    question: string
-    answers: [AnswerDocument]
-    isEnabled: Boolean
-    explanation: string
+  question: string;
+  answers: [AnswerDocument];
+  isEnabled: Boolean;
+  explanation: string;
 }
 
-
-const answerSchema = new mongoose.Schema({ 
-  answer: {    
+const answerSchema = new mongoose.Schema({
+  answer: {
     type: String,
-    required: true
+    required: true,
   },
   correct: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const questionSchema = new mongoose.Schema({
-    question: {
-        type: String,
-        required: true
-    },
+  question: {
+    type: String,
+    required: true,
+  },
 
-    answers: [answerSchema],
+  answers: [answerSchema],
 
-    isEnabled: {
-        type: Boolean,
-        default: true
-    },
+  isEnabled: {
+    type: Boolean,
+    default: true,
+  },
 
-    explanation:{
-      type: String,
-      default: ""
-    }
-
+  explanation: {
+    type: String,
+    default: '',
+  },
 });
 
-const quizSchema = new mongoose.Schema({
+const quizSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
 
     instructions: {
-        type: String,
+      type: String,
     },
 
     isEnabled: {
-        type: Boolean,
-        default: true
+      type: Boolean,
+      default: true,
     },
 
     questions: [questionSchema],
+  },
+  { timestamps: true }
+);
 
-},{ timestamps: true });
-
-const Quiz = mongoose.model<QuizDocument>("Quiz", quizSchema)
+const Quiz = mongoose.model<QuizDocument>('Quiz', quizSchema);
 
 export default Quiz;
