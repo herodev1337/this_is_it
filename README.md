@@ -4,89 +4,33 @@ Description...
 
 ---
 
-
-
-## Server
-
-#### Prerequisites
-
-- [node.js](https://nodejs.org/en/)
-  - npm
-
-
-
 #### Clone
 
 `git clone https://github.com/herodev1337/this_is_it.git`
 
-oder
+or
 
 `git clone git@github.com:herodev1337/this_is_it.git`
 
-
-
-#### Server starten
-
-1. `cd this_is_it`
-2. `npm install` **oder** `npm i`
-3. `npm start` **oder** `node app.js`
-4. Server sollte gestartet sein!
-
-
-
-## Development
-
-### Ordnerstruktur
+### Folder structure
 
 ````
-this_is_it/          <-- Hauptordner
-├─ client/           
-│  ├─ src/           <-- Dateien für den Client die später mit webpack gebundelt werden
-├─ server/           
-│  ├─ config/        <-- Konfigurationsdateien z.B. Database Credentials, Settings...
-│  ├─ controllers/   <-- Liegt zwischen Routing und View; Hier kommen benötigte Funktionen rein
-│  ├─ models/        <-- Hier kommen die Models rein
-│  ├─ public/        <-- Statische Dateien die sich unter <URL>/<DATEI> befinden
-│  ├─ routes/        <-- Routing-Dateien; Damit der Server weiß, was wo ist
-│  ├─ util/           
-│  │  ├─ helpers/    <-- Hilfe-Dateien; Funktionen die mehrmals verwendet werden (z.B. Logger)
-│  │  ├─ middleware/ <-- Liegt zwischen 
-│  ├─ views/         <-- View-Dateien; Werden vom Server in HTML gerendert
+this_is_it/        
+├─ client/           <-- React client
+│  ├─ ...            <-- <b>Frontend team add information...</b>
+├─ server/           <-- TypeScript Rest API server
+│  ├─ config/        <-- Configuration files
+│  ├─ src/           
+│  │  ├─ controller/ <-- Handles requests coming from express
+│  │  ├─ middleware/ <-- Each request goes through it. A middleware e.g. logs a request or validates inputs from forms
+│  │  ├─ model/      <-- Defines on how a "Document" looks for mongoose (e.g UserDocument)
+│  │  ├─ schema/     <-- Defines a schema for zod. Zod validates the input the user gives
+│  │  ├─ service/    <-- Creates a connection between database and controller
+│  │  ├─ utils/      <-- Small functions that get called often 
+│  │  ├─ routes.ts   <-- Defines all routes for express
+│  │  ├─ app.ts      <-- Starts the express server, connects with the database and initializes some more components
 ````
+To understand how to configure the server look into [Configuration](server/README.md#Configuration)
+<b>For testing just contact me and i will send you an already crafted configuration file.</b>
 
-
-
-
-
-## Beispiele
-
-### Express
-
----
-
-#### Variablen etc. zu Views übergeben
-
-```js
-router.get('/whoami', (req, res) => {
-    let request = Object.entries(req.rawHeaders);
-
-    res.render('../views/whoami', {
-        //Hier die Variablen angeben
-        who: request
-    });
-});
-```
-
-
-
-```html
-<h1>Request Headers:</h1>
-
-<ul>
-    <!-- Da who in dem Fall ein Array ist, nutzen wir forEach -->
-    <% who.forEach(function(entry){ %>
-    	<li><%=entry%></li>
-    <% }); %>
-</ul>
-```
 

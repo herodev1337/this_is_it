@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 /**
  * ! Middleware Function !
@@ -9,13 +9,12 @@ import { Request, Response, NextFunction } from "express";
  * @param  {NextFunction} next
  */
 const requireUser = (req: Request, res: Response, next: NextFunction) => {
+  const user = res.locals.user;
 
-    const user = res.locals.user
+  if (!user) {
+    return res.sendStatus(403);
+  }
+  return next();
+};
 
-    if(!user){
-        return res.sendStatus(403)
-    }
-    return next()
-}
-
-export default requireUser
+export default requireUser;

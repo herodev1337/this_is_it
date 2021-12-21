@@ -8,12 +8,16 @@ import log from './logger';
  * @param  {'accessTokenPrivateKey'|'refreshTokenPrivateKey'} keyName
  * @param  {jwt.SignOptions|undefined} options
  */
-function signJwt(object: Object, keyName: 'accessTokenPrivateKey' | 'refreshTokenPrivateKey', options?: jwt.SignOptions | undefined) {
+function signJwt(
+  object: Object,
+  keyName: 'accessTokenPrivateKey' | 'refreshTokenPrivateKey',
+  options?: jwt.SignOptions | undefined
+) {
   const signingKey = Buffer.from(
     config.get<string>(keyName),
     'base64'
   ).toString('ascii');
-  
+
   return jwt.sign(object, signingKey, {
     ...(options && options),
     algorithm: 'RS256',
@@ -25,8 +29,13 @@ function signJwt(object: Object, keyName: 'accessTokenPrivateKey' | 'refreshToke
  * @param  {string} token
  * @param  {'accessTokenPublicKey'|'refreshTokenPublicKey'} keyName
  */
-function verifyJwt(token: string, keyName: 'accessTokenPublicKey' | 'refreshTokenPublicKey') {
-  const publicKey = Buffer.from(config.get<string>(keyName), 'base64').toString('ascii');
+function verifyJwt(
+  token: string,
+  keyName: 'accessTokenPublicKey' | 'refreshTokenPublicKey'
+) {
+  const publicKey = Buffer.from(config.get<string>(keyName), 'base64').toString(
+    'ascii'
+  );
 
   try {
     const decoded = jwt.verify(token, publicKey, { algorithms: ['RS256'] });
@@ -34,14 +43,14 @@ function verifyJwt(token: string, keyName: 'accessTokenPublicKey' | 'refreshToke
       valid: true,
       expired: false,
       decoded,
-    }
-  } catch (e: any) {
-    log.error(e.message);
+    };
+  } catch (error: any) {
+    log.error(error.message);
     return {
       valid: false,
-      expired: e.message === 'jwt expired',
+      expired: error.message === 'jwt expired',
       decoded: null,
-    }
+    };
   }
 }
 

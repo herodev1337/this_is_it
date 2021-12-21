@@ -1,6 +1,6 @@
-**/logs
+**/logs/*.txt
 db
-config
+**/config/*.ts
 node_modules
 build/**/*
 certs/**/*

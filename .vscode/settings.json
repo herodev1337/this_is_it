@@ -1,9 +1,10 @@
 {
-    "liveSassCompile.settings.formats": [
-            {
-                "format": "expanded",
-                "extensionName": ".css",
-                "savePath": "/server/public/css"
-            }
-        ],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/server/public/css"
+    }
+  ],
+  "cSpell.words": ["multistream", "pino", "pinoms"]
 }

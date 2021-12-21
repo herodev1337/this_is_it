@@ -1,0 +1,11 @@
+export default {
+    port: 3000,
+    dbUrl: "mongodb+srv://...",
+    saltWorkFactor: 10,
+    accessTokenTimeToLive: "15m",
+    refreshTokenTimeToLive: "30d",
+    accessTokenPublicKey: `BASE64 RC256`,
+    accessTokenPrivateKey: `BASE64 RC256`,
+    refreshTokenPublicKey: `BASE64 RC256`,
+    refreshTokenPrivateKey: `BASE64 RC256`, 
+}
