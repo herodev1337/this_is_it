@@ -73,8 +73,8 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
     );
   }, [pathDim]);
 
-  const pentaMouse = (e, color) => {
-    e.target.style.fill = color;
+  const pentaMouse = (e) => {
+    mouseEnter(e.target.id.split('_')[1]);
   };
 
   useEffect(() => {
@@ -108,61 +108,61 @@ function Pentagon({ side, labels, mouseEnter, mouseLeave, selected }) {
           transform={transform}
         >
           <path
-            id={styles.penta0}
+            id="penta_0"
             ref={pentRef.current[0]}
             d="M 309.98633,2.7226562 156.36523,114.33594 310.25195,326.14648 464.14062,114.33594 310.57227,2.734375 a 323.74763,323.74763 0 0 0 -0.58594,-0.011719 z"
             transform="matrix(0.26458333,0,0,0.26458333,22.912812,62.130247)"
             style={penta_style}
             onMouseEnter={e => {
-              mouseEnter(e.target.id.split('_')[1]);
+              pentaMouse(e);
             }}
             onMouseLeave={e => {
               mouseLeave(0);
             }}
           />
           <path
-            id={styles.penta1}
+            id="penta_1"
             ref={pentRef.current[1]}
             d="m 186.36036,121.91373 -40.64583,-29.530655 -40.71677,56.040865 65.88072,21.40578 15.52693,-47.76756 a 85.658226,85.658226 0 0 0 -0.045,-0.14837 z"
             style={penta_style}
             onMouseEnter={e => {
-              mouseEnter(e.target.id.split('_')[1]);
+              pentaMouse(e);
             }}
             onMouseLeave={e => {
               mouseLeave();
             }}
           />
           <path
-            id={styles.penta2}
+            id="penta_2"
             ref={pentRef.current[2]}
             d="m 155.35136,217.61008 15.52507,-47.78196 -65.8802,-21.40637 1.5e-4,69.27104 50.22774,0.006 a 85.658226,85.658226 0 0 0 0.12721,-0.0886 z"
             style={penta_style}
             onMouseEnter={e => {
-              mouseEnter(e.target.id.split('_')[1]);
+              pentaMouse(e);
             }}
             onMouseLeave={e => {
               mouseLeave();
             }}
           />
           <path
-            id={styles.penta3}
+            id="penta_3"
             ref={pentRef.current[3]}
             d="m 54.756412,217.69057 50.240858,-2.2e-4 5.7e-4,-69.27073 -65.880628,21.40607 15.515604,47.77125 a 85.658226,85.658226 0 0 0 0.123597,0.0936 z"
             style={penta_style}
             onMouseEnter={e => {
-              mouseEnter(e.target.id.split('_')[1]);
+              pentaMouse(e);
             }}
             onMouseLeave={e => {
               mouseLeave();
             }}
           />
           <path
-            id={styles.penta4}
+            id="penta_4"
             ref={pentRef.current[4]}
             d="M 23.594314,122.04396 39.119802,169.82579 105.00036,148.4205 64.283747,92.379134 23.645169,121.89748 a 85.658226,85.658226 0 0 0 -0.05085,0.14648 z"
             style={penta_style}
             onMouseEnter={e => {
-              mouseEnter(e.target.id.split('_')[1]);
+              pentaMouse(e);
             }}
             onMouseLeave={e => {
               mouseLeave();

@@ -1,11 +1,41 @@
-import $, { get, type } from 'jquery';
+import $ from 'jquery';
 import p5 from 'p5';
 // import { EditorSingleton } from '../editor.js';
-import * as helpers from '../helpers.js';
-import { fields } from './tictactoe.js';
+import * as helpers from '../helpers';
 
-let sketch_builder = (p) => {
-  let getAngle = [
+import {P5Extend4} from "../types"
+
+
+/**
+ * First we define all variables, which will be used in this function.
+ * We also import p5 classes which just wrap simple shapes which are going to be drawn when executed.
+ * 
+ * Important Variables:
+ * 
+ * p.hardMode:boolean
+ * 
+ * This variable controls the Mode, which could be equals to "unbeatable", "easy" or "normal
+ * p.playerWin:boolean
+ * 
+ * This variable controls the state of playerWin is true or not, 
+ * if true, the Player has won,
+ * if not, the Player has not won.
+ * p.win:boolean
+ * 
+ * This variable controls the state of win is true or not, 
+ * if true, the KI has won,
+ * if not, the KI has not won,
+ * if win = 2, the game ends with a tie.
+ * p.yourTurn:boolean
+ * 
+ * This variable controls the state of yourTurn is true or not, 
+ * if true, Player's turn,
+ * if not, KI's turn.
+ * 
+ * @param {object} p P5 instance
+ */
+let sketch_builder = (p:P5Extend4) => {
+  let getAngle:boolean[]|number[] = [
     false,
     false,
     false,
@@ -22,7 +52,7 @@ let sketch_builder = (p) => {
   let created = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   var createdCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   p.win = false;
-  var getAnim;
+  var getAnim:number[][];
   let animCreated = [
     false,
     false,
@@ -45,8 +75,8 @@ let sketch_builder = (p) => {
     false,
     false,
   ];
-  let crosses = [];
-  let allAnims = [];
+  let crosses:number[][][] = [];
+  let allAnims:number[][][] = [];
   let circleAnimFinished = [
     false,
     false,
@@ -284,10 +314,11 @@ let sketch_builder = (p) => {
         if (
           createdCheck[4] === 1 &&
           createdCheck[7] === 1 &&
-          createdCheck[5] === 1 &&
-          !createdCheck[1] === 1 &&
-          !createdCheck[2] === 1 &&
-          !createdCheck[8] === 1
+          createdCheck[5] === 1 
+          // &&
+          // !createdCheck[1] === 1 &&
+          // !createdCheck[2] === 1 &&
+          // !createdCheck[8] === 1
         ) {
           created[3] = 2;
         }
@@ -463,10 +494,11 @@ let sketch_builder = (p) => {
         if (
           createdCheck[0] === 1 &&
           createdCheck[2] === 1 &&
-          createdCheck[7] === 1 &&
-          !createdCheck[4] === 2 &&
-          !createdCheck[6] === 2 &&
-          !createdCheck[8] === 2
+          createdCheck[7] === 1 
+          // &&
+          // !createdCheck[4] === 2 &&
+          // !createdCheck[6] === 2 &&
+          // !createdCheck[8] === 2
         ) {
           created[3] = 2;
         }
@@ -638,7 +670,7 @@ let sketch_builder = (p) => {
 
   function randomCross() {
     let runs = 0;
-    let randint = parseInt(Math.random() * 9);
+    let randint = Math.random() * 9;
     for (let i = 0; i <= created.length; i++) {
       runs++;
       if (i === randint) {
@@ -647,22 +679,22 @@ let sketch_builder = (p) => {
         } else if (created[i] === 1) {
           i = 0;
           runs = 0;
-          randint = parseInt(Math.random() * 9);
+          randint = Math.random() * 9;
         } else if (created[i] === 2) {
           i = 0;
           runs = 0;
-          randint = parseInt(Math.random() * 9);
+          randint = Math.random() * 9;
         }
       }
       if (runs === 9) {
         i = 0;
         runs = 0;
-        randint = parseInt(Math.random() * 9);
+        randint = Math.random() * 9;
       }
     }
   }
 
-  function newCross(position) {
+  function newCross(position:number,) {
     let checkPosition = checkPositionCircle();
 
     createdCheck = calculateCross();
@@ -905,7 +937,7 @@ let sketch_builder = (p) => {
     }
   }
 
-  function animPos(position) {
+  function animPos(position:number) {
     let cross = newCross(position);
     // console.log(position)
     return [
@@ -920,7 +952,7 @@ let sketch_builder = (p) => {
     return animCreated;
   }
 
-  function animCreate(position) {
+  function animCreate(position:number) {
     let cross = newCross(position);
     crosses[position] = cross;
     if (!animCreated[position]) {
@@ -994,7 +1026,7 @@ let sketch_builder = (p) => {
 
     p.noFill();
 
-    const draw_cross = (i) => {
+    const draw_cross = (i:number) => {
       // console.log(i)
 
       if (animFinished[i]) {
@@ -1047,13 +1079,13 @@ let sketch_builder = (p) => {
       draw_cross(7);
     }
 
-    const draw_circle = ([first, second], circleAnimFinished, position) => {
+    const draw_circle = ([first, second]:[number,number], circleAnimFinished:boolean[], position:number) => {
       if (!getAngle[position]) {
         getAngle[position] = angle[position];
       }
       // console.log(getAngle[position], angle[position]);
 
-      if (angle[position] - getAngle[position] < 360) {
+      if (angle[position] - parseInt(`${getAngle[position]}`) < 360) {
         angle[position] += 3;
 
         p.push();
@@ -1073,7 +1105,7 @@ let sketch_builder = (p) => {
         }
         // console.log(getAngle[position], angle[position]);
 
-        if (angle[position] - getAngle[position] < 360) {
+        if (angle[position] - parseInt(`${getAngle[position]}`) < 360) {
           angle[position] += 3;
 
           p.push();
@@ -1167,7 +1199,7 @@ let sketch_builder = (p) => {
     }
     if ((p.fields__[5] || created[5] === 1) && created[5] != 2) {
       let circles = newCircle(5);
-      draw_circle([+100, 0]);
+      draw_circle([+100, 0], circleAnimFinished, 5);
     }
 
     if ((p.fields__[0] || created[0] === 1) && created[0] != 2) {
@@ -1202,7 +1234,7 @@ let sketch_builder = (p) => {
     }
   };
 
-  function newCircle(position) {
+  function newCircle(position:number) {
     let checkPosition = checkPositionCircle();
     if (position === 0 && !checkPosition[0]) {
       let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
@@ -1285,16 +1317,11 @@ let sketch_builder = (p) => {
     return checkPosition;
   }
 
-  p.customResize = () => {
-    // p.background($(':root').css('--color-navy-800'));
-  };
-
   // window.setup = p.setup;
   // window.draw = p.draw;
   // window.windowResized = p.windowResized;
   p.customResize = () => {
     p.setup();
-    resized = true;
   };
 };
 

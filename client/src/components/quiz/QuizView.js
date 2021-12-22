@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import { useLocation } from 'react-router';
 
-import '../../styles/scss/quiz_view.scss';
+import './quiz_view.scss';
 
 export default function QuizView({ }) {
   const location = useLocation();

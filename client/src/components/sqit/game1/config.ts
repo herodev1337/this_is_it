@@ -3,21 +3,24 @@ import p5 from 'p5';
 import {sketch_builder} from "./sketch"
 import * as helpers from '../helpers';
 
+import {P5Extend1} from "../types";
+
 
 /**
  * Builds a p5 instance and connects it with the main editor.
- * 
+ *
  * @param {Object} ref React ref object holding the div where the p5 canvas should be placed
  * @param {function} setText1 Text setter for main editor
  * @param {function} setText2 Text setter for output editor
  * @returns {object} An object containing the P5 instance and the main editor getter
  */
-const get_sketch = (ref, setText1, setText2) => {
+const get_sketch = (ref:HTMLElement, setText1:(v:string)=>void, setText2:(v:string)=>void) => {
     let isExtraTxt = false;
   
-    const myp5 = new p5(sketch_builder, ref);                     //! required
+    const myp5:P5Extend1 = new p5(sketch_builder, ref);                    //! required
+    // const myp5 = {..._p5, anim:false, interval:5}
   
-    const editorGetter = value => {                               //! required
+    const editorGetter = (value:string) => {                               //! required
       const ret = helpers.get_pureReturn(value, true);
       const searchedVariable = isExtraTxt ? 'interval' : 'gate';
   
@@ -40,7 +43,7 @@ const get_sketch = (ref, setText1, setText2) => {
         );
       }
       const [userInterval, status] = helpers.get_userCode(value, 'interval');
-      myp5.interval = status ? userInterval : 4;
+      myp5.interval = status ? parseInt(userInterval) : 4;
     };
   
     return {                                                      //! required

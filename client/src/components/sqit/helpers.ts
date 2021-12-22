@@ -1,12 +1,13 @@
 import $ from 'jquery';
 
+
 /**
  * Calculate width by percent.
  *
  * @param {number} percent Percentage to calculate
  * @returns {number} The real width in pixels
  */
-const realWidth = (percent) => (window.innerWidth / 100) * percent;
+const realWidth = (percent:number):number => (window.innerWidth / 100) * percent;
 
 /**
  * Calculate width by view(height|width).
@@ -15,7 +16,7 @@ const realWidth = (percent) => (window.innerWidth / 100) * percent;
  * @param {boolean} [height=true] Determine if height or width should be calculated
  * @returns View(height|width) in pixels
  */
-const view_2_px = (vh, height = true) =>
+const view_2_px = (vh:number, height = true) =>
   $(window)[height ? 'height' : 'width']() * (vh / 100);
 
 /**
@@ -25,7 +26,7 @@ const view_2_px = (vh, height = true) =>
  * @param {(boolean|*)} [undefiniedRet=false] Determine if original return should be used or this value.
  * @returns {*}
  */
-const get_pureReturn = (codeStr, undefiniedRet = false) => {
+const get_pureReturn = (codeStr:string, undefiniedRet = false) => {
   //! get out of here
   try {
     const value = new Function(codeStr)();
@@ -50,7 +51,7 @@ const get_pureReturn = (codeStr, undefiniedRet = false) => {
  * @param {string} tarVar A string containing the name of the variable which should be returned
  * @returns {Array} Array containing the returned message and a boolean value indicating the error state.
  */
-const get_userCode = (codeStr, tarVar) => {
+const get_userCode = <T>(codeStr:string, tarVar:string):[string,boolean]|[T[],boolean]|[any,boolean] => {
   let retString = `return ${tarVar}`;
 
   codeStr = codeStr[codeStr.length - 1] === ';' ? codeStr : codeStr + ';';
@@ -63,12 +64,12 @@ const get_userCode = (codeStr, tarVar) => {
   }
 };
 
-const get_validation = (codeStr, validator, variable) => {
+const get_validation = (codeStr:string, validator:string, variable:string):boolean => {
   const [ret, _] = get_userCode(codeStr, variable);
   return ret === validator;
 };
 
-const animate_progressBar = (seconds) => {
+const animate_progressBar = (seconds:number) => {
   let width = 100;
   const ret = () => {
     const frame = () => {
@@ -84,12 +85,12 @@ const animate_progressBar = (seconds) => {
   return ret;
 };
 
-const get_progressAnim = (seconds) => {
-  let start;
+const get_progressAnim = (seconds:number) => {
+  let start: undefined | number
   // let seconds = 60;
   let width = 100;
 
-  const update_progressAnim = (timestamp) => {
+  const update_progressAnim = (timestamp:number) => {
     if (start === undefined) start = timestamp;
 
     const elapsed = (timestamp - start) / 1000 / seconds;

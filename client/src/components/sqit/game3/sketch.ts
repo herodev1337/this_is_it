@@ -5,14 +5,16 @@ import backgroundpng from './Sprites/Spritesheet.png';
 import frogjson from './Sprites/frog.json';
 import frogpng from './Sprites/frog.png';
 import backgroundimg from './Sprites/Background.png';
-
-import * as helpers from '../helpers.js';
+//testtt
+import * as helpers from '../helpers';
 import * as cls1 from './frog';
 import * as cls2 from './background';
-import { fill } from 'lodash';
-let Sketch = (p) => {
-  let bg;
-  let frog;
+
+import {P5Extend3} from "../types"
+
+let Sketch = (p:P5Extend3) => {
+  let bg:cls2.Background;
+  let frog:cls1.Frog;
   let widthR = p.width;
   let widthL = 0;
   let opacity = 0;
@@ -24,9 +26,15 @@ let Sketch = (p) => {
     jump: false,
     left: false,
   };
-  let bgSprites = [];
-  let frogSprites = [];
-  let bgdata, spritedata, bgsheet, spritesheet, backgroundsheet;
+  let bgSprites:p5.Image[] = [];
+  let frogSprites:p5.Image[] = [];
+  let bgdata:typeof backgroundjson, 
+      spritedata:typeof frogjson, 
+      bgsheet:p5.Image, 
+      spritesheet:p5.Image, 
+      backgroundsheet:p5.Image;
+  
+  
   p.preload = () => {
     bgdata = backgroundjson;
     spritedata = frogjson;
@@ -59,7 +67,7 @@ let Sketch = (p) => {
     }
   };
   p.draw = () => {
-    frog.update(p);
+    frog.update();
     bg.draw(p, frog, backgroundsheet, bgSprites);
     p.push();
     p.imageMode(p.CENTER);

@@ -26,7 +26,6 @@ const slide = [
 const LandingPage = () => {
   return (
     <div id="Landing-container">
-      <h1>Knowledge</h1>
       <LandingCarousel slide={slide} />
     </div>
   );

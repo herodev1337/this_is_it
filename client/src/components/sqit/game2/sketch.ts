@@ -1,11 +1,13 @@
 import p5 from 'p5';
 import $ from 'jquery';
-import * as helpers from '../helpers.js';
+import * as helpers from '../helpers';
 import * as cls1 from './enemy';
 import * as cls2 from './player';
 import * as cls3 from './shot';
 
-let Sketch = (p) => {
+import {P5Extend2, Vec3} from "../types"
+
+let Sketch = (p:P5Extend2) => {
   
   let opacity = 0;
   let widthL = 0;
@@ -13,13 +15,13 @@ let Sketch = (p) => {
   let win = false;
 
   
-  let shots = [];
-  let enemies = [];
-  let stars = [];
-  let player;
-  let enemy;
-  let shot;
-  let starColor;
+  let shots:cls3.Shot[] = [];
+  let enemies:cls1.Enemy[] = [];
+  let stars:Vec3[] = [];
+  let player:cls2.Player;
+  let enemy:cls1.Enemy;
+  let shot:cls3.Shot;
+  let starColor:number;
   
   let shield = false;
   let shieldbreaker = false;
@@ -166,7 +168,7 @@ let Sketch = (p) => {
       new cls1.Enemy(p.random(0, p.width), p.random(0, p.height), p)
     );
   }
-  function createStars(xPos, yPos, circleSize) {
+  function createStars(xPos:number, yPos:number, circleSize:number) {
     let x = xPos;
     let y = yPos;
     let size = circleSize;

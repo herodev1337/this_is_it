@@ -3,22 +3,30 @@ import $ from 'jquery';
 import * as cls from './classes';
 import * as helpers from '../helpers';
 
+import {P5Extend1} from "../types";
+
+
 /**
  * Builds the p5 sketch.
  * 
+ * 
  * @param {object} p P5 instance. 
  */
-let sketch_builder = p => {
+let sketch_builder = (p:P5Extend1) => {
   p.anim = false;
   p.interval = 4;
 
-  let on, anim, finished;
+  let on:boolean,
+      finished:boolean;
 
   let fps = 60;
-  let interval = 180;
   let radius = 50;
 
-  let redLight, greenLight, doors, backgroundDoors;
+  let redLight:cls.BlinkLight, 
+      greenLight:cls.BlinkLight, 
+      doors:cls.SlidingDoors, 
+      backgroundDoors:cls.SlidingDoors;
+
   let redCnt = 0;
   let greenCnt = 0;
 
@@ -51,18 +59,18 @@ let sketch_builder = p => {
     p.text('🎉', p.width / 2, p.height / 2 + 75);
 
     p.stroke($(':root').css('--color-navy-800'));
-    backgroundDoors.show(p);
+    backgroundDoors.show();
     if (finished) backgroundDoors.move(finished);
 
     // Strobing lights
     if (on) {
       greenCnt = 0;
       redLight.update(p.width / 3, p.height / 2);
-      redLight.show(p);
+      redLight.show();
     } else {
       redCnt = 0;
       greenLight.update((p.width / 3) * 2, p.height / 2);
-      greenLight.show(p);
+      greenLight.show();
     }
 
     if (redLight.isPressed()) redCnt++;
@@ -74,7 +82,7 @@ let sketch_builder = p => {
     //     // Sliding doors
     p.stroke(0);
     p.strokeWeight(1);
-    doors.show(p);
+    doors.show();
     doors.move(p.anim);
 
     if (finished) {

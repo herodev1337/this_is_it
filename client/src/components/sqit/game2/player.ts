@@ -1,9 +1,27 @@
 import p5 from 'p5';
 import * as cls3 from './shot';
+import {Enemy} from './Enemy';
 
 
 class Player {
-  constructor(x, y, s, p) {
+
+  pos:p5.Vector;
+  vel:p5.Vector;
+  acc:p5.Vector;
+  size:number;
+  r:number;
+  angle:number;
+  shieldSize:number;
+  shieldColor:number;
+  p:p5;
+
+  v1:number;
+  v2:number;
+  direction:p5.Vector;
+  dist:number;
+  correction:number;
+
+  constructor(x:number, y:number, s:number, p: p5) {
     this.pos = p.createVector(x, y);
     this.vel = p.createVector(0, 0);
     this.acc = p.createVector(0, 0);
@@ -14,7 +32,7 @@ class Player {
     this.shieldColor = 100;
     this.p = p;
   }
-  edges(p) {
+  edges(p:p5) {
     if (this.pos.y >= p.height - this.r) {
       this.pos.y = p.height - this.r;
       this.vel.y *= -1;
@@ -31,10 +49,10 @@ class Player {
       this.vel.x *= -1;
     }
   }
-  fire(shots) {
+  fire(shots:any) {
     shots.push(new cls3.Shot(this.pos.x, this.pos.y, this.p, this.angle));
   }
-  attract(enemy) {
+  attract(enemy:Enemy) {
     let force = p5.Vector.sub(this.pos, enemy.pos);
     let distanceSq = force.magSq();
     let G = 0.005;
@@ -42,7 +60,7 @@ class Player {
     force.setMag(strength);
     enemy.applyForce(force);
   }
-  update(p, enemies, player, shield,enemy, func) {
+  update(p:p5, enemies:Enemy[], player:any, shield:boolean,enemy:any, func:()=>void) {
     this.vel = p5.Vector.fromAngle(this.angle);
     this.vel.mult(2);
     if (p.keyIsDown(p.UP_ARROW)) {
@@ -62,7 +80,7 @@ class Player {
       }
     }
   }
-  collision(other) {
+  collision(other:any) {
     this.v1 = 0;
     this.v2 = 0;
     this.direction = p5.Vector.sub(other.pos, this.pos)
@@ -78,7 +96,7 @@ class Player {
     other.vel.add(p5.Vector.mult(this.direction,1))
   }
 
-  show(p, shield) {
+  show(p:p5, shield:boolean) {
     p.push();
     p.fill(255);
     p.noStroke();
@@ -108,15 +126,4 @@ class Player {
   }
 }
 
-function reset() {
-
-  shots = [];
-  enemies = [];
-  frameCount = 0;
-  starColor = 255;
-  player.pos.x = p.width / 2;
-  player.pos.y = p.height / 2;
-  p.print('You Lose !');
-}
-
-export { Player, reset };
+export { Player };

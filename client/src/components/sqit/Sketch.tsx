@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect, lazy } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import p5 from 'p5';
-// import 'regenerator-runtime/runtime'; // needs to be imported if async/await is beeing used
-
 import Editor from 'components/sqit/Editor';
-import * as helpers from './helpers.js';
+import * as helpers from './helpers';
+
+// https://dotnet.github.io/docfx/ multi language doc generator
+
 
 /**
  * Imports the P5 sketch based on the given string.
@@ -15,8 +15,9 @@ import * as helpers from './helpers.js';
  * If not, we return the hell out of here.
  * If yes, require the needed config.js from the path associated with '$page'.
  * Then we return an object with the keys 'get_sketch, text1, text2' and there corrosponding function/strings.
+ * 
  */
-const import_sketch = page => {
+const import_sketch = (page:string) => {
   const re = /game[1-6]/g;
   if (!page.match(re)) return
 
@@ -60,10 +61,8 @@ const import_sketch = page => {
  * @see [P5]{@link https://p5js.org/get-started/}
  * @see [AceEditor]{@link https://ace.c9.io/}
  * 
- * 
- * @component
  */
-const Sketch = () => {
+const Sketch = ():JSX.Element => {
   const {get_sketch, text1, text2} = import_sketch(useParams().game);
   const p5Ref = useRef();
   const [textState1, setText1] = useState(text1);
@@ -71,7 +70,7 @@ const Sketch = () => {
 
   const [editorProps, setProps] = useState({
     p5: undefined,
-    getter: () => '',
+    getter: (val:string) => '',
   });
 
   
@@ -99,7 +98,7 @@ const Sketch = () => {
       <Editor
         setter1={textState1}
         setter2={textState2}
-        getter={value => editorProps.getter(value)}
+        getter={(value:string) => editorProps.getter(value)}
       />
     </>
   );

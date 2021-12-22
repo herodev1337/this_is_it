@@ -1,15 +1,16 @@
 import $, { get, type } from 'jquery';
 import p5 from 'p5';
 // import { EditorSingleton } from '../editor.js';
-import * as helpers from '../helpers.js';
-import { fields } from './tictactoe.js';
+import * as helpers from '../helpers';
 
-let sketch_builder = (p) => {
-  let snake;
+import {P5Extend5} from "../types"
+
+let sketch_builder = (p:P5Extend5) => {
+  let snake: Snake;
   let rez = 20;
-  let food;
-  let w;
-  let h;
+  let food:p5.Vector;
+  let w:number;
+  let h:number;
   p.score = 0;
   p.rotten_ = true;
   window.addEventListener(
@@ -27,6 +28,11 @@ let sketch_builder = (p) => {
   );
 
   class Snake {
+    body:p5.Vector[]
+    xdir:number;
+    ydir:number;
+    len:number;
+
     constructor() {
       this.body = [];
       this.body[0] = p.createVector(p.floor(w / 2), p.floor(h / 2));
@@ -35,7 +41,7 @@ let sketch_builder = (p) => {
       this.len = 0;
     }
 
-    setDir(x, y) {
+    setDir(x:number, y:number) {
       this.xdir = x;
       this.ydir = y;
     }
@@ -75,7 +81,7 @@ let sketch_builder = (p) => {
       return false;
     }
 
-    eat(pos) {
+    eat(pos:{x:number, y:number}) {
       let x = this.body[this.body.length - 1].x;
       let y = this.body[this.body.length - 1].y;
       if (x == pos.x && y == pos.y) {
@@ -114,16 +120,16 @@ let sketch_builder = (p) => {
 
   document.onkeydown = checkKey;
 
-  function checkKey(e) {
-    e = e || window.event;
+  function checkKey(e:KeyboardEvent) {
+    // e = e || window.event;
 
-    if (e.keyCode == '38') {
+    if (e.keyCode == 38) {
       snake.setDir(0, -1);
-    } else if (e.keyCode == '40') {
+    } else if (e.keyCode == 40) {
       snake.setDir(0, 1);
-    } else if (e.keyCode == '37') {
+    } else if (e.keyCode == 37) {
       snake.setDir(-1, 0);
-    } else if (e.keyCode == '39') {
+    } else if (e.keyCode == 39) {
       snake.setDir(1, 0);
     }
   }

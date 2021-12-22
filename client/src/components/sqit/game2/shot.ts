@@ -1,6 +1,17 @@
 import p5 from 'p5';
+import {Enemy} from './Enemy';
+
 class Shot {
-    constructor(x, y,p,angle) {
+
+    pos:p5.Vector;
+    vel:p5.Vector;
+    bigLaser:p5.Vector;
+    length:number;
+    hit:boolean;
+    angle:number;
+    p:p5;
+
+    constructor(x:number, y:number,p:p5,angle:number) {
       this.pos = p.createVector(x,y);
       this.vel = p.createVector(angle,angle);
       this.bigLaser = p.createVector(this.pos.x+200,this.pos.y)
@@ -10,7 +21,7 @@ class Shot {
       this.p = p
   }
 
-  draw(p, shots, autoFire) {
+  draw(p:p5, shots:Shot[], autoFire:boolean) {
     p.push()
     if (!this.hit) {
       this.p.stroke(255);
@@ -33,7 +44,7 @@ class Shot {
     p.pop()
   }
 
-  move(enemies, shield, enemy,p) {
+  move(enemies:Enemy[], shield:boolean, enemy:Enemy,p:p5) {
     this.vel = p5.Vector.fromAngle(this.angle);
     
     this.vel.mult(10); 
