@@ -125,98 +125,65 @@ The *Nesting* shown above is optional but recommended to keep the routing- and p
 
 The server-APIs for database requests, authentication, etc. are specified using the [Express.js](https://expressjs.com/) library. On the server side an API route would look something like:
 
-`server\server.js`:
+`server\routes.ts`:
 
-```js
-const express = require('express');
-const app = express();
-...
-app.use('/api/example/', require('./routes/exampleApi.route'))
-```
-`server\routes\exampleApi.route.js`:
-
-```js
-const router = require('express').Router();
-const exampleController = require('../controllers/exampleApi.controller');
-
-router
-  .route('/')
-  .get(exampleController.getExampleView)
-  ...
-router
-  .route('/:exampleId')
-  .get(exampleController.getExample)
-  .post(/*optional middleware*/ exampleController.createExample)
-  ...
-...
-module.exports = router;
-```
-`server\controllers\exampleApi.controller.js`:
-```js
-const example = require("../models/example");
-
-//* GET - /api/example/
-const getExampleView = (req, res, next) => {
-  Quiz.find({/* OPTIONS */}).then(data => { 
-    // Handle Data
-  }).catch(error => {
-    // Handle Error
-  })
+```typescript
+import { Express, Request, Response } from 'express';
+import { createExampleHandler } from './controller/Example.controller';
+export default function(app: Express) {
+  app.post('/api/example', createExampleHandler)
 }
-...
-module.exports = {
-  getExampleView,
-  ...
-};
 ```
 
-Client side API requests are sent via the [Axios](https://axios-http.com/) library. For this purpose, we have already prepared a react context with the fully configured Axios-instance. To make the context available (*provide*) the component from which the HTTP request is sent has to be placed inside the wrapper from `client\src\utils\context-hooks\use-api.js`. Based on the above example:
-
-```react
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { ApiWrapper } from '../utils/context-hooks/use-api';
-function ParentComponent() {
-  return (
-    <div>
-      <ApiWrapper>
-        ...
-        <Outlet />
-      <ApiWrapper>
-    </div>
-  );
+`server\controller\Example.controller.ts`:
+```typescript
+import { Request, Response } from 'express';
+import { createExample } from '../service/Example.service';
+export async function createExampleHandler(req: Request, res: Response) {
+  try {
+    const example = await createExample(req.body);
+    return res.json(example);
+  } catch (error: any) {
+    log.error(error);
+    return res.status(409).json(error.message);
+  }
 }
-export default ParentComponent;
 ```
 
-Within the wrapper, i.e. in `<ChildComponent/>`, the context can now be used (*consumed*) using the `useApi`-hook:
-
-```react
-import React, { useState, useEffect } from 'react';
-import { useApi } from '../utils/context-hooks/use-api';
-function ChildComponent() {
-  const api = useApi();
-  const [content, setContent] = useState();
-
-  useEffect(() => {
-  api.get('./example/')
-    .then(function (response) {
-      setContent(response.data) // exact usage depends on the data structure of the HTTP-response
-    })
-    .catch(function (error) {
-      // handle error
-    });
-  }, [])
-    
-  return (
-    <div>
-      {content.map((example, i) => {
-        // display the contents
-      })};
-    </div>
-  );
+`server\service\Example.service.ts`:
+```typescript
+import Example from '../model/Example.model';
+import { DocumentDefinition } from 'mongoose';
+export async function createExample(input: DocumentDefinition<>) {
+  try {
+    return await Example.create(input);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 }
-export default ParentComponent;
+```
+
+`server\model\Example.model.ts`:
+```typescript
+import mongoose from 'mongoose';
+export interface ExampleDocument extends mongoose.Document {
+  exampleString: String;
+  exampleBoolean: Boolean;
+  exampleObject: Object;
+  /* necessary if timestamps = true */
+  createdAt: Date;
+  updatedAt: Date;
+}
+const exampleSchema = new mongoose.Schema(
+  {
+    exampleString: String ,
+    exampleBoolean: Boolean,
+    exampleObject: Object,
+  },
+  { timestamps: true }
+);
+const Example = mongoose.model<ExampleDocument>('Example', exampleSchema);
+export default Example;
 ```
 
 ## Styling
