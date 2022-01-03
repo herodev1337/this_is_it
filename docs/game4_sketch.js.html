@@ -1,0 +1,1456 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> game4/sketch.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">This is it - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Sqit-Game1.html">Sqit-Game1</a></li><li><a href="module-Sqit-General.html">Sqit-General</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-Game1-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-Game1-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit-General-Editor.html">Editor</a></li><li><a href="module-Sqit-General-Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>game4/sketch.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import $, { get, type } from 'jquery';
+import p5 from 'p5';
+// import { EditorSingleton } from '../editor.js';
+import * as helpers from '../helpers.js';
+import { fields } from './tictactoe.js';
+
+
+/**
+ * First we define all variables, which will be used in this function.
+ * We also import p5 classes which just wrap simple shapes which are going to be drawn when executed.
+ * 
+ * Important Variables:
+ * 
+ * p.hardMode:boolean
+ * 
+ * This variable controls the Mode, which could be equals to "unbeatable", "easy" or "normal
+ * p.playerWin:boolean
+ * 
+ * This variable controls the state of playerWin is true or not, 
+ * if true, the Player has won,
+ * if not, the Player has not won.
+ * p.win:boolean
+ * 
+ * This variable controls the state of win is true or not, 
+ * if true, the KI has won,
+ * if not, the KI has not won,
+ * if win = 2, the game ends with a tie.
+ * p.yourTurn:boolean
+ * 
+ * This variable controls the state of yourTurn is true or not, 
+ * if true, Player's turn,
+ * if not, KI's turn.
+ * 
+ * @param {object} p P5 instance
+ */
+let sketch_builder = (p) => {
+  let getAngle = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  p.fields__ = [];
+  p.yourTurn = false;
+  let start = true;
+  let created = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var createdCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  p.win = false;
+  var getAnim;
+  let animCreated = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  let animFinished = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  let crosses = [];
+  let allAnims = [];
+  let circleAnimFinished = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  let updateEditor = false;
+  p.hardMode = true;
+  let pp = false;
+  let pp2 = false;
+  let pp3 = false;
+  let pp4 = false;
+  p.playerWin = false;
+
+
+
+  p.setup = () => {
+    p.rectMode(p.CENTER);
+    p.angleMode(p.DEGREES);
+   
+    p.createCanvas(helpers.realWidth(90), helpers.view_2_px(50));
+    p.ellipseMode(p.CENTER);
+
+    p.frameRate(60);
+    p.background($(':root').css('--color-navy-800'));
+  };
+
+  function calculateCross() {
+    let printedCircle = 0;
+    if (!p.yourTurn) {
+      for (let i = 0; i &lt;= created.length; i++) {
+        if (created[i] === 1) {
+          createdCheck[i] = created[i];
+        }
+      }
+    }
+    for (let i = 0; i &lt;= createdCheck.length; i++) {
+      if (createdCheck[i] === 1) {
+        printedCircle++;
+      }
+    }
+    if (p.hardMode) {
+      if (
+        printedCircle === 1 &amp;&amp;
+        (createdCheck[1] === 1 ||
+          createdCheck[0] === 1 ||
+          createdCheck[3] === 1 ||
+          createdCheck[5] === 1 ||
+          createdCheck[7] === 1 ||
+          createdCheck[8] === 1)
+      ) {
+        created[4] = 2;
+      } else if (printedCircle === 1) {
+        created[8] = 2;
+      }
+      if (printedCircle === 2) {
+        if (createdCheck[4] === 1 &amp;&amp; createdCheck[7] === 1) {
+          created[1] = 2;
+        }
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[3] === 1) {
+          created[8] = 2;
+        }
+        if (createdCheck[0] === 1) {
+          created[4] = 2;
+        }
+
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          (createdCheck[1] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[8] === 1)
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+            p.set_win(p.win)
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[1] === 1 &amp;&amp;
+          (createdCheck[0] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[8] === 1)
+        ) {
+          p.win = true;
+          created[2] = 2;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[3] === 1 &amp;&amp;
+          (createdCheck[1] === 1 ||
+            createdCheck[0] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[8] === 1)
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[5] === 1 &amp;&amp;
+          (createdCheck[1] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[0] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[8] === 1)
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[7] === 1 &amp;&amp;
+          (createdCheck[1] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[0] === 1 ||
+            createdCheck[8] === 1)
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[8] === 1 &amp;&amp;
+          (createdCheck[1] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[0] === 1)
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        } else {
+          if (created[4] != 2 &amp;&amp; created[7] != 1) {
+            created[7] = 2;
+            p.win = true;
+            if (!updateEditor) {
+            }
+            updateEditor = true;
+          }
+        }
+
+        if (createdCheck[7] === 1 &amp;&amp; createdCheck[8] === 1) {
+          created[2] = 2;
+        }
+
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[8] === 1) {
+          created[5] = 2;
+        }
+        if (createdCheck[1] === 1 &amp;&amp; createdCheck[2] === 1) {
+          if (created[6] != 2 || created[8] != 2) {
+            created[0] = 2;
+          }
+        }
+
+        if (createdCheck[2] === 1 &amp;&amp; createdCheck[5] === 1 &amp;&amp; created[4] != 2) {
+          created[8] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
+          created[4] === 2
+        ) {
+          created[8] = 2;
+        }
+        if (
+          created[6] != 2 &amp;&amp;
+          created[8] != 2 &amp;&amp;
+          (createdCheck[5] === 1 ||
+            createdCheck[7] === 1 ||
+            createdCheck[8] === 1 ||
+            createdCheck[3] === 1 ||
+            createdCheck[0] === 1) &amp;&amp;
+          (createdCheck[0] === 1 ||
+            createdCheck[1] ||
+            createdCheck[3] ||
+            createdCheck[7] ||
+            createdCheck[8]) &amp;&amp;
+          createdCheck[2] != 1
+        ) {
+          created[2] = 2;
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (createdCheck[0] === 1 &amp;&amp; createdCheck[2] === 1) {
+          created[1] = 2;
+        }
+        if (createdCheck[7] === 1 &amp;&amp; createdCheck[2] === 1) {
+          created[0] = 2;
+        }
+      }
+      if (printedCircle === 3 &amp;&amp; !p.win) {
+        if (
+          created[0] === 1 &amp;&amp;
+          created[7] === 1 &amp;&amp;
+          created[2] === 1 &amp;&amp;
+          created[1] === 2 &amp;&amp;
+          created[4] === 2 &amp;&amp;
+          created[6] === 2 &amp;&amp;
+          created[8] != 2
+        ) {
+          created[5] = 2;
+        }
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
+          !createdCheck[1] === 1 &amp;&amp;
+          !createdCheck[2] === 1 &amp;&amp;
+          !createdCheck[8] === 1
+        ) {
+          created[3] = 2;
+        }
+        if (
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[8] === 1
+        ) {
+          created[3] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          (createdCheck[3] === 1 || createdCheck[8] === 1)
+        ) {
+          created[7] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[4] === 1
+        ) {
+          created[3] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[4] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[3] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          (createdCheck[7] === 1 ||
+            createdCheck[5] === 1 ||
+            createdCheck[1] === 1)
+        ) {
+          created[0] = 2;
+
+          p.win = true;
+
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          (createdCheck[7] === 1 || createdCheck[5] === 1)
+        ) {
+          if (
+            created[3] === 2 &amp;&amp;
+            created[4] === 2 &amp;&amp;
+            created[6] === 2 &amp;&amp;
+            created[8] === 2
+          ) {
+            created[3] = 2;
+          } else {
+            created[0] = 2;
+          }
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[8] === 1
+        ) {
+          created[3] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[8] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[5] === 1
+        ) {
+          created[7] = 2;
+
+          p.win = true;
+          if (!updateEditor) {
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          (createdCheck[5] === 1 || createdCheck[1] === 1)
+        ) {
+          if (created[4] === 1 &amp;&amp; created[6] === 1 &amp;&amp; created[8] === 1) {
+            created[4] = 2;
+          } else if (created[0] === 2 &amp;&amp; created[4] === 2 &amp;&amp; created[6] === 2) {
+            created[3] = 2;
+          } else {
+            created[0] = 2;
+          }
+          p.win = true;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[4] === 2 &amp;&amp;
+          createdCheck[6] === 2 &amp;&amp;
+          createdCheck[8] === 2
+        ) {
+          created[5] = 2;
+        }
+        if (
+          createdCheck[1] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          p.win = true;
+          created[8] = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[8] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[1] = 2;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          !createdCheck[4] === 2 &amp;&amp;
+          !createdCheck[6] === 2 &amp;&amp;
+          !createdCheck[8] === 2
+        ) {
+          created[3] = 2;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[4] === 2 &amp;&amp;
+          createdCheck[6] === 2 &amp;&amp;
+          createdCheck[8] === 2
+        ) {
+          created[3] = 2;
+        }
+
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[5] = 2;
+        }
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[5] === 1
+        ) {
+          created[3] = 2;
+        }
+
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1
+        ) {
+          created[1] = 2;
+        }
+      }
+      if (printedCircle === 4 &amp;&amp; !p.win) {
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1 &amp;&amp;
+          createdCheck[2] === 1
+        ) {
+          created[0] = 2;
+          p.win = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[8] === 1 &amp;&amp;
+          createdCheck[3] === 1 &amp;&amp;
+          createdCheck[7] === 1
+        ) {
+          created[0] = 2;
+          p.win = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[5] === 1
+        ) {
+          created[2] = 2;
+          p.win = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[5] = 2;
+          p.win = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[5] === 1
+        ) {
+          created[3] = 2;
+          p.win = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+        if (
+          createdCheck[0] === 1 &amp;&amp;
+          createdCheck[2] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[3] === 1
+        ) {
+          created[8] = 2;
+        }
+
+        if (
+          createdCheck[4] === 1 &amp;&amp;
+          createdCheck[5] === 1 &amp;&amp;
+          createdCheck[7] === 1 &amp;&amp;
+          createdCheck[2] === 1
+        ) {
+          created[0] = 2;
+          if (!updateEditor) {
+            // enterCallback();
+          }
+          updateEditor = true;
+        }
+      }
+    } else {
+      
+      if (
+        ((created[0] === 1 &amp;&amp; created[1] === 1 &amp;&amp; created[2] === 1) ||
+          (created[3] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[5] === 1) ||
+          (created[6] === 1 &amp;&amp; created[7] === 1 &amp;&amp; created[8] === 1) ||
+          (created[0] === 1 &amp;&amp; created[3] === 1 &amp;&amp; created[6] === 1) ||
+          (created[1] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[7] === 1) ||
+          (created[2] === 1 &amp;&amp; created[5] === 1 &amp;&amp; created[8] === 1) ||
+          (created[0] === 1 &amp;&amp; created[4] === 1 &amp;&amp; created[8] === 1)) &amp;&amp;
+        !pp4
+      ) {
+        p.playerWin = true;
+        // console.log('player wins ');
+        pp4 = true;
+        // enterCallback();
+      }
+      if (!p.playerWin) {
+        if (printedCircle === 1 &amp;&amp; !pp) {
+          let i = randomCross();
+          created[i] = 2;
+          pp = true;
+        }
+        if (printedCircle === 2 &amp;&amp; !pp2) {
+          let i = randomCross();
+          created[i] = 2;
+          pp2 = true;
+        }
+        if (printedCircle === 3 &amp;&amp; !pp3) {
+          let i = randomCross();
+          created[i] = 2;
+          pp3 = true;
+        }
+        if (printedCircle === 4 &amp;&amp; !pp4) {
+          let i = randomCross();
+          created[i] = 2;
+          pp4 = true;
+        }
+      }
+    }
+    return createdCheck;
+  }
+
+  function randomCross() {
+    let runs = 0;
+    let randint = parseInt(Math.random() * 9);
+    for (let i = 0; i &lt;= created.length; i++) {
+      runs++;
+      if (i === randint) {
+        if (created[i] === 0) {
+          return i;
+        } else if (created[i] === 1) {
+          i = 0;
+          runs = 0;
+          randint = parseInt(Math.random() * 9);
+        } else if (created[i] === 2) {
+          i = 0;
+          runs = 0;
+          randint = parseInt(Math.random() * 9);
+        }
+      }
+      if (runs === 9) {
+        i = 0;
+        runs = 0;
+        randint = parseInt(Math.random() * 9);
+      }
+    }
+  }
+
+  function newCross(position) {
+    let checkPosition = checkPositionCircle();
+
+    createdCheck = calculateCross();
+
+    // field 6
+    if (position === 6 &amp;&amp; created[6] != 1) {
+      if (start || created[6] === 2) {
+        let cross6 = [
+          [
+            p.width / 2 - 70,
+            p.height / 2 + 75,
+            p.width / 2 - 125,
+            p.height / 2 + 130,
+          ],
+          [
+            p.width / 2 - 125,
+            p.height / 2 + 75,
+            p.width / 2 - 70,
+            p.height / 2 + 130,
+          ],
+        ];
+        start = false;
+        p.yourTurn = true;
+        checkPosition[6] = true;
+        created[6] = 2;
+        return cross6;
+      }
+    }
+
+    //field 3
+    if (position === 3 &amp;&amp; created[3] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[3] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[3] === 2)
+      ) {
+        let cross3 = [
+          [
+            p.width / 2 - 70,
+            p.height / 2 - 25,
+            p.width / 2 - 125,
+            p.height / 2 + 30,
+          ],
+          [
+            p.width / 2 - 125,
+            p.height / 2 - 25,
+            p.width / 2 - 70,
+            p.height / 2 + 30,
+          ],
+        ];
+        checkPosition[3] = true;
+        p.yourTurn = true;
+        return cross3;
+      }
+    }
+    //   field4
+    if (position === 4 &amp;&amp; created[4] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[4] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[4] === 2)
+      ) {
+        let cross4 = [
+          [
+            p.width / 2 - 25,
+            p.height / 2 - 25,
+            p.width / 2 + 30,
+            p.height / 2 + 30,
+          ],
+          [
+            p.width / 2 + 30,
+            p.height / 2 - 25,
+            p.width / 2 - 25,
+            p.height / 2 + 30,
+          ],
+        ];
+        checkPosition[2] = true;
+        p.yourTurn = true;
+        return cross4;
+      }
+    }
+    //field 5
+    if (position === 5 &amp;&amp; created[5] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[5] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[5] === 2)
+      ) {
+        let cross5 = [
+          [
+            p.width / 2 + 125,
+            p.height / 2 - 25,
+            p.width / 2 + 70,
+            p.height / 2 + 30,
+          ],
+          [
+            p.width / 2 + 75,
+            p.height / 2 - 25,
+            p.width / 2 + 125,
+            p.height / 2 + 30,
+          ],
+        ];
+        checkPosition[5] = true;
+        p.yourTurn = true;
+
+        return cross5;
+      }
+    }
+
+    //field 8
+
+    if (position === 8 &amp;&amp; created[8] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[8] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[8] === 2)
+      ) {
+        let cross8 = [
+          [
+            p.width / 2 + 125,
+            p.height / 2 + 75,
+            p.width / 2 + 70,
+            p.height / 2 + 130,
+          ],
+          [
+            p.width / 2 + 75,
+            p.height / 2 + 75,
+            p.width / 2 + 125,
+            p.height / 2 + 130,
+          ],
+        ];
+        checkPosition[8] = true;
+        p.yourTurn = true;
+
+        return cross8;
+      }
+    }
+
+    //field 7
+    if (position === 7 &amp;&amp; created[7] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[7] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[7] === 2)
+      ) {
+        let cross7 = [
+          [
+            p.width / 2 - 25,
+            p.height / 2 + 75,
+            p.width / 2 + 30,
+            p.height / 2 + 130,
+          ],
+          [
+            p.width / 2 + 30,
+            p.height / 2 + 75,
+            p.width / 2 - 25,
+            p.height / 2 + 130,
+          ],
+        ];
+        checkPosition[7] = true;
+        p.yourTurn = true;
+
+        return cross7;
+      }
+    }
+
+    //field 0
+    if (position === 0 &amp;&amp; created[0] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[0] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[0] === 2)
+      ) {
+        let cross0 = [
+          [
+            p.width / 2 - 70,
+            p.height / 2 - 125,
+            p.width / 2 - 125,
+            p.height / 2 - 70,
+          ],
+          [
+            p.width / 2 - 125,
+            p.height / 2 - 125,
+            p.width / 2 - 70,
+            p.height / 2 - 70,
+          ],
+        ];
+        checkPosition[0] = true;
+        p.yourTurn = true;
+
+        return cross0;
+      }
+    }
+
+    //field 1
+    if (position === 1 &amp;&amp; created[1] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[1] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[1] === 2)
+      ) {
+        let cross1 = [
+          [
+            p.width / 2 - 25,
+            p.height / 2 - 125,
+            p.width / 2 + 30,
+            p.height / 2 - 70,
+          ],
+          [
+            p.width / 2 + 30,
+            p.height / 2 - 125,
+            p.width / 2 - 25,
+            p.height / 2 - 70,
+          ],
+        ];
+        checkPosition[1] = true;
+        p.yourTurn = true;
+        return cross1;
+      }
+    }
+
+    //field 2
+    if (position === 2 &amp;&amp; created[2] != 1) {
+      if (
+        (!p.yourTurn &amp;&amp; !checkPosition[2] &amp;&amp; !start) ||
+        (!start &amp;&amp; created[2] === 2)
+      ) {
+        let cross2 = [
+          [
+            p.width / 2 + 125,
+            p.height / 2 - 125,
+            p.width / 2 + 70,
+            p.height / 2 - 70,
+          ],
+          [
+            p.width / 2 + 75,
+            p.height / 2 - 125,
+            p.width / 2 + 125,
+            p.height / 2 - 70,
+          ],
+        ];
+        checkPosition[2] = true;
+        p.yourTurn = true;
+
+        return cross2;
+      }
+    }
+  }
+
+  function animPos(position) {
+    let cross = newCross(position);
+    // console.log(position)
+    return [
+      [cross[0][0], cross[0][1], cross[0][2], cross[0][3]],
+      [cross[1][0], cross[1][1], cross[1][2], cross[1][3]],
+    ];
+  }
+
+  function animValid() {
+    let animCreated = true;
+
+    return animCreated;
+  }
+
+  function animCreate(position) {
+    let cross = newCross(position);
+    crosses[position] = cross;
+    if (!animCreated[position]) {
+      getAnim = animPos(position);
+
+      allAnims[position] = getAnim;
+    }
+    animCreated[position] = animValid();
+
+    let print = [
+      [
+        crosses[position][0][0],
+        crosses[position][0][1],
+        allAnims[position][0][0],
+        allAnims[position][0][1],
+      ],
+      [
+        allAnims[position][1][2],
+        allAnims[position][1][3],
+        crosses[position][1][2],
+        crosses[position][1][3],
+      ],
+    ];
+
+    if (!animFinished[position]) {
+      if (p.frameCount &amp;&amp; position != 5 &amp;&amp; position != 8 &amp;&amp; position != 3) {
+        if (getAnim[0][0] &lt;= getAnim[0][2] &amp;&amp; getAnim[0][1] &lt;= getAnim[0][3]) {
+          getAnim[0][0] += 1.5;
+          getAnim[0][1] += 1.5;
+        } else if (
+          getAnim[1][2] &lt;= getAnim[1][0] &amp;&amp;
+          getAnim[1][1] &lt;= getAnim[1][3]
+        ) {
+          getAnim[1][2] += 1.5;
+          getAnim[1][3] -= 1.5;
+        } else {
+          animFinished[position] = true;
+        }
+
+      }
+      if(p.frameCount &amp;&amp; position === 5 || position === 8 || position === 3){
+      if (getAnim[0][0] &lt;= getAnim[0][2] &amp;&amp; getAnim[0][1] &lt;= getAnim[0][3]) {
+        getAnim[0][0] += 1.5;
+        getAnim[0][1] += 1.5;
+      } else if (
+        getAnim[1][2] &lt;= getAnim[1][0] &amp;&amp;
+        getAnim[1][1] &lt;= getAnim[1][3]
+      ) {
+        getAnim[1][2] += 1.5;
+        getAnim[1][3] -= 1.5;
+      } else {
+        animFinished[position] = true;
+      }
+    }
+      return print;
+    }
+  }
+  let angle = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let point = 9000;
+
+  p.draw = () => {
+    // console.log("-----------------------",p.fields_)
+    // background($(':root').css('--color-navy-800'));
+    p.fill(255);
+    p.rect(p.width / 2 - 50, p.height / 2, 5, 250);
+    p.rect(p.width / 2 + 50, p.height / 2, 5, 250);
+    p.stroke(255);
+
+    p.rect(p.width / 2, p.height / 2 + 50, 250, 5);
+    p.rect(p.width / 2, p.height / 2 - 50, 250, 5);
+
+    p.noFill();
+
+    const draw_cross = (i) => {
+      // console.log(i)
+
+      if (animFinished[i]) {
+        let cross = newCross(i);
+        p.line(cross[0][0], cross[0][1], cross[0][2], cross[0][3]);
+        p.line(cross[1][0], cross[1][1], cross[1][2], cross[1][3]);
+      } else {
+        let x = animCreate(i);
+        p.line(x[0][0], x[0][1], x[0][2], x[0][3]);
+        p.line(x[1][0], x[1][1], x[1][2], x[1][3]);
+      }
+    };
+
+    // draw_cross(6)
+    // created.forEach((isCreated, i) => {
+    //   if (i === 6) return;
+    //   if (!p.yourTurn || isCreated === 2) draw_cross(i)
+    // })
+
+    if (!p.yourTurn || created[6] === 2) {
+      draw_cross(6);
+    }
+
+    if (!p.yourTurn || created[4] === 2) {
+      draw_cross(4);
+    }
+    if (!p.yourTurn || created[8] === 2) {
+      draw_cross(8);
+    }
+    if (!p.yourTurn || created[1] === 2) {
+      draw_cross(1);
+    }
+    if (!p.yourTurn || created[2] === 2) {
+      draw_cross(2);
+    }
+
+    if (!p.yourTurn || created[0] === 2) {
+      draw_cross(0);
+    }
+
+    if (!p.yourTurn || created[3] === 2) {
+      draw_cross(3);
+    }
+
+    if (!p.yourTurn || created[5] === 2) {
+      draw_cross(5);
+    }
+
+    if (!p.yourTurn || created[7] === 2) {
+      draw_cross(7);
+    }
+
+    const draw_circle = ([first, second], circleAnimFinished, position) => {
+      if (!getAngle[position]) {
+        getAngle[position] = angle[position];
+      }
+      // console.log(getAngle[position], angle[position]);
+
+      if (angle[position] - getAngle[position] &lt; 360) {
+        angle[position] += 3;
+
+        p.push();
+        p.translate(p.width / 2 + first, p.height / 2 + second);
+        p.rotate(angle[position]);
+        p.circle(0, 25, 1);
+        p.pop();
+      } else {
+        circleAnimFinished[position] = true;
+        // angle[position] =0
+      }
+
+      let circles = newCircle(position);
+      if (!circleAnimFinished[position]) {
+        if (!getAngle[position]) {
+          getAngle[position] = angle[position];
+        }
+        // console.log(getAngle[position], angle[position]);
+
+        if (angle[position] - getAngle[position] &lt; 360) {
+          angle[position] += 3;
+
+          p.push();
+          p.translate(p.width / 2 + first, p.height / 2 + second);
+          p.rotate(angle[position]);
+          p.circle(0, 25, 1);
+          p.pop();
+        } else {
+          circleAnimFinished[position] = true;
+          // angle[position] =0
+        }
+      } else {
+        // console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
+      }
+    };
+
+    const circleAdders = [
+      [-100, -100],
+      [0, -100],
+      [100, -100],
+      [-100, 0],
+      [0, 0],
+      [100, 0],
+      [-100, 100],
+      [0, 100],
+      [100, 100],
+    ];
+
+    const createdCheck = [
+      [0, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+      [1, 2],
+    ];
+
+    // if (!p.fields__) return
+
+    // p.fields__.forEach((field, i) => {
+    //   // if ([6, 8].includes(i)) {
+    //   //   if (!(((p.fields__[i] &amp;&amp; p.yourTurn) || created[i] ===  createdCheck[i][0]) &amp;&amp; created[i] !=  createdCheck[i][1])) return;
+    //   // } else
+    //   if (
+    //     !(
+    //       (field || created[i] === createdCheck[i][0]) &amp;&amp;
+    //       created[i] != createdCheck[i][1]
+    //     )
+    //   )
+    //     {
+    //     //   console.log("statement", (field || created[i] === createdCheck[i][0]) &amp;&amp;
+    //     //   created[i] != createdCheck[i][1]
+    //     // )
+    //       return
+    //     };
+
+    //   // console.log("Goin through")
+    //   let circles = newCircle(i);
+    //   if (!circleAnimFinished[i])
+    //     draw_circle(circleAdders[i], circleAnimFinished, i);
+    //   else {
+    //     p.circle(circles[0], circles[1], circles[2]);
+    //   }
+    // });
+
+    // console.log(p.fields__)
+
+    if (
+      ((p.fields__[6] &amp;&amp; p.yourTurn) || created[6] === 1) &amp;&amp;
+      created[6] != 2
+    ) {
+      let circles = newCircle(6);
+      draw_circle([-100, 100], circleAnimFinished, 6);
+    }
+    if (
+      ((p.fields__[8] &amp;&amp; p.yourTurn) || created[8] === 1) &amp;&amp;
+      created[8] != 2
+    ) {
+      let circles = newCircle(8);
+      draw_circle([100, 100], circleAnimFinished, 8);
+    }
+
+    if ((p.fields__[7] || created[7] === 1) &amp;&amp; created[7] != 2) {
+      let circles = newCircle(7);
+      draw_circle([0, 100], circleAnimFinished, 7);
+    }
+    if ((p.fields__[5] || created[5] === 1) &amp;&amp; created[5] != 2) {
+      let circles = newCircle(5);
+      draw_circle([+100, 0]);
+    }
+
+    if ((p.fields__[0] || created[0] === 1) &amp;&amp; created[0] != 2) {
+      let circles = newCircle(0);
+      if (!circleAnimFinished[0])
+        draw_circle([-100, -100], circleAnimFinished, 0);
+      else {
+        // console.log(circles);
+        // p.circle(circles[0][0], circles[0][1], circles[1][0], circles[1][1]);
+        p.circle(circles[0], circles[1], circles[2]);
+      }
+    }
+
+    if ((p.fields__[1] || created[1] === 1) &amp;&amp; created[1] != 2) {
+      let circles = newCircle(1);
+      draw_circle([0, -100], circleAnimFinished, 1);
+    }
+
+    if ((p.fields__[2] || created[2] === 1) &amp;&amp; created[2] != 2) {
+      let circles = newCircle(2);
+      draw_circle([100, -100], circleAnimFinished, 2);
+    }
+
+    if ((p.fields__[3] || created[3] === 1) &amp;&amp; created[3] != 2) {
+      let circles = newCircle(3);
+      draw_circle([-100, 0], circleAnimFinished, 3);
+    }
+
+    if ((p.fields__[4] || created[4] === 1) &amp;&amp; created[4] != 2) {
+      let circles = newCircle(4);
+      draw_circle([0, 0], circleAnimFinished, 4);
+    }
+  };
+
+  function newCircle(position) {
+    let checkPosition = checkPositionCircle();
+    if (position === 0 &amp;&amp; !checkPosition[0]) {
+      let circle0 = [p.width / 2 - 100, p.height / 2 - 100, 50];
+      checkPosition[0] = true;
+      created[0] = 1;
+      p.yourTurn = false;
+      return circle0;
+    }
+    if (position === 1 &amp;&amp; !checkPosition[1]) {
+      let circle1 = [p.width / 2, p.height / 2 - 100, 50];
+      checkPosition[1] = true;
+      p.yourTurn = false;
+      created[1] = 1;
+      return circle1;
+    }
+    if (position === 2 &amp;&amp; !checkPosition[2]) {
+      let circle2 = [p.width / 2 + 100, p.height / 2 - 100, 50];
+      checkPosition[2] = true;
+      created[2] = 1;
+      p.yourTurn = false;
+      return circle2;
+    }
+    if (position === 3 &amp;&amp; !checkPosition[3]) {
+      let circle3 = [p.width / 2 - 100, p.height / 2, 50];
+      checkPosition[3] = true;
+      p.yourTurn = false;
+      created[3] = 1;
+      return circle3;
+    }
+    if (position === 4 &amp;&amp; !checkPosition[4]) {
+      let circle4 = [p.width / 2, p.height / 2, 50];
+      checkPosition[4] = true;
+      created[4] = 1;
+      p.yourTurn = false;
+      return circle4;
+    }
+    if (position === 5 &amp;&amp; !checkPosition[5]) {
+      let circle5 = [p.width / 2 + 100, p.height / 2, 50];
+      checkPosition[5] = true;
+      p.yourTurn = false;
+      created[5] = 1;
+      return circle5;
+    }
+    if (position === 6 &amp;&amp; !checkPosition[6]) {
+      let circle6 = [p.width / 2 - 100, p.height / 2 + 100, 50];
+      checkPosition[6] = true;
+      p.yourTurn = false;
+      created[6] = 1;
+      return circle6;
+    }
+    if (position === 7 &amp;&amp; !checkPosition[7]) {
+      let circle7 = [p.width / 2, p.height / 2 + 100, 50];
+      checkPosition[7] = true;
+      p.yourTurn = false;
+      created[7] = 1;
+      return circle7;
+    }
+    if (position === 8 &amp;&amp; !checkPosition[8]) {
+      let circle8 = [p.width / 2 + 100, p.height / 2 + 100, 50];
+      checkPosition[8] = true;
+      created[8] = 1;
+      p.yourTurn = false;
+      return circle8;
+    }
+  }
+
+  function checkPositionCircle() {
+    var checkPosition = [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ];
+
+    return checkPosition;
+  }
+
+  p.customResize = () => {
+    // p.background($(':root').css('--color-navy-800'));
+  };
+
+  // window.setup = p.setup;
+  // window.draw = p.draw;
+  // window.windowResized = p.windowResized;
+  p.customResize = () => {
+    p.setup();
+    resized = true;
+  };
+};
+
+export { sketch_builder };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>

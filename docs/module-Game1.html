@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> game1/config.js</title>
+  <title> Game1</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,84 +74,60 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Sqit-Game1.html">Sqit-Game1</a></li><li><a href="module-Sqit-General.html">Sqit-General</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-Game1-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-Game1-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit-General-Editor.html">Editor</a></li><li><a href="module-Sqit-General-Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Game1.html">Game1</a></li><li><a href="module-Sqit.html">Sqit</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit-Editor.html">Editor</a></li><li><a href="module-Sqit-Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Source</p>
-                    <h1>game1/config.js</h1>
+                    <p>Module</p>
+                    <h1>Game1</h1>
                 </header>
                 
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import p5 from 'p5';
+        
+    
+</header>
 
-import {sketch_builder} from "./sketch"
-import * as helpers from '../helpers';
+<article>
+    <div class="container-overview">
+    
+        
 
-// /** @namespace sqit */
-/** @module Sqit-Game1 */
+        
+    
+    </div>
+    
+    
 
-/**
- * Builds a p5 instance and connects it with the main editor.
- *
- * @param {Object} ref React ref object holding the div where the p5 canvas should be placed
- * @param {function} setText1 Text setter for main editor
- * @param {function} setText2 Text setter for output editor
- * @returns {object} An object containing the P5 instance and the main editor getter
- */
-const get_sketch = (ref, setText1, setText2) => {
-    let isExtraTxt = false;
-  
-    const myp5 = new p5(sketch_builder, ref);                     //! required
-  
-    const editorGetter = value => {                               //! required
-      const ret = helpers.get_pureReturn(value, true);
-      const searchedVariable = isExtraTxt ? 'interval' : 'gate';
-  
-      console.log(value)
-      setText1(value);
-      setText2(
-        `Output:\n${ret ? helpers.get_userCode(value, searchedVariable)[0] : ret}`
-      );
-  
-      if (!helpers.get_validation(value, 'open', 'gate')) {
-        myp5.anim = false;
-        return;
-      } else myp5.anim = true;
-  
-      if (!isExtraTxt &amp;&amp; myp5.anim) {
-        isExtraTxt = true;
-        setText1(
-          value +
-            `\n\n// Sikes, please click the green light for 2 seconds to open the door.\nlet interval = 4`
-        );
-      }
-      const [userInterval, status] = helpers.get_userCode(value, 'interval');
-      myp5.interval = status ? userInterval : 4;
-    };
-  
-    return {                                                      //! required
-      p5: myp5,
-      getter: editorGetter,
-    };
-  };
-  
-  const ed1_txt = `// Open the gate to enter the next challenge\n\nlet gate ="close";\ngate`;
-  const ed2_txt = `Output:\nclose`;
-  
-  export {ed1_txt, ed2_txt}
-  export default get_sketch;
-  </code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

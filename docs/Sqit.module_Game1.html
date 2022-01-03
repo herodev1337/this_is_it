@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Sketch</title>
+  <title> Game1</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,15 +74,15 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div><div class="category"><h2>Sqit</h2><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Sqit.html">Sqit</a></li><li><a href="Sqit.module_Game1.html">Game1</a></li></ul><h3>Classes</h3><ul><li><a href="module-Sqit-BlinkLight.html">BlinkLight</a></li><li><a href="module-Sqit-SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="module-Sqit.html">Sqit</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Components</p>
-                    <h1>Sketch</h1>
+                    <p>Module</p>
+                    <h1>Game1</h1>
                 </header>
                 
 
@@ -93,77 +93,16 @@
 
 <header>
     
-        <h2>
-            &ltSketch  /&gt
-        </h2>
-        
-    
 </header>
 
 <article>
     <div class="container-overview">
     
         
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="Sketch">
-        <a class="href-link" href="#Sketch">#</a>
+            <div class="description"><p>Builds a p5 instance and connects it with the main editor.</p></div>
         
-        <span class="code-name">
-            
-                &ltSketch  /&gt
-            
-        </span>
-    </h4>
-    
 
-    
-    
-    <div class="description">
-        <p>Main SQIT Component.</p>
-<p>It's one big div that contains 2 divs holding a canvas element and 2 aceditor instances.
-The aceeditor instances are splitted into the main editor for text input and an output editor
-which is right under the main editor.</p>
-<p>At the start we get the corrosponding sketch and initial text1/2.
-After that we get a react reference which will go into our p5 parent div
-(the div which will hold the p5 canvas element later).
-We also get 2 react states. They will represent the 2 texts that will go into the AceEditor instances.</p>
-<p>We also create a new state that will hold the p5 instance
-and a function that will be called by the first ace editor instance.</p>
-<p>In the useEffect hook we'll get our p5 instance and our text getter.
-We also register some event listeners which will resize the canvas on resize events.
-If a customResize property exists on the p5 instance we will also call that.
-It represents some custom resize functionality if needed.</p>
-<p>The returned component calls the <Editor> which in fact creates 2 ace editor instances
-which will get the text1/2 state as value.
-It also creates a div which will get our p5Ref and will hold the canvas element in the future.
-If the setText1/2 gets used in the future it will update these components.
-The getter gets called when the onChange event on the main ace editor gets fired
-(eg. if you type anything in the editor).
-It will receive the whole text of the editor in one string and we have to process it in the corrosponding config.</p>
-    </div>
-    
-
-
-
-
-
-
-
-    
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -194,59 +133,23 @@ It will receive the whole text of the editor in one string and we have to proces
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><p><a href="Editor.html"><code>Editor Component</code></a></p></li>
-        
-            <li><p><a href="https://p5js.org/get-started/">P5</a></p></li>
-        
-            <li><p><a href="https://ace.c9.io/">AceEditor</a></p></li>
-        </ul>
-    </dd>
-    
 
     
 
     
         <p class="tag-source">
-            <a href="Sketch.js.html" class="button">View Source</a>
+            <a href="game1_config.js.html" class="button">View Source</a>
             <span>
-                <a href="Sketch.js.html">Sketch.js</a>, <a href="Sketch.js.html#line68">line 68</a>
+                <a href="game1_config.js.html">game1/config.js</a>, <a href="game1_config.js.html#line9">line 9</a>
             </span>
         </p>
     
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
         
     
     </div>
-    
-        
     
     
 

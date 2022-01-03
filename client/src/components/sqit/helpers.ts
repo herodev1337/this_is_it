@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+/** @module Sqit-General */
 
 /**
  * Calculate width by percent.
