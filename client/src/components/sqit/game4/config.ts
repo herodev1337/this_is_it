@@ -21,37 +21,6 @@ let gameFinished = false;
 let fieldsReset:string;
 let oneTime = false;
 
-
-/**
- * At the start of the function we define 'extraText', 
- * this variable will track if the {1,2,...,n} stage was already initialised, 
- * until the game gets interrupted by an end of the game.
- * 
- * First we get the value of let KI_Mode. 
- * If the value is "unbeatable", refering to the conditions of the game Tic-Tac-Toe, you can not win. 
- * If the value is "normal" or "easy", the variable hardMode will be false and you could win the game.
- * 
- * Next we build the P5 instance and define the 'editorGetter' function.
- * With every call getting the current main editor value, we get fields = [false, false, ..., n], update and validate it.
- * We'll stop updating and validating, if the game was interrupted by an end of the game, 
- * updating the second editor (output editor) with current following possible stages: 
- *     - Output: You did it!
- *     - Output: You did loose!
- *     - Output: Tie!
- * Is any of these s
- * 
- * @see [sketch_builder]{@link sketch}
- * @see [P5]{@link https://p5js.org/get-started/}
- * @see [Tic-Tac-Toe]{@link https://wikipedia.org/wiki/Tic-Tac-Toe}
- * 
- * @param {Object} ref React ref object holding the div where the p5 canvas should be placed
- * @param {function} setText1 Text setter for main editor
- * @param {function} setText2 Text setter for output editor
- * @returns {object} An object containing the P5 instance and the main editor getter
- */
-const get_sketch = (ref, setText1, setText2) => {
-  const myp5 = new p5(sketch_builder, ref);
-
 /**
  * At the start of the function we define 'extraText', 
  * this variable will track if the {1,2,...,n} stage was already initialised, 
