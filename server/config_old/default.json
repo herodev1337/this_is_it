@@ -1,9 +1,0 @@
-{
-  // Server configs
-  "dbConfig": {
-    "uri": "mongodb+srv://tii:devpassword@tii-db.e1z21.mongodb.net/tii?retryWrites=true&w=majority"
-  },
-  "auth": {
-    "token_secret": "tii_token_secret"
-  }
-}

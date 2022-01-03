@@ -5,14 +5,13 @@
 ---
 
 
-
 ## Getting Started
 
 #### Prerequisites
 
-- [node.js](https://nodejs.org/en/)
-  - npm
-
+- [node + npm](https://nodejs.org/en/)
+- [git](https://git-scm.com/)
+- [mongodb server](https://www.mongodb.com/)
 
 
 #### Clone
@@ -24,14 +23,8 @@ oder
 `git clone git@github.com:herodev1337/this_is_it.git`
 
 
-
 #### Server starten
-
-1. `cd this_is_it/server`
-2. `npm install` **oder** `npm i` (nur nach dem ersten pull/clone)
-3. `npm start` **oder** `node server.js`
-4. Server sollte gestartet sein!
-
+--> [Starting the Server](./server/README.md) <--
 
 
 #### React Devserver starten
@@ -42,7 +35,6 @@ oder
 4. Etwas warten, Webpack kompiliert euch den den Development-Server
 
 
-
 ## Development
 
 #### Ordnerstruktur
@@ -50,7 +42,7 @@ oder
 ````
 this_is_it/
 ├─ client/           // REACT WEBSERVER
-│  ├─ public/	     <-- Diese Dateien werden von React generiert, hier sollte nichts verändert werden
+│  ├─ public/	       <-- Diese Dateien werden von React generiert, hier sollte nichts verändert werden
 │  ├─ src/           
 │  │  ├─ components/ <-- Sekundäre React-Komponenten
 │  │  ├─ routes/     <-- Primäre React-Komponenten, die in index.js verwendet werden
@@ -58,13 +50,18 @@ this_is_it/
 │  │  ├─ styles/     <-- (S)CSS Dateien
 │  │  ├─ utils/      <-- JS-Dateien wie Contexts, Hooks, Konfigurationsdateien, etc.
 │
-├─ server/           // EXPRESS SERVER
+├─ server/           // EXPRESS REST API
 │  ├─ config/        <-- Konfigurationsdateien z.B. Database Credentials und URL, Settings...
-│  ├─ controllers/   <-- API Controller für Datenbank und Authentifizierung
-│  ├─ middleware/    <-- Liegt zwischen Route und Controller und kann z.B. authentifizieren
-│  ├─ models/        <-- MongoDB Models
-│  ├─ routes/        <-- Routing-Dateien
-│  ├─ util/          <-- Hilfe-Dateien, wie z.B. Logger
+│  ├─ logs/          <-- Logdateien vom Server
+│  ├─ src/ 
+│  │  ├─ controller/ <-- Wandelt die Webanfragen zu Datenbankabfragen um. Verändert eventuell auch Daten
+│  │  ├─ middleware/ <-- Liegt zwischen Route und Controller und kann z.B. authentifizieren
+│  │  ├─ models/     <-- MongoDB Models
+│  │  ├─ schema/     <-- Zod Validierungs Schemas
+│  │  ├─ service/    <-- Kommuniziert direkt mit der Datenbank
+│  │  ├─ utils/      <-- Hilfe-Dateien, wie z.B. Logger
+│  │  ├─ routes.ts   <-- Routing-Datei
+│  │  ├─ app.ts     <-- Einstiegspunkt
 ````
 
 #### Der MERN Techstack
@@ -76,7 +73,7 @@ this_is_it/
 
 Zum [Nachlesen](https://www.mongodb.com/languages/mern-stack-tutorial)
 
-#### React Routing
+## React Routing
 
 Die Website ist eine Single-Page-Application, d.h. es werden keine separaten HTML-Files geladen, sondern React rendert die benötigten Komponenten immer auf der selben Seite. Um dennoch gezielt navigieren zu können, nutzen wir die [React Router](https://reactrouter.com/docs/en/v6) **v6** library.
 
@@ -117,53 +114,78 @@ export default ParentComponent;
 
 Das oben gezeigte *Nesting* ist optional aber empfohlen, um die Seiten- und Routerstruktur intuitiv und übersichtlich zu halten. Alle in `client\src\index.js` verwendeten Komponenten sollten in dem Ordner `client\src\routes\` liegen. Die darin verwendeten Sub-Komponenten kommen in einen entsprechenden Ordner in `client\src\components\`.
 
-#### API
+## API
 
 Die Server-APIs für Datenbankabfragen, Authentifizierung usw. werden mit [Express.js](https://expressjs.com/) spezifiziert. Serverseitig würde eine API-Route beispielsweise folgendermaßen aussehen:
 
-`server\server.js`:
+`server\routes.ts`:
 
-```js
-const express = require('express');
-const app = express();
-...
-app.use('/api/beispiel/', require('./routes/beispielApi.route'))
-```
-`server\routes\beispielApi.route.js`:
+```typescript
+import { Express, Request, Response } from 'express';
+import { createBeispielHandler } from './controller/Beispiel.controller';
 
-```js
-const router = require('express').Router();
-const beispielController = require('../controllers/beispielApi.controller');
-
-router
-  .route('/')
-  .get(beispielController.getBeispielÜbersicht)
-  ...
-router
-  .route('/:beispielId')
-  .get(beispielController.getBeispiel)
-  .post(/*Optional Middleware*/ beispielController.createBeispiel)
-  ...
-...
-module.exports = router;
-```
-`server\controllers\beispielApi.controller.js`:
-```js
-const Beispiel = require("../models/Beispiel");
-
-//* GET - /api/beispiel/
-const getBeispielÜbersicht = (req, res, next) => {
-  Quiz.find({/* OPTIONS */}).then(data => { 
-    // Handle Data
-  }).catch(error => {
-    // Handle Error
-  })
+export default function(app: Express) {
+  app.post('/api/beispiel', createBeispielHandler)
 }
-...
-module.exports = {
-  getBeispielÜbersicht,
-  ...
-};
+```
+
+
+`server\controller\Beispiel.controller.ts`:
+```typescript
+import { Request, Response } from 'express';
+import { createBeispiel } from '../service/Beispiel.service';
+
+export async function createBeispielHandler(req: Request, res: Response) {
+  try {
+    const beispiel = await createBeispiel(req.body);
+
+    return res.json(beispiel);
+  } catch (error: any) {
+    log.error(error);
+    return res.status(409).json(error.message);
+  }
+}
+```
+
+`server\service\Beispiel.service.ts`:
+```typescript
+import Beispiel from '../model/Beispiel.model';
+import { DocumentDefinition } from 'mongoose';
+
+export async function createBeispiel(input: DocumentDefinition<>) {
+  try {
+    return await Beispiel.create(input);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
+```
+
+`server\model\Beispiel.model.ts`:
+```typescript
+import mongoose from 'mongoose';
+
+export interface BeispielDocument extends mongoose.Document {
+  beispielString: String;
+  beispielBoolean: Boolean;
+  beispielObject: Object;
+  /* Benötigt wenn timestamps = true */
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const beispielSchema = new mongoose.Schema(
+  {
+    beispielString: String ,
+    beispielBoolean: Boolean,
+    beispielObject: Object,
+  },
+  { timestamps: true }
+);
+
+const Beispiel = mongoose.model<BeispielDocument>('Beispiel', beispielSchema);
+
+export default Beispiel;
 ```
 
 Client-seitig werden API-Requests mit [Axios](https://axios-http.com/) durchgeführt. Hierfür gibt es bereits einen Context, in dem eine Axios-Instanz konfiguriert ist. Um den Context zur Verfügung zu stellen (*provide*), muss die Komponente, in der ein HTTP-Request gemacht werden soll, in den Wrapper aus `client\src\utils\context-hooks\use-api.js` verpackt werden. Anhand des vorherigen Beispiels:
