@@ -27,9 +27,9 @@ export default function QuizOverview() {
 
   useEffect(() => {
     api
-      .get('./quizzes')
+      .get('./quiz')
       .then(function (response) {
-        setQuizzes(response.data.data);
+        setQuizzes(response.data);
       })
       .catch(function (error) {
         console.log(error.message);
@@ -117,7 +117,7 @@ export default function QuizOverview() {
                     effect="solid"
                     delayShow={400}
                   />
-                  {auth.authenticate() ? (
+                  {auth.checkLocalSession() ? (
                     <PencilSquare
                       data-tip="edit quiz"
                       data-for="edit-quiz-tip"
@@ -135,7 +135,7 @@ export default function QuizOverview() {
                     effect="solid"
                     delayShow={400}
                   />
-                  {auth.authenticate() ? (
+                  {auth.checkLocalSession() ? (
                     <EditButtons
                       moveItem={moveQuiz}
                       trashItem={trashQuiz}

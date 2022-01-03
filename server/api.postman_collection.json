@@ -1,0 +1,867 @@
+{
+	"info": {
+		"_postman_id": "c91a919b-09f1-417a-881c-dbe8dc98cbb9",
+		"name": "This is IT Typescript API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirm\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/auth/register",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData)",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/auth/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sessions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/auth/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/api/auth/sessions",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz",
+			"item": [
+				{
+					"name": "Get all quizzes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/quiz",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/quiz/{{quizId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"quiz",
+								"{{quizId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Quiz",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TypeScript API Testquiz2\",\n    \"instructions\": \"abc\",\n    \"isEnabled\": true,\n    \"questions\": [\n        {\n            \"question\": \"Frage 1\",\n            \"answers\": [{\n                \"answer\": \"1\",\n                \"correct\": true\n            }, {\n                \"answer\": \"2\",\n                \"correct\": false\n            }],\n            \"isEnabled\": true,\n            \"explanation\": \"abc\"\n        }\n    ]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/quiz",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"quiz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Quiz",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TypeScript API Testquiz\",\n    \"instructions\": \"abc\",\n    \"isEnabled\": true,\n    \"questions\": [\n        {\n            \"question\": \"Frage 1\",\n            \"answers\": [{\n                \"answer\": \"1\",\n                \"correct\": true\n            }, {\n                \"answer\": \"2\",\n                \"correct\": false\n            }, {\n                \"answer\": \"3\",\n                \"correct\": false\n            }, {\n                \"answer\": \"4\",\n                \"correct\": false\n            }],\n            \"isEnabled\": true,\n            \"explanation\": \"abc\"\n        }\n    ]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/quiz/{{quizId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"quiz",
+								"{{quizId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Quiz",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"A post title\",\n    \"body\": \"Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text Some HTML text\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/quiz/{{quizId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"quiz",
+								"{{quizId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Get all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/api/post",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post/{{postId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"postId\", jsonData._id);",
+									"",
+									"",
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Typescript API Sample Post\",\n  \"description\": \"Typescript API Sample description\",\n  \"isPublic\": true,\n  \"postData\": {\n    \"time\": 1639391070154,\n    \"blocks\": [\n      { \"id\": \"xsJI8VYMjw\", \"type\": \"paragraph\", \"data\": { \"text\": \"Typescript API Post\" } }\n    ],\n    \"version\": \"2.22.2\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like/Dislike Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Typescript API Sample Post\",\n  \"description\": \"Typescript API Sample description\",\n  \"isPublic\": true,\n  \"postData\": {\n    \"time\": 1639391070154,\n    \"blocks\": [\n      { \"id\": \"xsJI8VYMjw\", \"type\": \"paragraph\", \"data\": { \"text\": \"Typescript API Post\" } }\n    ],\n    \"version\": \"2.22.2\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post/{{postId}}/like",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"{{postId}}",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Like/Dislike",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post/{{postId}}/like",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"{{postId}}",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"test_post\",\n  \"description\": \"\",\n  \"isPublic\": true,\n  \"postData\": {\n    \"time\": 1639391070154,\n    \"blocks\": [\n      { \"id\": \"xsJI8VYMjw\", \"type\": \"paragraph\", \"data\": { \"text\": \"Updated Typescript API Post\" } }\n    ],\n    \"version\": \"2.22.2\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post/{{postId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "{{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/post/{{postId}}",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email",
+			"value": "test@example.com"
+		},
+		{
+			"key": "password",
+			"value": "Password456!"
+		},
+		{
+			"key": "name",
+			"value": "Jane Doe"
+		},
+		{
+			"key": "accessToken",
+			"value": "<accessToken will be set when you create a session>"
+		},
+		{
+			"key": "refreshToken",
+			"value": "<refreshToken will be set when you create a session>"
+		},
+		{
+			"key": "endpoint",
+			"value": "http://localhost:1337"
+		},
+		{
+			"key": "productId",
+			"value": "<productId will be set when you create a session>"
+		}
+	]
+}

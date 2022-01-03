@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Editor.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">This is it - Documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="BlinkLight.html">BlinkLight</a></li><li><a href="SlidingDoors.html">SlidingDoors</a></li></ul><h3>Components</h3><ul><li><a href="Editor.html">Editor</a></li><li><a href="Sketch.html">Sketch</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_pureReturn">get_pureReturn</a></li><li><a href="global.html#get_sketch">get_sketch</a></li><li><a href="global.html#get_userCode">get_userCode</a></li><li><a href="global.html#getEditorSizes">getEditorSizes</a></li><li><a href="global.html#import_sketch">import_sketch</a></li><li><a href="global.html#realWidth">realWidth</a></li><li><a href="global.html#sketch_builder">sketch_builder</a></li><li><a href="global.html#view_2_px">view_2_px</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>Editor.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useLayoutEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import 'ace-builds/src-noconflict/ace';
+import 'ace-builds/src-noconflict/mode-javascript';
+import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/webpack-resolver';
+import AceEditor from 'react-ace';
+
+import * as helpers from './helpers.js';
+
+/**
+ * This functions initializes the editor sizes as a react state of nested arrays.
+ * We useLayoutEffect here to wait for the ui to load in first.
+ * We than grab the acutal width and height of both editors and return them.
+ * We also register an event listener for the resize event to update the sizes of both editors.
+ *
+ * @return {number[][]} Array containing 2 tuples with height &amp; width for both editors.
+ */
+const getEditorSizes = () => {
+  const [size, setSize] = useState([
+    [0, 0],
+    [0, 0],
+  ]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([
+        [helpers.realWidth(90), helpers.view_2_px(50)],
+        [helpers.realWidth(90), helpers.view_2_px(5)],
+      ]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
+
+/**
+ * Main Editor Component.
+ *
+ * There is a main div holding both editor instances the rest is managed by AceEditor. We only supply 2 things.
+ *
+ * 2 Setters strings which will go into the 'value' property of both editor instances.
+ * These will be watched and updated by react when we call the setText1/2 functions somewhere else in the code.
+ * These allow us to control what's going on in the editors.
+ *
+ * 1 Getter function which will go into the 'onChange' event on the first/main editor.
+ * This function gets called when the user types something into the main editor.
+ * The value it supplies will be all the text in the main editor.
+ *
+ * @see [AceEditor]{@link https://ace.c9.io/}
+ *
+ * @component
+ * @example
+ * const [text1,setText1] = useState("");
+ * const [text2,setText2] = useState("");
+ * 
+ * const getter = (editorText)=>{
+ *    if (validate(editorText)) {
+ *        setText1("Some information")    
+ *    } else {
+ *        setText2("Some output")
+ *    }
+ * }
+ *
+ * return &lt;Editor setter1={setter1} setter2={setter2} getter={getter} />
+ */
+const Editor = ({ setter1, setter2, getter }) => {
+  const [[ed1_width, ed1_height], [ed2_width, ed2_height]] = getEditorSizes();
+
+  return (
+    &lt;div className="editorHolder">
+      &lt;AceEditor
+        className="editor1"
+        mode="javascript"
+        theme="monokai"
+        showPrintMargin={false}
+        onChange={getter}
+        height={ed1_height + 'px'}
+        width={ed1_width + 'px'}
+        value={setter1}
+        setOptions={{
+          wrap: true,
+          highlightActiveLine: false,
+          highlightGutterLine: false,
+          hScrollBarAlwaysVisible: false,
+          vScrollBarAlwaysVisible: false,
+        }}
+      />
+      &lt;AceEditor
+        className="editor1"
+        mode="javascript"
+        theme="monokai"
+        height={ed2_height + 'px'}
+        width={ed2_width + 'px'}
+        readOnly={true}
+        showPrintMargin={false}
+        showGutter={false}
+        value={setter2}
+        setOptions={{
+          wrap: true,
+          highlightActiveLine: false,
+          highlightGutterLine: false,
+          hScrollBarAlwaysVisible: false,
+          vScrollBarAlwaysVisible: false,
+          readOnly: true,
+          useWorker: false,
+          // showLineNumbers: false,
+        }}
+      />
+    &lt;/div>
+  );
+};
+
+Editor.propTypes = {
+  /**
+   * Main editors text that should be shown.
+   */
+  setter1: PropTypes.string.isRequired,
+  /**
+   * Second editors (output) text that should be shown.
+   */
+  setter2: PropTypes.string.isRequired,
+  /**
+   * Main editors onChange function, should accept a string parameter.
+   * Get's called when something gets typed in the main editor.
+   */
+  getter: PropTypes.func.isRequired,
+};
+
+export default Editor;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>

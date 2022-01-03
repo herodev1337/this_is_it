@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "outDir": "./public/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+      }
+    },
+    "include": ["src/components", "src/declarations.d.ts"],
+    // "include": [
+    //   "*.ts(x|)"
+    // ],
+
+    "typedocOptions": {
+      "entryPoints": [
+        "src/components/sqit/Sketch.tsx", 
+        "src/components/sqit/Editor.tsx",
+        "src/components/sqit/helpers.ts",
+        "src/components/sqit/game1/config.ts",
+        "src/components/sqit/game1/classes.ts",
+        "src/components/sqit/game1/sketch.ts" 
+      ],
+      "out": "../docs"
+  }
+}

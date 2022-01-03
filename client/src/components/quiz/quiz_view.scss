@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  font-size: 16px;
+  --neonpink: #ff6ec7;
+  --neonblue: #3fdac5;
+  --shadowcolor: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  --defaultfont: 'Roboto Mono', monospace;
+  --backgroundgrey: #404040;
+  --hovercolor: #ececec;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    @extend %headings !optional;
+}
+
+// .carousel-control-prev-icon {
+//     background-image: url("../../static/images/quiz/carousel_arrow_left.png");
+// }
+// .carousel-control-next-icon {
+//     background-image: url("../../static/images/quiz/carousel_arrow_right.png");
+// }
+// .carousel-button {
+//         background-color: #3fdac5;
+// }
+
+.carousel {
+  .carousel-item {
+    >div{
+      padding: 5% 0 0 0;
+    }
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+      .container {
+          padding: 0;
+          height: 50vh;
+        > * {
+            padding: 10px 20px;
+        }
+        > %headings {
+            text-align: center;
+            min-width: 100%;
+        }
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+
+            > button {
+                width: 100%;
+            }
+        }
+      }
+    }
+  }
+}
+
+.col {
+  button {
+    background-color: transparent;
+  }
+}
+
+.btn {
+  border-radius: 0px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--neonblue);
+
+  &:hover {
+    color: var(--neonblue);
+    background-color: var(--backgroundgrey);
+  }
+}
+h2 {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--neonpink);
+}
+.lead {
+  color: var(--neonblue);
+}

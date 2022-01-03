@@ -1,0 +1,257 @@
+//  IMPORTS
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+//  GENERAL
+// * {
+//   margin: 0;
+//   padding: 0;
+//   font-family: 'Roboto Mono';
+//   background-color: #1d073b;
+// }
+// body {
+//   height: 100%;
+//   background-color: #1d073b;
+// }
+
+//topbar
+h3 {
+  background-color: transparent;
+}
+#karriereHeader {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  color: #00b4c5;
+}
+.button {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0px 32px;
+  color: #00b4c5;
+  cursor: pointer;
+  h3 {
+    margin: 0;
+  }
+}
+.activeButton {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
+
+//main
+#karriereMainContent {
+  display: flex;
+  flex-direction: row;
+  min-height: 42.2vw;
+  height: 100%;
+  color: #00b4c5;
+  background-color: #1d073b;
+}
+
+//Category
+.categoryRow {
+  width: 100%;
+  display: flex;
+  background-color: transparent;
+}
+.categoryColumn {
+  width: 50%;
+
+  .cats {
+    position: absolute;
+  }
+
+  .catBox {
+    position: absolute;
+  }
+}
+#svgContainer {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  margin: 8vh 0 0 12vw;
+}
+.catName {
+  font-size: 1.75rem;
+  font-weight: bold;
+  font-family: 'Roboto Mono';
+}
+
+.categoryField {
+  margin: 1.5rem;
+  border: solid 3px #00b4c5;
+  border-radius: 5px;
+  cursor: pointer;
+  h2 {
+    margin: 0.6rem 3rem;
+    background-color: transparent;
+  }
+  p {
+    background-color: transparent;
+    margin-left: 1rem;
+  }
+}
+.categoryField:hover {
+  background-color: #00b4c5;
+  color: #1d073b;
+}
+
+//Career
+#career {
+  width: 100%;
+}
+#search {
+  height: 1rem;
+  margin: 1rem 2rem 0 0;
+  display: flex;
+  justify-content: flex-end;
+#chosen {
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+  margin-left: 1rem;
+  height: 2rem;
+}  
+}
+#headerSearch {
+  height: 2rem;
+  background-color: #1d073b;
+  color: #00b4c5;
+  border: solid 2px #00b4c5;
+}
+
+#cardDiv {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 2rem;
+  justify-content: center;
+}
+.card {
+  min-width: 16vw;
+  width: 16vw;
+  height: 16vw;
+  margin: 1.5rem;
+  background-color: transparent;
+}
+.cardInner {
+  height: 100%;
+  width: 100%;
+  border: solid 5px #00b4c5;
+  border-radius: 5px;
+  color: #1d073b;
+  background-color: #00b4c5;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  h2 {
+    margin-top: 1rem;
+    background-color: transparent;
+    color: #1d073b;
+    font-family: 'Roboto Mono';
+  }
+  p {
+    margin-top: 1rem;
+    background-color: transparent;
+    color: #1d073b;
+    font-family: 'Roboto Mono';
+  }
+}
+
+.card:hover .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  background-color: #00b4c5;
+  color: #1d073b;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+}
+.modal-content { // ! Adjusting Bootstrap classes does not work in modular css
+  height: 90vh;
+  border-radius: 5px;
+  background-color: #00b4c5;
+  color: #1d073b;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Mono';
+  button {
+    justify-self: flex-end;
+    background-color: transparent;
+    width: 50%;
+  }
+}
+// .fade.modal.show {
+//  background: none;
+// }
+
+#cardBig {
+  margin-top: 1rem;
+  height: 90%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  h3 {
+    align-self: center;
+  }
+  h2 {
+    margin-top: 1rem;
+    align-self: flex-start;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  p {
+    background-color: transparent;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  //Category
+  .categoryRow {
+    display: grid;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .categoryColumn {
+    width: 101vw;
+  }
+  #one {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #svgContainer {
+    display: flex;
+    justify-content: center;
+    .catName {
+      display: none;
+    }
+  }
+  #pentagon {
+    margin-right: 6vw;
+    padding-right: 2rem;
+  }
+
+  #cardDiv {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .card {
+    width: 35vw;
+    height: 35vw;
+    margin: 1.5rem;
+  }
+  .card:hover .cardInner {
+    transform: none;
+  }
+}
