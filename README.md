@@ -86,7 +86,7 @@ The website is a single-page-application, i.e. no separate HTML-files will be lo
 
 Create a new route by adding a respective entry to `client\src\index.js`:
 
-```react
+```typescript
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // ...
 import ParentComponent from './routes/ParentComponent';
@@ -105,7 +105,7 @@ import ChildComponent from './routes/ChildComponent';
 
 The parent route's address is `localhost:8080/parent` and the child route's is `localhost:8080/parent/child`. For `<ChildComponent/>` to be displayed, the location has to be specified in `<ParentComponent />`. This is accomplished using the `<Outlet/>` component:
 
-```react
+```typescript
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 function ParentComponent() {
@@ -191,7 +191,7 @@ export default Example;
 In order to minimize cross-style contamination, apply all your component-level styling inside an ID-tag of your respective React-component:
 
 **React**
-```react
+```typescript
 import React from 'react';
 
 function ExampleComponent() {
